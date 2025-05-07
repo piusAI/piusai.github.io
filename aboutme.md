@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About me
+title: Who is Pius?
 subtitle: Hey, just play for life
 ---
 
