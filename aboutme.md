@@ -1,16 +1,30 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Hey, just play for life
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Pius. I have the following qualities:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+- VFX artist
+- Ai Developer
+- Indie Game Developer
+
+Program Can
+[DCC tool] 
+- Houdini, Maya, Max, Zbrush, Substance Painter, Substance Designer
+[Engine]
+- Unity, Unreal Engine
+[Laungauage]
+-C#, Python
+
+Nows I'm
+- Nueral Network develop with Python
+- XR Game Develope with Unity
+- Soccer Ai Training Company(expected)
 
 What else do you need?
 
 ### My story
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+To be honest, I need study more and more everything, so why don't you just start now! watch [this Video](https://www.youtube.com/watch?v=Hb1I2JE6zGo) and talk to me What is your **dream**
