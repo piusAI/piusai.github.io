@@ -6,15 +6,18 @@ subtitle: Hey, just play for life
 
 My name is Pius. I have the following qualities:
 
-- VFX artist
+- VFX/CG Tutor
 - Ai Developer
 - Indie Game Developer
 
 Program Can
+
 [DCC tool] 
 - Houdini, Maya, Max, Zbrush, Substance Painter, Substance Designer
+  
 [Engine]
 - Unity, Unreal Engine
+
 [Laungauage]
 -C#, Python
 
