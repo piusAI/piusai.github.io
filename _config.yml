@@ -18,8 +18,9 @@ navbar-links:
   Resources:
     - VFX: "https://www.artstation.com/vfxjoon"
     - Ai: "https://www.youtube.com/@Piusai"
-  CG Cafe: "https://cafe.naver.com/cheonancg"
-
+  CG Cafe:
+    -Cheonan: "https://cafe.naver.com/cheonancg"
+    -Cheonju: "https://cafe.naver.com/cheongjucg"
 ################
 # --- Logo --- #
 ################
