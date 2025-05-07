@@ -6,6 +6,13 @@ subtitle: Hey, just play for life
 
 My name is Pius. I have the following qualities:
 
+
+[Job]
+- VFX / CG Tutor
+- Nueral Network develop with Python
+- XR Game Develope with Unity
+- Soccer Ai Training Company(expected)
+
 [DCC tool] 
 - Houdini, Maya, Max, Zbrush, Substance Painter, Substance Designer
   
@@ -15,11 +22,7 @@ My name is Pius. I have the following qualities:
 [Laungauage]
 - C#, Python
 
-Nows I'm
-- VFX / CG Tutor
-- Nueral Network develop with Python
-- XR Game Develope with Unity
-- Soccer Ai Training Company(expected)
+
 
 What else do you need?
 
