@@ -45,13 +45,14 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "hwangpiusjoon@gmail.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
+
+  youtube: "@pius"
   github: piusAI
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-  whatsapp: 15551212
+#  facebook: deanattali  
+#  twitter: daattali
+#  patreon: DeanAttali
+#  rss: true  # remove this line if you don't want to show an RSS link at the bottom  
+#  whatsapp: 15551212
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
 #  linkedin: daattali
