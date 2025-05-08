@@ -9,7 +9,7 @@ My name is Pius. I have the following qualities:
 
 [Job]
 - VFX / CG Tutor
-- Nueral Network develop with Python
+- Neural Network develop with Python
 - XR Game Develope with Unity
 - Soccer Ai Training Company(expected)
 
