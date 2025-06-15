@@ -24,15 +24,28 @@ especially Learn like NN, connective from Neuron - Ai, 2D pose estimation Paper
 
 ---
 
-### 🟨 01. Word
+### 🟨 01. Word Estimate - Label
 
-| Word | Korean |
+| Word | ŷ | t |
 |------|------|
-| realtime | 실시간의 |
-| pose estimation | 자세 추정 |
-| nonparametric | 비모수적 (고정된 파라미터 없음) |
-| affinity | 친화도, 연관성 |
-| bottom-up | 하향식이 아닌 상향식 방식 |
+| anatomical | 해부학적의| 실시간의 |
+| crucial | 중요한 | |
+| salient | 중대한 | |
+| representations | 대표적인 |
+| significantly | 특히| |
+| reap | 빠르게 | |
+| briefly | 간략하게, | |
+| refinement | 재정재 | |
+| robust | 로봇과같은 | |
+| recognition  | 인지 | |
+| representational | 대표적인 | |
+| incorporates | 관계되는 | |
+| agnostic | 친화적인 ||
+| polishing | 플잎 | |
+| strategy | 전술 | |
+| methodological | 방식론적인 |
+| systematic | 시스템적인 ||
+
 
 
 ---
