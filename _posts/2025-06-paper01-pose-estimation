@@ -1,0 +1,75 @@
+---
+layout: post
+published: true
+title: 2D HumanPose Estimation : Asurvey
+subtitle: My First English Paper Study
+cover-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/PaperThumnail.png
+share-img: /assets/img/path.jpg
+tags: [paper, pose estimation, English study, ai]
+author: pius
+---
+
+## 📄 Survey Title : 2D human Pose Estimation : A Survey
+
+paper Link : https://arxiv.org/abs/2204.07370
+이 글은 영어 논문을 읽으며 공부한 흔적을 정리한 글입니다.  
+특히 AI와 2D pose estimation 관련 논문을 **신경망처럼 연결된 구조로 반복 학습**하고자 합니다.
+
+---
+
+### 📄 논문 원문 Abstract
+
+> Realtime multi-person 2D pose estimation is a key component in enabling machines to have an understanding of people in images and videos. In this work, we present a realtime approach to detect the 2D pose of multiple people in an image. The proposed method uses a nonparametric representation, which we refer to as Part Affinity Fields (PAFs), to learn to associate body parts with individuals in the image. This bottom-up system achieves high accuracy and realtime performance, regardless of the number of people in the image. ...
+
+---
+
+### 🟨 01. 모르는 단어 체크
+
+| 단어 | 의미 |
+|------|------|
+| realtime | 실시간의 |
+| pose estimation | 자세 추정 |
+| nonparametric | 비모수적 (고정된 파라미터 없음) |
+| affinity | 친화도, 연관성 |
+| bottom-up | 하향식이 아닌 상향식 방식 |
+
+(※ 실제 본문을 읽으며 체크한 단어를 직접 추가하세요.)
+
+---
+
+### 🧠 02. 의미 추론 및 해석 연습
+
+> “Realtime multi-person 2D pose estimation is a key component...”  
+→ 영상과 이미지에서 사람을 이해하는 데 중요한 요소는 바로 **실시간으로 여러 사람의 2D 자세를 추정**하는 기술이다.
+
+> “...Part Affinity Fields (PAFs), to learn to associate body parts...”  
+→ **PAF라는 비모수적 표현**을 이용해 사람의 **각 신체 부위를 식별하고 연결**한다.
+
+---
+
+### 📘 03. 단어 확인 후 다시 읽기
+
+위에서 정리한 단어들을 확인한 뒤, 전체 abstract를 다시 한 번 천천히 읽어보며 문장의 의미를 정확히 파악합니다.  
+(※ 여기에 당신이 느낀 새로운 인사이트를 덧붙이면 좋아요.)
+
+---
+
+### ✅ 04. 최종 요약
+
+> 이 논문은 이미지 안의 **여러 사람의 자세를 실시간으로 추정하는 알고리즘**을 소개한다.  
+> 핵심은 **Part Affinity Fields(PAF)** 라는 방식을 통해 **신체 부위의 연결성을 학습**하고, 이 연결을 바탕으로 각 사람의 자세를 파악하는 것이다.  
+> bottom-up 방식이므로 **사람 수에 상관없이 빠르고 정확한 추정이 가능**하다.
+
+---
+
+### 🔁 다음 스텝 예고
+
+- 🤖 ChatGPT에게 물어보며 내가 요약한 부분과 AI 해석이 얼마나 다른지 비교해볼 예정
+- 🧩 논문 전체를 한 토막씩 NN(신경망)처럼 연결하며 학습 루틴 구성 중
+
+---
+
+### 🧩 태그용 키워드
+
+`#PoseEstimation #PAF #2DPose #EnglishPaperStudy #NN방식학습 #논문정리 #piusAI`
