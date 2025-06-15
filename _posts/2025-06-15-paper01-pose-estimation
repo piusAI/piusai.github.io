@@ -13,20 +13,20 @@ author: pius
 ## 📄 Survey Title : 2D human Pose Estimation : A Survey
 
 paper Link : https://arxiv.org/abs/2204.07370
-이 글은 영어 논문을 읽으며 공부한 흔적을 정리한 글입니다.  
-특히 AI와 2D pose estimation 관련 논문을 **신경망처럼 연결된 구조로 반복 학습**하고자 합니다.
+This post is for clean-up paper about 2d pose estimation
+especially Learn like NN, connective from Neuron - Ai, 2D pose estimation Paper
 
 ---
 
-### 📄 논문 원문 Abstract
+### 📖 Abstract
 
 > Realtime multi-person 2D pose estimation is a key component in enabling machines to have an understanding of people in images and videos. In this work, we present a realtime approach to detect the 2D pose of multiple people in an image. The proposed method uses a nonparametric representation, which we refer to as Part Affinity Fields (PAFs), to learn to associate body parts with individuals in the image. This bottom-up system achieves high accuracy and realtime performance, regardless of the number of people in the image. ...
 
 ---
 
-### 🟨 01. 모르는 단어 체크
+### 🟨 01. Word
 
-| 단어 | 의미 |
+| Word | Korean |
 |------|------|
 | realtime | 실시간의 |
 | pose estimation | 자세 추정 |
@@ -34,7 +34,6 @@ paper Link : https://arxiv.org/abs/2204.07370
 | affinity | 친화도, 연관성 |
 | bottom-up | 하향식이 아닌 상향식 방식 |
 
-(※ 실제 본문을 읽으며 체크한 단어를 직접 추가하세요.)
 
 ---
 
@@ -55,7 +54,7 @@ paper Link : https://arxiv.org/abs/2204.07370
 
 ---
 
-### ✅ 04. 최종 요약
+### ✅ 04. Summary
 
 > 이 논문은 이미지 안의 **여러 사람의 자세를 실시간으로 추정하는 알고리즘**을 소개한다.  
 > 핵심은 **Part Affinity Fields(PAF)** 라는 방식을 통해 **신체 부위의 연결성을 학습**하고, 이 연결을 바탕으로 각 사람의 자세를 파악하는 것이다.  
@@ -63,13 +62,6 @@ paper Link : https://arxiv.org/abs/2204.07370
 
 ---
 
-### 🔁 다음 스텝 예고
+### 🧩 Tag Keyword
 
-- 🤖 ChatGPT에게 물어보며 내가 요약한 부분과 AI 해석이 얼마나 다른지 비교해볼 예정
-- 🧩 논문 전체를 한 토막씩 NN(신경망)처럼 연결하며 학습 루틴 구성 중
-
----
-
-### 🧩 태그용 키워드
-
-`#PoseEstimation #PAF #2DPose #EnglishPaperStudy #NN방식학습 #논문정리 #piusAI`
+#PoseEstimation #PAF #2DPose #EnglishPaperStudy #NN방식학습 #논문정리 #piusAI
