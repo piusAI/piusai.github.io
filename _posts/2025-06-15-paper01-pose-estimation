@@ -1,13 +1,14 @@
 ---
 layout: post
+title: "2D HumanPose Estimation : A survey"
+date: 2025-06-15
+categories: ai paper
+tags: [paper, pose estimation, English study, ai]
+author: pius
 published: true
-title: 2D HumanPose Estimation : A survey
-subtitle: estimation For Pose
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/PaperThumnail.png
 share-img: /assets/img/path.jpg
-tags: [paper, pose estimation, English study, ai]
-author: pius
 ---
 
 ## 📄 Survey Title : 2D human Pose Estimation : A Survey
