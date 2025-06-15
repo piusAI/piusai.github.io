@@ -6,7 +6,7 @@ categories: ai paper
 tags: [paper, pose estimation, English study, ai]
 author: pius
 published: true
-cover-img: /assets/img/path.jpg
+cover-img: /assets/img/POSE.jpg
 thumbnail-img: /assets/img/PaperThumnail.png
 share-img: /assets/img/path.jpg
 ---
