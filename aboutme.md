@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Who is Pius?
-subtitle: Hey, just play for life
+subtitle: Let me IntroDuce
 ---
 
 My name is Pius. I have the following qualities:
