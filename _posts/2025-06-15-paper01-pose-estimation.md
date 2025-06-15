@@ -8,7 +8,7 @@ author: pius
 published: true
 cover-img: /assets/img/POSE.jpg
 thumbnail-img: /assets/img/PaperThumnail.png
-share-img: /assets/img/POSE.jpg
+share-img: /assets/img/POSE2.jpg
 ---
 
 ## 📄 Survey Title : 2D human Pose Estimation : A Survey
