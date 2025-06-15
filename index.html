@@ -3,3 +3,19 @@ layout: home
 title: Pius
 subtitle: Print, Import, Update, Segfault
 ---
+
+<!-- 만약 layout: home 이 아무 것도 출력 안 하면, 아래 코드가 fallback 역할을 합니다 -->
+
+<div class="post-list">
+  <h2>📝 Recent Posts</h2>
+  <ul>
+    {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+        <span style="font-size: 0.85em; color: #999;">{{ post.date | date: "%Y-%m-%d" }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
