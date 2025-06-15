@@ -13,7 +13,9 @@ share-img: /assets/img/path.jpg
 
 ## 📄 Survey Title : 2D human Pose Estimation : A Survey
 
-paper Link : https://arxiv.org/abs/2204.07370
+ Paper Link: [2D Human Pose Estimation : A Survey (arXiv)](https://arxiv.org/abs/2204.07370)
+
+
 This post is for clean-up paper about 2d pose estimation
 especially Learn like NN, connective from Neuron - Ai, 2D pose estimation Paper
 
