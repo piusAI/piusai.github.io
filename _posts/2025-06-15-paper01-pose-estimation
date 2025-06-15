@@ -26,26 +26,30 @@ especially Learn like NN, connective from Neuron - Ai, 2D pose estimation Paper
 
 ### 🟨 01. Word Estimate - Label
 
-| Word | ŷ | t |
-|------|------|
-| anatomical | 해부학적의| 실시간의 |
-| crucial | 중요한 | |
-| salient | 중대한 | |
-| representations | 대표적인 |
-| significantly | 특히| |
-| reap | 빠르게 | |
-| briefly | 간략하게, | |
-| refinement | 재정재 | |
-| robust | 로봇과같은 | |
-| recognition  | 인지 | |
-| representational | 대표적인 | |
-| incorporates | 관계되는 | |
-| agnostic | 친화적인 ||
-| polishing | 플잎 | |
-| strategy | 전술 | |
-| methodological | 방식론적인 |
-| systematic | 시스템적인 ||
+| Word | ŷ | t | loss|
+|------|------|-----|---|
+| anatomical | 해부학적의| 해부학적의 |0.01|
+| crucial | 중요한 | 결정적인 | 0.02
+| salient | 중대한 | 두드러지는, 핵심적인 | 0.15
+| representations | 대표적인 | 표현들 | 0.35
+| significantly | 특히| 상당히 | 0.42
+| reap | 빠르게 |  get, 수확하다| 0.78
+| briefly | 간략하게, | 간단히 | 0.03
+| refinement | 재정재 | 다듬기, 개선 | 0.65
+| robust | 로봇과같은 | 튼튼한, 견고한 | 0.88
+| recognition  | 인지 |인식 | 0.05
+| representational | 대표적인 | 표현의 |0.28
+| incorporates | 관계되는 | 포함하다 |0.52
+| agnostic | 친화적인 | 중립적인 | 0.91 
+| polishing | 풀잎 | 마무리 손질 | 0.95
+| strategy | 전술 | 전략 | 0.04
+| methodological | 방식론적인 | 방법론적인 | 0.01
+| systematic | 시스템적인 | 체계적인 |0.05
 
+CEE : 0.32
+
+Low Loss : Methodological, Anatomical
+High Loss : Robust, Agnostic, Polishing
 
 
 ---
