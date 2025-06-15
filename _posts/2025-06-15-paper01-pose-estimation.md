@@ -23,7 +23,12 @@ especially Learn like NN, connective from Neuron - Ai, 2D pose estimation Paper
 
 ### 📖 Abstract
 
-> Realtime multi-person 2D pose estimation is a key component in enabling machines to have an understanding of people in images and videos. In this work, we present a realtime approach to detect the 2D pose of multiple people in an image. The proposed method uses a nonparametric representation, which we refer to as Part Affinity Fields (PAFs), to learn to associate body parts with individuals in the image. This bottom-up system achieves high accuracy and realtime performance, regardless of the number of people in the image. ...
+> Human pose estimation aims at localizing human
+anatomical keypoints or body parts in the input data (e.g.,
+images, videos, or signals). It forms a crucial component in
+enabling machines to have an insightful understanding of the
+behaviors of humans, and has become a salient problem in
+computer vision and related fields...
 
 ---
 
