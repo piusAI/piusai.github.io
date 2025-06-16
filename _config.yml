@@ -139,8 +139,8 @@ hover-col: "#0085A1"
 navbar-col: "#1e3d36" #EAEAEA
 navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
+footer-col: "#1e3d36"
+footer-text-col: "#FFFFFF"
 footer-link-col: "#404040"
 footer-hover-col: "#0085A1"
 
