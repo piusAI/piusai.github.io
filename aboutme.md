@@ -38,6 +38,7 @@ have the following qualities:
 | GPU 기반 학습        | CUDA 구조 이해              | Colab or 로컬 실습           |
 
 #### 02 Implement SaaS
+
 | Item             | 학습 목표              | ex           |
 | ----------------- | ------------------ | --------------- |
 | DFA 구성법           | 상태/입력/전이 이해        | 디딤발 DFA 설계      |
@@ -47,6 +48,7 @@ have the following qualities:
 | UI 설계 초안          | 훈련자 피드백 흐름 설계      | Web 또는 앱 시나리오   |
 
 #### 03 Paper & Survey
+
 | sub Item                 | Target                    | Resource                     |
 | --------------------- | ------------------------ | -------------------------- |
 | DFA 기반 논문 리뷰          | DFA로 이벤트 인식 구현한 사례 정리    | 국가R\&D 보고서, 국내 스포츠 논문      |
