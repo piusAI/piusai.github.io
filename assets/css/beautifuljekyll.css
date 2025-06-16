@@ -10,8 +10,8 @@ layout: null
   --text-col: {{ site.text-col | default: "#404040" }};
   --link-col: {{ site.link-col | default: "#008AFF" }};
   --hover-col: {{ site.hover-col | default: "#0085A1" }};
-  --navbar-col: {{ site.navbar-col | default: "#EAEAEA" }};
-  --navbar-text-col: {{ site.navbar-text-col | default: "#404040" }};
+  --navbar-col: {{ site.navbar-col | default: "#1e3d36" }};
+  --navbar-text-col: {{ site.navbar-text-col | default: "#ffffff" }};
   --navbar-border-col: {{ site.navbar-border-col | default: "#DDDDDD" }};
   --footer-col: {{ site.footer-col | default: "#EAEAEA" }};
   --footer-text-col: {{ site.footer-text-col | default: "#777777" }};
