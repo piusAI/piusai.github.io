@@ -136,8 +136,8 @@ page-col: "#FAF5EA"
 text-col: "#404040"
 link-col: "#008AFF"
 hover-col: "#0085A1"
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
+navbar-col: "#1e3d36" #EAEAEA
+navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
 footer-col: "#EAEAEA"
 footer-text-col: "#777777"
@@ -293,7 +293,7 @@ exclude:
   - docs/
 
 plugins:
- #- jekyll-paginate
+  - jekyll-paginate
   - jekyll-sitemap
 
 # Beautiful Jekyll / Dean Attali
