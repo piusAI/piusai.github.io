@@ -4,7 +4,7 @@ title: Who Am I?
 subtitle: Pius
 ---
 
-My name is Pius. I have the following qualities:
+have the following qualities:
 
 
 [Job]
