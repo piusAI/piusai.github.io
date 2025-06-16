@@ -1,4 +1,4 @@
-# 🎯 KCF (Kernelized Correlation Filter) 알고리즘 첫걸음
+# KCF (Kernelized Correlation Filter) 알고리즘 첫걸음
 
 ## 📌 목표
 이 문서는 KCF 알고리즘의 기초 개념과 핵심 수학 원리를 정리하고, 향후 구현 및 실습을 위한 기반을 제공합니다.
