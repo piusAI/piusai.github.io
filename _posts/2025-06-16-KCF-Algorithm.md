@@ -1,3 +1,17 @@
+---
+layout: post
+title: "KCF Tracker: Fast Object Tracking with FFT"
+date: 2025-06-16
+categories: ai vision
+tags: [object tracking, computer vision, ai, fft, kernel]
+author: pius
+published: true
+cover-img: /assets/img/POSE.jpg
+thumbnail-img: /assets/img/PaperThumnail.png
+share-img: /assets/img/POSE2.jpg
+---
+
+
 # KCF (Kernelized Correlation Filter) 알고리즘 첫걸음
 
 ## 📌 목표
