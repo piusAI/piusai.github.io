@@ -16,12 +16,14 @@ future : true
 
 navbar-links:
   About Me: "aboutme"
-  Resources:
-    - VFX: "https://www.artstation.com/piusai"
-    - Ai: "https://www.youtube.com/@Piusai"
-  CG Cafe:
-    - Cheonan: "https://cafe.naver.com/cheonancg"
-    - Cheonju: "https://cafe.naver.com/cheongjucg"
+  
+  # Resources:
+  #   - VFX: "https://www.artstation.com/piusai"
+  #   - Ai: "https://www.youtube.com/@Piusai"
+  # CG Cafe:
+  #   - Cheonan: "https://cafe.naver.com/cheonancg"
+  #   - Cheonju: "https://cafe.naver.com/cheongjucg"
+
 ################
 # --- Logo --- #
 ################
