@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Pickle vs JSON, MA vs MB"
+published: false
 subtitle: "파일도 철학이다"
 gh-repo: piusai/ai-devlog
 gh-badge: [star, fork, follow]
