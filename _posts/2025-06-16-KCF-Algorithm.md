@@ -5,7 +5,7 @@ date: 2025-06-16
 categories: ai vision
 tags: [object tracking, computer vision, ai, fft, kernel]
 author: pius
-published: true
+published: false
 cover-img: /assets/img/POSE.jpg
 thumbnail-img: /assets/img/PaperThumnail.png
 share-img: /assets/img/POSE2.jpg
