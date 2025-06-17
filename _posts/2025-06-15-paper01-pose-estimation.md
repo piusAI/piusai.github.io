@@ -5,7 +5,7 @@ date: 2025-06-15
 categories: ai paper
 tags: [paper, pose estimation, English study, ai]
 author: pius
-published: true
+published: false
 cover-img: /assets/img/POSE.jpg
 thumbnail-img: /assets/img/PaperThumnail.png
 share-img: /assets/img/POSE2.jpg
