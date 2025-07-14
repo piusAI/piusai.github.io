@@ -1,8 +1,8 @@
 ---
 layout: post
 published: true
-title: "파이썬 코드를 더욱 강력하게: `assert`, `try-except`, `yield`"
-subtitle: "안정성, 효율성, 그리고 우아한 코드 작성을 위한 핵심 키워드"
+title: "파이썬 코드를 더욱 강력하게: assert, try-except, yield"
+subtitle: "안정성, 효율성의 코드 작성을 위한 핵심 키워드"
 cover-img: 
 thumbnail-img: 
 share-img: 
@@ -11,7 +11,7 @@ author: pius
 ---
 
 {: .box-note}
-**Note:** 이 글은 파이썬 개발자가 코드의 안정성, 효율성, 그리고 가독성을 한 단계 끌어올릴 수 있는 세 가지 핵심 키워드: `assert`, `try-except`, 그리고 `yield`에 대해 깊이 있게 다룹니다.
+**Note:** 이 글은 파이썬 개발자가 코드의 안정성, 효율성, 그리고 가독성을 한 단계 끌어올릴 수 있는 세 가지 핵심 키워드: `assert`, `try-except`, `yield`에 대해 깊이 있게 다룹니다.
 
 ---
 
