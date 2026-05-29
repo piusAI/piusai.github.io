@@ -12,7 +12,7 @@ permalink: /about/
   "To be honest, I need to study more and more everything, so why don't you just start now!"
 </p>
 
-늘 배움의 경계를 넓히며, 상황에 맞는 본질적인 해결 방법을 고민하는 C++ 프로그래머 황효준입니다. C++ 기반 로직 설계와 엔진 구조에 대한 이해를 바탕으로 정교하고 손맛이 살아있는 시스템을 구축하는 데 집중합니다.
+C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그
 
 ---
 
