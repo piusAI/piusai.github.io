@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: http://piusai.github.io/sitemap.xml
