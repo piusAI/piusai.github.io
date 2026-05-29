@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  RenderPipeline이란?
+title:  "RenderPipeline이란?"
 date:   2026-05-29 15:32:00
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: Renderpipeline.jpg # Add image post (optional)
