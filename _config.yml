@@ -1,5 +1,5 @@
-title: My personal blog - Adam Neilson
-email: your-email@domain.com
+title: Pius Tech & Dev RnD
+email: hwanpiusjoon@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -9,16 +9,16 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://piusai.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
-author: Adam Neilson # add your name
-author-pic: adam-face.jpg
+author: Hwang Hyo jun # add your name
+author-pic: Pius-Logo.jpg
 about-author: My name is Adam Neilson. I’m a full-time adventure travel blogger and photographer who’s been exploring the world for over 2 years.
 
 # Contact links
-email: # Add your Email address
+email: hwangpiusjoon@gmail.com # Add your Email address
 phone: # Add your Phone number
 website: # Add your website, do not add http://
-linkedin: # Add your Linkedin handle
-github: artemsheludko # Add your Github handle
+linkedin: hwangpiusjoon # Add your Linkedin handle
+github: piusAI # Add your Github handle
 twitter: '@artemsheludko_' # Add your Twitter handle
 facebook: # Add your Facebook handle
 instagram: # Add your Instagram handle
