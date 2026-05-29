@@ -15,7 +15,7 @@ permalink: /
 * **VFX / CG Tutor** | 실무 중심의 비주얼 테크니컬 강의 진행
 * **One-Man Game Developer** | 기획부터 출시, 폴리싱까지 아우르는 독립 개발 경험
 * **XR Game Developer** | Unreal Engine 기반의 몰입형 콘텐츠 및 가상 환경 구축
-  * 🎬 [**XR 전시 : KickClay XR 구동 영상**](https://www.youtube.com/watch?v=fMi-oCwVEYk)
+  * 🎬 [**XR 전시 : KickClay XR 영상**](https://www.youtube.com/watch?v=fMi-oCwVEYk)
 
 ---
 
