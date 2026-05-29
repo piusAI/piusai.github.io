@@ -6,13 +6,12 @@ permalink: /about/
 
 <img src="/assets/img/pius-icon.png" alt="piusAi" style="width: 120px; height: 120px; border-radius: 50%; display: block; margin: 0 auto 20px auto; border: 3px solid #eee;">
 
-<h2 style="text-align: center; font-weight: 800; margin-top: 10px;">⚔️ PIUS : Combat & Engine Lab</h2>
+<h2 style="text-align: center; font-weight: 800; margin-top: 10px;"> PIUS : Combat & Engine Lab</h2>
 
 <p style="text-align: center; font-style: italic; color: #666; font-size: 1.1em; margin-bottom: 25px;">
-  "To be honest, I need to study more and more everything, so why don't you just start now!"
+  "C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그"
 </p>
 
-C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그
 
 ---
 ## 🔬 Core Research Interests
@@ -23,17 +22,6 @@ C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그
 * **Context-Aware Animation:** 상황 인식 시스템과 애니메이션 노드 그래프, Motion Warping을 활용한 동적 가변 애니메이션 파이프라인 구축
 * **Gameplay Architecture:** Gameplay Ability System(GAS)을 활용한 결합도 낮고 확장성 높은 능력 시스템 설계 지향
 * **Performance Optimization:** CPU-GPU 병목 구간 제어 및 데이터 지향 설계(DOD) 기반의 엔진 최적화 연구
-
----
-
-## 📝 Academic & Research Thesis
-
-* **현재 연구 주제 (Master's Thesis):** 
-  > *"GAS 및 상황 인지 애니메이션 노드를 활용한 실시간 부위 파괴 기반의 정밀 액션 게임 아키텍처 연구"*
-* **학술 대회 수상 기록:** 
-  * 2025 한국게임학회 추계 학술대회 **논문 우수상** 수상 📄 [**논문 원문 읽기 (PDF)**](https://github.com/piusAI/piusAI/blob/main/Performance%20Optimization%20of%20a%20Hybrid%20XR%20Environment%20Based%20on%20Unreal%20Engine%205.pdf){:target="_blank"}
-  * *주제: 언리얼 엔진5 기반 하이브리드 프로젝션 XR 환경 성능 최적화 연구*
-* **Academic Background:** 홍익대학교 게임학부 석사 과정 (25.09 ~ 27.08 예정)
 
 ---
 
@@ -50,26 +38,38 @@ C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그
 
 ## 🎬 Production & Shipped Builds
 
-이론적 연구를 넘어 실제 스팀(Steam) 플랫폼 출시 및 오프라인 전시를 통해 최적화와 폴리싱을 검증한 기록입니다.
+스팀(Steam) 플랫폼 출시 및 오프라인 전시를 통해 최적화와 폴리싱을 검증 기록
 
 ### 🚩 Featured & Shipped Projects
-* **Interactive XR Exhibition:** *KickClay XR* (Unreal C++ 기반 가상 환경 프레임워크 구축 및 전시 완료) 🎬 [**전시 현장 영상**](https://youtu.be/fMi-oCwVEYk){:target="_blank"}
-* **Steam Release 1:** *Beat & Beasties* (플레이어블 로직 개발 및 아트 총괄 참여) 🎮 [**스팀 상점 페이지**](https://store.steampowered.com/app/4267610/Beat__Beasties/){:target="_blank"}
-* **Steam Release 2:** *QPopGirl* (프로덕션 폴리싱 및 데이터 최적화 프로세스 참여) 🎮 [**스팀 상점 페이지**](https://store.steampowered.com/app/4157070/QPopGirl/){:target="_blank"}
-* **Technical Art Capabilities:** Houdini VEX 기반 절차적 시뮬레이션 및 TA 파이프라인 구축 🎨 [**ArtStation VFX 포트폴리오**](https://www.artstation.com/piusai){:target="_blank"} | 🎬 [**Fluid Sim 영상**](https://www.youtube.com/watch?v=X0O2rIlcTxs){:target="_blank"}
+* **Interactive XR Exhibition:** [**KickClay XR**](https://youtu.be/fMi-oCwVEYk) (Unreal C++ 기반 가상 환경 프레임워크 구축 및 전시 완료) {:target="_blank"}
+* **Steam Release 1:** [**Beat & Beasties**](https://store.steampowered.com/app/4267610/Beat__Beasties/) (플레이어블 로직 개발 및 아트 총괄 참여) {:target="_blank"}
+* **Steam Release 2:** [**QPopGirl**](https://store.steampowered.com/app/4157070/QPopGirl/) (프로덕션 폴리싱 및 데이터 최적화 프로세스 참여) {:target="_blank"}
+
+* [**VFX Portfolio**](https://www.artstation.com/piusai){:target="_blank"}
+* [**Houdini Fluid Simulation**](https://www.youtube.com/watch?v=X0O2rIlcTxs){:target="_blank"}
 
 ### 🧪 Advanced Prototypes & WIP
 * **K-Zombie FPS 데모:** GAS, Animation ContextAware, AI 시스템을 결합한 실무형 액션 테스트 빌드 (`26.04 ~ 진행 중`)
 * **Context-Aware Animation:** 논문 기반 상황 인식 동적 애니메이션 노드 그래프 적용 엔진 빌드 (`26.06 ~ 예정`)
 * **DirectX Engine Demo:** CPU-GPU 데이터 파이프라인 장악을 위한 로우레벨 그래픽스 제어 프레임워크 (`26.02 ~ 연구 중`)
 * **Virtual Idol Pipeline:** 국악 버츄얼 캐릭터 및 모션캡처 데이터 언리얼 엔진 실시간 통합 프레임워크 (`26.05 ~ 사업 진행 중`)
-* **AI Sports Orchestration:** RAG + QDrant + Streamlit 기반 축구인 재활 및 전술 훈련 최적화 프로토타입 🎬 [**동작 영상**](https://youtube.com/shorts/fpU0kqvtkbo){:target="_blank"}
-* **Computer Vision Score:** 실시간 자세 추정 및 시뮬레이션 분석 알고리즘 프로토타입 🎬 [**동작 영상**](https://youtu.be/2spXeHQ4doA){:target="_blank"}
+* **AI Sports Orchestration:** RAG + QDrant + Streamlit 기반 축구인 재활 및 전술 훈련 최적화  [**🎬프로토타입**](https://youtube.com/shorts/fpU0kqvtkbo){:target="_blank"}
+* **Computer Vision Score:** 실시간 자세 추정 및 시뮬레이션 분석 알고리즘  [**🎬프로토타입**](https://youtu.be/2spXeHQ4doA){:target="_blank"}
 
 ---
 
+## 📝 Academic & Research Thesis
+
+* **현재 연구 주제 :** 
+  > *"GAS 및 상황 인지 애니메이션을 활용한 실시간 부위 파괴 기반의 정밀 액션 게임 아키텍처 연구"*
+* **학술 대회 수상 기록:** 
+  * 2025 한국게임학회 추계 학술대회 **논문 우수상** 수상 📄 [**언리얼 엔진5 기반 하이브리드 프로젝션 XR 환경 성능 최적화 연구**](https://github.com/piusAI/piusAI/blob/main/Performance%20Optimization%20of%20a%20Hybrid%20XR%20Environment%20Based%20on%20Unreal%20Engine%205.pdf){:target="_blank"}
+
+* **Academic Background:** 홍익대학교 게임학부 석사 과정 (25.09 ~ 27.08)
+
+---
+
+
 ## 📧 Contact & Links
 
-* **Email:** hwangpiusjoon@gmail.com
-* **GitHub:** [piusAI (오픈소스 저장소)](https://github.com/piusAI){:target="_blank"}
-* **LinkedIn:** [hwangpiusjoon (커리어 프로필)](https://linkedin.com/in/hwangpiusjoon){:target="_blank"}
+* [GitHub](https://github.com/piusAI){:target="_blank"} [LinkedIn](https://linkedin.com/in/hwangpiusjoon){:target="_blank"} [Email](mailto:[hwangpiusjoon@gmail.com]){:target="_blank"}
