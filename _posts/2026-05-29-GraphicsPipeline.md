@@ -18,7 +18,7 @@ Jekyll also offers powerful support for code snippets:
 #include <iostream>
 using namespace std;
 
-cout<<"Test Home<<endl; 
+cout<<"Test Home"<<endl; 
 
 {% endhighlight %}
 
