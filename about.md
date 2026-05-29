@@ -15,40 +15,61 @@ permalink: /about/
 C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그
 
 ---
+## 🔬 Core Research Interests
 
-### 💼 Experience & Roles
+게임플레이의 본질을 관통하는 기술적 난제들과 로우레벨 제어에 집중합니다.
 
-* **VFX / CG Tutor** | 실무 중심의 비주얼 테크니컬 강의 진행
-* **One-Man Game Developer** | 기획부터 출시, 폴리싱까지 아우르는 독립 개발 경험
-* **XR Game Developer** | Unreal Engine 기반의 몰입형 콘텐츠 및 가상 환경 구축
-  * 🎬 [**XR 전시 : KickClay XR 영상**](https://www.youtube.com/watch?v=fMi-oCwVEYk){:target="_blank"}
-
----
-
-### 🛠️ Tech Stack & Ecosystem
-
-#### 💻 Engines & Languages
-* **Engines:** **Unreal Engine** (C++ 기반 핵심 게임플레이 및 GAS 설계), Unity
-* **Languages:** **C++**, Houdini VEX, Python
-* 🎨 [**piusai 아트포트폴리오 바로가기**](https://www.artstation.com/piusai){:target="_blank"}
-
-#### 🎨 DCC Tools (Technical Art)
-* **Procedural Setup:** **Houdini** (절차적 에셋 및 VFX 시뮬레이션 구현)
-  * 🎬 [**Houdini 작업 영상 확인**](https://www.youtube.com/watch?v=X0O2rIlcTxs){:target="_blank"}
-* **Modeling & Texturing:** Maya, 3ds Max, ZBrush, Substance Painter, Substance Designer
+* **Combat Feedback & Feel:** 입력 지연(Input Latency) 최소화 및 0.1초 단위의 프레임 제어를 통한 정밀한 콤보/경직/무적 상태 컴포넌트 설계
+* **Context-Aware Animation:** 상황 인식 시스템과 애니메이션 노드 그래프, Motion Warping을 활용한 동적 가변 애니메이션 파이프라인 구축
+* **Gameplay Architecture:** Gameplay Ability System(GAS)을 활용한 결합도 낮고 확장성 높은 능력 시스템 설계 지향
+* **Performance Optimization:** CPU-GPU 병목 구간 제어 및 데이터 지향 설계(DOD) 기반의 엔진 최적화 연구
 
 ---
 
-### 🚀 Research & Seminars
-* **Unreal Engine Seminar:** 기술 공유 및 아키텍처 R&D 스피커 참여
-* **My RnD Topics:**
-  * Gameplay Ability System (GAS) 실무형 아키텍처 고도화
-  * 입력 지연 최소화 및 0.1초의 타격감을 제어하는 전투 컴포넌트 설계
-  * 상황 인식(Context-Aware) 애니메이션 노드 그래프 구현
+## 📝 Academic & Research Thesis
+
+* **현재 연구 주제 (Master's Thesis):** 
+  > *"GAS 및 상황 인지 애니메이션 노드를 활용한 실시간 부위 파괴 기반의 정밀 액션 게임 아키텍처 연구"*
+* **학술 대회 수상 기록:** 
+  * 2025 한국게임학회 추계 학술대회 **논문 우수상** 수상 📄 [**논문 원문 읽기 (PDF)**](https://github.com/piusAI/piusAI/blob/main/Performance%20Optimization%20of%20a%20Hybrid%20XR%20Environment%20Based%20on%20Unreal%20Engine%205.pdf){:target="_blank"}
+  * *주제: 언리얼 엔진5 기반 하이브리드 프로젝션 XR 환경 성능 최적화 연구*
+* **Academic Background:** 홍익대학교 게임학부 석사 과정 (25.09 ~ 27.08 예정)
 
 ---
 
-### 📧 Contact
-* ✉️ **Email:** [hwangpiusjoon@gmail.com](mailto:hwangpiusjoon@gmail.com)
-* 🐱 **GitHub:** [piusAI](https://github.com/piusAI){:target="_blank"}
-* 💼 **LinkedIn:** [hwangpiusjoon](https://linkedin.com/in/hwangpiusjoon){:target="_blank"}
+## 🚀 Active Technical R&D
+
+블로그를 통해 지속적으로 검증하고 기록해 나가는 핵심 기술 엔지니어링 영역입니다.
+
+* **Gameplay Ability System (GAS):** 실무형 Ability 아키텍처 고도화 및 확장성 검증
+* **Advanced Unreal FPS Combat:** 총기 로직, 반동 알고리즘, 타격감 구현 및 전통적인 전투 로직 고도화 (UE5)
+* **Graphics Subsystem:** DirectX 11/12 로우레벨 프레임워크 독자 구축 및 그래픽스 파이프라인 데이터 흐름 분석
+* **Next-Gen Pipeline:** NC AI 3D Generation 툴 언리얼 엔진 모듈 연동 및 실시간 모션 캡처 버츄얼 파이프라인 통합 연구
+
+---
+
+## 🎬 Production & Shipped Builds
+
+이론적 연구를 넘어 실제 스팀(Steam) 플랫폼 출시 및 오프라인 전시를 통해 최적화와 폴리싱을 검증한 기록입니다.
+
+### 🚩 Featured & Shipped Projects
+* **Interactive XR Exhibition:** *KickClay XR* (Unreal C++ 기반 가상 환경 프레임워크 구축 및 전시 완료) 🎬 [**전시 현장 영상**](https://youtu.be/fMi-oCwVEYk){:target="_blank"}
+* **Steam Release 1:** *Beat & Beasties* (플레이어블 로직 개발 및 아트 총괄 참여) 🎮 [**스팀 상점 페이지**](https://store.steampowered.com/app/4267610/Beat__Beasties/){:target="_blank"}
+* **Steam Release 2:** *QPopGirl* (프로덕션 폴리싱 및 데이터 최적화 프로세스 참여) 🎮 [**스팀 상점 페이지**](https://store.steampowered.com/app/4157070/QPopGirl/){:target="_blank"}
+* **Technical Art Capabilities:** Houdini VEX 기반 절차적 시뮬레이션 및 TA 파이프라인 구축 🎨 [**ArtStation VFX 포트폴리오**](https://www.artstation.com/piusai){:target="_blank"} | 🎬 [**Fluid Sim 영상**](https://www.youtube.com/watch?v=X0O2rIlcTxs){:target="_blank"}
+
+### 🧪 Advanced Prototypes & WIP
+* **K-Zombie FPS 데모:** GAS, Animation ContextAware, AI 시스템을 결합한 실무형 액션 테스트 빌드 (`26.04 ~ 진행 중`)
+* **Context-Aware Animation:** 논문 기반 상황 인식 동적 애니메이션 노드 그래프 적용 엔진 빌드 (`26.06 ~ 예정`)
+* **DirectX Engine Demo:** CPU-GPU 데이터 파이프라인 장악을 위한 로우레벨 그래픽스 제어 프레임워크 (`26.02 ~ 연구 중`)
+* **Virtual Idol Pipeline:** 국악 버츄얼 캐릭터 및 모션캡처 데이터 언리얼 엔진 실시간 통합 프레임워크 (`26.05 ~ 사업 진행 중`)
+* **AI Sports Orchestration:** RAG + QDrant + Streamlit 기반 축구인 재활 및 전술 훈련 최적화 프로토타입 🎬 [**동작 영상**](https://youtube.com/shorts/fpU0kqvtkbo){:target="_blank"}
+* **Computer Vision Score:** 실시간 자세 추정 및 시뮬레이션 분석 알고리즘 프로토타입 🎬 [**동작 영상**](https://youtu.be/2spXeHQ4doA){:target="_blank"}
+
+---
+
+## 📧 Contact & Links
+
+* **Email:** hwangpiusjoon@gmail.com
+* **GitHub:** [piusAI (오픈소스 저장소)](https://github.com/piusAI){:target="_blank"}
+* **LinkedIn:** [hwangpiusjoon (커리어 프로필)](https://linkedin.com/in/hwangpiusjoon){:target="_blank"}
