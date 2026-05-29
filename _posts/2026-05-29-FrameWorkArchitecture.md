@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "DirectX 11/12 프레임워크 아키텍처 설계: 상용 엔진의 추상화 너머로"
+title: "DirectX 11 Framework Architecture 설계"
 date: 2026-05-29 15:45:00 +0900
-description: 상용 엔진(Unreal/Unity)의 API 뒤에 숨겨진 렌더 파이프라인을 제어하기 위한 로우레벨 DirectX 엔진 프레임워크 설계 기록입니다.
+description: 상용 엔진(Unreal)의 API 뒤에 숨겨진 렌더 파이프라인을 제어하기 위한 로우레벨 DirectX 엔진 프레임워크 설계 기록입니다.
 categories: graphics
 tags: [DirectX, Framework, Architecture, Graphics-Pipeline]
 ---
 
-대다수의 상용 엔진은 그래픽스 파이프라인을 고도로 추상화하여 제공합니다. 하지만 정밀한 전투 컴포넌트의 성능 병목을 해결하고, 대규모 오브젝트의 타격 이펙트를 프레임 저하 없이 렌더링하기 위해서는 **CPU와 GPU 간의 데이터 흐름(Data Flow)**을 완벽하게 통제할 수 있어야 합니다.
+대다수의 상용 엔진은 그래픽스 파이프라인을 고도로 추상화하여 제공합니다. 하지만 정밀한 전투 컴포넌트의 성능 병목을 해결하고, 대규모 오브젝트의 타격 이펙트를 프레임 저하 없이 렌더링하기 위해서는 **CPU와 GPU 간의 데이터 흐름(Data Flow)**을 완벽하게 통제할 수 있어야 한다 생각합니다.
 
 본 포스팅에서는 상용 엔진 없이 오직 C++와 로우레벨 그래픽스 API만을 활용해 구축한 **DirectX 게임 엔진 프레임워크의 구조적 설계**와 핵심 컴포넌트 간의 결합도 최적화 과정을 공유합니다.
 
@@ -29,7 +29,10 @@ tags: [DirectX, Framework, Architecture, Graphics-Pipeline]
 
 프레임워크의 심장인 핵심 게임 루프와 각 모듈의 초기화 라이프사이클을 담당하는 주요 구현체입니다. OOP 구조를 무분별하게 남용하기보다, 절차적인 데이터 흐름을 안전하게 보장하는 방식으로 설계했습니다.
 
-```cpp
+
+
+```
+{% highlight cpp %}
 // Engine.h - 핵심 프레임워크 컨트롤러 인터페이스
 #pragma once
 #include <windows.h>
@@ -56,3 +59,6 @@ private:
     std::unique_ptr<Graphics> GraphicsPipeline;
     std::unique_ptr<Timer>    EngineTimer;
 };
+{% endhighlight %}
+
+---
