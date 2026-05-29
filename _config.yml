@@ -7,7 +7,7 @@ description: > # this means to ignore newlines until "baseurl:"
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://piusai.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-
+timezone: Asia/Seoul
 # Author settings
 author: "PIUS : Combat & Engine Lab" # add your name
 author-pic: Pius-Logo.png
