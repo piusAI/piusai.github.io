@@ -1,0 +1,103 @@
+Last login: Thu Jul 31 18:43:59 on ttys000
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % flutter doctor
+
+
+Unhandled exception:
+PathAccessException: Cannot open file, path = '/Users/hwanghyojun/.dart-tool/dart-flutter-telemetry-session.json' (OS Error: Permission denied, errno = 13)
+#0      _File.throwIfError (dart:io/file_impl.dart:782:7)
+#1      _File.openSync (dart:io/file_impl.dart:575:5)
+#2      _File.writeAsBytesSync (dart:io/file_impl.dart:747:31)
+#3      _File.writeAsStringSync (dart:io/file_impl.dart:775:5)
+#4      ForwardingFile.writeAsStringSync (package:file/src/forwarding/forwarding_file.dart:150:16)
+#5      writeSessionContents (package:unified_analytics/src/utils.dart:300:15)
+#6      UserProperty.getSessionId (package:unified_analytics/src/user_property.dart:70:7)
+#7      UserProperty._toMap (package:unified_analytics/src/user_property.dart:149:23)
+#8      UserProperty.preparePayload (package:unified_analytics/src/user_property.dart:90:27)
+#9      generateRequestBody (package:unified_analytics/src/utils.dart:88:39)
+#10     AnalyticsImpl.send (package:unified_analytics/src/analytics.dart:611:18)
+#11     _handleToolError (package:flutter_tools/runner.dart:198:23)
+#12     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:131:15)
+#13     _rootRunBinary (dart:async/zone.dart:1560:47)
+#14     _CustomZone.runBinary (dart:async/zone.dart:1436:19)
+#15     runZonedGuarded.<anonymous closure> (dart:async/zone.dart:2001:18)
+#16     _Zone._processUncaughtError (dart:async/zone.dart:1178:14)
+#17     _CustomZone.handleUncaughtError (dart:async/zone.dart:1399:5)
+#18     Future._propagateToListeners (dart:async/future_impl.dart:889:24)
+#19     Future._completeErrorObject (dart:async/future_impl.dart:741:5)
+#20     Future._asyncCompleteErrorObject.<anonymous closure> (dart:async/future_impl.dart:835:7)
+#21     _rootRun (dart:async/zone.dart:1525:13)
+#22     _CustomZone.run (dart:async/zone.dart:1422:19)
+#23     _CustomZone.runGuarded (dart:async/zone.dart:1321:7)
+#24     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1362:23)
+#25     _microtaskLoop (dart:async/schedule_microtask.dart:40:21)
+#26     _startMicrotaskLoop (dart:async/schedule_microtask.dart:49:5)
+#27     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:127:13)
+#28     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:194:5)
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % ls -ld ~/.dart-tool
+ls -l ~/.dart-tool/dart-flutter-telemetry-session.json
+drwxr-xr-x  7 root  staff  224  7 31 16:49 /Users/hwanghyojun/.dart-tool
+-rw-r--r--  1 root  staff  57  7 31 16:50 /Users/hwanghyojun/.dart-tool/dart-flutter-telemetry-session.json
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % sudo chown -R hwanghyojun ~/.dart-tool 
+chmod -R u+rwX ~/.dart-tool
+Password:
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % rm ~/.dart-tool/dart-flutter-telemetry-session.json
+flutter config --no-analytics
+flutter doctor
+Analytics reporting disabled.
+
+You may need to restart any open editors for them to read new settings.
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel stable, 3.32.8, on macOS 15.5 24F74 darwin-arm64, locale
+    ko-KR)
+[✗] Android toolchain - develop for Android devices
+    ✗ Unable to locate Android SDK.
+      Install Android Studio from:
+      https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK
+      components.
+      (or visit https://flutter.dev/to/macos-android-setup for detailed
+      instructions).
+      If the Android SDK has been installed to a custom location, please use
+      `flutter config --android-sdk` to update to that location.
+
+[!] Xcode - develop for iOS and macOS (Xcode 16.2)
+    ✗ Unable to get list of installed Simulator runtimes.
+    ✗ CocoaPods not installed.
+        CocoaPods is a package manager for iOS or macOS platform code.
+        Without CocoaPods, plugins will not work on iOS or macOS.
+        For more info, see https://flutter.dev/to/platform-plugins
+      For installation instructions, see
+      https://guides.cocoapods.org/using/getting-started.html#installation
+[✓] Chrome - develop for the web
+[!] Android Studio (not installed)
+[✓] VS Code (version 1.99.0)
+[✓] Connected device (2 available)
+[✓] Network resources
+
+! Doctor found issues in 3 categories.
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % flutter --version
+Flutter 3.32.8 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision edada7c56e (6 days ago) • 2025-07-25 14:08:03 +0000
+Engine • revision ef0cd00091 (7 days ago) • 2025-07-24 12:23:50 -0700
+Tools • Dart 3.8.1 • DevTools 2.45.1
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % xcodebuild -downloadPlatform iOS
+Downloading iOS 18.3.1 Simulator (22D8075): Preparing to download...2025-07-31 18:49:30.807 xcodebuild[57865:5870537]  DVTDownloadable: Observed finish. Cancelling download asset. {
+    assetId = fb8de9a3438213a1dda310a6ab5eac9ddf8db858;
+    assetIdHash = 1c931247becc3c632302b77cc650da776b1f811f;
+    assetType = "com.apple.MobileAsset.iOSSimulatorRuntime";
+    attributesHash = b365e6092a3ab0524367a7d24167d1c04f73ac27;
+    contentHash = dc564fca1a515d3cc114ceddf164ad51d36e3924;
+    nonIdHash = 2a57baf19e132865631289cf784936559ab92589;
+    pallasDynamicAssetIdHash = d7904ac1d93cc3702244074c49aafad923a6e2b4;
+    policyHash = 3ea240ef05eb718bcf91ae90b450516d6e3e217f;
+    urlHash = 104687b420314bd38eb40303c6a7339c25f156f0;
+}, error: (null)
+Downloading iOS 18.3.1 Simulator (22D8075): Done.                               
+hwanghyojun@hwanghyojun-ui-MacBookPro ~ % open -a Simulator
+
+
+----------
+
+https://docs.flutter.dev/get-started/install/macos/mobile-ios
+https://www.youtube.com/watch?v=QG9bw4rWqrg&t=190s
+=>setup 완료
