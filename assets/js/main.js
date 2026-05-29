@@ -1,46 +1,17 @@
-$(function () {
-  // Cache variables for increased performance on devices with slow CPUs.
-  var flexContainer = $('div.flex-container')
-  var searchBox = $('.search-box')
-  var searchClose = $('.search-icon-close')
-  var searchInput = $('#search-input')
+$(document).ready(function() {
+  // main menu toggle
+  var toggleButton = document.getElementById("menu-toggle");
+  var menu = document.getElementById("primary-nav");
 
-  // Menu Settings
-  $('.menu-icon, .menu-icon-close').click(function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    flexContainer.toggleClass('active')
-  })
+  if (toggleButton && menu) {
+    toggleButton.addEventListener("click", function() {
+      menu.classList.toggle("js-menu-is-open");
+    });
+  }
 
-  // Click outside of menu to close it
-  flexContainer.click(function (e) {
-    if (flexContainer.hasClass('active') && e.target.tagName !== 'A') {
-      flexContainer.removeClass('active')
-    }
-  })
+  // initialize smooth scroll
+  $("a").smoothScroll({ offset: -20 });
 
-  // Press Escape key to close menu
-  $(window).keydown(function (e) {
-    if (e.key === 'Escape') {
-      if (flexContainer.hasClass('active')) {
-        flexContainer.removeClass('active')
-      } else if (searchBox.hasClass('search-active')) {
-        searchBox.removeClass('search-active')
-      }
-    }
-  })
-
-  // Search Settings
-  $('.search-icon').click(function (e) {
-    e.preventDefault()
-    searchBox.toggleClass('search-active')
-    searchInput.focus()
-
-    if (searchBox.hasClass('search-active')) {
-      searchClose.click(function (e) {
-    		e.preventDefault()
-    		searchBox.removeClass('search-active')
-    	})
-    }
-  })
-})
+  // add lightbox class to all image links
+  $("a[href$='.jpg'], a[href$='.png'], a[href$='.gif']").attr("data-lity", "");
+});
