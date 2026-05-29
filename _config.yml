@@ -14,14 +14,14 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 # theme: jekyll-theme-so-simple
-# remote_theme: mmistakes/so-simple-theme
+remote_theme: "mmistakes/so-simple-theme"
 skin: "/assets/css/skins/default.css"
 locale: en-US
 title: "Pius Tech & Dev RnD"
-description: "C++ 기반 로직 설계와 엔진 구조에 대한 기술 블로그 입니다."
+description: "C++ 기반 로직 설계, 엔진 구조 기술 블로그"
 baseurl: "" # the subpath of your site, e.g. "/blog"
 url: "https://piusai.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-logo: # path of site logo, e.g. "/images/logo.png"
+logo: /assets/img/pius-icon.png
 date_format: "%B %-d, %Y"
 read_time: # reading time estimates, e.g. true
 words_per_minute: # 200
@@ -45,6 +45,7 @@ liquid:
   error_mode: strict
 
 # Build settings
+future: true
 permalink: /:categories/:title/
 markdown: kramdown
 feed:
