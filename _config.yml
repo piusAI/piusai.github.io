@@ -10,7 +10,7 @@ url: "https://piusai.github.io" # the base hostname & protocol for your site, e.
 
 # Author settings
 author: "PIUS : Combat & Engine Lab" # add your name
-author-pic: Pius-Logo.jpg
+author-pic: Pius-Logo.png
 about-author: " C++ 기반 로직 설계와 엔진 구조에 대한 기술 블로그 입니다."
 
 # Contact links
