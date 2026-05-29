@@ -60,6 +60,7 @@ liquid:
 future: true
 exclude:
   - README.md
+  - CHANGELOG.md
   - LICENSE
   - Gemfile
   - Gemfile.lock
