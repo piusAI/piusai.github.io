@@ -1,112 +1,134 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# ================================
+# Site Settings
+# ================================
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-# theme: jekyll-theme-so-simple
-remote_theme: "mmistakes/so-simple-theme"
+remote_theme: mmistakes/so-simple-theme
+
 skin: "/assets/css/skins/default.css"
-locale: en-US
-title: "Pius Tech & Dev RnD"
-description: "C++ 기반 로직 설계, 엔진 구조 기술 블로그"
-baseurl: "" # the subpath of your site, e.g. "/blog"
-url: "https://piusai.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-logo: /assets/img/pius-icon.png
-date_format: "%B %-d, %Y"
-read_time: # reading time estimates, e.g. true
-words_per_minute: # 200
-mathjax:
-  enable: # MathJax equations, e.g. true, false (default)
-  combo:  # "tex-svg" (default), "tex-mml-chtml", etc.: docs.mathjax.org/en/latest/web/components/combined.html
-  tags:  # "none", "ams" (default), "all"
-google_fonts:
-  - name: "Source Sans Pro"
-    weights: "400,400i,700,700i"
-  - name: "Lora"
-    weights: "400,400i,700,700i"
-google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
-disqus:
-  shortname: # Disqus shortname, e.g. "my_disqus_shortname"
-twitter:
-  username: # site's Twitter username, e.g. "mmistakes"
+locale: "ko-KR"
 
+title: "piusAi"
+description: "Graphics Programming / Unreal Engine / Combat System Architecture"
+
+url: "https://piusai.github.io"
+baseurl: ""
+
+logo: "/assets/img/pius-icon.png"
+
+date_format: "%Y.%m.%d"
+
+read_time: true
+words_per_minute: 220
+
+# ================================
+# Math
+# ================================
+
+mathjax:
+  enable: true
+
+# ================================
+# Fonts
+# ================================
+
+google_fonts:
+  - name: "Pretendard"
+    weights: "400,500,700"
+  - name: "JetBrains Mono"
+    weights: "400,700"
+
+# ================================
+# SEO / Analytics
+# ================================
+
+google_analytics:
+
+twitter:
+  username: piusAi
+
+# ================================
 # Liquid
+# ================================
+
 liquid:
   error_mode: strict
 
-# Build settings
+# ================================
+# Build
+# ================================
+
 future: true
-permalink: /:categories/:title/
 markdown: kramdown
+
 feed:
   path: atom.xml
 
-# Pagination - https://jekyllrb.com/docs/pagination/
-# paginate: 10
-# paginate_path: /page:num/
+paginate: 5
+paginate_path: /page:num/
 
-# Search
-search_full_content: false # can have performance implications for large sites
+search_full_content: true
 
-# Taxonomy pages
-# category_archive_path: "/categories/#"
-# tag_archive_path: "/tags/#"
+# ================================
+# Archive
+# ================================
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+category_archive_path: "/categories/#"
+tag_archive_path: "/tags/#"
+
+# ================================
+# Plugins
+# ================================
 
 plugins:
+  - jekyll-remote-theme
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-paginate
-  - jekyll-gist
 
-# Front Matter Defaults
+# ================================
+# Defaults
+# ================================
+
 defaults:
-  # Posts defaults
   - scope:
       path: "_posts"
       type: posts
     values:
       layout: post
+      comments: false
       share: true
+      toc: true
+      toc_sticky: true
 
-# Site Author
+# ================================
+# Author
+# ================================
+
 author:
-  name: "PIUS : Combat & Engine Lab"
+  name: "piusAi"
   picture: "/assets/img/pius-icon.png"
-  email: "hwangpiusjoon@gmail.com"
-  twitter:
-  links:
-    - title: Github
-      url: "https://github.com/piusAI"
-      icon: "fab fa-github"
-    - title: Linkedin
-      url: "https://linkedin.com/in/hwangpiusjoon"
-      icon: "fab fa-linkedin"
+  email:
+  bio: "Graphics Programmer / Combat Programmer / Engine Architecture"
 
-# Footer Links
+  links:
+    - title: GitHub
+      url: https://github.com/piusAI
+      icon: fab fa-github-square
+
+    - title: YouTube
+      url: https://www.youtube.com/@h0wju
+      icon: fab fa-youtube
+
+# ================================
+# Footer
+# ================================
+
 footer_links:
+  - title: GitHub
+    url: https://github.com/piusAI
+    icon: fab fa-github-square
+
   - title: Feed
     url: atom.xml
     icon: fas fa-rss-square
