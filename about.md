@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 
-<h2 style="text-align: center; font-weight: 800; margin-top: 10px;"> 반갑습니다. 좋은 하루보내십시오.</h2>
+<h2 style="text-align: center; font-weight: 800; margin-top: 10px;"> 반갑습니다. 좋은 하루 보내세요!</h2>
 
 <p style="text-align: center; font-style: italic; color: #666; font-size: 1.1em; margin-bottom: 25px;">
   "C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그"
@@ -65,6 +65,27 @@ permalink: /about/
 * **학술 대회 수상 기록:** 
   * 2025 한국게임학회 추계 학술대회 **논문 우수상** 수상 📄 [**언리얼 엔진5 기반 하이브리드 프로젝션 XR 환경 성능 최적화 연구**](https://github.com/piusAI/piusAI/blob/main/Performance%20Optimization%20of%20a%20Hybrid%20XR%20Environment%20Based%20on%20Unreal%20Engine%205.pdf){:target="_blank"}
 
+
+---
+
+---
+
+## 🛠️ Technical Skills & Toolset
+
+전투 아키텍처 설계와 로우레벨 제어를 위해 커머셜 환경 및 R&D에서 주력으로 사용하는 기술 스택.
+
+### 01 Language & Core
+* **C++ (C++17/20):** 모던 C++ 디자인 패턴, 가상 함수 테이블(V-Table) 메모리 오버헤드 최적화, 데이터 지향 설계(DOD) 기반 캐시 효율성 극대화 및 저수준 포인터 연산 제어
+* **Python:** AI 에이전트 연동, RAG 아키텍처 및 스포츠 데이터 오케스트레이션 프레임워크 구축
+
+### 02 Engine & Framework
+* **Unreal Engine 5 (C++):** Gameplay Ability System(GAS) 모듈화 아키텍처 설계, 컴포넌트 디커플링, 네트워크 리플리케이션(Replication) 및 클라이언트 사이드 예측(Prediction) 최적화
+* **DirectX 11:** CPU-GPU 간 데이터 흐름(Data Flow) 통제, Constant Buffer 바인딩 최적화, 바운딩 박스(BBox) 계산 및 하드코어 충돌 연산 자체 구현
+* **Unity:** 상용 스팀(Steam) 타이틀 2종 출시작 프로덕션 폴리싱 및 데이터 최적화 파이프라인 경험
+
+### 03 Production Pipeline & DCC
+* **Houdini:** VFX, 절차적 그래픽스 및 전투 시스템 충돌 체계 제어를 위한 절차적(Procedural) 데이터 생성 및 언리얼 엔진 임포트 파이프라인 자동화
+* **Motion Capture Framework:** 실시간 모션 캡처 데이터 수집 및 언리얼 엔진 내 Live Retargeting 최적화 파이프라인 구축 (버츄얼 휴먼 사업 적용중)
 
 ---
 

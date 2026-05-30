@@ -7,8 +7,8 @@ remote_theme: mmistakes/so-simple-theme
 skin: "/assets/css/skins/default.css"
 locale: "ko-KR"
 
-title: "piusAi"
-description: "Graphics Programming / Unreal Engine / Combat System Architecture"
+title: "PIUS"
+description: "Low-Level C++ / Unreal GAS / High-End Motion Tech"
 
 url: "https://piusai.github.io"
 baseurl: ""
@@ -117,10 +117,10 @@ defaults:
 # ================================
 
 author:
-  name: "piusAi"
+  name: "PIUS"
   picture: "/assets/img/pius-icon.png"
   email:
-  bio: "Graphics Programmer / Combat Programmer / Engine Architecture"
+  bio: "Low-Level C++ / Unreal GAS / High-End Motion Tech"
 
   links:
     - title: GitHub
