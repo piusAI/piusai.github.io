@@ -29,7 +29,7 @@ Rastertek으로 이해도 되지 않는 긴 글을 읽으면서 코드를 따라
 
 
 ### D3D 초기화 정리
-  ![D3DInitIMG](../assets/postimg/D3DInit/D3DInitialize001.jpg)
+  ![D3DInitIMG]({{ '/assets/postimg/D3DInit/D3DInitialize001.jpg' | relative_url }})
 
 그리고 마침내 나만의 정리를 했다.
 
