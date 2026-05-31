@@ -1,9 +1,9 @@
 ---
 layout: post
 published: true
-title: D3D 초기화
+title: DirectX3D 초기화
 date: 2026-05-31 15:32:00 +0900
-description: RasterTek에서의 FrameWok
+description: D3D 초기화 7전8기 공부!
 img: pius-icon.png
 categories:
   - R&D
@@ -14,7 +14,7 @@ tags:
 author: PIUS
 ---
 
-  ## Direct3D의 초기화
+## Direct3D의 초기화
 
 DirectX를 처음 접하게 되면 여러 큰 벽들을 마주하게 되는데, 그중 하나가 D3D의 초기화이다.
 
