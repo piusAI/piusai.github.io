@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: D3D 초기화
 date: 2026-05-31 15:32:00 +0900
 description: RasterTek에서의 FrameWok
