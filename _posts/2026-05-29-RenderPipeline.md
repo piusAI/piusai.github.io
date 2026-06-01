@@ -67,7 +67,10 @@ Art강의할때, 어떻게 하면 처음 3D를 접하는 사람들에게 쉽게 
 
 
 그 기억을 되살려서, 간략화한 단계들을 먼저 이야기 해보겠다.
-**IA->VS->HS(option)->T->DS(option)->GS(Optional)->SO->RS->PS->OM** 라는 단계가 있다. 꼭 필요한 단계만 살펴본다면
+
+**IA->VS->HS(option)->T->DS(option)->GS(Optional)->SO->RS->PS->OM** 라는 단계가 있다. 
+
+좀 더 간략화하자.
 
 **IA->VS->T->SO->RS->PS->OM** 
 이렇게 간략화 할 수있다.
