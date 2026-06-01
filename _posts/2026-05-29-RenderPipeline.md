@@ -29,11 +29,12 @@ You’ll find this post in your `_posts` directory. Go ahead and edit it and re-
 
 | Step 01 | Step 02 | Step 03 |
 |----------|----------|----------|
-| <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_001.jpg' \| relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_002.jpg' \| relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_003.jpg' \| relative_url }}" width="250"> |
+| <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_001.jpg' | relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_002.jpg' | relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_003.jpg' | relative_url }}" width="250"> |
 
 | Step 04 | Step 05 | Step 06 |
 |----------|----------|----------|
-| <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_004.jpg' \| relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_005.jpg' \| relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_006.jpg' \| relative_url }}" width="250"> |
+| <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_004.jpg' | relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_005.jpg' | relative_url }}" width="250"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_006.jpg' | relative_url }}" width="250"> |
+
 
 
 
