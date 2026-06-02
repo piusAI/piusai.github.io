@@ -8,7 +8,7 @@ permalink: /about/
 <h2 style="text-align: center; font-weight: 800; margin-top: 10px;"> 반갑습니다. 좋은 하루 보내세요!</h2>
 
 <p style="text-align: center; font-style: italic; color: #666; font-size: 1.1em; margin-bottom: 25px;">
-  "C++ 기반 로직 설계와 엔진 구조에 관한 기술 블로그"
+  "Technical Art, Gameplay Technology, Graphics, AI Pipeline에 대한 연구와 기록"
 </p>
 
 
@@ -16,16 +16,49 @@ permalink: /about/
 
 ## 🔬 Core Research Interests
 
-관련 포스팅 주제 및 현재 진행중인 R&D 영역
+관련 포스팅 주제 및 현재 관심 분야
 
-* **Gameplay Ability System (GAS):** 실무형 Ability 아키텍처 고도화 및 확장성 검증
-* **Advanced Unreal FPS Combat:** 총기 로직, 반동 알고리즘, 타격감 구현 및 전통적인 전투 로직 고도화 (UE5)
-* **Graphics Subsystem:** DirectX 11/12 로우레벨 프레임워크 독자 구축 및 그래픽스 파이프라인 데이터 흐름 분석
-* **Next-Gen Pipeline:** NC AI 3D Generation 툴 언리얼 엔진 모듈 연동 및 실시간 모션 캡처 버츄얼 파이프라인 통합 연구
-* **Combat Feedback & Feel:** 입력 지연(Input Latency) 최소화 및 0.1초 단위의 프레임 제어를 통한 정밀한 콤보/경직/무적 상태 컴포넌트 설계
-* **Context-Aware Animation:** 상황 인식 시스템과 애니메이션 노드 그래프, Motion Warping을 활용한 동적 가변 애니메이션 파이프라인 구축
-* **Gameplay Architecture:** Gameplay Ability System(GAS)을 활용한 결합도 낮고 확장성 높은 능력 시스템 설계 지향
-* **Performance Optimization:** CPU-GPU 병목 구간 제어 및 데이터 지향 설계(DOD) 기반의 엔진 최적화 
+* **Technical Art Pipeline**
+  * Unreal Engine, Houdini, Python 기반의 콘텐츠 제작 자동화
+  * 아트 제작 프로세스 최적화 및 Pipeline 구축
+
+* **Graphics & Rendering**
+  * DirectX 11 프레임워크 연구
+  * Rendering Pipeline 분석 및 실시간 그래픽스 기술 연구
+  * Unreal Engine HLSL
+
+* **AI-Assisted Content Creation**
+  * 생성형 AI 기반 3D 콘텐츠 제작
+  * AI Tool과 Unreal Engine 연동 자동화 연구
+
+* **Tool & Plugin Development**
+  * Unreal Engine Editor Tool 개발
+  * Custom Plugin 및 Pipeline Utility 제작
+
+* **Animation Technology**
+  * Context-Aware Animation
+  * Motion Warping
+  * Animation Graph 기반의 동적 상호작용 시스템 연구
+
+* **Gameplay Systems**
+  * Gameplay Ability System (GAS)
+  * 확장성 높은 Gameplay Architecture 설계
+
+* **Virtual Human Pipeline**
+  * Motion Capture
+  * Retargeting
+  * Virtual Human 제작 파이프라인 구축
+
+* **Performance Optimization**
+  * CPU-GPU 병목 분석
+  * GPU Profiling
+  * Data-Oriented Design(DOD) 기반 최적화 연구 
+
+* **Programming & Technical Scripting**
+  * Modern C++
+  * Unreal Engine C++
+  * Python Automation
+  * Houdini VEX
 
 ---
 
