@@ -2,19 +2,6 @@
 
 @import "so-simple";
 
-.post-header .post-thumbnail img {
-    width: 400px !important;
-    height: auto !important;
-    max-width: none !important;
-}
-
-/* 썸네일만 강제로 400px로 설정 */
-header.post-thumbnail img {
-    width: 400px !important;
-    max-width: 400px !important;
-    height: auto !important;
-}
-
 .post-thumbnail img {
     max-width: 400px !important;
     width: 400px !important;
