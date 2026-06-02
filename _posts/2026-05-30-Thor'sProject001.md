@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Thor's Hammer 프로젝트 기획안[DX11]
+title: Thor's Hammer 프로젝트 기획안(DX11)
 date:   2026-05-29 15:32:00 +0900
 description: C++의 OOP 구조를 탈피하여 고성능 그래픽스 렌더파이프라인 및 수리적 실시간 오브젝트 제어에 집중한 R&D 기획 및 연구 기록입니다.
-img: Thor_Thumnail.png                  # 목록에 출력될 썸네일 이미지 (필요시 사용)
+thumbnail-img: /assets/postimg/ThorArchitecture/Thor_Thumnail.png                  # 목록에 출력될 썸네일 이미지 (필요시 사용)
 categories: [R&D]
 tags: [DX11, Graphics, RenderPipeline, Framework, TrajectoryMath]
 author: PIUS
