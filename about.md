@@ -112,9 +112,12 @@ TA로서 콘텐츠 제작 파이프라인 구축, 실시간 렌더링 최적화,
 * **Python:** AI 에이전트 연동, RAG 아키텍처 및 스포츠 데이터 오케스트레이션 프레임워크 구축
 
 ### 02 Engine & Framework
-* **Unreal Engine 5 (C++):** Gameplay Ability System(GAS) 모듈화 아키텍처 설계, 컴포넌트 디커플링, 네트워크 리플리케이션(Replication) 및 클라이언트 사이드 예측(Prediction) 최적화
-* **DirectX 11:** CPU-GPU 간 데이터 흐름(Data Flow) 통제, Constant Buffer 바인딩 최적화, 바운딩 박스(BBox) 계산 및 하드코어 충돌 연산 자체 구현
-* **Unity:** 상용 스팀(Steam) 타이틀 2종 출시작 프로덕션 폴리싱 및 데이터 최적화 파이프라인 경험
+* Unreal Engine 5 (C++)
+  * Gameplay Framework
+  * Animation System
+  * Niagara, CasCade, Material & Shader
+  * Editor Tool Development
+  * Plugin Development
 
 ### 03 Production Pipeline & DCC
 * **Houdini:** VFX, 절차적 그래픽스 및 전투 시스템 충돌 체계 제어를 위한 절차적(Procedural) 데이터 생성 및 언리얼 엔진 임포트 파이프라인 자동화
