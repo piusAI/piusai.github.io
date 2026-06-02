@@ -31,9 +31,6 @@ Windows (/SUBSYSTEM:WINDOWS)
 ---
 이전의 삼각형까지의 이해는 [Rastertektriangle]에서 Summary로 볼 수있다. 영상에서처럼, 3주정도는 이해하는데에 많은 시간을 할애했다.
 
-  ![[assets/postimg/ThorPRJ/FrameWork_001.jpg]]
-
-
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/FrameWork_001.jpg' | relative_url }})
  삼각형을 그린 프레임웍이다. 위 프레임워크에서 시작을 했다.
 
@@ -44,8 +41,6 @@ Windows (/SUBSYSTEM:WINDOWS)
 머리속에 어떤식으로 쫙불러오면 좋겠다 라는 정도의 구상도까지는 그려지지 않기에 7일동안 제작을 하면서 조금씩 변경하고 할 계획이다.
 
 **Core Dir :** 수업 중에 활용했던 프레임워크, Rastertek, Braynzar의 코드들을 십분 활용하여 ***모듈식***으로 붙히는 방향으로 진행 한다.
-
-![[assets/postimg/ThorPRJ/Result01.jpg]]
 
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/Result01.jpg' | relative_url }})
 
@@ -87,9 +82,7 @@ powershell -Command "$p='~Colorvs.hlsl'; $c=Get-Content $p -Raw; [System.IO.File
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/Hammer.jpg' | relative_url }})
 Pivot은 손잡이에 잡아두었다.
 
-![[assets/postimg/ThorPRJ/HammerObjDX.jpg]]
-
-![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/HammerObjDX' | relative_url }})
+![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/HammerObjDX.jpg' | relative_url }})
 L : unit scale 1 Hammer Dx Import
 R : Unit Scale 15 Hammer DX
 
@@ -98,7 +91,7 @@ R : Unit Scale 15 Hammer DX
 GraphicsClass 내부에서 수정하는 행렬곱 scaling 으로는 CPU에서 처리하기에 병렬적 연산이 불가능하다 그래서 cbuffer vs로 수정해보고자 했다.
 이전 과제에서는 CPU에서 처리했었지만 갑자기 분위기 VS!
 * **01 Cbuffer 수정:**
-```
+{% highlight cpp %}
 Colorvs.hlsl
 cbuffer MatrixBuffer
 {
@@ -107,9 +100,10 @@ cbuffer MatrixBuffer
 	matrix projectionMatrix;
 	matrix scaleMatrix; // Test Cbuffer ScalingTest
 }
-```
+{% endhighlight %}
+
 * **02 Texture class 수정: **
-```
+
 {% highlight cpp %}
   struct MatrixBufferType
   {
@@ -125,7 +119,7 @@ cbuffer MatrixBuffer
   XMMATRIX scaleMatrix = XMMatrixScaling(15.0f, 15.0f, 15.0f);
   // 15배 정도의 ScaleMatrix 
   {% endhighlight %}
-```
+
 
 ***03 최종 VS 수정**
 ```
@@ -138,7 +132,7 @@ cbuffer MatrixBuffer
 
 
  1일차 모듈 뜯어보기는 이 정도로 마무리 했다.
-![[assets/postimg/ThorPRJ/FrameWork_002.jpg]]
+
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/FrameWork_002.jpg' | relative_url }})
 
 개발자들도 모듈을 뜯어 해킹하는 형식으로 많이 제작하고 있다 한다.
