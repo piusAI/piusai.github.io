@@ -5,4 +5,4 @@ taxonomy: Unreal
 permalink: /unreal/
 ---
 
-Unreal Engine의 게임플레이 로직, GAS(Gameplay Ability System), 그리고 엔진 아키텍처 연구 공간
+Unreal Engine C++ 기반의 고성능 시스템 설계, GAS(Gameplay Ability System), 상황 인지(Context-Aware) 애니메이션 및 실시간 상호작용 메커니즘 연구 공간
