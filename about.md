@@ -115,7 +115,7 @@ Technical Art Pipeline, AI-Assisted Content Creation에 대한
 TA로서 콘텐츠 제작 파이프라인 구축, 실시간 렌더링 최적화, 툴 개발 및 엔진 확장을 위해 활용하는 기술 스택
 
 ### 01 Language & Core
-* **C++**, **Python:** 
+* **C++**, **Python** 
 
 ### 02 Engine & Framework
 * **Unreal Engine 5 (C++):**
