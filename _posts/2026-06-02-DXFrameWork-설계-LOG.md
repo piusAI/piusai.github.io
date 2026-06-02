@@ -135,10 +135,13 @@ cbuffer MatrixBuffer
   output.position = mul(output.position, projectionMatrix);
 ```
   
- 
- 1일차 모듈 뜯어보기는 이 정도로 마무리 했다.
 
-개발자들도 모듈을 뜯어 해킹하는 형식으로 많이 제작하고 있다한다.
+
+ 1일차 모듈 뜯어보기는 이 정도로 마무리 했다.
+![[assets/postimg/ThorPRJ/FrameWork_002.jpg]]
+![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/FrameWork_002.jpg' | relative_url }})
+
+개발자들도 모듈을 뜯어 해킹하는 형식으로 많이 제작하고 있다 한다.
 모든 코드를 이해하면 물론 좋겠지만 이해를 Trade-off하기로 했다. 7일 남은 시점에서는 교수님이 주신 코드와 Rastertek을 역추적하는 방식이어야한다.
 
 진행하면서 게임 제작시 모든 분야의 코드를 이해하는 것은 불가능에 가깝다고 생각이 들기 시작했다.
