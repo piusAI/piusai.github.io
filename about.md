@@ -60,6 +60,13 @@ permalink: /about/
   * Python Automation
   * Houdini VEX
 
+게임 개발 과정에서 발생하는 기술적 문제를 해결하고,
+아티스트와 프로그래머가 더 효율적으로 협업할 수 있는 방법을 연구합니다.
+
+이 블로그는 Unreal Engine, Graphics, Animation Technology,
+Technical Art Pipeline, AI-Assisted Content Creation에 대한
+실험과 기록을 정리하는 공간입니다.
+
 ---
 
 
@@ -105,14 +112,13 @@ permalink: /about/
 
 ## 🛠️ Technical Skills & Toolset
 
-TA로서 콘텐츠 제작 파이프라인 구축, 실시간 렌더링 최적화, 툴 개발 및 엔진 확장을 위해 활용하는 기술
+TA로서 콘텐츠 제작 파이프라인 구축, 실시간 렌더링 최적화, 툴 개발 및 엔진 확장을 위해 활용하는 기술 스택
 
 ### 01 Language & Core
-* **C++ (C++17/20):** 모던 C++ 디자인 패턴, 가상 함수 테이블(V-Table) 메모리 오버헤드 최적화, 데이터 지향 설계(DOD) 기반 캐시 효율성 극대화 및 저수준 포인터 연산 제어
-* **Python:** AI 에이전트 연동, RAG 아키텍처 및 스포츠 데이터 오케스트레이션 프레임워크 구축
+* **C++**, **Python:** 
 
 ### 02 Engine & Framework
-* Unreal Engine 5 (C++)
+* **Unreal Engine 5 (C++):**
   * Gameplay Framework
   * Animation System
   * Niagara, CasCade, Material & Shader
@@ -120,8 +126,17 @@ TA로서 콘텐츠 제작 파이프라인 구축, 실시간 렌더링 최적화,
   * Plugin Development
 
 ### 03 Production Pipeline & DCC
-* **Houdini:** VFX, 절차적 그래픽스 및 전투 시스템 충돌 체계 제어를 위한 절차적(Procedural) 데이터 생성 및 언리얼 엔진 임포트 파이프라인 자동화
-* **Motion Capture Framework:** 실시간 모션 캡처 데이터 수집 및 언리얼 엔진 내 Live Retargeting 최적화 파이프라인 구축 (버츄얼 휴먼 사업 적용중)
+* **Houdini:** 
+  * Procedural Modeling
+  * VFX
+  * Digital Asset(HDA)
+  * Unreal Engine Pipeline Integration
+  * Pipeline Automation
+
+* **Motion Capture Framework**:
+  * 실시간 모션 캡처 데이터 수집
+  * UE Live Retargeting 최적화 파이프라인 구축
+  * 버츄얼 휴먼 사업 적용중 (JiGi)
 
 ---
 
