@@ -21,9 +21,8 @@ RasterTek 삼각형 그리기까지 완료 한 이후, 모든 class를 이해하
 지금 현재의 게임에 필요한 class만을 모듈식으로 붙히고, 물고 어디에서 사용하고 하는 형식의 프로젝트로 일주일동안의 로그를 찍어보려 한다.
 
 Tip 두가지로는,
-hlsl Build Exclude를 해야하고,
-
-Linker - Subsystem 설정
+01 .hlsl shader 파일 : Build Exclude
+02 Linker - Subsystem 설정
 ```
 Windows (/SUBSYSTEM:WINDOWS)
 ```
@@ -36,8 +35,7 @@ Windows (/SUBSYSTEM:WINDOWS)
 
 
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/FrameWork_001.jpg' | relative_url }})
- 삼각형을 그린 프레임웍이다.
- 이 프레임워크에서 시작을 했다.
+ 삼각형을 그린 프레임웍이다. 위 프레임워크에서 시작을 했다.
 
 
 어느정도 필요한 모듈들은 생각해두었다.
@@ -59,9 +57,7 @@ Windows (/SUBSYSTEM:WINDOWS)
 png 텍스쳐 파일을 엔진 Editor로 던지는 dds파일로 자동 변환해주는 것 부터 일이었다. VisualStudio 내부에서 dds변환(mipmap 생성도 가능)하는 일부터 시작했다.
 (여기는 Rastertek Code를 보며 수정하면서 붙히는중..)
 
-
-엔진 프레임워크의 계층 구조는 다음과 같이 **[Application 인프라 ➡️ Core 엔진 ➡️ Graphics 파이프라인]**으로 철저히 관심사를 분리(Separation of Concerns)하여 컴포넌트 간의 결합도를 최적화했습니다.
-
+* .hlsl 파일 저장 에러
 
 ```
 Unicode (UTF-8 without signature) - Code page 65001
@@ -74,19 +70,84 @@ powershell -Command "$p='~Colorvs.hlsl'; $c=Get-Content $p -Raw; [System.IO.File
 이렇게 아예 받아서 수정
   
 
-* **WinApp (Entry Point):** OS 윈도우 생성, 메시지 루프 핸들링, 기본 입력 이벤트 수집
+[추가 / 수정 Class]
+* **AlignedAllocationPolicy.h:** for warning C4316
 
-* **Engine / GameLoop:** 가변/고정 타임스텝 기반의 초정밀 델타 타임(Delta Time) 제어 및 전체 시스템 동기화
+* ApplicationClass -> **GraphicsClass** ,
+  ColorShaderClass->**TextureShaderClass**
+  TextureClass
 
-* **Graphics / Device:** 하드웨어 가속기(GPU) 및 내부 파이프라인 상태 객체(PSO) 캡슐화
+하다가 갑자기 OBJ import 먼저 하고싶음
 
+### Module102 OBJ import
+002 modelclass.h : 역시나 Dx에서의 3D object import 방법은, Engine에서 던지는 형식이 아니었다. Maya/Houdini에서 .obj를 export할때 mtl은 그냥 재질의 찌꺼기이다라고 생각했지만,
+
+![[assets/postimg/ThorPRJ/Hammer.jpg]]
+
+![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/Hammer.jpg' | relative_url }})
+Pivot은 손잡이에 잡아두었다.
+
+![[assets/postimg/ThorPRJ/HammerObjDX.jpg]]
+
+![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/HammerObjDX' | relative_url }})
+L : unit scale 1 Hammer Dx Import
+R : Unit Scale 15 Hammer DX
+
+물론 Dcctool에서 model scaling을 하면 좋겠지만 갑자기 HLSL으로 compile 해보고 싶었다.
+
+GraphicsClass 내부에서 수정하는 행렬곱 scaling 으로는 CPU에서 처리하기에 병렬적 연산이 불가능하다 그래서 cbuffer vs로 수정해보고자 했다.
+이전 과제에서는 CPU에서 처리했었지만 갑자기 분위기 VS!
+* **01 Cbuffer 수정:**
+```
+Colorvs.hlsl
+cbuffer MatrixBuffer
+{
+	matrix worldMatrix;
+	matrix viewMatrix;
+	matrix projectionMatrix;
+	matrix scaleMatrix; // Test Cbuffer ScalingTest
+}
+```
+* **02 Texture class 수정: **
+```
+{% highlight cpp %}
+  struct MatrixBufferType
+  {
+	  XMMATRIX world;
+	  XMMATRIX view;
+	  XMMATRIX projection;
+	  XMMATRIX modelscale; // 네번째 인자로 컴파일
+  }
+
+  ...
   
+  private:
+  XMMATRIX scaleMatrix = XMMatrixScaling(15.0f, 15.0f, 15.0f);
+  // 15배 정도의 ScaleMatrix 
+  {% endhighlight %}
+```
+
+***03 최종 VS 수정**
+```
+  output.position = mul(input.position, worldMatrix);
+  output.position = mul(output.position, scaleMatrix); //world에서 크기 scaleMatrix 곱
+  output.position = mul(output.position, viewMatrix);
+  output.position = mul(output.position, projectionMatrix);
+```
+  
+ 
+ 1일차 모듈 뜯어보기는 이 정도로 마무리 했다.
+
+개발자들도 모듈을 뜯어 해킹하는 형식으로 많이 제작하고 있다한다.
+모든 코드를 이해하면 물론 좋겠지만 이해를 Trade-off하기로 했다. 7일 남은 시점에서는 교수님이 주신 코드와 Rastertek을 역추적하는 방식이어야한다.
+
+진행하면서 게임 제작시 모든 분야의 코드를 이해하는 것은 불가능에 가깝다고 생각이 들기 시작했다.
 
 ---
 
-  
+  (현재 완료)
 
-## 💻 2. 핵심 루프 및 Win32/DirectX 가동화 로직
+## 💻 Day 2. 핵심 모듈 뜯어 붙히기 완료
 
   
 
@@ -94,73 +155,5 @@ powershell -Command "$p='~Colorvs.hlsl'; $c=Get-Content $p -Raw; [System.IO.File
 
   
   
-  
 
-```
-
-{% highlight cpp %}
-
-// Engine.h - 핵심 프레임워크 컨트롤러 인터페이스
-
-#pragma once
-
-#include <windows.h>
-
-#include <memory>
-
-  
-
-class Graphics;
-
-class Timer;
-
-  
-
-class Engine
-
-{
-
-public:
-
-    Engine();
-
-    ~Engine();
-
-  
-
-    bool Initialize(HINSTANCE hInst, HWND hWnd, int Width, int Height);
-
-    void Run();
-
-  
-
-private:
-
-    void Update(float DeltaTime);
-
-    void Render();
-
-  
-
-private:
-
-    bool                     bIsRunning;
-
-    std::unique_ptr<Graphics> GraphicsPipeline;
-
-    std::unique_ptr<Timer>    EngineTimer;
-
-};
-
-{% endhighlight %}
-
-  
-
----
-```
-
-
-* [Rastertek 삼각형]
-
-  
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
