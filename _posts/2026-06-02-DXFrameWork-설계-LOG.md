@@ -83,8 +83,7 @@ powershell -Command "$p='~Colorvs.hlsl'; $c=Get-Content $p -Raw; [System.IO.File
 Pivot은 손잡이에 잡아두었다.
 
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/HammerObjDX.jpg' | relative_url }})
-L : unit scale 1 Hammer Dx Import
-R : Unit Scale 15 Hammer DX
+L : unit scale 1 Hammer Dx Import || R : Unit Scale 15 Hammer DX
 
 물론 Dcctool에서 model scaling을 하면 좋겠지만 갑자기 HLSL으로 compile 해보고 싶었다.
 
