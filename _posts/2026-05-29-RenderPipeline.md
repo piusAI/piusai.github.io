@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title:  "RenderPipeline?"
+title:  RenderPipeline 이란?
 date:   2026-05-29 15:32:00 +0900
 description: C++의 OOP를 제거하고 오직 그래픽스 렌더파이프라인에만 집중해본 연구 기록입니다.
 img: pius-icon.png                  # 목록에 출력될 썸네일 이미지 (필요시 사용)
