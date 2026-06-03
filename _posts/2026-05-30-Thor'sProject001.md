@@ -9,12 +9,14 @@ tags: [DX11, Graphics, RenderPipeline, Framework, TrajectoryMath]
 author: PIUS
 ---
 
+Dx11로 구현하는 Thor Hammer
+
 <!-- 포스트 최상단 메인 아젠다 이미지 배치 -->
 
 ![Thor Architecture Agenda]({{ '/assets/postimg/ThorArchitecture/Thor_Thumnail.png' | relative_url }})
 ---
 
-Dx11로 구현하는 Thor Hammer
+
 
 본 프로젝트는 생성형 AI 시대에 UE 단순 Function/기능 구현 위주의 작업에서 벗어나, 프레임워크 설계 능력과 그래픽스 저수준 제어 능력을 기르기 위해 진행된 **DX11 기반 실시간 오브젝트 비행 궤적 및 시스템 아키텍처 구현 프로젝트**입니다.
 
