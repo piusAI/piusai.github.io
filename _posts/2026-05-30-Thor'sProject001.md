@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Thor's Hammer 프로젝트 기획안(DX11)
+title: Thor Hammer 프로젝트 기획안(DX11)
 date:   2026-05-29 15:32:00 +0900
 description: C++의 OOP 구조를 탈피하여 고성능 그래픽스 렌더파이프라인 및 수리적 실시간 오브젝트 제어에 집중한 R&D 기획 및 연구 기록입니다.
 thumbnail-img: /assets/postimg/ThorArchitecture/Thor_Thumnail.png                  # 목록에 출력될 썸네일 이미지 (필요시 사용)
@@ -13,6 +13,8 @@ author: PIUS
 
 ![Thor Architecture Agenda]({{ '/assets/postimg/ThorArchitecture/Thor_Thumnail.png' | relative_url }})
 ---
+
+Dx11로 구현하는 Thor Hammer
 
 본 프로젝트는 생성형 AI 시대에 UE 단순 Function/기능 구현 위주의 작업에서 벗어나, 프레임워크 설계 능력과 그래픽스 저수준 제어 능력을 기르기 위해 진행된 **DX11 기반 실시간 오브젝트 비행 궤적 및 시스템 아키텍처 구현 프로젝트**입니다.
 
