@@ -145,15 +145,52 @@ cbuffer MatrixBuffer
 
 ---
 
-  (현재 완료)
+
 
 ## 💻 Day 2. 핵심 모듈 뜯어 붙히기 완료
 
-  
+MeshScaling : Hammer Size 15배
+
+```
+GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
+{
+	...
+	m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
+	...
+}
+```
+Dx Camera location : (0,0,-5)
+
+![[assets/postimg/ThorPRJ/DXSceneTest.png]]
+![HoudiniHammer]({{ 'assets/postimg/ThorPRJ/DXSceneTest.png' | relative_url }})
+
+
+|구분|**DirectX**|**Houdini**|
+| :--- | :--- | :--- |
+|좌표계**(Coordinate)**|**왼손 좌표계** (Left-handed)|**오른손 좌표계** (Right-handed)|
+|Z축 방향|화면 **안쪽** : $+Z$<br>(모니터 내부)|화면 **바깥쪽** : $+Z$<br>(사용자 시선)|
+|원점을 바라보기 위한 Camera|$(0, 0, -5)$| $(0, 0, -5)$|
+| **Object Unit WorldScale** | <td colspan="2" style="text-align: center;">DX : Houdini = 1:1 Size 매칭</td> |
+
+DX : Houdini = 1 : 1 Unit 대응 한번 더 확인
 
 프레임워크의 심장인 핵심 게임 루프와 각 모듈의 초기화 라이프사이클을 담당하는 주요 구현체입니다. OOP 구조를 무분별하게 남용하기보다, 절차적인 데이터 흐름을 안전하게 보장하는 방식으로 설계했습니다.
 
-  
-  
+
+
+### 남은 작업
+* Trajectory, World Position에 따른 Hammer 이동
+* 01 input에 따른 Hammer 위치 변환 수정 -FSM Design
+* 02 Hammer Object 자전
+* 03 Model LevelDesign - Model 정적 생성
+* 04 Instancing 기법(IA 단계)
+* 05 Camera 위치(Screen Position-> World Position 변형)
+* 05 Play Draw Camera -> Play TPS(OTS) Camera 변형
+* 06 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 성공
+* 07 FPS, CPU 프로파일 performance check
+
+* Camera 키보드 위아래좌우 Move ( limit 걸어두기)
+* Mouse Input Rotation( Limit 걸기 )
+* ++ 충돌 algorithm..?
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
