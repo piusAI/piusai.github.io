@@ -238,11 +238,13 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 추가 HInstance를 받기위해서 InputClass::InitDirectInput으로 받아줬음.
 
 ![MouseMove]({{ 'assets/postimg/ThorPRJ/Thor_MouseMove.gif' | relative_url }})
-***Mouse Move GIF*** : Mouse PitchYaw 이식완료
+
+* ***Mouse Move GIF*** : Mouse PitchYaw 이식완료
 
 
 ![KeyboardMove]({{ 'assets/postimg/ThorPRJ/Thor_KeyboardMove.gif' | relative_url }})
-***KeyBoard GIF*** : WASD FreeLookCamera(FLC) 이식 완료
+
+* ***KeyBoard GIF*** : WASD FreeLookCamera(FLC) 이식 완료
 
 
 
