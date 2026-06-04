@@ -147,7 +147,7 @@ cbuffer MatrixBuffer
 
 
 
-## 💻 Day 2. 핵심 모듈 뜯어 붙히기 완료
+## 💻 Day 2. 핵심 모듈 뜯어 붙히기!
 
 MeshScaling : Hammer Size 15배
 
@@ -174,13 +174,66 @@ Dx Camera location : (0,0,-5)
 
 DX : Houdini = 1 : 1 Unit 대응 한번 더 확인
 
-프레임워크의 심장인 핵심 게임 루프와 각 모듈의 초기화 라이프사이클을 담당하는 주요 구현체입니다. OOP 구조를 무분별하게 남용하기보다, 절차적인 데이터 흐름을 안전하게 보장하는 방식으로 설계했습니다.
+
+**Data Driven** : designer/ artist가 데이터에 의해 작업 가능하게 하는 데이터 중심 설계
+Data Driven까지 신경써서 Outlineer, Transform 계층구조를 만드는 것까지는 못함
+
+추가 모듈
+- Camera 가져와서 먼저 가볍게 이동할 수 있도록 넣어주기
+- VS로의 World position 위치 이동, 디자이너가 찍는 것 처럼 5초 이후 이동 할수있도록 queue로 처리..?
 
 
+###  Module 201 Camera
+
+```
+void CameraClass::GetViewMatrix(XMMATRIX& viewMatrix)
+{
+	viewMatrix = m_viewMatrix;
+}
+
+bool GraphicsClass::Render()
+{
+	...
+	m_Direct3D->GetWorldMatrix(worldMatrix);
+	m_Camera->GetViewMatrix(viewMatrix);
+	m_Camera->GetCamView(camMatrix); //02 camview matrix 추가
+	m_Direct3D->GetProjectionMatrix(projectionMatrix);
+	...
+	
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(),
+	worldMatrix, viewMatrix, projectionMatrix);
+}
+```
+
+
+Get하는게 여기서 return하는것이 아니라 Class 내부에 있는 m_viewMatrix를 받아서 GraphicsClass에서 활용하기위함임!
+
+
+[이식중 통신]
+Braynzar의 코드는 이식성 쉽지않게 되어있음.
+
+* 01 InputClass <--> CameraClass 통신
+InputClass:: moveRight<-->CameraClass::UpdateCamera ***통신***
+CameraClass::CamYaw<-->InputClass::CamYaw ***통신***
+-> camYaw, camPitch, moveRight, MoveBackForward를 새로운 InputState.h로 Struct로 활용
+
+Camera정보로써 남겨둘 것이어서, Camera객체 생성자에서 new로 만들고 소멸자에서 사라지게 만들었고,
+InputState를 Struct로써 DetectInput에서 활용할 수있도록 바등ㅁ!
+
+![[assets/postimg/ThorPRJ/DXCameraLOG2.png]]
+![HoudiniHammer]({{ 'assets/postimg/ThorPRJ/DXCameraLOG2.png' | relative_url }})
+
+
+Compile은 됨! DIKeyboard nullptr에러말고 
+
+
+[현재 진행상황]
 
 ### 남은 작업
 * Trajectory, World Position에 따른 Hammer 이동
 * 01 input에 따른 Hammer 위치 변환 수정 -FSM Design
+
+
 * 02 Hammer Object 자전
 * 03 Model LevelDesign - Model 정적 생성
 * 04 Instancing 기법(IA 단계)
