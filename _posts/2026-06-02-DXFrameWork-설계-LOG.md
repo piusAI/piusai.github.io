@@ -220,20 +220,17 @@ CameraClass::CamYaw<-->InputClass::CamYaw ***통신***
 Camera정보로써 남겨둘 것이어서, Camera객체 생성자에서 new로 만들고 소멸자에서 사라지게 만들었고,
 InputState를 Struct로써 DetectInput에서 활용할 수있도록 받음!
 
-![[assets/postimg/ThorPRJ/UpdateCameraFramework.png]]
 ![UpdateCam]({{ 'assets/postimg/ThorPRJ/UpdateCameraFramework.png' | relative_url }})
 
 Update Camera를 Input못하고있어서
 SystemClass안에서의 Graphic instance -> updateCamera();
 
 
-![[assets/postimg/ThorPRJ/DXCameraLOG2.png]]
 ![DXLog]({{ 'assets/postimg/ThorPRJ/DXCameraLOG2.png' | relative_url }})
 
 Compile은 됨! DIKeyboard nullptr에러말고 
 InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 
-![[assets/postimg/ThorPRJ/HInstancetransplantation.png]]
 ![HINSTANCE]({{ 'assets/postimg/ThorPRJ/HInstancetransplantation.png' | relative_url }})
 추가 HInstance를 받기위해서 InputClass::InitDirectInput으로 받아줬음.
 
