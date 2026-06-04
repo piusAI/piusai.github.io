@@ -161,8 +161,7 @@ GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 ```
 Dx Camera location : (0,0,-5)
 
-![[assets/postimg/ThorPRJ/DXSceneTest.png]]
-![HoudiniHammer]({{ 'assets/postimg/ThorPRJ/DXSceneTest.png' | relative_url }})
+![HoudiniHammer]({{ 'assets/postimg/ThorPRJ/DxSceneTest.png' | relative_url }})
 
 
 |구분|**DirectX**|**Houdini**|
@@ -219,6 +218,7 @@ CameraClass::CamYaw<-->InputClass::CamYaw ***통신***
 
 Camera정보로써 남겨둘 것이어서, Camera객체 생성자에서 new로 만들고 소멸자에서 사라지게 만들었고,
 InputState를 Struct로써 DetectInput에서 활용할 수있도록 받음!
+
 
 ![UpdateCam]({{ 'assets/postimg/ThorPRJ/UpdateCameraFramework.png' | relative_url }})
 
