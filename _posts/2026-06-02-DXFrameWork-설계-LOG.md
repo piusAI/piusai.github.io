@@ -239,19 +239,21 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 
 ![[assets/postimg/ThorPRJ/Thor_MouseMove .gif]]
 ![HINSTANCE]({{ 'assets/postimg/ThorPRJ/Thor_MouseMove .gif' | relative_url }})
+***Mouse Move GIF*** : Mouse PitchYaw 이식완료
 
-현재 DirectX11 : Mouse Tilt 넣음
+![[assets/postimg/ThorPRJ/Thor_KeyboardMove.gif]]
+![HINSTANCE]({{ 'assets/postimg/ThorPRJ/Thor_KeyboardMove.gif' | relative_url }})
+***KeyBoard GIF*** : WASD FreeLookCamera(FLC) 이식 완료
 
 
 
 
 
-[현재 진행상황]
 
 ### 남은 작업
 * Trajectory, World Position에 따른 Hammer 이동
+* 00 Object Texture 이식
 * 01 input에 따른 Hammer 위치 변환 수정 -FSM Design
-
 
 * 02 Hammer Object 자전
 * 03 Model LevelDesign - Model 정적 생성
@@ -260,9 +262,11 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 * 05 Play Draw Camera -> Play TPS(OTS) Camera 변형
 * 06 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 성공
 * 07 FPS, CPU 프로파일 performance check
-
-* Camera 키보드 위아래좌우 Move ( limit 걸어두기)
-* Mouse Input Rotation( Limit 걸기 )
 * ++ 충돌 algorithm..?
+
+### 완료 사항
+* Camera 키보드 위아래좌우 Move ( limit 걸어두기) []
+* Mouse Input Rotation( Limit 걸기 )
+
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
