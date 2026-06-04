@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DirectX 11 Framework Architecture 설계
+title: Thor Hammer DevLog (DX11)
 date: 2026-06-02 16:02:00 +0900
 description: 상용 엔진(Unreal)의 API 뒤에 숨겨진 렌더 파이프라인을 제어하기 위한 로우레벨 DirectX 엔진 프레임워크 설계 기록입니다.
 thumbnail-img: /assets/postimg/ThorArchitecture/FrameWork_001.jpg
@@ -13,7 +13,7 @@ tags:
   - Graphics-Pipeline
 ---
 
-Thor DX 프로젝트 LOG
+Thor DX 프로젝트 DevLOG
 
 설계라고하기에는 준비된 Module을 끼워맞춘다에 가깝지만, 그럼에도 불구하고 처음으로 저수준으로 프레임웍을 뜯어붙히고 다뤄보며 조합하는 Project이다.
 
@@ -218,13 +218,32 @@ CameraClass::CamYaw<-->InputClass::CamYaw ***통신***
 -> camYaw, camPitch, moveRight, MoveBackForward를 새로운 InputState.h로 Struct로 활용
 
 Camera정보로써 남겨둘 것이어서, Camera객체 생성자에서 new로 만들고 소멸자에서 사라지게 만들었고,
-InputState를 Struct로써 DetectInput에서 활용할 수있도록 바등ㅁ!
+InputState를 Struct로써 DetectInput에서 활용할 수있도록 받음!
+
+![[assets/postimg/ThorPRJ/UpdateCameraFramework.png]]
+![UpdateCam]({{ 'assets/postimg/ThorPRJ/UpdateCameraFramework.png' | relative_url }})
+
+Update Camera를 Input못하고있어서
+SystemClass안에서의 Graphic instance -> updateCamera();
+
 
 ![[assets/postimg/ThorPRJ/DXCameraLOG2.png]]
-![HoudiniHammer]({{ 'assets/postimg/ThorPRJ/DXCameraLOG2.png' | relative_url }})
-
+![DXLog]({{ 'assets/postimg/ThorPRJ/DXCameraLOG2.png' | relative_url }})
 
 Compile은 됨! DIKeyboard nullptr에러말고 
+InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
+
+![[assets/postimg/ThorPRJ/HInstancetransplantation.png]]
+![HINSTANCE]({{ 'assets/postimg/ThorPRJ/HInstancetransplantation.png' | relative_url }})
+추가 HInstance를 받기위해서 InputClass::InitDirectInput으로 받아줬음.
+
+![[assets/postimg/ThorPRJ/Thor_MouseMove .gif]]
+![HINSTANCE]({{ 'assets/postimg/ThorPRJ/Thor_MouseMove .gif' | relative_url }})
+
+현재 DirectX11 : Mouse Tilt 넣음
+
+
+
 
 
 [현재 진행상황]
