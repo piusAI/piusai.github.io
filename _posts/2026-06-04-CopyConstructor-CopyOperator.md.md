@@ -4,7 +4,7 @@ title: 복사생성자와 복사 대입 연산자의 명시적 차단
 date: 2026-06-04 11:40:00 +0900
 description: 리소스 이중 해제(Dangling Pointer)를 방지하기 위해 복사 생태계를 제어하는 컴파일 타임 설계 전략을 알아봅니다.
 categories:
-  - R&D
+  - C++
 tags:
   - DirectX
   - Framework
