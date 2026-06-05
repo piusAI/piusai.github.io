@@ -246,13 +246,81 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 
 
 
+## 💻 Day 3. Click 위치로 이동시키기!
+
+### Navigation 추가
+
+- 간단하게 먼저 UE처럼 E를 눌렀을때 위아래로 이동하도록 손봐주었다.
+	- 01 InputState struct의 moveupdown추가
+	- 02 moveupdown관련 함수 추가
+	- 03 Virtual Keyboard 등록!
+![[assets/postimg/ThorPRJ/Thor_KeyboardUpdown.gif]]
+
+<p align="center">
+  <img src="{{ 'assets/postimg/ThorPRJ/Thor_KeyboardUpdown.gif' | relative_url }}" alt="KeyboardMove">
+</p>
 
 
 
-### 남은 작업
+### Object Model Texture
+
+![[assets/postimg/ThorPRJ/Thor_Dollyinout.gif]]
+
+<p align="center">
+  <img src="{{ 'assets/postimg/ThorPRJ/Thor_Dollyinout.gif' | relative_url }}" alt="KeyboardMove">
+</p>
+01 DDSTextureLoader 이식
+02 관련 Texture Class 함수, initialize 확인
+03 Sementic 확인
+
+```
+
+struct VertexInputType
+{
+	float4 position : POSITION;
+	float2 tex : TEXCOORD0;
+}
+
+struct PixelInputType
+{
+	float4 position : SV_POSITION;
+	float2 tex : TEXCOORD0;
+}
+
+PixelInputType TextureVertexShader(VertexInput input)
+...
+
+TexturePixelShader(PixelInputType input) : SV_TARGET
+```
+
+{% highlight cpp %}
+D3DCompileFomrFile(...,"TextureVertexShader", ...)
+D3DCompileFomrFile(...,"TexturePixelShader", ...)
+{% endhighlight %}
+
+04 `D3D11_INPUT_ELEMENT_DESC polygonLayout[2]` 확인
+color 정보를 받던 float4 ->uv 정보를 받는 float2로 구조체 수정
+
+{% highlight cpp %}
+...
+polygonLayout[1].Format = DXGI_FORMAT_R32G32_FLOAT;
+...
+{% endhighlight %}
+
+
+```
+$p=(Resolve-Path 'Colorps.hlsl').Path; $c=Get-Content $p -Raw; [System.IO.File]::WriteAllText($p,$c,(New-Object System.Text.UTF8Encoding($false)))
+```
+Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
+
+### Object LevelDesign
+
+
+
+## 남은 작업
 * Trajectory, World Position에 따른 Hammer 이동
-* 00 Object Texture 이식
-* 01 input에 따른 Hammer 위치 변환 수정 -FSM Design
+
+* 01 input에 따른 Hammer 위치 변환 수정 - FSM Design
 
 * 02 Hammer Object 자전
 * 03 Model LevelDesign - Model 정적 생성
@@ -266,6 +334,7 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 ### 완료 사항
 * Camera 키보드 위아래좌우 Move ( limit 걸어두기) []
 * Mouse Input Rotation( Limit 걸기 )
+* Object Texture 이식
 
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
