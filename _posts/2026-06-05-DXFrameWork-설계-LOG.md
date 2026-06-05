@@ -314,6 +314,9 @@ $p=(Resolve-Path 'Colorps.hlsl').Path; $c=Get-Content $p -Raw; [System.IO.File]:
 Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
 
+
+### Actor Set-up
+
 ![[assets/postimg/ThorPRJ/FrameWork_003.png]]
 ![FrameWork_003]({{ 'assets/postimg/ThorPRJ/FrameWork_003.png' | relative_url }})
 수정 전 FrameWork
@@ -334,11 +337,10 @@ Modeling World로 Spawn할수있도록 만들어놓음
 
 
 - Transform component붙히기
-- Hierachy구조
-
-### Object LevelDesign
+- Hierachy 구조
 
 
+---
 
 ## 남은 작업
 * Trajectory, World Position에 따른 Hammer 이동
