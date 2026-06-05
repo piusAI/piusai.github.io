@@ -345,10 +345,6 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
 *** DIR:*** 추후 model 생성할때 하나씩 initialize 잡는것도 좋지만, Transform hiearchy component들어갈 수있도록 잡아주면 좋을 것이라 생각
 
-
-
-![[assets/postimg/ThorPRJ/TransformComponent.png]]
-
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/TransformComponent.png' | relative_url }})
 
 Transform Component Struct를 만들어서 Model에 붙혀놓았는데, model Class 생성자에서 위치를 조정하지 않고, `TransformComponent::SetTransform()`으로 잡음
@@ -358,20 +354,13 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 `WorldClass::SetShaderParameter`에서 TRS matrix를 넣어서
 ***GPUShaderClass***에서 SetShaderParameter의 인자로 받을 수 있도록 통신한 이후, TRS matrix를 VS에서 Matrix순서를 RST로 곱해줌.
 
-
-![[assets/postimg/ThorPRJ/WorldPositionOffset.png]]
-
 ![WorldPositionOffset]({{ 'assets/postimg/ThorPRJ/WorldPositionOffset.png' | relative_url }})
 : 갑자기 분위기 WorldPosition offset처럼들어감.
 -> 행렬 곱 순서가 잘못되었다 생각했지만,
 
-![[TransformComponentDone.png]]
-
 ![TransformComponentDone]({{ 'assets/postimg/ThorPRJ/TransformComponentDone.png' | relative_url }})
 : `XMMatrixTranspose(TransformMatrix)`로 전치로 만들어주어야함. `TransformComponent::Matrix`(GPU를 위한 행렬) 이라, HLSL에서 와 CPU에서 행렬곱으로 하는 matrix가 다르기 때문. 
 
-
-![[FrameWork0032_Transform.png]]
 ![FrameWork0032_Transform]({{ 'assets/postimg/ThorPRJ/FrameWork0032_Transform.png' | relative_url }})
 : Transform Component의 FrameWork
 
