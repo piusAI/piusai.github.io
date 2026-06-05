@@ -340,8 +340,7 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
 
 - Transform component붙히기
-따로 개별적으로 위치를 주기보다, Model 생성자에다가
-주면 좋을듯
+추후 model 생성할때 하나씩 initialize 잡는것도 좋지만, Transform hiearchy component들어갈 수있도록 잡아주면 좋을듯
 
 - Hierachy 구조
 
