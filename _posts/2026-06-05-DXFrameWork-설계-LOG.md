@@ -345,6 +345,8 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
 *** DIR:*** 추후 model 생성할때 하나씩 initialize 잡는것도 좋지만, Transform hiearchy component들어갈 수있도록 잡아주면 좋을 것이라 생각
 
+
+
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/TransformComponent.png' | relative_url }})
 
 Transform Component Struct를 만들어서 Model에 붙혀놓았는데, model Class 생성자에서 위치를 조정하지 않고, `TransformComponent::SetTransform()`으로 잡음
@@ -354,12 +356,14 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 `WorldClass::SetShaderParameter`에서 TRS matrix를 넣어서
 ***GPUShaderClass***에서 SetShaderParameter의 인자로 받을 수 있도록 통신한 이후, TRS matrix를 VS에서 Matrix순서를 RST로 곱해줌.
 
+
 ![WorldPositionOffset]({{ 'assets/postimg/ThorPRJ/WorldPositionOffset.png' | relative_url }})
 : 갑자기 분위기 WorldPosition offset처럼들어감.
 -> 행렬 곱 순서가 잘못되었다 생각했지만,
 
 ![TransformComponentDone]({{ 'assets/postimg/ThorPRJ/TransformComponentDone.png' | relative_url }})
 : `XMMatrixTranspose(TransformMatrix)`로 전치로 만들어주어야함. `TransformComponent::Matrix`(GPU를 위한 행렬) 이라, HLSL에서 와 CPU에서 행렬곱으로 하는 matrix가 다르기 때문. 
+
 
 ![FrameWork0032_Transform]({{ 'assets/postimg/ThorPRJ/FrameWork0032_Transform.png' | relative_url }})
 : Transform Component의 FrameWork
@@ -371,21 +375,65 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 지금까지의 구현으로 Object 배치 가능,
 먼저 World 위치를 Houdini로 Model 배치를 한 이후에 다시 Dx로 가져올 계획
 -> 이후 IA에서 instancing도 넣을 계획. 어차피 위치는 맞춰야하니까
-- Hierachy 구조
+
+
+#### Houdini Quternion을 활용한 랜덤한 회전값
+
+
+![Quternion_Rot]({{ 'assets/postimg/ThorPRJ/Quternion_Rot.gif' | relative_url }})
+
+
+{% highlight hlsl %}
+vector up = set(0,1,0);
+float angle=radians(chf('rotate'));
+vector4 q = quaternion(angle * fit01(rand(@ptnum+chf("seed")), chf('min'), chf('max')), up);
+@orient = q;
+{% endhighlight %}
+
+
+![LevelDesign]({{ 'assets/postimg/ThorPRJ/LevelDesign.png' | relative_url }})
+Level Design이라고 하기도 미안한 배경 prob 배치 완료
+
+
+
+![semiHDRI]({{ 'assets/postimg/ThorPRJ/semiHDRI.png' | relative_url }})
+: HDRI sphere를 넣지는 못하지만,, 배경이 너무 심심해서
+- Maya SkyDome형식으로 제작!
+
+![NOTyetTriangle]({{ 'assets/postimg/ThorPRJ/NOTyetTriangle.png' | relative_url }})
+
+아직 Triangle화를 시키지 않았기 때문에 이렇게 배경녹색이 나옴.
+UE에 던지자마자 삼각형으로 만드는 이유가 이 때문
+
+DX에서는 항상 Vtxbuffer->indexbuffer로 만들때 삼각형으로!
+그 구조체 타입은 RasterDesc.TrianglePan 등등으로 지정했었다!
+
+
+![likeHDRI]({{ 'assets/postimg/ThorPRJ/likeHDRI.gif' | relative_url }})
+[금일 최종 작업 HDRI처럼 만든 형태]
+: worldPosition (0,0,0)을 향하도록 Normal 방향 바꿔 UV - Texture만 넣어줌
+
+
 
 
 ## 남은 작업
+
+
+* 03 Model LevelDesign - Model 정적 생성
+- Hierachy 구조
 * Trajectory, World Position에 따른 Hammer 이동
 
 * 01 input에 따른 Hammer 위치 변환 수정 - FSM Design
 
 * 02 Hammer Object 자전
-* 03 Model LevelDesign - Model 정적 생성
+
 * 04 Instancing 기법(IA 단계)
-* 05 Camera 위치(Screen Position-> World Position 변형)
-* 05 Play Draw Camera -> Play TPS(OTS) Camera 변형
-* 06 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 성공
-* 07 FPS, CPU 프로파일 performance check
+* 05 Input 위치 변형(Screen Position-> World Position 변형)
+* 06 Play Draw Camera -> Play TPS(OTS) Camera 변형
+* 
+* 07 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 성공
+* 08 FPS, CPU 프로파일 performance check - Timing class 이식
+
 * ++ 충돌 algorithm..?
 
 ### 추가 고민
@@ -395,6 +443,7 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 * Camera 키보드 위아래좌우 Move ( limit 걸어두기) []
 * Mouse Input Rotation( Limit 걸기 )
 * Object Texture 이식
+
 
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
