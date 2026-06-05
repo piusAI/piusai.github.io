@@ -332,8 +332,8 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 일단 vector, 동적배열로 Object import / Spawn할수있도록 만들어놓음
 
 ![FrameWork_003]({{ 'assets/postimg/ThorPRJ/InitializeBuffer.png' | relative_url }})
-또 역시 일단 Initialize Buffer에다 Model World position으로 들어갈 수 있도록
-Position 넣어줌
+*  역시 일단 Initialize Buffer에다 Model World position offset 들어갈 수 있도록잡아줌
+-> 따로 개별적으로 위치를 주기보다, Model 생성자에다가 설정할 수있도록 잡아줌
 
 ![FrameWork_003]({{ 'assets/postimg/ThorPRJ/VtxMove.png' | relative_url }})
 하지만 Vtx를 직접 이동했기 때문에 Dcc art에서의 Component(점선면)가 이동 한 느낌일 것이다
