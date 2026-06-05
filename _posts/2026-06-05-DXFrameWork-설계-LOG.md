@@ -35,7 +35,7 @@ Windows (/SUBSYSTEM:WINDOWS)
 ---
 이전의 삼각형까지의 이해는 [Rastertektriangle]에서 Summary로 볼 수있다. 영상에서처럼, 3주정도는 이해하는데에 많은 시간을 할애했다.
 
-![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/FrameWork_001.jpg' | relative_url }})
+![FrameWork_001]({{ 'assets/postimg/ThorPRJ/FrameWork_001.jpg' | relative_url }})
  삼각형을 그린 프레임웍이다. 위 프레임워크에서 시작을 했다.
 
 
@@ -46,7 +46,7 @@ Windows (/SUBSYSTEM:WINDOWS)
 
 **Core Dir :** 수업 중에 활용했던 프레임워크, Rastertek, Braynzar의 코드들을 십분 활용하여 ***모듈식***으로 붙히는 방향으로 진행 한다.
 
-![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/Result01.jpg' | relative_url }})
+![Result01]({{ 'assets/postimg/ThorPRJ/Result01.jpg' | relative_url }})
 
 ---
 ## 🧩 Day 1. 모듈 뜯어붙히기
@@ -262,6 +262,7 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 
 
 
+
 ### Object Model Texture
 
 ![[assets/postimg/ThorPRJ/Thor_Dollyinout.gif]]
@@ -274,7 +275,6 @@ InitDirectInput이식 안했어서 DIKeyboard가 nullptr이었음.
 03 Sementic 확인
 
 ```
-
 struct VertexInputType
 {
 	float4 position : POSITION;
@@ -313,6 +313,29 @@ $p=(Resolve-Path 'Colorps.hlsl').Path; $c=Get-Content $p -Raw; [System.IO.File]:
 ```
 Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
+
+![[assets/postimg/ThorPRJ/FrameWork_003.png]]
+![FrameWork_003]({{ 'assets/postimg/ThorPRJ/FrameWork_003.png' | relative_url }})
+수정 전 FrameWork
+
+![[assets/postimg/ThorPRJ/FrameWork_0031.png]]
+![FrameWork_003]({{ 'assets/postimg/ThorPRJ/FrameWork_0031.png' | relative_url }})
+수정 후 FrameWork
+
+
+일단 CameraClass는 월드당 하나로 제작하도록 해놓았음.
+
+- 다중 Object Import
+![[assets/postimg/ThorPRJ/MultiUpdate.png]]
+![FrameWork_003]({{ 'assets/postimg/ThorPRJ/MultiUpdate.png' | relative_url }})
+
+Modeling World로 Spawn할수있도록 만들어놓음
+
+
+
+- Transform component붙히기
+- Hierachy구조
+
 ### Object LevelDesign
 
 
@@ -330,6 +353,9 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 * 06 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 성공
 * 07 FPS, CPU 프로파일 performance check
 * ++ 충돌 algorithm..?
+
+### 추가 고민
+* 마우스 input 넣어놓고 이동시 wads로 왔다갔다 조금씩 할수있도록 할까..?
 
 ### 완료 사항
 * Camera 키보드 위아래좌우 Move ( limit 걸어두기) []
