@@ -325,27 +325,65 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
 
 일단 CameraClass는 월드당 하나로 제작하도록 해놓았음.
-- 다중 Object Import
+### 다중 Object Import
 
 ![FrameWork_003]({{ 'assets/postimg/ThorPRJ/MultiUpdate.png' | relative_url }})
 
-일단 vector, 동적배열로 Object import / Spawn할수있도록 만들어놓음
+: vector, 동적배열로 Object import / Spawn 할 수 있도록 구현
 
 ![FrameWork_003]({{ 'assets/postimg/ThorPRJ/InitializeBuffer.png' | relative_url }})
-*  역시 일단 Initialize Buffer에다 Model World position offset 들어갈 수 있도록잡아줌
--> 따로 개별적으로 위치를 주기보다, Model 생성자에다가 설정할 수있도록 잡아줌
+: Initialize Buffer에다 Model World position offset 들어갈 수 있도록 구현
+
+-> 따로 개별적으로 위치를 주기보다, Model 생성자 에다가 설정할 수있도록 잡아줌
 
 ![FrameWork_003]({{ 'assets/postimg/ThorPRJ/VtxMove.png' | relative_url }})
-하지만 Vtx를 직접 이동했기 때문에 Dcc art에서의 Component(점선면)가 이동 한 느낌일 것이다
+-> 하지만 Vtx를 직접 이동했기 때문에 위 이미지처러 Dcc art에서의 Component(점·선·면)로 이동 한 느낌.
 
 
-- Transform component붙히기
-추후 model 생성할때 하나씩 initialize 잡는것도 좋지만, Transform hiearchy component들어갈 수있도록 잡아주면 좋을듯
 
-- Hierachy 구조
+##### 추가 Transform component로 붙히기
 
+*** DIR:*** 추후 model 생성할때 하나씩 initialize 잡는것도 좋지만, Transform hiearchy component들어갈 수있도록 잡아주면 좋을 것이라 생각
+
+
+
+![[assets/postimg/ThorPRJ/TransformComponent.png]]
+
+![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/TransformComponent.png' | relative_url }})
+
+Transform Component Struct를 만들어서 Model에 붙혀놓았는데, model Class 생성자에서 위치를 조정하지 않고, `TransformComponent::SetTransform()`으로 잡음
+
+HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않을 것 같아
+**VS**시, 모델 개별당 World Matrix -> `이곳에 추가` ->View Matrix로 행렬 곱으로 들어가면 될 것이라 판단.
+`WorldClass::SetShaderParameter`에서 TRS matrix를 넣어서
+***GPUShaderClass***에서 SetShaderParameter의 인자로 받을 수 있도록 통신한 이후, TRS matrix를 VS에서 Matrix순서를 RST로 곱해줌.
+
+
+![[assets/postimg/ThorPRJ/WorldPositionOffset.png]]
+
+![WorldPositionOffset]({{ 'assets/postimg/ThorPRJ/WorldPositionOffset.png' | relative_url }})
+: 갑자기 분위기 WorldPosition offset처럼들어감.
+-> 행렬 곱 순서가 잘못되었다 생각했지만,
+
+![[TransformComponentDone.png]]
+
+![TransformComponentDone]({{ 'assets/postimg/ThorPRJ/TransformComponentDone.png' | relative_url }})
+: `XMMatrixTranspose(TransformMatrix)`로 전치로 만들어주어야함. `TransformComponent::Matrix`(GPU를 위한 행렬) 이라, HLSL에서 와 CPU에서 행렬곱으로 하는 matrix가 다르기 때문. 
+
+
+![[FrameWork0032_Transform.png]]
+![FrameWork0032_Transform]({{ 'assets/postimg/ThorPRJ/FrameWork0032_Transform.png' | relative_url }})
+: Transform Component의 FrameWork
 
 ---
+[현재 진행]
+
+### Level Design With Houdini
+지금까지의 구현으로 Object 배치 가능,
+먼저 World 위치를 Houdini로 Model 배치를 한 이후에 다시 Dx로 가져올 계획
+-> 이후 IA에서 instancing도 넣을 계획. 어차피 위치는 맞춰야하니까
+- Hierachy 구조
+
 
 ## 남은 작업
 * Trajectory, World Position에 따른 Hammer 이동
