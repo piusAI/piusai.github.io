@@ -415,13 +415,20 @@ DX에서는 항상 Vtxbuffer->indexbuffer로 만들때 삼각형으로!
 
 
 
+## 💻 Day 4.  마우스 이동 & 망치 이동시키기!
+
+##### 01 Mouse Show
+##### 02 Click Input
+##### 03 Hammer 위치 이동
+Trajectory, World Position에 따른 Hammer 이동
+timing Module 이식이후 timer에 따라서 hammer Forward vector서서히 자전 멈추도록!
 
 ## 남은 작업
 
 
 * 03 Model LevelDesign - Model 정적 생성
-- Hierachy 구조
-* Trajectory, World Position에 따른 Hammer 이동
+- Hierachy 구조 ( 빈 Object처럼 Transform 두번 감싸기..?)
+* 
 
 * 01 input에 따른 Hammer 위치 변환 수정 - FSM Design
 
@@ -431,7 +438,7 @@ DX에서는 항상 Vtxbuffer->indexbuffer로 만들때 삼각형으로!
 * 05 Input 위치 변형(Screen Position-> World Position 변형)
 * 06 Play Draw Camera -> Play TPS(OTS) Camera 변형
 * 
-* 07 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 성공
+* 07 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 (성공)
 * 08 FPS, CPU 프로파일 performance check - Timing class 이식
 
 * ++ 충돌 algorithm..?
