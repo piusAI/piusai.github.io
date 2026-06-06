@@ -531,14 +531,16 @@ vs는 준비된 행렬로 한번만 곱하면 되지만
 ps는 pixel당 곱해지기에 무거운거였군! %%
 
 ![[Framework004_time.png]]
+![Framework004_time]({{ 'assets/postimg/ThorPRJ/Framework004_time.png' | relative_url }})
+
 Framework 이식 성공 Framework
 : painters 알고리즘
 DepthStencilBuffer ON, AlphaBlend Off -> 3D Object 렌더링 -> DepthStencilBuffer Off, AlphaBlend ON -> 2D UI Text Alpha제거
 
 ![[FPSProfiler.png]]
+![FPSProfiler]({{ 'assets/postimg/ThorPRJ/FPSProfiler.png' | relative_url }})
 
 
-```
 {% highlight cpp %}
 //GraphicsClass::Initialize()
 //m_Camera->GetViewMatrix(baseViewMatrix);
@@ -550,13 +552,12 @@ XMVECTOR focusPoint = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 XMVECTOR upDirection = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 baseViewMatrix = XMMatrixLookAtLH(eyePosition, focusPoint, upDirection);
 {% endhighlight %}
-```
+
 컴파일이랑 다되었는데 3시간정도 못찾아서
 행렬 연산 때문인지 2D UI가 안나와서 ai 돌려서 확인.
 
-%% 
-3D 메인 카메라 객체인 `m_Camera`로부터 뷰 행렬을 덮어씌우는 대신, 2D 텍스트 렌더링을 위해 항상 정면을 고수하는 고정된 뷰 행렬(`XMMatrixLookAtLH`)을 직접 생성하여 `baseViewMatrix`에 넘겨주도록 수정하였습니다.
-%%
+
+3D 메인 카메라 객체인 `m_Camera`로부터 뷰 행렬을 덮어씌우는 대신, 2D 텍스트 렌더링을 위해 항상 정면을 고수하는 고정된 뷰 행렬(`XMMatrixLookAtLH`)을 직접 생성하여 `baseViewMatrix`에 넘겨주도록 수정.
 ~~Gemini 사랑해~~
 
 ##### 04 Click Input
