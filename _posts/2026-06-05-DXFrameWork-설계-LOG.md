@@ -347,6 +347,8 @@ Shader 파일 `.vs, .ps` 에러시 억지로 인코딩
 
 
 
+![[assets/postimg/ThorPRJ/TransformComponent.png]]
+
 ![Render Pipeline Image]({{ 'assets/postimg/ThorPRJ/TransformComponent.png' | relative_url }})
 
 Transform Component Struct를 만들어서 Model에 붙혀놓았는데, model Class 생성자에서 위치를 조정하지 않고, `TransformComponent::SetTransform()`으로 잡음
@@ -357,14 +359,19 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 ***GPUShaderClass***에서 SetShaderParameter의 인자로 받을 수 있도록 통신한 이후, TRS matrix를 VS에서 Matrix순서를 RST로 곱해줌.
 
 
+![[assets/postimg/ThorPRJ/WorldPositionOffset.png]]
+
 ![WorldPositionOffset]({{ 'assets/postimg/ThorPRJ/WorldPositionOffset.png' | relative_url }})
 : 갑자기 분위기 WorldPosition offset처럼들어감.
 -> 행렬 곱 순서가 잘못되었다 생각했지만,
+
+![[TransformComponentDone.png]]
 
 ![TransformComponentDone]({{ 'assets/postimg/ThorPRJ/TransformComponentDone.png' | relative_url }})
 : `XMMatrixTranspose(TransformMatrix)`로 전치로 만들어주어야함. `TransformComponent::Matrix`(GPU를 위한 행렬) 이라, HLSL에서 와 CPU에서 행렬곱으로 하는 matrix가 다르기 때문. 
 
 
+![[FrameWork0032_Transform.png]]
 ![FrameWork0032_Transform]({{ 'assets/postimg/ThorPRJ/FrameWork0032_Transform.png' | relative_url }})
 : Transform Component의 FrameWork
 
@@ -380,7 +387,9 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 #### Houdini Quternion을 활용한 랜덤한 회전값
 
 
+![[Quternion_Rot.gif]]
 ![Quternion_Rot]({{ 'assets/postimg/ThorPRJ/Quternion_Rot.gif' | relative_url }})
+
 
 
 {% highlight hlsl %}
@@ -391,15 +400,19 @@ vector4 q = quaternion(angle * fit01(rand(@ptnum+chf("seed")), chf('min'), chf('
 {% endhighlight %}
 
 
+![[LevelDesign.png]]
 ![LevelDesign]({{ 'assets/postimg/ThorPRJ/LevelDesign.png' | relative_url }})
 Level Design이라고 하기도 미안한 배경 prob 배치 완료
 
 
 
+![[semiHDRI.png]]
 ![semiHDRI]({{ 'assets/postimg/ThorPRJ/semiHDRI.png' | relative_url }})
 : HDRI sphere를 넣지는 못하지만,, 배경이 너무 심심해서
 - Maya SkyDome형식으로 제작!
 
+
+![[NOTyetTriangle.png]]
 ![NOTyetTriangle]({{ 'assets/postimg/ThorPRJ/NOTyetTriangle.png' | relative_url }})
 
 아직 Triangle화를 시키지 않았기 때문에 이렇게 배경녹색이 나옴.
@@ -408,6 +421,7 @@ UE에 던지자마자 삼각형으로 만드는 이유가 이 때문
 DX에서는 항상 Vtxbuffer->indexbuffer로 만들때 삼각형으로!
 그 구조체 타입은 RasterDesc.TrianglePan 등등으로 지정했었다!
 
+![[likeHDRI.gif]]
 
 ![likeHDRI]({{ 'assets/postimg/ThorPRJ/likeHDRI.gif' | relative_url }})
 [금일 최종 작업 HDRI처럼 만든 형태]
@@ -415,11 +429,47 @@ DX에서는 항상 Vtxbuffer->indexbuffer로 만들때 삼각형으로!
 
 
 
+
 ## 💻 Day 4.  마우스 이동 & 망치 이동시키기!
 
-##### 01 Mouse Show
-##### 02 Click Input
-##### 03 Hammer 위치 이동
+
+
+##### 01 Tilt On/Off
+현재 Moust Input이 바로 화면 Tilt로 들어가고 있음.
+-> Tilt On/Off로 Spacebar 누르면서 해야지 화면 Tilt 할수있도록!
+`DIMOUSESTATE`에서 lX, lY로만으로 마우스 로직 처리말고, Spacebar도 16진법 
+Bit Masking -AND Masking 추가해줌
+
+{% highlight cpp %}
+mouseCurrState.lX != mouseLastState.lX) && (keyboardState[DIK_SPACE] & 0x80 )
+{% endhighlight %}
+
+![[HoudiniCamSetup.png]]
+![HoudiniCamSetup]({{ 'assets/postimg/ThorPRJ/HoudiniCamSetup.png' | relative_url }})
+: Init 카메라 위치 추가
+
+
+![[HoudiniImport.png]]
+![HoudiniImport]({{ 'assets/postimg/ThorPRJ/HoudiniImport.png' | relative_url }})
+: 카메라 축방향이 Houdini Z(모니터 앞 방향), DX(모니터 안 방향)
+이라서 그냥 수치로 잡아줌
+![[DXImport.png]]
+![DXImport]({{ 'assets/postimg/ThorPRJ/DXImport.png' | relative_url }})
+: Houdini(WorldScale : 7.5) -> Blender -> Dx 해줌
+
+##### 02 Mouse Show
+`WNDCLASSEX` 에서 수정 인줄알았는데
+Input 들어가면서 마우스가 없어진듯
+
+`IDirectInputDevice8::Acquire` : InputDevice 접근권한 확인
+
+
+
+##### 03 Click Input
+
+
+
+##### 04 Hammer 위치 이동
 Trajectory, World Position에 따른 Hammer 이동
 timing Module 이식이후 timer에 따라서 hammer Forward vector서서히 자전 멈추도록!
 
