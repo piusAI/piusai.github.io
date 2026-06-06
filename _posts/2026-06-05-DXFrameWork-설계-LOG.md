@@ -563,15 +563,54 @@ baseViewMatrix = XMMatrixLookAtLH(eyePosition, focusPoint, upDirection);
 ##### 04 Click Input
 Screen 위치 받기!
 
+```
+	POINT cursorPos;
+	GetCursorPos(&cursorPos);
+	ScreenToClient(hwnd, &cursorPos);
+	
+	bool currLMB = mouseCurrState.rgbButtons[0] & 0x80;
+
+	if (!prevLMB && currLMB) //LMB
+	{
+		//SetCursor(LoadCursor(NULL, IDC_ARROW));
+		ShowCursor(true);
+		
+		OutputDebugStringW(L"Left Button\n");
+		wchar_t buf[256];
+		swprintf_s(buf, L"ClickX : %d, ClickY : %d \n", cursorPos.x, cursorPos.y);
+		OutputDebugStringW(buf);
+	}
+```
+![[ScreenPositionLOG.png]]
+![ProceduralBridge]({{ 'assets/postimg/ThorPRJ/ProceduralBridge.png' | relative_url }})
+: Screen Position 찍음
+
+![[ProceduralFense.gif]]
+![ProceduralFense]({{ 'assets/postimg/ThorPRJ/ProceduralFense.gif' | relative_url }})
+: Copy to point로는 Orient까지 맞춰서 Dx 툴만드는데 오래걸리니 이 Mesh는 IA에서 Instancing으로 처리안할것.
+
+
+
+![[DXSetupDone.png]]
+![DXSetupDone]({{ 'assets/postimg/ThorPRJ/DXSetupDone.png' | relative_url }})
+* 01 Model LevelDesign - Model 정적 생성
+Fense전체 하나의 object로 import함.
+
+TopView에서 정적 생성 완료
+Instancing처리 : flag, OrnateHandle, Reliquary, Portal해야함
+
+## 남은 작업
+
+screen position -> world position 변환
+
+Queue와 같이 FIFO로 Click에 따른 datastructure 구성하기
+
 ##### 05 Hammer 위치 이동
 Trajectory, World Position에 따른 Hammer 이동
 timing Module 이식이후 timer에 따라서 hammer Forward vector서서히 자전 멈추도록!
 
 
 
-## 남은 작업
-
-* 01 Model LevelDesign - Model 정적 생성
 - Hierachy 구조 ( 빈 Object처럼 Transform 두번 감싸기..?)
 
 * 02 input에 따른 Hammer 위치 변환 수정 - FSM Design
@@ -581,9 +620,10 @@ timing Module 이식이후 timer에 따라서 hammer Forward vector서서히 자
 * 04 Instancing 기법(IA 단계)
 * 05 Input 위치 변형(Screen Position-> World Position 변형)
 * 06 Play Draw Camera -> Play TPS(OTS) Camera 변형
-* 
-* 07 2D Title 이미지, Tutorial 이미지 생성, Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 (성공)
-* 08 FPS, CPU 프로파일 performance check - Timing class 이식
+
+* 07 2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기
+   Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete CutScne : 아스가르드를 지킬 힘을 얻었습니다 (성공)
+
 
 * ++ 충돌 algorithm..?
 
@@ -594,7 +634,7 @@ timing Module 이식이후 timer에 따라서 hammer Forward vector서서히 자
 * Camera 키보드 위아래좌우 Move ( limit 걸어두기) []
 * Mouse Input Rotation( Limit 걸기 )
 * Object Texture 이식
-
+* FPS, CPU 프로파일 이식 (Performance check)
 
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
