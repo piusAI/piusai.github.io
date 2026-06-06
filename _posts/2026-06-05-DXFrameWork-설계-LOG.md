@@ -461,28 +461,121 @@ mouseCurrState.lX != mouseLastState.lX) && (keyboardState[DIK_SPACE] & 0x80 )
 `WNDCLASSEX` 에서 수정 인줄알았는데
 Input 들어가면서 마우스가 없어진듯
 
-`IDirectInputDevice8::Acquire` : InputDevice 접근권한 확인
+
+`IDirectInputDevice8::Acquire` : InputDevice 접근 권한 확인
+
+![[MouseOnoff.gif]]
+![MouseOnoff]({{ 'assets/postimg/ThorPRJ/MouseOnoff.gif' | relative_url }})
+
+:마우스 On/off
+
+{% highlight cpp %}
+if (mouseCurrState.rgbButtons[0]) //LMB
+{
+	// SetCursor(LoadCursor(NULL, IDC_ARROW));
+	ShowCursor(true);
+}
+{% endhighlight %}
 
 
+##### 03 Time Module
+![[TimeModule.png]]
+![TimeModule]({{ 'assets/postimg/ThorPRJ/TimeModule.png' | relative_url }})
 
-##### 03 Click Input
+text module로 profile 되고 있는것들 이식!
+
+FPS, CPU 확인 profiler
+
+`ID3D11DepthStencilState`  Disable / able 로 따로 구조체 개별로 만들어서 switch해줘야함!
+text올릴때는 Zbuffer를 끄고(DepthStencilState off 해야함!)!
+
+`ID3D11BlendState`도 마찬가지로 AlphaBlend를 on/off 하는 구조체
+
+//화면 facing되도록
+XMMATRIX baseViewMatrix;
+...
+m_Camera->GetViewMatrix(baseViewMatrix);
+...
+result = m_Text->Initialize(... baseViewMatrix);
+`
+Text ui로 나올수있도록 화면 Facing하게 해야함!
+이렇게 해놓고 여기가 문제였음..
 
 
+```
+...
 
-##### 04 Hammer 위치 이동
+float4 FontPixelShader(PixelInputType input) : SV_TARGET
+{
+    float4 color;
+    color = shaderTexture.Sample(SampleType, input.tex);
+    
+    if (color.r == 0.0f)
+    {
+        color.a = 0.0f;
+    }
+    else
+    {
+        color.rgb = pixelColor.rgb;
+        color.a = 1.0f;
+    }
+    return color;
+}
+```
+
+: alpha를 red채널로 확인해서 0이면 alpha 0으로 받도록 ps를 잡음.
+
+%%  언리얼에서 그토록 외치는 VS와 PS중에서 VS가 가볍다하는 이유를
+여기 Dx에서 몇번이고 hlsl을 쳐보다보니 이해가 감.
+vs는 준비된 행렬로 한번만 곱하면 되지만
+ps는 pixel당 곱해지기에 무거운거였군! %%
+
+![[Framework004_time.png]]
+Framework 이식 성공 Framework
+: painters 알고리즘
+DepthStencilBuffer ON, AlphaBlend Off -> 3D Object 렌더링 -> DepthStencilBuffer Off, AlphaBlend ON -> 2D UI Text Alpha제거
+
+![[FPSProfiler.png]]
+
+
+```
+{% highlight cpp %}
+//GraphicsClass::Initialize()
+//m_Camera->GetViewMatrix(baseViewMatrix);
+
+// 2D 텍스트 렌더링에 사용되는 baseViewMatrix는 카메라가 이동하거나 회전하지 않은 기본 상태(0, 0, -1에서 원점을 바라봄)함
+// m_Camera의 회전 및 이동 값이 적용된 뷰 행렬을 사용하면 2D 텍스트가 화면 밖으로 밀려나 보이지 않게 됩니다.
+XMVECTOR eyePosition = XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f);
+XMVECTOR focusPoint = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
+XMVECTOR upDirection = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+baseViewMatrix = XMMatrixLookAtLH(eyePosition, focusPoint, upDirection);
+{% endhighlight %}
+```
+컴파일이랑 다되었는데 3시간정도 못찾아서
+행렬 연산 때문인지 2D UI가 안나와서 ai 돌려서 확인.
+
+%% 
+3D 메인 카메라 객체인 `m_Camera`로부터 뷰 행렬을 덮어씌우는 대신, 2D 텍스트 렌더링을 위해 항상 정면을 고수하는 고정된 뷰 행렬(`XMMatrixLookAtLH`)을 직접 생성하여 `baseViewMatrix`에 넘겨주도록 수정하였습니다.
+%%
+~~Gemini 사랑해~~
+
+##### 04 Click Input
+Screen 위치 받기!
+
+##### 05 Hammer 위치 이동
 Trajectory, World Position에 따른 Hammer 이동
 timing Module 이식이후 timer에 따라서 hammer Forward vector서서히 자전 멈추도록!
 
+
+
 ## 남은 작업
 
-
-* 03 Model LevelDesign - Model 정적 생성
+* 01 Model LevelDesign - Model 정적 생성
 - Hierachy 구조 ( 빈 Object처럼 Transform 두번 감싸기..?)
-* 
 
-* 01 input에 따른 Hammer 위치 변환 수정 - FSM Design
+* 02 input에 따른 Hammer 위치 변환 수정 - FSM Design
 
-* 02 Hammer Object 자전
+* 03 Hammer Object 자전
 
 * 04 Instancing 기법(IA 단계)
 * 05 Input 위치 변형(Screen Position-> World Position 변형)
