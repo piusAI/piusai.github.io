@@ -575,8 +575,9 @@ Fense 전체 하나의 Obj Import
 
 ### 01 Hammer 위치 이동
 A. Screen to World Position
-B. World Position Que로 이동 순서 Data Structure 생성
-C. Hammer 이동 구현
+B. Hammer 이동 구현
+C. World Position Que로 이동 순서 Data Structure 생성
+
 
 ##### A. Hammer 위치 이동
 
@@ -694,27 +695,109 @@ Screen -> NDC -> View -> World -> Camera -> Ray Plane
 
 ![[WorldPositionSet.gif]]
 ![WorldPositionSet]({{ 'assets/postimg/ThorPRJ/WorldPositionSet.gif' | relative_url }})
-y축 고정으로 돌려놓음
+: y축 고정위치로 넣음
+
+##### B. Hammer 이동 구현
+일단 먼저 Object frame단위로 이동할 수 있도록 !
+
+![[Framework005_Tick.png]]
+![Framework005_Tick]({{ 'assets/postimg/ThorPRJ/Framework005_Tick.png' | relative_url }})
+
+deltatime 활용하기 위해 transformComponent로부터 쭉쭉올려서 SystemClass까지 굳이 인자로 받아 올리거나, 전역변수로 하기보다
+WorldClass에 하나 TimerClass를 동적 할당으로 만들어줌
+
+![[HammerSpeed.gif]]
+![HammerSpeed]({{ 'assets/postimg/ThorPRJ/HammerSpeed.gif' | relative_url }})
+
+`transformComponent::MoveOffset`으로 아래와 같이 넣어줌
+```
+void TransformComponent::MoveOffset(float deltaTime, XMFLOAT3 translate){
+	RSTMatrix *= XMMatrixTranslation(translate.x * deltaTime, translate.y * deltaTime, translate.z * deltaTime);
+	}
+```
+
+UE처럼 deltatime받아 곱해서 넣어줌
+model마다 들어가도록 WorldClass에서 for문으로 돌림 함.
+
 
 
 * 02 input에 따른 Hammer 위치 변환 수정 - FSM Design
 
 
+### 02 Model sapwn
+
+#####  A. Instancing 기법(IA, VS 단계)
+instancing 이식 진행
+Instancing 처리 해야하는 모델들 : flag, OrnateHandle, Reliquary, Portal
+
+instance기법으로 넣을때 역시 Worldclass에서 쓸수있도록하기 위해서
+Instance위치를 hashmap으로 할 필요 없이 그냥 vector 동적 리스트로 넣기
+
+GPUShaderClass - colorVS.hlsl 수정!!
 
 
-* 05 Input 위치 변형(Screen Position-> World Position 변형)
+```
+polygonLayout[2].SemanticName = "TEXCOORD";
+polygonLayout[2].SemanticIndex = 1;
+
+//.vs hlsl
+...
+float3 instancePosition : TEXCOORD1;
+...
+output.position.xyz += input.instancePosition;
+
+
+```
+: vs에서 추가로 position !
+instancing을 위한 시멘틱 추가
+
+###### [ 추가 주의 기울인 작업]
+- vector size로 확인해서 아예 model 생성자에 instance num 0으로 초기화 했음 model instance를 set해야지만이 instance 개수와, position이 들어가도록 해줌
+```
+// WorldClass.cpp
+m_Model[7]->SetInstanceNum(2);
+m_Model[7]->ModelInstance();
+m_Model[7]->SetInstancePosition(0, -10.f, 0, -10.0f);
+m_Model[7]->SetInstancePosition(1, -15.f, 0, -10.0f);
+```
+-> 이런식으로 instance를 WorldClass.cpp에서 처리할 수 있도록 함
+
+- instanceBufferDesc 추가 구조체
+```
+...
+if (instances.empty())
+{
+	instanceNum = 1;
+	instances.resize(1);
+	instances[0].position = XMFLOAT3(0.0f, 0.0f, 0.0f);
+}
+...
+```
+
+- RenderShader에 instanceCount를 받도록도 해야함.
+```
+//instance로 수정해야함
+deviceContext->DrawIndexedInstanced(indexCount, instanceCount, 0, 0, 0);
+```
+
+![[IADONE.png]]
+![IADONE]({{ 'assets/postimg/ThorPRJ/IADONE.png' | relative_url }})
+:IA 완료!
+
+### 03 GameManager처럼 구축
+
+##### A. 2D Scene Click 가능하도록
+Map처럼 Main Scene으로 바뀌도록
+  2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기
+   Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
+
+
 
 ## 남은 작업
 
 
 
 Queue와 같이 FIFO로 Click에 따른 datastructure 구성하기
-
-
-
-* 04 Instancing 기법(IA 단계)
-Instancing처리 : flag, OrnateHandle, Reliquary, Portal해야함
-
 
 * 03 Hammer Object 자전
 - Hierachy 구조 ( 빈 Object처럼 Transform 두번 감싸기..?)
@@ -724,9 +807,7 @@ Line @curveu 에 따라서 hammer Forward vector서서히 자전 멈추도록!
 * 06 Camera 변경
   Play Draw Camera -> Play TPS(OTS) Camera 변형
 
-* 07 2D Scene Click 가능하도록
-  2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기
-   Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
+
 
 
 ### 추가 고민
@@ -739,6 +820,8 @@ Line @curveu 에 따라서 hammer Forward vector서서히 자전 멈추도록!
 * Mouse Input Rotation( Limit 걸기 )
 * Object Texture 이식
 * FPS, CPU 프로파일 이식 (Performance check)
+* Input 위치 변형(Screen Position-> World Position 변형)
+* Hammer Offset (deltaTime)
 
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
