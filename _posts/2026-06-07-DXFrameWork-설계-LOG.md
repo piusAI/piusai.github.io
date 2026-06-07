@@ -358,20 +358,13 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 `WorldClass::SetShaderParameter`에서 TRS matrix를 넣어서
 ***GPUShaderClass***에서 SetShaderParameter의 인자로 받을 수 있도록 통신한 이후, TRS matrix를 VS에서 Matrix순서를 RST로 곱해줌.
 
-
-![[assets/postimg/ThorPRJ/WorldPositionOffset.png]]
-
 ![WorldPositionOffset]({{ 'assets/postimg/ThorPRJ/WorldPositionOffset.png' | relative_url }})
 : 갑자기 분위기 WorldPosition offset처럼들어감.
 -> 행렬 곱 순서가 잘못되었다 생각했지만,
 
-![[TransformComponentDone.png]]
-
 ![TransformComponentDone]({{ 'assets/postimg/ThorPRJ/TransformComponentDone.png' | relative_url }})
 : `XMMatrixTranspose(TransformMatrix)`로 전치로 만들어주어야함. `TransformComponent::Matrix`(GPU를 위한 행렬) 이라, HLSL에서 와 CPU에서 행렬곱으로 하는 matrix가 다르기 때문. 
 
-
-![[FrameWork0032_Transform.png]]
 ![FrameWork0032_Transform]({{ 'assets/postimg/ThorPRJ/FrameWork0032_Transform.png' | relative_url }})
 : Transform Component의 FrameWork
 
@@ -386,8 +379,6 @@ HLSL, GPU단에서 수정한다면, ModelClass 개별당 설정하기 쉽지 않
 
 #### Houdini Quternion을 활용한 랜덤한 회전값
 
-
-![[Quternion_Rot.gif]]
 ![Quternion_Rot]({{ 'assets/postimg/ThorPRJ/Quternion_Rot.gif' | relative_url }})
 
 
@@ -400,19 +391,14 @@ vector4 q = quaternion(angle * fit01(rand(@ptnum+chf("seed")), chf('min'), chf('
 {% endhighlight %}
 
 
-![[LevelDesign.png]]
 ![LevelDesign]({{ 'assets/postimg/ThorPRJ/LevelDesign.png' | relative_url }})
 Level Design이라고 하기도 미안한 배경 prob 배치 완료
 
 
-
-![[semiHDRI.png]]
 ![semiHDRI]({{ 'assets/postimg/ThorPRJ/semiHDRI.png' | relative_url }})
 : HDRI sphere를 넣지는 못하지만,, 배경이 너무 심심해서
 - Maya SkyDome형식으로 제작!
 
-
-![[NOTyetTriangle.png]]
 ![NOTyetTriangle]({{ 'assets/postimg/ThorPRJ/NOTyetTriangle.png' | relative_url }})
 
 아직 Triangle화를 시키지 않았기 때문에 이렇게 배경녹색이 나옴.
@@ -421,7 +407,6 @@ UE에 던지자마자 삼각형으로 만드는 이유가 이 때문
 DX에서는 항상 Vtxbuffer->indexbuffer로 만들때 삼각형으로!
 그 구조체 타입은 RasterDesc.TrianglePan 등등으로 지정했었다!
 
-![[likeHDRI.gif]]
 
 ![likeHDRI]({{ 'assets/postimg/ThorPRJ/likeHDRI.gif' | relative_url }})
 [금일 최종 작업 HDRI처럼 만든 형태]
@@ -443,16 +428,14 @@ Bit Masking -AND Masking 추가해줌
 mouseCurrState.lX != mouseLastState.lX) && (keyboardState[DIK_SPACE] & 0x80 )
 {% endhighlight %}
 
-![[HoudiniCamSetup.png]]
 ![HoudiniCamSetup]({{ 'assets/postimg/ThorPRJ/HoudiniCamSetup.png' | relative_url }})
 : Init 카메라 위치 추가
 
 
-![[HoudiniImport.png]]
 ![HoudiniImport]({{ 'assets/postimg/ThorPRJ/HoudiniImport.png' | relative_url }})
 : 카메라 축방향이 Houdini Z(모니터 앞 방향), DX(모니터 안 방향)
 이라서 그냥 수치로 잡아줌
-![[DXImport.png]]
+
 ![DXImport]({{ 'assets/postimg/ThorPRJ/DXImport.png' | relative_url }})
 : Houdini(WorldScale : 7.5) -> Blender -> Dx 해줌
 
@@ -460,10 +443,8 @@ mouseCurrState.lX != mouseLastState.lX) && (keyboardState[DIK_SPACE] & 0x80 )
 `WNDCLASSEX` 에서 수정 인줄알았는데
 Input 들어가면서 마우스가 없어진듯
 
-
 `IDirectInputDevice8::Acquire` : InputDevice 접근 권한 확인
 
-![[MouseOnoff.gif]]
 ![MouseOnoff]({{ 'assets/postimg/ThorPRJ/MouseOnoff.gif' | relative_url }})
 
 :마우스 On/off
@@ -475,6 +456,7 @@ if (mouseCurrState.rgbButtons[0]) //LMB
 	ShowCursor(true);
 }
 {% endhighlight %}
+
 
 
 ##### 03 Time Module
@@ -499,11 +481,7 @@ result = m_Text->Initialize(... baseViewMatrix);
 `
 Text ui로 나올수있도록 화면 Facing하게 해야함!
 이렇게 해놓고 여기가 문제였음..
-
-
-```
-...
-
+{% highlight cpp %}
 float4 FontPixelShader(PixelInputType input) : SV_TARGET
 {
     float4 color;
@@ -520,7 +498,7 @@ float4 FontPixelShader(PixelInputType input) : SV_TARGET
     }
     return color;
 }
-```
+{% endhighlight %}
 
 : alpha를 red채널로 확인해서 0이면 alpha 0으로 받도록 ps를 잡음.
 
@@ -529,14 +507,12 @@ float4 FontPixelShader(PixelInputType input) : SV_TARGET
 vs는 준비된 행렬로 한번만 곱하면 되지만
 ps는 pixel당 곱해지기에 무거운거였군! %%
 
-![[Framework004_time.png]]
 ![Framework004_time]({{ 'assets/postimg/ThorPRJ/Framework004_time.png' | relative_url }})
 
 Framework 이식 성공 Framework
 : painters 알고리즘
 DepthStencilBuffer ON, AlphaBlend Off -> 3D Object 렌더링 -> DepthStencilBuffer Off, AlphaBlend ON -> 2D UI Text Alpha제거
 
-![[FPSProfiler.png]]
 ![FPSProfiler]({{ 'assets/postimg/ThorPRJ/FPSProfiler.png' | relative_url }})
 
 
@@ -562,35 +538,33 @@ baseViewMatrix = XMMatrixLookAtLH(eyePosition, focusPoint, upDirection);
 ##### 04 Click Input
 Screen 위치 받기!
 
-```
-	POINT cursorPos;
-	GetCursorPos(&cursorPos);
-	ScreenToClient(hwnd, &cursorPos);
-	
-	bool currLMB = mouseCurrState.rgbButtons[0] & 0x80;
+{% highlight cpp %}
+POINT cursorPos;
+GetCursorPos(&cursorPos);
+ScreenToClient(hwnd, &cursorPos);
 
-	if (!prevLMB && currLMB) //LMB
-	{
-		//SetCursor(LoadCursor(NULL, IDC_ARROW));
-		ShowCursor(true);
-		
-		OutputDebugStringW(L"Left Button\n");
-		wchar_t buf[256];
-		swprintf_s(buf, L"ClickX : %d, ClickY : %d \n", cursorPos.x, cursorPos.y);
-		OutputDebugStringW(buf);
-	}
-```
-![[ScreenPositionLOG.png]]
+bool currLMB = mouseCurrState.rgbButtons[0] & 0x80;
+
+if (!prevLMB && currLMB) //LMB
+{
+	//SetCursor(LoadCursor(NULL, IDC_ARROW));
+	ShowCursor(true);
+	
+	OutputDebugStringW(L"Left Button\n");
+	wchar_t buf[256];
+	swprintf_s(buf, L"ClickX : %d, ClickY : %d \n", cursorPos.x, cursorPos.y);
+	OutputDebugStringW(buf);
+}
+{% endhighlight %}
+
 ![ProceduralBridge]({{ 'assets/postimg/ThorPRJ/ProceduralBridge.png' | relative_url }})
 : Screen Position 찍음
 
-![[ProceduralFense.gif]]
 ![ProceduralFense]({{ 'assets/postimg/ThorPRJ/ProceduralFense.gif' | relative_url }})
 : Copy to point로는 Orient까지 맞춰서 Dx 툴만드는데 오래걸리니 이 Mesh는 IA에서 Instancing으로 처리안할것.
 
 -> BBX확인후 segmentation 길이따라 다리 설치.
 
-![[DXSetupDone.png]]
 ![DXSetupDone]({{ 'assets/postimg/ThorPRJ/DXSetupDone.png' | relative_url }})
 * 01 Model LevelDesign - Model 정적 생성
 Fense 전체 하나의 Obj Import
@@ -608,7 +582,7 @@ C. Hammer 이동 구현
 
 * screen Posiiton, WorldPosition Hashmap
 이번에는 Hashmap을 활용해서 뽑음
-```
+{% highlight cpp %}
 //define
 unordered_map<string, float> screenPosition;
 
@@ -627,8 +601,7 @@ screenPosition["y"] = cursorPos.y;
 wchar_t buf2[256];
 swprintf_s(buf2,L"HashClick:  X : %f, Y : %f \n", screenPosition["x"], screenPosition["y"]);
 OutputDebugStringW(buf2);
-
-```
+{% endhighlight %}
 
 ![[hashLOG.png]]
 ![hashLOG]({{ 'assets/postimg/ThorPRJ/hashLOG.png' | relative_url }})
@@ -638,27 +611,23 @@ OutputDebugStringW(buf2);
 * Screen to World Position
 현재 Screen Position을 받고있음
 UE에서의 `DeprojectScreenToWorld()`참고
-```
-bool APlayerContoller::DeprojectScreenToWorld
-(float screenX, float screenY, vector& WorldLocation, vector& WorldDirection)
-
-```
-
+{% highlight cpp %}
+bool APlayerContoller::DeprojectScreenToWorld(float screenX, float screenY, vector& WorldLocation, vector& WorldDirection)
+{% endhighlight %}
 UE는 output Parameter로 제작 해놓음
-```
+{% highlight cpp %}
 FMatrix ComputeViewProjectionMatrix() const
 	{
 		return FTranslationMatrix(-ViewOrigin) * ViewRotationMatrix * ProjectionMatrix;
 	}
-```
+{% endhighlight %}
 : Unreal engine Method도 역시 이렇게 역변환으로 돌렸다
 *  screen to world position VS의 행렬 변환을 역변환을 거쳐서
 // VS가 World -> view -> projection
 // projection inverseMatrix -> view inverseMatrix -> world Matrix to World Vector
 
 
-
-```
+{% highlight cpp %}
 FSceneViewProjectionData ProjectionData;
 		if (LP->GetProjectionData(LP->ViewportClient->Viewport, /*out*/ ProjectionData))
 		{
@@ -666,12 +635,10 @@ FSceneViewProjectionData ProjectionData;
 			FSceneView::DeprojectScreenToWorld(ScreenPosition, ProjectionData.GetConstrainedViewRect(), InvViewProjMatrix, /*out*/ WorldPosition, /*out*/ WorldDirection);
 			return true;
 		}
-```
+{% endhighlight %}
 grphics에 있는 Matrix Worldmatrix, viewmatrix, Orthomatrix 받아와서 돌림!
 
-
-```
-
+{% highlight cpp %}
 unordered_map<string, float> InputClass::DeprojectScreenToWorld(float screenWidth, float screenHeight, float screenX, float screenY)
 {
 
@@ -718,7 +685,7 @@ else
 
 return WorldPosition;
 }
-```
+{% endhighlight %}
 : 행렬 돌리는 순서와 통신하는 아키텍쳐는 짰고, 
 inverse /  view matrix 돌리는 것 헷갈려서 **AI 활용**
 
@@ -742,8 +709,6 @@ y축 고정으로 돌려놓음
 
 
 Queue와 같이 FIFO로 Click에 따른 datastructure 구성하기
-
-
 
 
 
