@@ -782,32 +782,65 @@ deviceContext->DrawIndexedInstanced(indexCount, instanceCount, 0, 0, 0);
 
 ![[IADONE.png]]
 ![IADONE]({{ 'assets/postimg/ThorPRJ/IADONE.png' | relative_url }})
-:IA 완료!
+: IA 완료!
 
-### 03 GameManager처럼 구축
+![[IASetDone.png]]
+![IASetDone]({{ 'assets/postimg/ThorPRJ/IASetDone.png' | relative_url }})
+: 배경 setting 완료
 
-##### A. 2D Scene Click 가능하도록
-Map처럼 Main Scene으로 바뀌도록
-  2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기
-   Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
+### 03 Level 클릭으로 변환!
+
+##### A. Start Menu Switch
+
+```
+enum EWorld
+{
+	E_NONE = 0,
+	E_StartWorld = 1,
+	E_MainLevel = 2
+};
+```
+: Enum+Type으로 처리함.
+
+`WorldClass* startLevel`, `WorldClass* MainLevel`,로 따로 만들어서
+`WorldClass* ActiveLevel`로 처리
+-> 모든 worldclass에서 switch로 잡음.
+
+좌상단 클릭시 들어갈 수있도록의 로직
+```
+// inputclass::DetectInput
+if (cursorPos.x >= 0 && cursorPos.x <= 150 && cursorPos.y >= 0 && cursorPos.y <= 150)
+		{
+			m_leftClickedTopLeft = true;
+		}
+```
+: `Input Class::m_leftClickTopLeft`로 받은거를 `WorldClass::SwitchLevel~`로 통신
+위 코드처럼 범위 간단하게 지정할 수있도록 함
+
+![[SetLevel.gif]]
+![SetLevel]({{ 'assets/postimg/ThorPRJ/SetLevel.gif' | relative_url }})
+
+[주의]
+- Graphics Class에서 행렬을 Identity()로 잡아야지 돌아가지 않은 형태로 들어감
+- GraphicsClass에서 Initialize할때, StartWorld, MainWorld를 개별 객체 생성하도록 그냥 함.
+-> 따라서 메모리 누수 조심해야함!!
 
 
 
 ## 남은 작업
 
-
-
 Queue와 같이 FIFO로 Click에 따른 datastructure 구성하기
 
-* 03 Hammer Object 자전
+* 01 Hammer Object 자전
 - Hierachy 구조 ( 빈 Object처럼 Transform 두번 감싸기..?)
 Line @curveu 에 따라서 hammer Forward vector서서히 자전 멈추도록!
 
-
-* 06 Camera 변경
+* 02 Camera 변경
   Play Draw Camera -> Play TPS(OTS) Camera 변형
 
-
+  03씬 구성...?
+  2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기
+   Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
 
 
 ### 추가 고민
@@ -822,6 +855,8 @@ Line @curveu 에 따라서 hammer Forward vector서서히 자전 멈추도록!
 * FPS, CPU 프로파일 이식 (Performance check)
 * Input 위치 변형(Screen Position-> World Position 변형)
 * Hammer Offset (deltaTime)
+* Map처럼 Main Scene으로 바뀌도록
+
 
 
 [Rastertektriangle]: https://youtu.be/ZVBOs-fnr50?si=7jHpHkePuy9kL5IF
