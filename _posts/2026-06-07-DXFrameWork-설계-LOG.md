@@ -844,12 +844,24 @@ XMFLOAT3 TransformComponent::GetActorPosition()
 	//현재위치뽑아줌
 	return XMFLOAT3(matFloat._41, matFloat._42, matFloat._43);
 }
+
+...
+//GPUShaderClass
+	worldMatrix = worldMatrix * XMMatrixTranspose(TransformMatrix); //CPU랑 GPU랑 받아드리는 행렬이 다름 전치!
+
 ```
+: 현재 
+`WorldClass`-> `GPUShaderClass` 에서 호출하고있는 `TransformMatrix`에서와 같이 RSTMatrix는 `TransformComponent`에서 이렇게 초기화 하며 offset시 업데이트 시켜주고 있음
+
+(Modelclass 개별 인스턴스의 위치 축)
+
+WorldMatrix에 한번 더 행렬곱으로 현재 위치를 갖고있는 Matrix이기 때문임.
+
 ![[XMFLOAT4_41.png]]
 ![XMFLOAT4_41]({{ 'assets/postimg/ThorPRJ/XMFLOAT4_41.png' | relative_url }})
-
+: GetActorPosition에서 주요한 정보
 현재 Position을 받으려면 RSTMatrix->XMFLOAT4로 저장해놓고
-matfloat : _41, _42, _43에 있는 정보 가져와야함 
+matfloat : _41, _42, _43에 있는 정보 : Translation정보
 ##### Queue로 Datastructure 만들기
 moveque initialize일때만 딱 만듦
 
@@ -875,7 +887,54 @@ MainLevel로 들어왔을때 한번 비워서 위치 잡아줌
 ![Queue_done]({{ 'assets/postimg/ThorPRJ/Queue_done.gif' | relative_url }})
 : Hammer이동 구현 완료된 모습
 
-02 heiadchy 구조
+![[FrameWork006_InputMovequeue.png]]
+![FrameWork006_InputMovequeue]({{ 'assets/postimg/ThorPRJ/FrameWork006_InputMovequeue.png' | relative_url }})
+
+##### C. Hammer 자전
+Hammer가 자전 하기 위해서는
+1. 하나의 축 설정 및 Rotation을 돌리기
+2. Right Vector의 그 축으로 Rotation가 돌아야함
+
+
+
+![[QueueRotate.gif]]
+![QueueRotate]({{ 'assets/postimg/ThorPRJ/QueueRotate.gif' | relative_url }})
+XMFLoat-> Matrix casting은 Ai로 처리함!
+Houdini에서처럼 CrossProduct로 돌리고 
+
+
+```
+void TransformComponent::MoveRotationOffset(float deltaTime, XMFLOAT3 TargetDir, float PosSpeed, float RotSpeed)
+{
+	XMFLOAT4X4 mat;
+	XMStoreFloat4x4(&mat, RSTMatrix);
+	XMVECTOR currentForward = XMVector3Normalize(XMVectorSet(mat._21, mat._22, mat._23, 0));
+	XMVECTOR targetV = XMVector3Normalize(XMLoadFloat3(&TargetDir));
+
+	float dot = XMVectorGetX(XMVector3Dot(currentForward, targetV));
+	dot = max(-1.0f, min(1.0f, dot)); // clamp
+	float angle = acosf(dot);
+
+	if (angle > 0.001f)
+	{
+		XMVECTOR rotAxis = XMVector3Normalize(XMVector3Cross(currentForward, targetV));
+		float step = min(angle, RotSpeed * deltaTime); // 넘지않도록
+		RSTMatrix = XMMatrixRotationNormal(rotAxis, step) * RSTMatrix;
+	}
+
+	// 이동
+	RSTMatrix *= XMMatrixTranslation(
+		TargetDir.x * deltaTime * PosSpeed,
+		TargetDir.y * deltaTime * PosSpeed,
+		TargetDir.z * deltaTime * PosSpeed
+	);
+}
+```
+ 
+ : Translation회전축을 먼저돌린 이후에 Translation으로 이동시켜야함! 
+
+
+02 hiearchy 구조
 Camera OTS Hammer Object 자전
 
 03 Camera 전환
@@ -884,7 +943,7 @@ Camera OTS Hammer Object 자전
 [refine]
 - 포탈 회전
 * 색상 전채 다른것들 어둡게
-* 포탈 동적생성
+* 포탈 동적 생성
 * 03 씬 구성…? 2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기 Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
 
 ## 남은 작업
