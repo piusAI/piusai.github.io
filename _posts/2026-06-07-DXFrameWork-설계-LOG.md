@@ -940,11 +940,18 @@ Camera OTS Hammer Object 자전
 03 Camera 전환
 
 
-[refine]
-- 포탈 회전
-* 색상 전채 다른것들 어둡게
-* 포탈 동적 생성
-* 03 씬 구성…? 2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기 Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
+### DONE
+![[Builboard.gif]]
+![Builboard]({{ 'assets/postimg/ThorPRJ/Builboard.gif' | relative_url }})
+Billboard
+
+![[MAIN.gif]]
+![MAIN]({{ 'assets/postimg/ThorPRJ/MAIN.gif' | relative_url }})
+
+
+
+![[sideDONE.gif]]
+![sideDONE]({{ 'assets/postimg/ThorPRJ/sideDONE.gif' | relative_url }})
 
 ## 남은 작업
 
