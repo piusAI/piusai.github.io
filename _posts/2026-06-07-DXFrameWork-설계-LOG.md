@@ -825,7 +825,67 @@ if (cursorPos.x >= 0 && cursorPos.x <= 150 && cursorPos.y >= 0 && cursorPos.y <=
 - GraphicsClass에서 Initialize할때, StartWorld, MainWorld를 개별 객체 생성하도록 그냥 함.
 -> 따라서 메모리 누수 조심해야함!!
 
+## 💻 Day 6.  LAST Day !
 
+### 01 Hammer 위치 이동
+
+##### A. Click에 따른 hammer 이동
+지금은 Hammer가 delta time 받아서 이동만 하고있음
+-> UE에서 처리하는 함수 참고함
+`TransformComponent`에다가 그냥 멤버 함수로 넣어줌.
+`MoveGetActorLocation()`, `ToTargetPosition()`, `Move Offset()`
+
+```
+XMFLOAT3 TransformComponent::GetActorPosition()
+{
+	XMFLOAT4X4 matFloat;
+	XMStoreFloat4x4(&matFloat, RSTMatrix);
+
+	//현재위치뽑아줌
+	return XMFLOAT3(matFloat._41, matFloat._42, matFloat._43);
+}
+```
+![[XMFLOAT4_41.png]]
+![XMFLOAT4_41]({{ 'assets/postimg/ThorPRJ/XMFLOAT4_41.png' | relative_url }})
+
+현재 Position을 받으려면 RSTMatrix->XMFLOAT4로 저장해놓고
+matfloat : _41, _42, _43에 있는 정보 가져와야함 
+##### Queue로 Datastructure 만들기
+moveque initialize일때만 딱 만듦
+
+`MoveToTarget()` : Actor 포지션으로부터의 targetPosition까지 이동
+`MoveOffset()` : 이전에 활용했던 XYZ deltaTime과의 곱
+
+##### B. DataStructure 고민 : Queue
+당연 queue는 다 비우고 해야겠다
+```
+// MainLevel일때 비워줌
+while(!MoveQueue::MoveQ.empty())
+	MoveQueue::MoveQ.pop();
+
+MoveQueue::MoveQ.push({ 0,0,0 }); //Hammer 위치 설정
+```
+Quque를 활용해서, struct잡아줌.
+
+-> 이 인터렉션에는 해머만 활용될 것이어서, 간단하게 전역 변수 `static`으로 잡아줌
+
+MainLevel로 들어왔을때 한번 비워서 위치 잡아줌
+
+![[Queue_done.gif]]
+![Queue_done]({{ 'assets/postimg/ThorPRJ/Queue_done.gif' | relative_url }})
+: Hammer이동 구현 완료된 모습
+
+02 heiadchy 구조
+Camera OTS Hammer Object 자전
+
+03 Camera 전환
+
+
+[refine]
+- 포탈 회전
+* 색상 전채 다른것들 어둡게
+* 포탈 동적생성
+* 03 씬 구성…? 2D Title 이미지, Tutorial 이미지 생성 이후 click으로 다음넘기기 Failed CutScene생성 (Rokki에게 발각되었습니다) , Complete Cut Scene : 아스가르드를 지킬 힘을 얻었습니다 (성공)
 
 ## 남은 작업
 
