@@ -3,7 +3,7 @@ layout: post
 published: true
 title: "Houdini Component?"
 subtitle: "What is Component in houdini"
-date: 2023-12-19 15:45:00 +0900
+date: 2023-12-18 15:45:00 +0900
 description: "Houdini Level"
 categories: [Art]
 tags: [Houdini, Art]
