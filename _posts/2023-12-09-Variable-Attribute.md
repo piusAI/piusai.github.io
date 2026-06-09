@@ -1,15 +1,10 @@
 ---
 layout: post
-published: true
 title: Variable과 Attribute
-subtitle: What is variable Attribute?
 date: 2023-12-09 15:45:00 +0900
 description: Houdini Variable&Attribue에 대해 알아봅시다.
-categories:
-  - Art
-tags:
-  - Houdini
-  - Art
+categories: [Art]
+tags: [Houdini, Art]
 ---
 
 
@@ -33,7 +28,6 @@ Attribute는 데이터의 조각으로, 다양한 Level에서 정보를 저장�
 
 #### 01 Attribute와 Variable의 차이  
 
-```
 {% highlight cpp %}
 float sogi=sin(@Frame);
 // sin(@Frame)을 sogi라는 Float Variable에 넣어줘.
@@ -41,7 +35,6 @@ float sogi=sin(@Frame);
 f@sogi=sin(@Frame);
 // sin(@Frame)을 sogi라는 Float Attribute에 넣어줘.
 {% endhighlight %}
-```
 
 
   ![VariableAttribute001]({{../assets/postimg/Houdini/VariableAttribute/VariableAttribute001.png}})
