@@ -1,14 +1,15 @@
 ---
 layout: post
-title: Variable과 Attribute
+published: true
+title: "Variable과 Attribute"
+subtitle: "What is variable Attribute?"
 date: 2023-12-09 15:45:00 +0900
-description: Houdini Variable&Attribue에 대해 알아봅시다.
+description: "Houdini Variable & Attribute에 대해 알아봅시다."
 categories: [Art]
 tags: [Houdini, Art]
 ---
 
-
-Houdini에서 Variable & Attribue에 대해 알아봅시다.
+Houdini에서 Variable & Attribute에 대해 알아봅시다.
 
 
   
