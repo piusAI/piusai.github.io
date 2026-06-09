@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "art.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "2023-12-09-Variable-Attribute"
+              "title": "art"
             }
           }
         ]
@@ -114,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "art.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2023-12-09-Variable-Attribute 의 백링크"
+              "title": "art 의 백링크"
             }
           },
           {
@@ -133,12 +133,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "art.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2023-12-09-Variable-Attribute 의 나가는 링크"
+              "title": "art 의 나가는 링크"
             }
           },
           {
@@ -176,13 +176,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "art.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2023-12-09-Variable-Attribute 의 개요"
+              "title": "art 의 개요"
             }
           }
         ]
@@ -203,11 +203,11 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "c12853f08aff7ecd",
+  "active": "251415ab24df3358",
   "lastOpenFiles": [
+    "_posts/2023-12-09-Variable-Attribute.md",
     "_posts/2025-06-18-Ai-Img-do.md",
     "_posts/2025-06-17-CNN.md",
-    "_posts/2023-12-09-Variable-Attribute.md",
     "_posts/2026-06-07-DXFrameWork-설계-LOG.md"
   ]
 }
