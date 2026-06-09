@@ -4,11 +4,15 @@ published: true
 title: Variable과 Attribute
 date: 2023-12-09 15:45:00 +0900
 description: Houdini Variable&Attribue에 대해 알아봅시다.
-categories: [Art]
+categories:
+- Art
 
 tags: [Houdini, Art]
 
 ---
+
+Houdini에서 Variable & Attribue에 대해 알아봅시다.
+
 
   
 
@@ -38,8 +42,8 @@ f@sogi=sin(@Frame);
 ```
 
 
-  ![VariableAttribute001](../assets/postimg/Houdini/VariableAttribute/VariableAttribute001.png)
-![VariableAttribute002](../assets/postimg/Houdini/VariableAttribute/VariableAttribute002.png)
+  ![VariableAttribute001]({{../assets/postimg/Houdini/VariableAttribute/VariableAttribute001.png}})
+![VariableAttribute002]({{../assets/postimg/Houdini/VariableAttribute/VariableAttribute002.png}})
 
 .obsidian이랑 jenkins대응
 
