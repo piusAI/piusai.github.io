@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: "Houdini에서의 Level!"
+title: "Houdini Context?"
 subtitle: "What is Level in houdini?"
 date: 2023-12-13 15:45:00 +0900
 description: "Houdini Level"
@@ -9,8 +9,9 @@ categories: [Art]
 tags: [Houdini, Art]
 ---
 
-Maya, C4d, Blender, 3dMaxs와 같은   
-다른 3D DCC tool과는 다르게, Houdini는 Context구조로 되어있는 것이 또 특징입니다.  
+Houdini에서의 **Context** 이란?
+
+Maya, C4d, Blender, 3dMaxs와 같은 다른 3D DCC tool과는 다르게, Houdini는 Context구조로 되어있는 것이 또 특징입니다.  
 **Level, Context**를 알아봅시다.
 
 ## Context
