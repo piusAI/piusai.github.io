@@ -8,8 +8,8 @@ description: Houdini Variable&Attribue에 대해 알아봅시다.
 categories:
   - Art
 tags:
- - Houdini
- - Art
+  - Houdini
+  - Art
 ---
 
 
