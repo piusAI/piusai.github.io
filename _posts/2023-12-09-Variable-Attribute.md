@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Vriable과 Attribute"
+published: true
+title: Variable과 Attribute
 date: 2023-12-09 15:45:00 +0900
 description: Houdini Variable&Attribue에 대해 알아봅시다.
 categories: [Art]

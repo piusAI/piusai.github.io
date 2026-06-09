@@ -15,7 +15,7 @@
               "state": {
                 "file": "_posts/2023-12-09-Variable-Attribute.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "2023-12-09-Variable-Attribute"
@@ -185,6 +185,9 @@
   },
   "active": "251415ab24df3358",
   "lastOpenFiles": [
+    "_posts/2025-06-18-Ai-Img-do.md",
+    "_posts/2025-06-17-CNN.md",
+    "_posts/2023-12-09-Variable-Attribute.md",
     "_posts/2026-06-07-DXFrameWork-설계-LOG.md"
   ]
 }
