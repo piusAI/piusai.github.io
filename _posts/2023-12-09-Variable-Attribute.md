@@ -40,7 +40,10 @@ f@sogi=sin(@Frame);
 
   ![VariableAttribute001](../assets/postimg/Houdini/VariableAttribute/VariableAttribute001.png)
 ![VariableAttribute002](../assets/postimg/Houdini/VariableAttribute/VariableAttribute002.png)
+
 .obsidian이랑 jenkins대응
+
+
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="../assets/postimg/Houdini/VariableAttribute/VariableAttribute001.png" alt="VariableAttribute001" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>[구조 A: 로컬 변수 / 초기 데이터]</strong> </td> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="../assets/postimg/Houdini/VariableAttribute/VariableAttribute002.png" alt="VariableAttribute002" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>[구조 B: 글로벌 어트리뷰트 / 바인딩 데이터]</strong> </td> </tr> </table>
 
 (표 테스트중)
