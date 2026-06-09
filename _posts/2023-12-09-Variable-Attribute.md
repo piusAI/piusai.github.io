@@ -72,7 +72,7 @@ Variable은 Node내에서 처리만을 원할때 활용 합니다.
 
 : Point와 Line을 추가하는 Vex
 
-``` vex
+``` hlsl
 int pt1=addpoint(0,set(0,0,0));
 //addpoint라는 함수를 활용하여 0,0,0에 점을 추가해서 pt1의 int variable에 저장해줘
 
@@ -97,7 +97,7 @@ P 데이터, Position에 활용해보죠.
 ![[assets/postimg/Houdini/VariableAttribute/VA009.png]]
 ![VA009]({{ '../assets/postimg/Houdini/VariableAttribute/VA009.png' | relative_url}})
 
-``` vex
+``` hlsl
 @P.y=@P.y+2;
 //Input1에서의 Position Y데이터에서 2를 더해줘
 ```
@@ -107,7 +107,7 @@ Color 데이터, Cd에 활용해보죠.
 ![[assets/postimg/Houdini/VariableAttribute/VA010.png]]
 ![VA010]({{ '../assets/postimg/Houdini/VariableAttribute/VA010.png' | relative_url}})
 
-``` vex
+``` hlsl
 @Cd=set(0,0.6.0);
 //Input1에서의 Color 데이터에 Red:0, Green:0.6, Blue:0을 넣어줘
 ```
@@ -115,7 +115,7 @@ Color 데이터, Cd에 활용해보죠.
 Attribute를 저장하는 지는 알겠는데, Point정보에 넣어달라는 말이 무엇일까요?  
 여기에서 알 수 있듯, Point, prim, Detail 등에 따라서 저장되는 **Attribute Level**이 달라집니다.
 
-```
+``` hlsl
 @P.x=@P.x+2;
 //Point Attribute에 저장 
 
