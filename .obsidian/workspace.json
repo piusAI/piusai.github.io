@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "7f6067eb79b6e05e",
+        "id": "4641b154b67ff805",
         "type": "tabs",
         "children": [
           {
-            "id": "251415ab24df3358",
+            "id": "32eb65e0ab7d228e",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -24,31 +24,11 @@
         ]
       },
       {
-        "id": "a7055929c4983319",
+        "id": "0f5ba7d4c966fe3a",
         "type": "tabs",
         "children": [
           {
-            "id": "fdc6ea2d30677f26",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
-                "mode": "source",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "2026-06-04-CopyConstructor-CopyOperator.md"
-            }
-          }
-        ]
-      },
-      {
-        "id": "aec13c43fe8de874",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "c12853f08aff7ecd",
+            "id": "798ac89b42bf84df",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -118,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5
+    "width": 208.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -223,17 +203,32 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "c12853f08aff7ecd",
+  "active": "32eb65e0ab7d228e",
   "lastOpenFiles": [
-    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
-    "_posts/2023-12-09-Variable-Attribute.md",
-    "_posts/2025-06-17-CNN.md",
+    "assets/postimg/Houdini/VariableAttribute/VA010.png",
+    "assets/postimg/Houdini/VariableAttribute/미확인 952771.crdownload",
+    "assets/postimg/Houdini/VariableAttribute/VA009.png",
+    "assets/postimg/Houdini/VariableAttribute/미확인 550378.crdownload",
+    "assets/postimg/Houdini/VariableAttribute/VA008.png",
     "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
-    "_posts/2026-05-29-RenderPipeline.md",
-    "_posts/2026-05-29-FrameWorkArchitecture.md",
+    "_posts/2023-12-09-Variable-Attribute.md",
     "_posts/2026-06-03-BIG-O-Notation.md",
+    "_posts/2026-05-29-RenderPipeline.md",
     "_posts/2025-06-18-Ai-Img-do.md",
+    "_posts/2026-05-29-FrameWorkArchitecture.md",
     "_posts/2026-05-30-Thor'sProject001.md",
+    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
+    "_posts/2025-06-17-CNN.md",
+    "assets/postimg/Houdini/VariableAttribute/VA007.png",
+    "assets/postimg/Houdini/VariableAttribute/VA006.png",
+    "assets/postimg/Houdini/VariableAttribute/VA005.png",
+    "assets/postimg/Houdini/VariableAttribute/미확인 297433.crdownload",
+    "assets/postimg/Houdini/VariableAttribute/VA004.png",
+    "assets/postimg/Houdini/VariableAttribute/미확인 827574.crdownload",
+    "assets/postimg/Houdini/VariableAttribute/미확인 548776.crdownload",
+    "assets/postimg/Houdini/VariableAttribute/VA003.png",
+    "assets/postimg/Houdini/VariableAttribute/VA002.png",
+    "assets/postimg/Houdini/VariableAttribute/VA001.png",
     "무제.md",
     "art.md"
   ]
