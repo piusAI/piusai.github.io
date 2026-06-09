@@ -24,6 +24,26 @@
         ]
       },
       {
+        "id": "a7055929c4983319",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fdc6ea2d30677f26",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "2026-06-04-CopyConstructor-CopyOperator.md"
+            }
+          }
+        ]
+      },
+      {
         "id": "aec13c43fe8de874",
         "type": "tabs",
         "children": [
@@ -205,13 +225,15 @@
   },
   "active": "251415ab24df3358",
   "lastOpenFiles": [
-    "_posts/2026-06-03-BIG-O-Notation.md",
+    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
     "_posts/2023-12-09-Variable-Attribute.md",
+    "_posts/2025-06-17-CNN.md",
+    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
+    "_posts/2026-05-29-RenderPipeline.md",
+    "_posts/2026-05-29-FrameWorkArchitecture.md",
+    "_posts/2026-06-03-BIG-O-Notation.md",
     "_posts/2025-06-18-Ai-Img-do.md",
     "_posts/2026-05-30-Thor'sProject001.md",
-    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
-    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
-    "_posts/2025-06-17-CNN.md",
     "무제.md",
     "art.md"
   ]
