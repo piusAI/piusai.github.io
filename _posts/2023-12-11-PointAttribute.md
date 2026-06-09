@@ -1,15 +1,14 @@
 ---
 layout: post
 published: true
-title: "다른 Node에서의 정보를 가져오는, Point(Feat.Nearpoint) | 후디니 Wrangle, Vex"
+title: "Point and Nearpoint"
 subtitle: "What is Point?"
 date: 2023-12-11 15:45:00 +0900
 description: "Houdini Point"
 categories: [Art]
 tags: [Houdini, Art]
 ---
-'Vex '  
-다른 Input Node에서의 정보를 가져오고 싶다!  
+'Vex'에서 다른 Input Node에서의 정보를 가져오고 싶다!  
 **Point, Nearpoint**를 알아봅시다.
 
 ## Vex, Point
