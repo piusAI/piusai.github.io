@@ -13,32 +13,32 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "_posts/2023-12-11-PointAttribute.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "2023-12-09-Variable-Attribute"
+              "title": "2023-12-11-PointAttribute"
             }
           }
         ]
       },
       {
-        "id": "0f5ba7d4c966fe3a",
+        "id": "2a812a7af4e8d6af",
         "type": "tabs",
         "children": [
           {
-            "id": "798ac89b42bf84df",
+            "id": "f10318469ea7ddfb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "_posts/2023-12-11-PointAttribute.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2023-12-09-Variable-Attribute"
+              "title": "2023-12-11-PointAttribute"
             }
           }
         ]
@@ -114,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "_posts/2023-12-11-PointAttribute.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2023-12-09-Variable-Attribute 의 백링크"
+              "title": "2023-12-11-PointAttribute 의 백링크"
             }
           },
           {
@@ -133,12 +133,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "_posts/2023-12-11-PointAttribute.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2023-12-09-Variable-Attribute 의 나가는 링크"
+              "title": "2023-12-11-PointAttribute 의 나가는 링크"
             }
           },
           {
@@ -176,13 +176,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_posts/2023-12-09-Variable-Attribute.md",
+                "file": "_posts/2023-12-11-PointAttribute.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2023-12-09-Variable-Attribute 의 개요"
+              "title": "2023-12-11-PointAttribute 의 개요"
             }
           }
         ]
@@ -205,13 +205,30 @@
   },
   "active": "32eb65e0ab7d228e",
   "lastOpenFiles": [
-    "assets/postimg/Houdini/VariableAttribute/VA010.png",
-    "assets/postimg/Houdini/VariableAttribute/미확인 952771.crdownload",
-    "assets/postimg/Houdini/VariableAttribute/VA009.png",
-    "assets/postimg/Houdini/VariableAttribute/미확인 550378.crdownload",
-    "assets/postimg/Houdini/VariableAttribute/VA008.png",
-    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
+    "assets/postimg/Houdini/VEXPoint/VP014.gif",
+    "assets/postimg/Houdini/VEXPoint/미확인 294124.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP013.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 648123.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP012.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 196650.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP011.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 653425.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP010.png",
+    "assets/postimg/Houdini/VEXPoint/VP009.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 83107.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP008.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 213072.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP007.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 836716.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP006.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 555568.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP005.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 762243.crdownload",
+    "assets/postimg/Houdini/VEXPoint/VP004.png",
+    "assets/postimg/Houdini/VEXPoint/미확인 29458.crdownload",
     "_posts/2023-12-09-Variable-Attribute.md",
+    "_posts/2023-12-11-PointAttribute.md",
+    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
     "_posts/2026-06-03-BIG-O-Notation.md",
     "_posts/2026-05-29-RenderPipeline.md",
     "_posts/2025-06-18-Ai-Img-do.md",
@@ -219,16 +236,6 @@
     "_posts/2026-05-30-Thor'sProject001.md",
     "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
     "_posts/2025-06-17-CNN.md",
-    "assets/postimg/Houdini/VariableAttribute/VA007.png",
-    "assets/postimg/Houdini/VariableAttribute/VA006.png",
-    "assets/postimg/Houdini/VariableAttribute/VA005.png",
-    "assets/postimg/Houdini/VariableAttribute/미확인 297433.crdownload",
-    "assets/postimg/Houdini/VariableAttribute/VA004.png",
-    "assets/postimg/Houdini/VariableAttribute/미확인 827574.crdownload",
-    "assets/postimg/Houdini/VariableAttribute/미확인 548776.crdownload",
-    "assets/postimg/Houdini/VariableAttribute/VA003.png",
-    "assets/postimg/Houdini/VariableAttribute/VA002.png",
-    "assets/postimg/Houdini/VariableAttribute/VA001.png",
     "무제.md",
     "art.md"
   ]
