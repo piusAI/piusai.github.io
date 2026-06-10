@@ -11,6 +11,8 @@ tags:
   - Houdini
   - Art
 ---
+Constraint적용시 방향과 위치를 설정하는 condof, condir에 대해 알아봅시다.
+
 Constraint을 적용하려 할 때, 방향과 위치를 정해보고 싶다고요~?
 그 attribute은 바로  
 **condir와 condof입니다.**

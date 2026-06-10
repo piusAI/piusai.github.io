@@ -11,8 +11,7 @@ tags:
   - Houdini
   - Art
 ---
-Vex   
-primitive에서 N번째 Point  number를 찾아보는 방법은 어떤것이 있을까요?  
+Primitive에서 N번째 Point  number를 찾아보는 방법은 어떤것이 있을까요?  
 **vertexindex, vertexpoint**를 알아봅시다.
 
 ---
