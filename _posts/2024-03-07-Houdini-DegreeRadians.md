@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: Houdini DegreeRadians
-subtitle: GetNodename
+subtitle: DegreeRadians
 date: 2024-03-07 15:45:00 +0900
 description: Houdini String Attribute Controll
 categories:
