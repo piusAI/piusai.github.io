@@ -4,41 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "4641b154b67ff805",
+        "id": "0ce2fbf7ff204566",
         "type": "tabs",
+        "dimension": 50,
         "children": [
           {
-            "id": "32eb65e0ab7d228e",
+            "id": "d9228c98b91ac491",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2023-12-23-Houdini-GetNodeName.md",
+                "file": "_posts/2024-03-07-Houdini-DegreeRadians.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "2023-12-23-Houdini-GetNodeName"
+              "title": "2024-03-07-Houdini-DegreeRadians"
             }
           }
         ]
       },
       {
-        "id": "773759e58bdc1558",
+        "id": "312ab2975cbae4b8",
         "type": "tabs",
+        "dimension": 50,
         "children": [
           {
-            "id": "f252c5923fafebf4",
+            "id": "03150fe1c3aba01b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2023-12-23-Houdini-GetNodeName.md",
+                "file": "_posts/2024-03-07-Houdini-DegreeRadians.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2023-12-23-Houdini-GetNodeName"
+              "title": "2024-03-07-Houdini-DegreeRadians"
             }
           }
         ]
@@ -114,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2023-12-23-Houdini-GetNodeName.md",
+                "file": "_posts/2024-03-07-Houdini-DegreeRadians.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +126,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2023-12-23-Houdini-GetNodeName 의 백링크"
+              "title": "2024-03-07-Houdini-DegreeRadians 의 백링크"
             }
           },
           {
@@ -133,12 +135,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_posts/2023-12-23-Houdini-GetNodeName.md",
+                "file": "_posts/2024-03-07-Houdini-DegreeRadians.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2023-12-23-Houdini-GetNodeName 의 나가는 링크"
+              "title": "2024-03-07-Houdini-DegreeRadians 의 나가는 링크"
             }
           },
           {
@@ -176,13 +178,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_posts/2023-12-23-Houdini-GetNodeName.md",
+                "file": "_posts/2024-03-07-Houdini-DegreeRadians.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2023-12-23-Houdini-GetNodeName 의 개요"
+              "title": "2024-03-07-Houdini-DegreeRadians 의 개요"
             }
           }
         ]
@@ -203,31 +205,33 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "32eb65e0ab7d228e",
+  "active": "d9228c98b91ac491",
   "lastOpenFiles": [
+    "_posts/2024-02-19-Houdini-Frame.md",
+    "_posts/2024-03-07-Houdini-DegreeRadians.md",
+    "assets/postimg/Houdini/DegreeRadians/DR003.png",
+    "assets/postimg/Houdini/DegreeRadians/미확인 812728.crdownload",
+    "assets/postimg/Houdini/DegreeRadians/DR002.png",
+    "assets/postimg/Houdini/DegreeRadians/미확인 233687.crdownload",
+    "assets/postimg/Houdini/DegreeRadians/DR001.jpeg",
+    "assets/postimg/Houdini/DegreeRadians/미확인 584055.crdownload",
+    "assets/postimg/Houdini/DegreeRadians",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
+    "assets/postimg/Houdini/Frame/F005.png",
+    "assets/postimg/Houdini/Frame/미확인 8290.crdownload",
+    "assets/postimg/Houdini/Frame/F004.png",
+    "assets/postimg/Houdini/Frame/미확인 916652.crdownload",
+    "assets/postimg/Houdini/Frame/F003.png",
+    "assets/postimg/Houdini/Frame/미확인 667149.crdownload",
+    "assets/postimg/Houdini/Frame/F002.png",
+    "assets/postimg/Houdini/Frame/미확인 394839.crdownload",
+    "assets/postimg/Houdini/Frame/F001.png",
+    "assets/postimg/Houdini/Frame/미확인 807771.crdownload",
+    "assets/postimg/Houdini/Frame",
     "_posts/2023-12-23-Houdini-GetNodeName.md",
     "assets/postimg/Houdini/GetNode/GNN008.png",
     "assets/postimg/Houdini/GetNode/GNN007.png",
-    "assets/postimg/Houdini/GetNode/미확인 604488.crdownload",
-    "assets/postimg/Houdini/GetNode/GNN006.png",
-    "assets/postimg/Houdini/GetNode/미확인 32293.crdownload",
-    "assets/postimg/Houdini/GetNode/GNN005.png",
-    "assets/postimg/Houdini/GetNode/GNN004.png",
-    "assets/postimg/Houdini/GetNode/미확인 615627.crdownload",
-    "assets/postimg/Houdini/GetNode/GNN003.png",
-    "assets/postimg/Houdini/GetNode/GNN002.png",
-    "assets/postimg/Houdini/GetNode/GNN001.png",
-    "assets/postimg/Houdini/GetNode/GetNodeName002.png",
-    "assets/postimg/Houdini/GetNode/미확인 678886.crdownload",
-    "assets/postimg/Houdini/GetNode/GetNodeName001.png",
-    "assets/postimg/Houdini/GetNode",
     "_posts/2023-12-19-Houdini-String-Vex.md",
-    "assets/postimg/Houdini/StringOpdigits/미확인 747275.crdownload",
-    "assets/postimg/Houdini/StringOpdigits",
-    "assets/postimg/Houdini/VexString/StringOpdigits/미확인 132173.crdownload",
-    "assets/postimg/Houdini/VexString/StringOpdigits/미확인 474184.crdownload",
-    "assets/postimg/Houdini/VexString/StringOpdigits/미확인 201684.crdownload",
     "_posts/2023-12-13-Houdini-Level.md",
     "_posts/2025-06-18-Ai-Img-do.md",
     "_posts/2023-12-18-Houdini-Component.md",
