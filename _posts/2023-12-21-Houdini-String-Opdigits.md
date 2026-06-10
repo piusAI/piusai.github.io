@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: "Houdini String Attribute Get int!"
+title: "Houdini String Attribute Get int : Opdigits"
 subtitle: "What is Component in houdini"
 date: 2023-12-21 15:45:00 +0900
 description: "Houdini String Attribute Controll"
