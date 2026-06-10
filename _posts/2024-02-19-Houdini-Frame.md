@@ -11,9 +11,10 @@ tags:
   - Houdini
   - Art
 ---
+Houdini에서 Frame을 가져와봅시다
+
 Global 함수, Frame을 가지고 오고싶다!  
 **$F, $FF**를 알아봅시다.
-
 
 ---
 

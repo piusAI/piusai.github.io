@@ -8,6 +8,7 @@ description: "Houdini String Attribute Controll"
 categories: [Art]
 tags: [Houdini, Art]
 ---
+Houdini에서 Node의 이름을 가져와봅시다!
 
 Vex와 Expression에서  
 현재의 Node 이름을 가져오고 싶다!  

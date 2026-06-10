@@ -11,23 +11,19 @@ tags:
   - Houdini
   - Art
 ---
+Houdini에서 각도를 표현하는 Degree, Radians에 대해서 알아봅시다.
+
 **θ,Vex에서 Radians**을 알아 봅시다.  
 
 ---
 
 ## Radians, Degree
-
 먼저 Radians, Degree vex를 알아보기 전에 radians, **θ**가 하는 역할을 알아보겠습니다.
 
-  
 
 ### 1Radians 구하기
-
 우리가 알고있는 **Degree**는 일반적인 각도입니다.
-
 #### θ ,1radians이란?
-
-
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Houdini/DegreeRadians/DR001.jpeg" alt="DR001" style="width: 100%; max-width: 100%; height: auto;"> <br><strong></strong> </td>  </tr> </table>
 
 * θ는 호의 중심각  
@@ -45,6 +41,4 @@ Radians Vex Function입니다.
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Houdini/DegreeRadians/DR003.png" alt="DR003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong></strong> </td>  </tr> </table>
 
 ### 마무리
-
 다음 포스팅은 이를 활용해 **부채꼴의 길이**를 측정해 활용해 보도록 하겠습니다.
-
