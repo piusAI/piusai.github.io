@@ -4,21 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "4c968fdbc0dcafda",
+        "id": "048e37b1767f4377",
         "type": "tabs",
+        "dimension": 50,
         "children": [
           {
-            "id": "a8ada1eb9159cd7d",
+            "id": "fa74dc6fbc67e3d0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2024-10-12-Houdini-VertexPoint.md",
+                "file": "_posts/2026-06-19-GAE-Chapter 01.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-10-12-Houdini-VertexPoint"
+              "title": "2026-06-19-GAE-Chapter 01"
+            }
+          }
+        ]
+      },
+      {
+        "id": "8e544200e647beef",
+        "type": "tabs",
+        "dimension": 50,
+        "children": [
+          {
+            "id": "ab7ddf2f01bd2bee",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-05-30-Thor'sProject001.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-05-30-Thor'sProject001"
             }
           }
         ]
@@ -78,7 +100,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 338.5
+    "width": 296.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -183,17 +205,21 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "a8ada1eb9159cd7d",
+  "active": "fa74dc6fbc67e3d0",
   "lastOpenFiles": [
+    "_posts/2026-05-30-Thor'sProject001.md",
+    "_posts/2026-06-19-GAE-Chapter 01.md",
+    "_posts/2023-12-23-Houdini-GetNodeName.md",
+    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
+    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
+    "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2025-01-12-Houdini-DestructionConcept.md",
-    "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2024-09-12-Houdini-PyroSimulation.md",
     "_posts/2024-03-14-Houdini-Distance.md",
     "_posts/2024-03-07-Houdini-DegreeRadians.md",
     "_posts/2024-02-19-Houdini-Frame.md",
-    "_posts/2023-12-23-Houdini-GetNodeName.md",
     "assets/postimg/Houdini/ConstraintDestruction/CD004.gif",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 746021.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/CD003.png",
@@ -223,12 +249,9 @@
     "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
     "_posts/2023-12-11-PointAttribute.md",
     "_posts/2023-12-09-Variable-Attribute.md",
-    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
     "_posts/2026-06-03-BIG-O-Notation.md",
     "_posts/2026-05-29-RenderPipeline.md",
     "_posts/2026-05-29-FrameWorkArchitecture.md",
-    "_posts/2026-05-30-Thor'sProject001.md",
-    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
     "_posts/2025-06-17-CNN.md"
   ]
 }
