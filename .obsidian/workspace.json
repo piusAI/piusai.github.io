@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-06-23-Unreal-Code.md",
+                "file": "_posts/2026-06-21-TA전략.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-06-23-Unreal-Code"
+              "title": "2026-06-21-TA전략"
             }
           }
         ]
@@ -185,17 +185,18 @@
   },
   "active": "a8ada1eb9159cd7d",
   "lastOpenFiles": [
-    "_posts/2026-06-23-Unreal-GameFeatureData.md",
     "_posts/2026-06-23-Unreal-Code.md",
+    "unreal.md",
+    "rnd.md",
     "_posts/2026-06-21-TA전략.md",
+    "_posts/2026-06-19-GAE-Chapter 01.md",
+    "_posts/2026-06-23-Unreal-GameFeatureData.md",
     "assets/postimg/TA/YoutubeHowju.png",
     "assets/postimg/TA/GithubPius00.png",
     "assets/postimg/TA/GithubPius.png",
     "assets/postimg/TA",
-    "_posts/2026-06-19-GAE-Chapter 01.md",
     "tags.md",
     "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
-    "unreal.md",
     "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
     "art.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
@@ -229,7 +230,6 @@
     "_posts/2025-06-18-Ai-Img-do.md",
     "_posts/2023-12-18-Houdini-Component.md",
     "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
-    "_posts/2023-12-11-PointAttribute.md",
-    "_posts/2023-12-09-Variable-Attribute.md"
+    "_posts/2023-12-11-PointAttribute.md"
   ]
 }
