@@ -11,7 +11,10 @@ tags:
   - UnrealClass
   - Unreal
 ---
+DataAsset과 PrimaryDataAsset의 차이
+
 DataAsset : 참조자가 경로를 직접 알고있어야 접근 가능
+
 PrimaryDataAsset : 엔진이 실행될때 이름을 통해 즉시 접근 가능, **이름 기반 지연 로딩 레지스트리**
 
 내부적으로는 느낌상 ***HashMap +Asset Registry***에 더 가깝다!
