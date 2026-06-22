@@ -186,6 +186,12 @@
   },
   "active": "a8ada1eb9159cd7d",
   "lastOpenFiles": [
+    "assets/postimg/TA/YoutubeHowju.png",
+    "assets/postimg/TA/GithubPius00.png",
+    "assets/postimg/TA/GithubPius.png",
+    "assets/postimg/TA",
+    "_posts/2026-06-21-TA전략.md",
+    "_posts/2026-06-19-GAE-Chapter 01.md",
     "tags.md",
     "_posts/2026-06-23-Unreal-GameFeatureData.md",
     "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
@@ -218,9 +224,6 @@
     "assets/postimg/Houdini/CondofCondir/미확인 279218.crdownload",
     "assets/postimg/Houdini/CondofCondir/CC006.gif",
     "assets/postimg/Houdini/CondofCondir/미확인 519900.crdownload",
-    "assets/postimg/Houdini/CondofCondir/CC005.gif",
-    "assets/postimg/Houdini/CondofCondir/미확인 34997.crdownload",
-    "assets/postimg/Houdini/CondofCondir/CC004.gif",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2023-12-19-Houdini-String-Vex.md",
     "_posts/2023-12-13-Houdini-Level.md",
@@ -228,9 +231,6 @@
     "_posts/2023-12-18-Houdini-Component.md",
     "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
     "_posts/2023-12-11-PointAttribute.md",
-    "_posts/2023-12-09-Variable-Attribute.md",
-    "_posts/2026-06-03-BIG-O-Notation.md",
-    "_posts/2026-05-29-RenderPipeline.md",
-    "_posts/2026-05-29-FrameWorkArchitecture.md"
+    "_posts/2023-12-09-Variable-Attribute.md"
   ]
 }
