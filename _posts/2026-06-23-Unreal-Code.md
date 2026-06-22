@@ -4,7 +4,7 @@ published: true
 title: Houdini condof condir
 subtitle: Constraint
 date: 2026-06-23 19:37:00 +0900
-description: Unreal DataAsset vs PrimaryDataAsset
+description: Unreal Code
 categories:
   - Unreal
 tags:

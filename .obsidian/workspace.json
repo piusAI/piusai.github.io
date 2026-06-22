@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-06-21-TA전략.md",
+                "file": "_posts/2026-06-23-Unreal-Code.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-06-21-TA전략"
+              "title": "2026-06-23-Unreal-Code"
             }
           }
         ]
@@ -186,11 +186,12 @@
   "active": "a8ada1eb9159cd7d",
   "lastOpenFiles": [
     "_posts/2026-06-23-Unreal-GameFeatureData.md",
+    "_posts/2026-06-23-Unreal-Code.md",
+    "_posts/2026-06-21-TA전략.md",
     "assets/postimg/TA/YoutubeHowju.png",
     "assets/postimg/TA/GithubPius00.png",
     "assets/postimg/TA/GithubPius.png",
     "assets/postimg/TA",
-    "_posts/2026-06-21-TA전략.md",
     "_posts/2026-06-19-GAE-Chapter 01.md",
     "tags.md",
     "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
