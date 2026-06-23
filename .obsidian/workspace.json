@@ -4,41 +4,41 @@
     "type": "split",
     "children": [
       {
-        "id": "4c968fdbc0dcafda",
+        "id": "048e37b1767f4377",
         "type": "tabs",
         "children": [
           {
-            "id": "a8ada1eb9159cd7d",
+            "id": "fa74dc6fbc67e3d0",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-06-24-Unreal-Code.md",
+                "file": "_posts/2026-06-23-Memory.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-06-24-Unreal-Code"
+              "title": "2026-06-23-Memory"
             }
           }
         ]
       },
       {
-        "id": "27737d6004f29ebf",
+        "id": "e6f9960ce2dbc653",
         "type": "tabs",
         "children": [
           {
-            "id": "5effb50d0051db2e",
+            "id": "63ee00d2628f0ed4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-06-24-Unreal-Code.md",
-                "mode": "preview",
+                "file": "_posts/2026-06-23-Memory.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-06-24-Unreal-Code"
+              "title": "2026-06-23-Memory"
             }
           }
         ]
@@ -64,7 +64,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -98,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 338.5
+    "width": 296.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -194,62 +194,62 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
   },
-  "active": "a8ada1eb9159cd7d",
+  "active": "fa74dc6fbc67e3d0",
   "lastOpenFiles": [
+    "assets/postimg/Memory/StackClean.png",
+    "_posts/2023-12-09-Variable-Attribute.md",
+    "_posts/2026-06-23-Memory.md",
+    "assets/postimg/Memory/Callstack.jpg",
+    "assets/postimg/Memory/Stack.png",
+    "assets/postimg/Memory/{148DBE4F-0836-46E6-8B7A-4EB46064831C}.png",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-06-24-Unreal-Code.md",
     "_posts/2026-06-21-TA전략.md",
-    "unreal.md",
-    "rnd.md",
+    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
+    "_posts/2026-05-31-D3D-Initialize.md",
+    "assets/postimg/Memory/Memory.jpg",
+    "assets/postimg/Memory",
+    "assets/postimg/새 폴더",
+    "_posts/2026-06-03-BIG-O-Notation.md",
+    "_posts/2026-05-29-FrameWorkArchitecture.md",
     "_posts/2026-06-19-GAE-Chapter 01.md",
     "assets/postimg/TA/YoutubeHowju.png",
     "assets/postimg/TA/GithubPius00.png",
     "assets/postimg/TA/GithubPius.png",
     "assets/postimg/TA",
-    "tags.md",
-    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
+    "_posts/2026-05-30-Thor'sProject001.md",
+    "_posts/2023-12-23-Houdini-GetNodeName.md",
     "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
-    "art.md",
-    "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
+    "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2025-01-12-Houdini-DestructionConcept.md",
     "_posts/2024-09-12-Houdini-PyroSimulation.md",
     "_posts/2024-03-14-Houdini-Distance.md",
     "_posts/2024-03-07-Houdini-DegreeRadians.md",
     "_posts/2024-02-19-Houdini-Frame.md",
-    "_posts/2023-12-23-Houdini-GetNodeName.md",
     "assets/postimg/Houdini/ConstraintDestruction/CD004.gif",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 746021.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/CD003.png",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 94394.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/CD002.gif",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 975311.crdownload",
-    "assets/postimg/Houdini/ConstraintDestruction/CD001.png",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 693804.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction",
-    "assets/postimg/Houdini/CondofCondir/CC009.gif",
+    "_posts/2024-12-12-Houdini-condof-condir 1.md",
     "assets/postimg/Houdini/CondofCondir/미확인 526007.crdownload",
-    "assets/postimg/Houdini/CondofCondir/CC008.png",
     "assets/postimg/Houdini/CondofCondir/미확인 379603.crdownload",
-    "assets/postimg/Houdini/CondofCondir/CC007.gif",
-    "assets/postimg/Houdini/CondofCondir/미확인 279218.crdownload",
-    "assets/postimg/Houdini/CondofCondir/미확인 519900.crdownload",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2023-12-19-Houdini-String-Vex.md",
-    "_posts/2023-12-13-Houdini-Level.md",
-    "_posts/2025-06-18-Ai-Img-do.md",
-    "_posts/2023-12-18-Houdini-Component.md",
-    "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
-    "_posts/2023-12-11-PointAttribute.md"
+    "_posts/2023-12-13-Houdini-Level.md"
   ]
 }
