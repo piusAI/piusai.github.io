@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-06-28-RAII.md",
+                "file": "_posts/2026-06-28-Extern.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-06-28-RAII"
+              "title": "2026-06-28-Extern"
             }
           }
         ]
@@ -186,8 +186,9 @@
   },
   "active": "fa74dc6fbc67e3d0",
   "lastOpenFiles": [
-    "_posts/2026-06-23-Memory.md",
     "_posts/2026-06-28-RAII.md",
+    "_posts/2026-06-28-Extern.md",
+    "_posts/2026-06-23-Memory.md",
     "_posts/2026-06-24-Unreal-ThreadSafe.md",
     "_posts/2026-06-24-Unreal-Code.md",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
@@ -230,7 +231,6 @@
     "assets/postimg/Houdini/CondofCondir/미확인 379603.crdownload",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2023-12-13-Houdini-Level.md",
-    "_posts/2025-06-18-Ai-Img-do.md",
-    "_posts/2023-12-18-Houdini-Component.md"
+    "_posts/2025-06-18-Ai-Img-do.md"
   ]
 }
