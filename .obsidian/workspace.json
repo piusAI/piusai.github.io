@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-06-28-Extern.md",
+                "file": "_posts/2026-06-28-RAII.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-06-28-Extern"
+              "title": "2026-06-28-RAII"
             }
           }
         ]
@@ -185,6 +185,7 @@
   },
   "active": "5effb50d0051db2e",
   "lastOpenFiles": [
+    "_posts/2026-06-28-Extern.md",
     "_posts/2026-06-28-RAII.md",
     "_posts/2026-06-29-Array.md",
     "_posts/2026-06-23-Memory.md",
@@ -194,7 +195,6 @@
     "assets/postimg/Memory/Memory.jpg",
     "assets/postimg/Memory/Callstack.jpg",
     "assets/postimg/Memory",
-    "_posts/2026-06-28-Extern.md",
     "_posts/2026-06-24-Unreal-ThreadSafe.md",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-06-21-TA전략.md",
