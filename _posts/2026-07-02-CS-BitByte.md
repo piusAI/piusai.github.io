@@ -39,7 +39,7 @@ Bit와 Byte에 대해서 알아보자
 
 ### 포인터에서의 주소 크기
 
-###### 64bit와 32 bit에서의 차이
+###### 64bit와 32 bit에서의 메모리 주소 차이
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/ComputerScience/PointerAdress64bit.png" alt="PointerAdress64bit" style="width: 100%; max-width: 100%; height: auto;"> <br><strong></strong> 64bit 메모리 주소값</td> <td width="42%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/ComputerScience/PointerAdress32bit.png" alt="PointerAdress32bit" style="width: 100%; max-width: 100%; height: auto;"> <br><strong></strong>32bit 메모리 주소값</td> </tr> </table>
 - 64Bit System : 메모리 주소를 64Bit로 표현
@@ -55,6 +55,17 @@ Bit와 Byte에 대해서 알아보자
 | 64비트 | 2^64  | 8바이트   | 16자리 (예: `0xf1bf97a900000000`) |
 
 
+### 포인터 크기 : Type의 크기 차이 (x64bit 시스템)
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/ComputerScience/PointerOffset32Bit.png" alt="PointerOffset32Bit" style="width: 100%; max-width: 100%; height: auto;"> <br><strong></strong> 8bit offset</td> <td width="55%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/ComputerScience/PointerOffset64Bit.png" alt="PointerOffset64Bit" style="width: 100%; max-width: 100%; height: auto;"> <br><strong></strong>4bit offset</td> </tr> </table>
+
+```
+새 주소 = 기존 주소 + 1 x sizeof(type)
+```
+
+```
+sizeof(__int64) //8
+sizeof(int) //4
+```
 #### 결론
 포인터 크기 = CPU/OS가 사용하는 주소공간의 비트수 / 8
 
