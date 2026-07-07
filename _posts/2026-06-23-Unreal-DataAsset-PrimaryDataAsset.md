@@ -6,7 +6,7 @@ subtitle: Constraint
 date: 2026-06-23 19:37:00 +0900
 description: Unreal DataAsset vs PrimaryDataAsset
 categories:
-  - GameEngine
+  - Engine
 tags:
   - UnrealClass
   - Unreal
