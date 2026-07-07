@@ -6,7 +6,7 @@ date: 2026-05-31 15:32:00 +0900
 description: D3D 초기화 7전8기 공부!
 img: pius-icon.png
 categories:
-  - R&D
+  - Graphics
 tags:
   - DX11
   - Graphics

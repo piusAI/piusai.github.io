@@ -4,11 +4,11 @@
   url: /
 - title: C++
   url: /cpp/
-- title: Unreal
-  url: /unreal/
+- title: GameEngine
+  url: /GameEngine/
 - title: Art
   url: /art/
-- title: R&D
-  url: /rnd/
+- title: Graphics
+  url: /Graphics/
 - title: About
   url: /about/

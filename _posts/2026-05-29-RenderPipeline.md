@@ -6,7 +6,7 @@ thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-05-29 15:32:00 +0900
 description: C++의 OOP를 제거하고 오직 그래픽스 렌더파이프라인에만 집중해본 연구 기록입니다.
 categories:
-  - R&D
+  - Graphics
 tags:
   - DX11
   - Graphics

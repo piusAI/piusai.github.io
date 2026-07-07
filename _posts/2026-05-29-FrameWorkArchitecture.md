@@ -1,11 +1,16 @@
 ---
 layout: post
 published: false
-title: "DirectX 11 Framework Architecture 설계"
+title: DirectX 11 Framework Architecture 설계
 date: 2026-05-29 15:45:00 +0900
 description: 상용 엔진(Unreal)의 API 뒤에 숨겨진 렌더 파이프라인을 제어하기 위한 로우레벨 DirectX 엔진 프레임워크 설계 기록입니다.
-categories: [R&D]
-tags: [DirectX, Framework, Architecture, Graphics-Pipeline]
+categories:
+  - Graphics
+tags:
+  - DirectX
+  - Framework
+  - Architecture
+  - Graphics-Pipeline
 ---
 
 대다수의 상용 엔진은 그래픽스 파이프라인을 고도로 추상화하여 제공합니다. 하지만 정밀한 전투 컴포넌트의 성능 병목을 해결하고, 대규모 오브젝트의 타격 이펙트를 프레임 저하 없이 렌더링하기 위해서는 **CPU와 GPU 간의 데이터 흐름(Data Flow)**을 완벽하게 통제할 수 있어야 한다 생각합니다.

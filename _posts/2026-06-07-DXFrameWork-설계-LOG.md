@@ -5,7 +5,7 @@ date: 2026-06-07 16:02:00 +0900
 description: 상용 엔진(Unreal)의 API 뒤에 숨겨진 렌더 파이프라인을 제어하기 위한 로우레벨 DirectX 엔진 프레임워크 설계 기록입니다.
 thumbnail-img: /assets/postimg/ThorArchitecture/FrameWork_001.jpg
 categories:
-  - R&D
+  - Graphics
 tags:
   - DirectX
   - Framework
