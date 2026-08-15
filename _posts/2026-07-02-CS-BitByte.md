@@ -11,8 +11,7 @@ tags:
   - cpp
   - ComputerScience
 ---
-Bit와 Byte에 대해서 알아보자
-
+Bit와 Byte에 대해서 알아보자  
 볼때마다 조금 헷갈렸던 Bite와 Byte, `1Byte = 8Bit`라는걸 매번 계산해서
 
 정리가 필요하다 생각했다.
