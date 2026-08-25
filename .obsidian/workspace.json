@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e2e44774c5a256c8",
+        "id": "7811a22829d9135f",
         "type": "tabs",
         "children": [
           {
-            "id": "41138cde91f788ce",
+            "id": "972edb94de998132",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-08-18-RDGWIP.md",
+                "file": "_posts/2026-08-25-ComputeShader.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-08-18-RDGWIP"
+              "title": "2026-08-25-ComputeShader"
             }
           }
         ]
@@ -41,10 +41,12 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -61,7 +63,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "검색"
+              "title": "Search"
             }
           },
           {
@@ -78,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 260.5,
-    "collapsed": true
+    "width": 338.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -175,25 +176,37 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
-  "active": "41138cde91f788ce",
+  "active": "972edb94de998132",
   "lastOpenFiles": [
-    "_posts/2026-08-18-Struct&Instance.md",
-    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
-    "_posts/2026-05-30-Thor'sProject001.md",
-    "_posts/2026-06-19-GAE-Chapter 01.md",
-    "_posts/2026-08-18-RDGWIP.md",
+    "_posts/2026-06-23-Memory.md",
+    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
+    "_posts/2026-08-25-ComputeShader.md",
+    "_posts/2025-01-12-Houdini-DestructionConcept.md",
+    "assets/postimg/SemanticHLSL/DispatchThreadID.png",
+    "assets/postimg/SemanticHLSL/Screenshot 2026-08-25 222921.png",
+    "assets/postimg/SemanticHLSL",
+    "assets/postimg/New folder",
     "_posts/2026-07-07-DrawCall.md",
     "_posts/2026-08-15-StackMemory.md",
     "_posts/2026-07-02-CS-BitByte.md",
+    "_posts/2026-06-29-Array.md",
+    "_posts/2026-06-28-Extern.md",
+    "_posts/2026-06-24-Unreal-ThreadSafe.md",
+    "_posts/2026-06-24-Unreal-Code.md",
+    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
+    "_posts/2026-06-21-TA전략.md",
+    "_posts/2026-06-19-GAE-Chapter 01.md",
+    "_posts/2026-08-18-RDGWIP.md",
+    "_posts/2026-08-18-Struct&Instance.md",
     "{{.md",
     "Graphics.md",
     "Engine.md",
@@ -204,33 +217,21 @@
     "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
-    "_posts/2025-01-12-Houdini-DestructionConcept.md",
     "_posts/2026-05-31-D3D-Initialize.md",
-    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-05-29-FrameWorkArchitecture.md",
     "_posts/2025-06-17-CNN.md",
     "assets/postimg/ComputerScience/PointerAdress64bit.png",
     "assets/postimg/ComputerScience/PointerAdress32bit.png",
     "assets/postimg/ComputerScience/PointerAdress3 2bit.png",
-    "_posts/2026-06-23-Memory.md",
-    "_posts/2026-06-24-Unreal-Code.md",
-    "_posts/2026-06-24-Unreal-ThreadSafe.md",
-    "_posts/2026-06-28-Extern.md",
     "_posts/2026-06-28-RAII.md",
     "assets/postimg/ComputerScience/PointerAdress.png",
     "assets/postimg/ComputerScience",
-    "assets/postimg/New folder",
-    "_posts/2026-06-29-Array.md",
-    "assets/postimg/Memory/StackClean.png",
-    "assets/postimg/Memory/Stack.png",
     "assets/postimg/Memory",
-    "_posts/2026-06-21-TA전략.md",
     "assets/postimg/TA",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 746021.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 94394.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 975311.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 693804.crdownload",
-    "assets/postimg/Houdini/ConstraintDestruction",
-    "assets/postimg/Houdini/CondofCondir/미확인 526007.crdownload"
+    "assets/postimg/Houdini/ConstraintDestruction"
   ]
 }
