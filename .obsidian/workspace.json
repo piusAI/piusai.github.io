@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "7811a22829d9135f",
+        "id": "e2e44774c5a256c8",
         "type": "tabs",
         "children": [
           {
-            "id": "972edb94de998132",
+            "id": "41138cde91f788ce",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -46,7 +46,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -63,7 +63,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "검색"
             }
           },
           {
@@ -80,7 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 338.5
+    "width": 260.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -176,37 +176,31 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
   },
-  "active": "972edb94de998132",
+  "active": "41138cde91f788ce",
   "lastOpenFiles": [
-    "_posts/2026-06-23-Memory.md",
-    "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
+    "assets/postimg/SemanticHLSL/ThreadConfig.jpg",
+    "assets/postimg/SemanticHLSL/DispatchThreadID.jpg",
+    "_posts/2026-08-19-ForPaper.md",
     "_posts/2026-08-25-ComputeShader.md",
-    "_posts/2025-01-12-Houdini-DestructionConcept.md",
     "assets/postimg/SemanticHLSL/DispatchThreadID.png",
-    "assets/postimg/SemanticHLSL/Screenshot 2026-08-25 222921.png",
     "assets/postimg/SemanticHLSL",
-    "assets/postimg/New folder",
+    "_posts/2026-08-18-Struct&Instance.md",
+    "_posts/2026-08-18-RDGWIP.md",
+    "_posts/2026-06-07-DXFrameWork-설계-LOG.md",
+    "_posts/2026-05-30-Thor'sProject001.md",
+    "_posts/2026-06-19-GAE-Chapter 01.md",
     "_posts/2026-07-07-DrawCall.md",
     "_posts/2026-08-15-StackMemory.md",
     "_posts/2026-07-02-CS-BitByte.md",
-    "_posts/2026-06-29-Array.md",
-    "_posts/2026-06-28-Extern.md",
-    "_posts/2026-06-24-Unreal-ThreadSafe.md",
-    "_posts/2026-06-24-Unreal-Code.md",
-    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
-    "_posts/2026-06-21-TA전략.md",
-    "_posts/2026-06-19-GAE-Chapter 01.md",
-    "_posts/2026-08-18-RDGWIP.md",
-    "_posts/2026-08-18-Struct&Instance.md",
     "{{.md",
     "Graphics.md",
     "Engine.md",
@@ -217,15 +211,21 @@
     "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
+    "_posts/2025-01-12-Houdini-DestructionConcept.md",
     "_posts/2026-05-31-D3D-Initialize.md",
+    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-05-29-FrameWorkArchitecture.md",
     "_posts/2025-06-17-CNN.md",
     "assets/postimg/ComputerScience/PointerAdress64bit.png",
     "assets/postimg/ComputerScience/PointerAdress32bit.png",
     "assets/postimg/ComputerScience/PointerAdress3 2bit.png",
-    "_posts/2026-06-28-RAII.md",
+    "_posts/2026-06-23-Memory.md",
+    "_posts/2026-06-24-Unreal-Code.md",
+    "_posts/2026-06-24-Unreal-ThreadSafe.md",
+    "_posts/2026-06-28-Extern.md",
     "assets/postimg/ComputerScience/PointerAdress.png",
     "assets/postimg/ComputerScience",
+    "assets/postimg/New folder",
     "assets/postimg/Memory",
     "assets/postimg/TA",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 746021.crdownload",
