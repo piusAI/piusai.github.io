@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Compute Shader의 이해
+title: Compute Shader의 이해와 HLSL 시멘틱
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-07-07 15:32:00 +0900
 description: Compute Shader의 이해
