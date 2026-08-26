@@ -90,6 +90,50 @@ RDG_EVENT_SCOPE(GraphBuilder, "PiusShader");
 ```
 `RDG_EVENT_SCOPE_CONSTRUCT`에서 Emplace로 새로운  
 "RDG Scope/Event 시작~"이라 등록
+
+
+---
+
+``` cpp
+
+void FPiusShaderCSInterface::AddPass_RenderThreads(FRRGBuilder& GraphBuilder, FGlobalShaderMap* InShaderMap, uint32 InResolution, const ...)
+{
+	RDG_EVENT_SCOPE(GraphBuilder, "PiusShader");
+	TShaderMapRef<FPiusShaderCS> ComputeShader(InShaderMap);
+
+	
+}
+```
+
+`IMPLEMENT_GLOBAL_SHADER(FPiusCS, "/CustomShaders/PiusShade.usf", "PiusCS", SF_Compute);`으로 등록했기떄문에  
+Editer 부팅시, 체크해서 순열에 올라감.  
+GPU에 올라갈 준비가 끝난 Compile된 Shader Byte code를 가리키는 핸들
+
+``` cpp
+FPiusShaderCS::FParameters* PassParameter = GraphBuilder.AllocParameters<FPiusShaderCS::FParameters>();
+```
+RDG 특징상, `AddPass`호출하는 시점에 이 패스가 실제 언제 **실행**될지 모름.  
+`Execute()`시점까지 지연되기 때문, Pass Lambda안에서 
+
+
+
+``` cpp
+ENQUEUE_RENDER_COMMAND(PiusShader)(
+[ ] (FRHICommandListImmediate& RHICmdList) {
+
+
+	FRDGBuilder GraphBuilder(RHICmdList);
+	...
+	
+	GraphBuilder.Execute();
+
+});
+```
+
+`FRHICommandListImmediate& RHICmdList` : RT에서 GPU 명령 처리하는 최상위 RHI 커맨드 list 핸들
+
+
+
 ## First Shader Class?
 ```cpp
 class FMyShaderCS : public FGlobalShader
