@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-08-25-ComputeShader.md",
+                "file": "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-08-25-ComputeShader"
+              "title": "2026-08-26-UnreaEngine-GlobalShader"
             }
           }
         ]
@@ -185,12 +185,14 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "41138cde91f788ce",
+  "active": "da51569b31346deb",
   "lastOpenFiles": [
+    "_posts/2026-08-19-ForPaper.md",
+    "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
+    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
+    "_posts/2026-08-25-ComputeShader.md",
     "assets/postimg/SemanticHLSL/ThreadConfig.jpg",
     "assets/postimg/SemanticHLSL/DispatchThreadID.jpg",
-    "_posts/2026-08-19-ForPaper.md",
-    "_posts/2026-08-25-ComputeShader.md",
     "assets/postimg/SemanticHLSL/DispatchThreadID.png",
     "assets/postimg/SemanticHLSL",
     "_posts/2026-08-18-Struct&Instance.md",
@@ -213,7 +215,6 @@
     "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2025-01-12-Houdini-DestructionConcept.md",
     "_posts/2026-05-31-D3D-Initialize.md",
-    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-05-29-FrameWorkArchitecture.md",
     "_posts/2025-06-17-CNN.md",
     "assets/postimg/ComputerScience/PointerAdress64bit.png",
@@ -223,7 +224,6 @@
     "_posts/2026-06-24-Unreal-Code.md",
     "_posts/2026-06-24-Unreal-ThreadSafe.md",
     "_posts/2026-06-28-Extern.md",
-    "assets/postimg/ComputerScience/PointerAdress.png",
     "assets/postimg/ComputerScience",
     "assets/postimg/New folder",
     "assets/postimg/Memory",

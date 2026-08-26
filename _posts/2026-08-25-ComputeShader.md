@@ -121,3 +121,19 @@ Material Node에 있는 Pixel Shader나 Vertex Shader는 GPU로 병렬적으로 
 그렇다면 Pixel Shader나 Vertex Shader와 다른 점은 무엇인가?  
 앞서 말한 것과 같이, Compute Shader는 `DrawCall()`을 하지 않기에 그와 완전히 무관하게 `Dispatch(GroupCountx, GroupCountY, 1)`로 원하는 개수만큼 Thread를 실행해줘라고 GPU에 지정할 수있다 (Drawcall이라고 명명 x) Mesh도 필요없고 화면에 뭘 그리는 것도 아니다,
 이 Texture/Buffer는 이런 규칙으로 채워라는 범용 병렬 연산이다.
+
+---
+### Computer Shader 성능 최적화
+Group Shared Memory 활용 방식
+-> **VRAM 접근 횟수를 줄여** Memory 대역폭 병목을 극복
+
+#### `SharedMemory Load` -> `Sync` 연산 방식
+`group Shared Memory`는 GPU의 각 CU 내부에 물리적으로 위치한 초고속 SRAM
+L1 cache만큼 빠름
+
+1. Shared Memory Load:
+   -> Grp내 64개 Thread가 자기가 담당하는 pixel data 1개씩만 VRAM에서 읽어와 **공유 메모리에 딱 1번만 일괄 복사** 
+2.  `GroupMemoryBarrierWithGroupSync()`:
+   -> Group내 64개 Thread가 공유 메모리에 데이터를 다 채울떄까지 대기
+3. Fast 연산:
+   -> 동기화 끝나면, 각 Thread는 VRAM에 다시 갈 필요없이 초고속 **Shared Memory**에서 주변 pixel data를 자유롭게 읽어와 연산
