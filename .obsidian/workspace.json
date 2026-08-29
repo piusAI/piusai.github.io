@@ -183,8 +183,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "da51569b31346deb",
+  "active": "41138cde91f788ce",
   "lastOpenFiles": [
+    "assets/postimg/AABB/2D_AABB.png",
+    "assets/postimg/AABB/스크린샷 2026-08-29 오후 11.44.52.png",
     "_posts/2026-08-29-AABB-OBB.md",
     "_posts/2026-08-27-const.md",
     "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
@@ -205,7 +207,6 @@
     "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.12.35.png",
     "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.11.51.png",
     "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.11.13.png",
-    "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.10.33.png",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
@@ -223,7 +224,6 @@
     "Engine.md",
     "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2025-01-12-Houdini-DestructionConcept.md",
-    "_posts/2026-05-31-D3D-Initialize.md",
     "assets/postimg/ComputerScience",
     "assets/postimg/New folder",
     "assets/postimg/Memory",
