@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-08-27-const.md",
+                "file": "_posts/2026-08-29-AABB-OBB.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-08-27-const"
+              "title": "2026-08-29-AABB-OBB"
             }
           }
         ]
@@ -185,6 +185,7 @@
   },
   "active": "41138cde91f788ce",
   "lastOpenFiles": [
+    "_posts/2026-08-27-const.md",
     "_posts/2026-08-29-AABB-OBB.md",
     "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
     "_posts/2026-06-23-Memory.md",
@@ -202,7 +203,6 @@
     "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.11.51.png",
     "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.11.13.png",
     "assets/postimg/AABB/스크린샷 2026-08-29 오후 10.10.33.png",
-    "_posts/2026-08-27-const.md",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2026-06-04-CopyConstructor-CopyOperator.md.md",
