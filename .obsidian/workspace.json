@@ -11,10 +11,14 @@
             "id": "41138cde91f788ce",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-08-29-AABB-OBB.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "새 탭"
+              "title": "2026-08-29-AABB-OBB"
             }
           }
         ]
@@ -179,10 +183,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "41138cde91f788ce",
+  "active": "da51569b31346deb",
   "lastOpenFiles": [
-    "_posts/2026-08-27-const.md",
     "_posts/2026-08-29-AABB-OBB.md",
+    "_posts/2026-08-27-const.md",
     "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
     "_posts/2026-08-25-ComputeShader.md",
     "_posts/2026-08-18-Struct&Instance.md",
