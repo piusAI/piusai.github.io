@@ -15,7 +15,7 @@
               "state": {
                 "file": "_posts/2026-08-27-const.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "2026-08-27-const"
@@ -189,12 +189,12 @@
     "_posts/2026-08-27-const.md",
     "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
     "_posts/2026-08-25-ComputeShader.md",
+    "_posts/2026-08-19-ForPaper.md",
     "_posts/2026-08-18-RDGWIP.md",
     "README.md",
     "_posts/2026-06-23-Memory.md",
     "_posts/2026-07-02-CS-BitByte.md",
     "_posts/2026-06-28-Extern.md",
-    "_posts/2026-08-19-ForPaper.md",
     "assets/postimg/AABB/OBBRotate.png",
     "assets/postimg/AABB/AABBRotate.png",
     "assets/postimg/AABB/OOBRotate.png",
