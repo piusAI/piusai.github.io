@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
+                "file": "_posts/2026-09-01-Inline.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-08-26-UnreaEngine-GlobalShader"
+              "title": "2026-09-01-Inline"
             }
           }
         ]
@@ -185,10 +185,21 @@
       "bases:Create new base": false
     }
   },
-  "active": "da51569b31346deb",
+  "active": "41138cde91f788ce",
   "lastOpenFiles": [
-    "_posts/2026-08-26-FRDGBuilder.md",
+    "_posts/2026-08-30-Explicit-Copy.md",
+    "_posts/2026-09-01-Inline.md",
     "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
+    "assets/postimg/AABB/Transform_Obj.png",
+    "assets/postimg/AABB/Transform_Ground.png",
+    "assets/postimg/AABB/OBBRotate.png",
+    "assets/postimg/AABB/AABBRotate.png",
+    "assets/postimg/AABB/AABBLine.png",
+    "assets/postimg/AABB/2D_AABB.png",
+    "assets/postimg/AABB",
+    "_posts/2026-08-29-AABB-OBB.md",
+    "_posts/2026-08-27-const.md",
+    "_posts/2026-08-26-FRDGBuilder.md",
     "_posts/2026-08-25-ComputeShader.md",
     "_posts/2026-08-19-ForPaper.md",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
@@ -208,22 +219,12 @@
     "Graphics.md",
     "Engine.md",
     "assets/postimg/ComputerScience/PointerOffset32Bit.png",
-    "assets/postimg/ComputerScience/PointerOffset64bit.png",
-    "assets/postimg/ComputerScience/Screenshot 2026-07-02 090203.png",
-    "assets/postimg/ComputerScience/Screenshot 2026-07-02 090225.png",
     "_posts/2024-10-12-Houdini-VertexPoint.md",
     "_posts/2024-11-12-Houdini-ConstraintAttribute.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2025-01-12-Houdini-DestructionConcept.md",
     "_posts/2026-05-31-D3D-Initialize.md",
     "_posts/2026-05-29-FrameWorkArchitecture.md",
-    "_posts/2025-06-17-CNN.md",
-    "assets/postimg/ComputerScience/PointerAdress64bit.png",
-    "assets/postimg/ComputerScience/PointerAdress32bit.png",
-    "assets/postimg/ComputerScience/PointerAdress3 2bit.png",
-    "_posts/2026-06-23-Memory.md",
-    "_posts/2026-06-24-Unreal-Code.md",
-    "_posts/2026-06-24-Unreal-ThreadSafe.md",
     "assets/postimg/ComputerScience",
     "assets/postimg/New folder",
     "assets/postimg/Memory",
@@ -231,7 +232,6 @@
     "assets/postimg/Houdini/ConstraintDestruction/미확인 746021.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 94394.crdownload",
     "assets/postimg/Houdini/ConstraintDestruction/미확인 975311.crdownload",
-    "assets/postimg/Houdini/ConstraintDestruction/미확인 693804.crdownload",
-    "assets/postimg/Houdini/ConstraintDestruction"
+    "assets/postimg/Houdini/ConstraintDestruction/미확인 693804.crdownload"
   ]
 }
