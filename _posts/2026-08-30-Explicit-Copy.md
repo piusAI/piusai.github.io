@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 직접 초기화만을 가능하게하기!
+title: Explicit를 활용해 직접 초기화만을 가능 하게하기!
 date: 2026-08-30 23:12:00 +0900
 description: const
 thumbnail-img:
