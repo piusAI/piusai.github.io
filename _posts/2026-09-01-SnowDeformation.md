@@ -1,0 +1,128 @@
+---
+layout: post
+published: false
+title: Snow Deformation
+thumbnail-img: /assets/img/Renderpipeline.jpg
+date:   2026-08-20 18:32:00 +0900
+description: Paper Keyword?
+categories:
+  - Graphics
+tags:
+  - Graphics
+author: PIUS
+---
+Real-Time Snow Deformation에서 나오는 키워드들을 알아보자.
+
+
+https://is.muni.cz/th/m2v6i/real-time_snow_deformation.pdf#:~:text=2.1%20Assassin's%20Creed%20III.%20One%20of%20the,which%20allows%20the%20player%20to%20track%20them.
+
+- Dynamic object가 Snow mesh에 진입시, 충돌하는 삼각형이 index buffer에서 제거.
+그 displacement texture 기반으로 새로운 tesslation된 triangle set 생성  
+
+- R2VB : Render to Vertex Buffer[3] 
+- 
+- Displacement ->Geometry proxey ~> RenderTarget 
+- 두 번째 Pass에서 vertex bufffer로 사용되어 tesslation
+Unreal engine Docs에서 강조하는 RDG의 핵심가치는 다음과 같다
+- 메모리 사용 최적화 : Graph 분석을 통해 render Resource 생성, 해제 타이밍을 자동으로 관리하여 VRAM 사용량을 최적화한다.
+- 자동 Resource Barrier & Pass 병렬화 : DX12 / Vulkan급 lowlevel resource 상태 전환, CPU/GPU패스간의 의존성을 graph Traversal(순회)로 자동 처리해 작업 병렬성을 극대화한다.
+
+https://dev.epicgames.com/documentation/unreal-engine/render-dependency-graph-in-unreal-engine
+UE 공식 문서에서 이야기하는 바이다.
+
+처음 읽을때 무슨소리인지 몇 번이나 봤어서, Keyword들을 제대로 하나씩 이해해야겠다는 생각을 했다.
+
+##  Discrete Model ;이산 모델
+
+> 현실 세계의 시간은 Continuous하다. 하지만 Computer는 무한한 연속이 아니다  
+> 유한한 크기의 단위로 쪼개고, 시간을 작은 간격으로 나누어 연산하는  
+> 'Discretization(이산화) 과정이 필요하다'
+
+
+### GameThreads & Render Threads
+
+
+- Game Threads(GT) **MASTER** :  
+  게임 로직 실행 → Scene에 어떤 object가 있고, 위치하고 상태인지를 결정  
+  -> 이 정보를 바탕으로 "Rendering Command"를 생성해서 RenderThreads로 던짐
+- Render Thread(RT) **Slave**:
+  스스로 그릴지를 판단하지 않음. GT가 만들어 넘겨준 Command 그대로 소비후 GPU에 넘김
+
+RT는 GT에 비해 0~1프레임 뒤쳐질수 있따
+
+-> UE에서는 `Lock-Free` 방식으로 UE render Command Queue가 실제로 쓰임
+GT : Command 만들어서 Queue끝에 `Atomic` 연산으로 밀어 넣기
+RT : Queue앞에서 `Atomic` 연산으로 command 꺼내가기
+
+Lock-Free queue를 만들어놓았어서 우리는 `ENQUEUE_RENDER_COMMAND`를 통해 FIFO명령으로 Queue 등록해서 활용하면 된다
+
+
+- Rendering Thread는 GameThreads의 Slave(종속) Thread
+
+
+`check(IsInGameThread())` / `check(IsInRenderingThread())` : 이 현재 코드 돌리고있는 Thread ID가 GameThread? Rendering Thread?
+return : true / false
+
+잘못된 Thread에서 호출되는 즉시 **Assert**로 알려줌
+
+###### Shader Entry Point:
+Semantic할수있는
+
+
+###### Wave:
+- 하드웨어 레벨에서 한번에 묶여 동시에 실행되는 Threads의 한 묶음 자체
+
+###### Lane:
+- 개별 Thread 단 1개가 점유하는 hardware 통로
+- 1개의 Wave 안에 32개의 Lane이 존재!
+
+```
+[Dispatch (전체)]
+└── [Group (ThreadGroup)] : numthreads(8,8,1), Shared Memory 공유 
+   └── [Wave / Subgroup] : 하드웨어 동시 실행 단위 (32개 스레드 묶음)
+          └── [Lane / Thread] : 단일 코어에서 실행되는 최하위 스레드 1개
+
+```
+
+##### Lane, Wave Intrinsics
+HLSL에서는 같은 Wave 내의 Lane끼리 메모리 거치지 않고 직접 통신 할 수 있는 `Wave Intrinsics` 함수 제공
+기존 방식의 `groupShared 메모리`와는 다름
+
+
+
+---
+### Code
+
+##### `RWTexture2D<float>`
+
+https://piusai.github.io/graphics/2026/07/07/ComputeShader.html
+위 포스팅에서 관련 ComputeShader에 대해 작성하였습니다.
+
+``` cpp
+// .usf
+RWTexture2D<float> OutT;
+
+void PiusShader(uint3 DisPatchThreadID :SV_DispatchThreadID)
+
+...
+OutT[uint2(DisPatchThreadID.x, DisPatchThreadID.y)] = mask
+```
+
+`RWTexture2D<Float>`은 배열로써 좌표로 직접 indexing해서 읽고 쓸수있는 UAV
+
+###### FGlobalShader:
+
+
+| Type         | Class                                                       |
+| ------------ | ----------------------------------------------------------- |
+| Header File  | /Engine/Source/Runtime/RenderCore/**Public**/GlobalShader.h |
+| Include Path | `#include "GlobalSHader.h"`                                 |
+
+
+
+
+``` hlsl
+//hlsl Source File
+float2 ViewportSize;
+RWTexture2D<float4> SceneColorOutput;
+```
