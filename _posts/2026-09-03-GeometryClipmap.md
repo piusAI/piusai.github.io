@@ -1,7 +1,7 @@
 ---
 layout: post
-published: false
-title: Terrain Optimzation 방법들?
+published: true
+title: GeometryClipmap 최적화?
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-09-01 18:32:00 +0900
 description: Paper Keyword?
@@ -11,9 +11,10 @@ tags:
   - Graphics
 author: PIUS
 ---
-**Terrain**에 맞는 Vertex 최적화 방법들을 알아보자.
+**Terrain**에 맞는 Vertex 최적화 방법중 가장 기초인
+Geometry Clipmap에 대해 알아보자
 
-### 001 Geometry ClipMap
+## Geometry ClipMap
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/TerrainOpti/clipmaps_01.jpg" alt="PS001" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Geometry Clipmap</strong> </td> <td width="30%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/TerrainOpti/clipmaps_02.jpg" alt="PS002.png" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Terrian Render Geo Clipmap</strong> </td> </tr> </table>
 Main 위치를 가운데 기준으로, LOD형태를 뿌린것이다.  
@@ -109,75 +110,75 @@ output.pos = mul(float4(worldPos.x, worldPos.y, z, 1), WorldViewProjMatrix);
 VS에서 Projection 행렬로가기전에 들어감
 -> blending시켜 자연스레 곱해줌
 
-### 2.3.6 Pixel Shader
 
-XR 전시에 올려야하는 Spouter 통신을 할때에도,   
-Rasterizer Graphics Pipeline OM(Output Merger)에서의 SwapChain의 back-front buffer 교체작업에도,  
-그리고 현재,  VTX Deformation 이동 Shader 작업에 이르기까지 핵심적으로 쓰인다.
-
-결국에는 메모리를 갖고 노는 그래픽스에서 geometry의 vertex이나 pixel을 조작하기 위해서는 별도의 RenderTarget에다가 그 정보를 심고, 가공해야한다.  
-
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 5px;"> <a href="https://youtu.be/6X376ND136w" target="_blank" style="position: relative; display: inline-block;"> <img src="https://img.youtube.com/vi/6X376ND136w/maxresdefault.jpg" alt="영상 미리보기" style="width: 100%; max-width: 100%; height: auto;"> <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg') no-repeat center/contain;"></span></a><strong>RDG Compute shader RenderTarget To vertex Move</strong> </td> </tr> </table>
-
-### R2VB?
-R2VB는 RenderTarget을 Vertex buffer에 수정하기 위한 흐름이다.
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/R2VB/RenderTarget.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>이미지 출처 : ATI Technologies</strong> </td>  </tr> </table>
-
-Graphics pipeline에 있어, RenderTarget은 마지막 단계에 가깝다.
-PS이후의 RT를 Vertex shader의 입력으로 재사용 하는 기술인데 최종적으로 화면에 출력해야하는 OM에서의 RenderTarget과는 다른 별도의 RenderTarget를 하나 생성하는 것이다.  
-
-본질적으로 Data를 pixel pipeline의 시작점으로 돌리는 셈인데,  
-CPU에 부담을 주지 않으면서 물 simulation과 같은 다양한 simulation을 GPU에서 수행할 수있다.  
-실제 Geometry는 변경 할 수 없기때문에, Render to Vertex buffer(R2VB)까지 타고 올라가야지만이, Vertex shader에서 geometry를 변경 할 수 있다
-
-이를 HLSL코드로 비교해보자.
-
-### HLSL에서 알아보는 code
-
-#### R2T 방식(Texture -> Vtx sampling)
-전통적인 방식으로, Texture에 정보를 그려 vtx shader가 sampling하는 구조이다.
+#### 2.3.6 Pixel Shader
 
 ``` hlsl
-// Pass1 : PS, 텍스쳐에 기록
-Texture2D<float> HeightMapTexture : register(t0);
 
-// Pass2 : VS단계에서 texture samling하여 정점 높이 변형
-struct VS_OUTPUT{
-	float4 Pos : SV_POSITION;
-	}
-	
-// 2D Texture UV로 샘플링해 vertex UP(R2T 방식)
-VS_OUTPUT VS_Main(float4 inPos : POSITION)
-{
-	float height = HeightMapTexture.SampleLevel(SamplerLinear, inPos.xz * scale, 0);
-	inPos.y += height;
-	
-	VS_OUTPUT hout;
-	hout.Pos = mul(inPos, ViewProj);
-	return hout;
-}
+
+..
+
+//001 VS에서 계산한 Alpha를 활용한 Normal Blending
+float3 normal = float3((1-alpha) * normal_fc.xy + alpha * normal_fc.zw ,1) ;
+
+//002 [0,1] ~> [-1, 1] 정규화 수정
+normal = normalize(normal*2 -1);
+
+// 003
+float s = clamp(dot(normal, LightDirection), 0, 1);
+return s * tex1D(ZBasedColorSampler,z);
+// elevation 기반으로 terrain 색상 assign
+
 ```
 
+- `normal map sample` : normalMap가진 2dTexture
+- 001) `normal_fc.xy` 현재 Level의 normal, `normal_fc.zw`는 거친 Level의 Normal
+- 002) Texture format [0, 1]범위를 3D Vector 범위 [-1, 1]fh wjdrbghk
+- 003) 지형 색상 매핑하는 `ZbasedColorSampler`에 최종 색상 뱉어냄
+- `ZBasedColorSampler` : 지형 높이`z`를 이용해, 모래, 풀, 눈 등 색으로 1D gradient colormap
 
-#### R2V Compute 방식(Texture 안거친 buffer간 직접 갱신)
-과거 DX9시절의 우회적 R2VB철학을 계승하여,  
-현대 그래픽스에서는 Compute Shader와. 
-UAV를 통해 texture sampling 과정 없이 곧바로 버퍼를 갱신한다!
+
+##### Clip-map Level 2가지 TExture 저장
+- 1channel float `Height map`
+- 4channel (8bit per channel) `Normal Map`
+
+##### Toroidal Addressing? (wrapping Addressing)
+- Modulo(`%`)와 같이 순환구조인 Torus
+  UV [0~1]이상이 될때, 예로, 1.2 ->0.2로의 Modulo
+- Texture의 물리적 위치 그대로두고, Shader 바라보는 offset만을 순환 구조로 swap!
+
+##### L자형?
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/TerrainOpti/L_torus.jpg" alt="PS001" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Toroidal update</strong>  </td> </tr> </table>
+Toroidal 업데이트로 texture 경계 넘어가는경우 새로 갱신은 새로 드러난 L자영역!
+
+##### Residual 잔차?
+
 ``` hlsl
-//현대적 방식 : UAV / Compute Shader를 통한 vtx buffer 직접 갱신
-// R2V를 현대식 UAV로 계승형태
-RWStructuredBuffer<float3> VertexBuffer : register(u0);
+//업샘플링 뼈대 구축
+float z_predicted Upsample(uv);
 
+// 잔차 가져오기
+float residual tex2D(residualSampler, p_uv * Scale);
 
-[numthreads(8,8,1)]
-void CS_UpdateVertices(uint3 dispatchThreadID : SV_DispatchThreadID)
-{
-	uint idx = dispatchThreadID.x;
-	
-	// texture sampling 없이 그 thread 주소 좌표를 직접 연산후 덮음(R2V의 현대 진화)
-	VertexBuffer[idx].y = CalculateDefomation(VertexBuffer[idx].xz);
-}
+// 세밀한 높이 합성
+float zf = z_predicted+ residual;
 
+//패킹 트릭
+float zd = zc-zf;
+float zf_zd = zf+(zd+256) / 512;
 ```
-UE에서의 .usf compute shader Pipeline과 정확히 일치하는 구조이다.
 
+- 세밀한 높이(`zf`)는 부동소수, 
+- `zd` = 낮은 Res level 높이(`zc`) - 높은 Resolution level 높이(`zf`)
+
+
+#### Keyword
+`torus` texture 좌표 메모리는 그대로두고, `Wrap`와 같이 Modulo처럼 offset 순환시켜 메모리 아낌
+`residual` 을 통한 계층적 갱신 : Low Level을 Upsample해 뼈대 예측, 진짜 고해상도와의 오차인 잔차`Residual`를 더해 완벽한 `zf`를 합성하는 알고리즘!
+
+
+
+
+[참고문헌]
+Asirvatham, Arul, and Hugues Hoppe. 2005. "Terrain Rendering Using GPU-Based Geometry Clipmaps." In *GPU Gems 2: Programming Techniques for High-Performance Graphics and General-Purpose Computation*, edited by Matt Pharr, Chapter 2. Addison-Wesley.
+https://developer.nvidia.com/gpugems/gpugems2/part-i-geometric-complexity/chapter-2-terrain-rendering-using-gpu-based-geometry
