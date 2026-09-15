@@ -11,24 +11,64 @@ tags:
   - Graphics
 author: PIUS
 ---
-Streaming Scheduling
-사용자가 이동중일때 필요한 Data가 Display Cache에 동적으로 load되어 화면이 렌더링되어야함.
+ChunkedLOD, ROAM 알고리즘
 
-## Geometry ClipMap
+
+## ChunkedLOD
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/TerrainOpti/clipmaps_01.jpg" alt="PS001" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Geometry Clipmap</strong> </td> <td width="30%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/TerrainOpti/clipmaps_02.jpg" alt="PS002.png" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Terrian Render Geo Clipmap</strong> </td> </tr> </table>
-Main 위치를 가운데 기준으로, LOD형태를 뿌린것이다.  
-경계 주변의 Artifacts를 방지!  
+**Streaming Scheduling**  
+사용자가 이동중일때 필요한 Data가 Display Cache에 동적으로 load되어 화면이 렌더링되어야함.
 
-Resolution간의 경계의 Articact 방지가 중요.
--> 2의 배수로 vtx matching 시키기위해 vertex index를 맞춰야함.
 
-#### 2.1 데이터 구조
-- constant buffer : Vertex, Index buffer 세트만ㅇㄹ 미리 정의, 틀 고정
-- Texture Map : 지형 높낮이, 표면 방향 정보 Buffer가 아닌, Clip-map Level마다 2D texture로 따로 저장
-- VRAM : 모든 Buffer, Data를 system memori가 아닌, VRAM에 올려두고 GPU가 곧바로 가져다 쓰도록 설계
+## ROAM ; RealTime Optimally Adapting Mesh
+카메라/오차에 따라 Terrain의 삼각형을 실시간으로 `Split/Merge`하면서 필요한곳 Subdivide하는 `View-Dependent Adaptive Mesh` 알고리즘
 
-#### 2.2 Clipmap 크기
+[ROAM Algorithm](https://cognigraph.com/ROAM_homepage)
+[ROAM 원문](https://www.classes.cs.uchicago.edu/archive/2003/fall/23700/docs/roam.pdf?utm_source=chatgpt.com)
+#### 1.1 Binary Triangle Tree
+- 삼각형 하나를 두개로 쪼갠 Binary Tree 
+
+```
+	        A
+	       /\
+	      /  \
+	     /    \
+	    B------C
+    
+		  Root
+		 /    \
+	  Child   Child
+  	  /  \     /  \
+	 ... ...  ... ...
+```
+- Runtime에 Triangle Tree를 Recursive하게 갱신, View-Dependent Mesh를 만든다
+
+#### 1.2 Keyword
+
+```
+                ROOT
+                 /\
+                /  \
+             SPLIT SPLIT
+              /\     /\
+             /  \   /  \
+            ... ... ... ...
+
+      ↓ Error / Camera / View
+
+	       가까움 + 오차 큼
+	              ↓
+	            SPLIT
+
+	       멀음 + 오차 작음
+	              ↓
+	             MERGE
+
+	       Neighbor 관계
+	              ↓
+	       Crack 방지
+```
 - n = 2^k  -1로, Level에 대해 Low-High 정확히 중앙에 위치하지 않는다는 이점.
 - High Level들이 low level에 대해 중앙 벗어날 수밖에 없도록!
 
