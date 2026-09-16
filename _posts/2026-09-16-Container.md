@@ -1,8 +1,8 @@
 ---
 layout: post
 published: true
-title: Vector의 구현
-date: 2026-09-05 19:10:00 +0900
+title: 기본 자료구조 (Vector, Queue 구현)
+date: 2026-09-16 19:10:00 +0900
 description: 스택 메모리
 thumbnail-img:
 categories:
@@ -101,6 +101,11 @@ public:
 		_buffer = newBuffer;
 		_capacity = newCapacity;
 	}
+	void resize(int newSize)
+	{
+		assert(newSize<=_capacity);
+		_size = newSize;
+	}
 	void clear()
 	{
 		_size = 0;
@@ -151,5 +156,83 @@ int main()
 ```
 
 복사 연산자, 복사 생성자는 claude와 함께 놓친부분 확인함
-
 iterator를 활용하기위해 begin, end도 넣음
+
+#### Queue 구현 cpp
+
+
+``` cpp
+
+
+template <typename T>
+class Queue{
+
+public:
+	explicit Queue(int capacity) : _data(new Vector<T>(capacity)), _capacity(capacity)
+	{
+		_data->resize(capacity); //원형 큐 다 채워주기!
+
+	}
+	~Queue()
+	{
+		delete _data;
+	}
+
+	void Push(const T& value)
+	{
+		//이사
+		if (_QueueSize == _capacity)
+		{
+			int newcapacity = _capacity * 1.5;
+			if (newcapacity <= 1) newcapacity++;
+			
+			//새로 원형 queue container 만들어주고!
+			Vector<T>* newBuffer = new Vector<T>(newcapacity);
+			_data->resize(newcapacity); //다 채워줘야함 원형 queue, 복사 loop보다 먼저
+			for (int i = 0; i < _QueueSize; i++)
+			{
+				(*newBuffer)[i] = (*_data)[(i+_front)%_QueueSize];
+			}
+			delete _data;
+			_data = newBuffer;
+			
+			_front = 0;
+			_back = _QueueSize;
+			_capacity = newcapacity;
+		}
+		_QueueSize++;
+		(*_data)[_back] = value;
+		_back = (_back +1) % _capacity;
+		
+	}
+	
+
+	T& Front() { return (*_data)[_front]; }
+	T& Back() { return (*_data)[(_back-1+_capacity) % _capacity]; }
+	void Pop()
+	{
+		if (_QueueSize == 0) return;
+		_front = (_front + 1) % _capacity; //capacity 원형 Queue
+		_QueueSize--;
+	}
+	void Print()
+	{
+		for (int i = 0; i < _QueueSize; i++)
+		{
+			cout<<(*_data)[(i + _front) % _capacity]<<endl;
+		}
+	}
+private:
+	Vector<T>* _data = nullptr;
+	int _QueueSize = 0;
+	int _capacity = 0;
+
+	int _front = 0;
+	int _back = 0;
+
+};
+
+```
+
+
+원형 Queue로 front / back을 사이클 돌림
