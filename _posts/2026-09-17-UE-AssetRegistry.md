@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: AssetRegistry
 subtitle: Constraint
 date: 2026-09-17 19:37:00 +0900
