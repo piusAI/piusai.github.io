@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-09-17-SimpleShader.md",
+                "file": "_posts/2026-09-17-UE-AssetRegistry.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-09-17-SimpleShader"
+              "title": "2026-09-17-UE-AssetRegistry"
             }
           }
         ]
@@ -185,8 +185,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "da51569b31346deb",
+  "active": "41138cde91f788ce",
   "lastOpenFiles": [
+    "_posts/2026-09-17-SimpleShader.md",
+    "_posts/2026-09-17-UE-AssetRegistry.md",
     "assets/postimg/ShaderPrograming/SimpleShader/ShaderMaterial.png",
     "assets/postimg/ShaderPrograming/SimpleShader/미확인 555273.crdownload",
     "assets/postimg/ShaderPrograming/SimpleShader",
@@ -200,8 +202,6 @@
     "_posts/2026-09-14-QuadTree.md",
     "_posts/2026-09-16-Tessellation-ROAM.md",
     "_posts/2026-09-16-Container.md",
-    "_posts/2026-09-17-SimpleShader.md",
-    "_posts/2026-09-17-UE-AssetRegistry.md",
     "_posts/2026-09-15-UnreaEngine-Library.md",
     "_posts/2026-09-12-queue.md",
     "_posts/2026-08-26-UnreaEngine-GlobalShader.md",
@@ -231,7 +231,6 @@
     "assets/postimg/TerrainOpti/미확인 278781.crdownload",
     "assets/postimg/R2VB/RenderTarget.png",
     "_posts/2026-08-18-RDGWIP.md",
-    "assets/postimg/AABB/Transform_Obj.png",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md"
   ]
 }
