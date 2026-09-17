@@ -37,6 +37,30 @@ AssetRegistry는 UE editor가 Asset을 찾기 쉽게 관리하는 **Asset 메타
 
 AssetRegistoryModule을 만들어 Asset검색을 할 수있다.
 
+### FModuleManager?
+Manager이므로 싱글톤패턴으로 Module들을 관리하는 클래스  
+[FModuleManager](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Core/FModuleManager?lang=en-US)
+
+```cpp
+// 로드되어있지 않으면 자동 로드
+FModuleManager::LoadModuleChecked<FPiusJoonModule>("PiusJoonModule");
+
+// 이미 로드된 모듈만 가져오기
+FModuleManager::GetModulePtr<FPiusJoonModule>("PiusJoonModule");
+
+bool bLoaded = FModuleManager::Get().IsModuleLoaded("PiusJoonModule");
+```
+엔진 전체에서 모듈 관련 작업을 한곳에서 처리하기에 싱글톤.
+
+``` cpp
+// 명시적으로 singletone 얻고 호출
+FModuleManager::Get().LoadModuleChecked<FPiusJoonModule>("PiusJoonModule");
+//static 함수가 내부 Get()
+FModuleManager::LoadModuleChecked<FPiusJoonModule>("PiusJoonModule");
+```
+`Get()`을 활용하는지 안하는지 큰 차이가 없다.  
+Static을 활용한 코드는, `Warpper`일 뿐이고, 내부적으로 결국 `Get()`호출해서 instance 접근은 동일
+
 ### Filter?
 검색 시스템에서 조건을 넣어 찾을 수 있다. "검색 조건에 맞는 에셋을 찾아줘"  
 [FARFilter](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/CoreUObject/AssetRegistry/FARFilter?application_version=5.5) 타입의 `Struct`로 
