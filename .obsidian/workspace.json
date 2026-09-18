@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-09-17-KDTree.md",
-                "mode": "preview",
+                "file": "_posts/2026-09-18-Large-scale.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-09-17-KDTree"
+              "title": "2026-09-18-Large-scale"
             }
           }
         ]
@@ -41,9 +41,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
-                "showSearch": false,
-                "searchQuery": ""
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -188,13 +186,14 @@
   },
   "active": "41138cde91f788ce",
   "lastOpenFiles": [
-    "_posts/2026-09-16-Container.md",
-    "_posts/2026-09-17-KDTree.md",
-    "_posts/2026-09-16-Tessellation-ROAM.md",
     "_posts/2026-09-17-Tessellation-SSE.md",
+    "_posts/2026-09-18-Large-scale.md",
+    "_posts/2026-09-17-UE-AssetRegistry.md",
+    "_posts/2026-09-17-KDTree.md",
+    "_posts/2026-09-16-Container.md",
+    "_posts/2026-09-16-Tessellation-ROAM.md",
     "_posts/2026-09-17-SimpleShader.md",
     "_posts/2026-09-14-QuadTree.md",
-    "_posts/2026-09-17-UE-AssetRegistry.md",
     "assets/postimg/ShaderPrograming/SimpleShader/ShaderMaterial.png",
     "assets/postimg/ShaderPrograming/SimpleShader/미확인 555273.crdownload",
     "assets/postimg/ShaderPrograming/SimpleShader",
@@ -232,7 +231,6 @@
     "assets/postimg/TerrainOpti/미확인 381375.crdownload",
     "assets/postimg/TerrainOpti/clipmaps_01.jpg",
     "assets/postimg/TerrainOpti/미확인 278781.crdownload",
-    "assets/postimg/R2VB/RenderTarget.png",
-    "_posts/2026-08-18-RDGWIP.md"
+    "assets/postimg/R2VB/RenderTarget.png"
   ]
 }
