@@ -56,6 +56,7 @@ Nanite는 VtxShader가 매 프레임 자유롭게 정점을 움직인는 구조�
 - **Nanite Tessellation + Displacement**: 머티리얼의 Displacement 값으로 클러스터 단위 Tessellation과 변위를 적용. 이론상 RT를 샘플링해 변위에 넣을 수 있지만, Nanite 메시의 클러스터 바운드는 빌드 시점에 정해지므로 **RT에 의한 큰 변위는 바운드 확장을 미리 설정해야** 컬링이 깨지지 않는다.
 - **WPO(World Position Offset) on Nanite**: 머티리얼에서 RT를 샘플링해 정점을 밀어내는 방식. 지원되지만 Nanite에서는 비용이 크고, 클러스터 바운드와 컬링, 그림자(VSM) 캐시 무효화 이슈가 따라옴. 변형 영역이 넓을수록 성능이 나빠짐.
 - **Nanite Landscape / Heightfield Nanite화**: Terrain 자체를 Nanite로 만들면 Partitioning, Culling, LOD가 Nanite 안에서 처리되어 별도 LOD Metric이 필요 없어짐. 대신 **동적 변형은 정적 클러스터와 잘 맞지 않아서**, 변형 부분만 다른 경로(RT 기반 오버레이나 별도 메시)로 처리해야 하는 경우가 많다.
+
 ---
 
 ### 비교
