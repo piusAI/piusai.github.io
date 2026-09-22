@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 260.5,
-    "collapsed": true
+    "width": 260.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -187,13 +186,13 @@
   "active": "41138cde91f788ce",
   "lastOpenFiles": [
     "_posts/2026-09-22-NOT-ConcurrentbinaryTrees.md",
-    "_posts/2026-09-21-NOT-UnrealTerrain.md",
     "_posts/2026-09-22-CDLOD.md",
     "_posts/2026-09-21-UE-Deformation.md",
+    "_posts/2026-09-21-NOT-UnrealTerrain.md",
+    "_posts/2026-09-21-NOT-Container-withPointer.md",
     "assets/postimg/TerrainOpti/CDLOD/Morph_Figure.png",
     "assets/postimg/TerrainOpti/CDLOD/CDLOD_Morph.png",
     "assets/postimg/TerrainOpti/CDLOD",
-    "_posts/2026-09-21-NOT-Container-withPointer.md",
     "_posts/2026-09-18-NOT-Large-scale.md",
     "_posts/2026-09-17-NOT-Tessellation-SSE.md",
     "_posts/2026-09-17-NOT-KDTree.md",
