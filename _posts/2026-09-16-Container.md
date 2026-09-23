@@ -158,12 +158,10 @@ int main()
 복사 연산자, 복사 생성자는 claude와 함께 놓친부분 확인함
 iterator를 활용하기위해 begin, end도 넣음
 
-#### Queue 구현 cpp
-
+#### Queue 구현
+#####  01 `Vector<T>*`를 활용한 Queue
 
 ``` cpp
-
-
 template <typename T>
 class Queue{
 
@@ -224,7 +222,6 @@ public:
 	}
 private:
 	Vector<T>* _data = nullptr;
-	int _QueueSize = 0;
 	int _capacity = 0;
 
 	int _front = 0;
@@ -236,3 +233,119 @@ private:
 
 
 원형 Queue로 front / back을 사이클 돌림
+
+
+#####  02 `Vector<T*>`를 활용한 Queue
+
+``` cpp
+template <typename T>
+class Queue
+{
+public:
+	explicit Queue(int capacity) :_vec(capacity), _capacity(capacity)
+	{
+		_vec.resize(_capacity); //
+		//원형 큐 vector의 size는 capacity로!
+		// ->queue의 _size 멤버변수랑 다름!
+		for (int i = 0; i < capacity; i++)
+		{
+			_vec[i] = nullptr;
+		}
+	}
+
+	~Queue()
+	{
+	
+		for (int i = 0; i < _size; i++)
+		{
+			int idx = (_front + i) % _capacity;
+			delete _vec[idx];
+		}
+	}
+
+	void Push(const T& data)
+	{
+
+		if (_size == _capacity)
+		{
+			Grow();
+		}
+
+		_vec[_back] = new T(data);
+		_back = (_back + 1) % _capacity; 
+		++_size;
+	}
+
+	void Grow()
+	{
+		int newcapacity = (int)(_capacity * 1.5);
+		if (newcapacity <= _capacity) newcapacity = _capacity+1;
+
+		Vector<T*> _newVec(newcapacity);
+		_newVec.resize(newcapacity);
+		for (int i = 0; i < newcapacity; i++) _newVec[i] = nullptr;
+		for (int i = 0; i < _size; i++)
+		{
+			_newVec[i] = _vec[(i + _front) % _capacity];
+		}
+		
+		_vec = _newVec;
+		_capacity = newcapacity;
+		_front = 0;
+		_back = _size;
+			
+	}
+
+	T* Front()
+	{
+		if (_size == 0) return nullptr;
+		return _vec[_front];
+	}
+
+	void Pop()
+	{
+		if (_size==0) return;
+		delete _vec[_front];
+		_vec[_front] = nullptr;
+		_front = (_front + 1 + _capacity) % _capacity;
+		--_size;
+	}
+
+	void Print()
+	{
+		for (int i = 0; i < _size; i++)
+		{
+			cout<<*_vec[(i + _front+ _capacity) % _capacity]<<endl;
+		}
+	}
+
+
+public:
+	Vector<T*> _vec;
+	int _capacity = 0;
+	int _front = 0;
+	int _back = 0;
+	int _size = 0;
+};
+
+int main()
+{
+	Queue<int> qu(20);
+	qu.Push(20);
+	qu.Push(40);
+	qu.Push(60);
+	qu.Push(80);
+
+	qu.Print();
+
+	return 0;
+}
+```
+
+
+#### 추가 헷갈릴만한 지점 / 컨셉
+- 원형 Queue에서는 front로 first로 들어온 데이터를 가리키지만, `pop`으로 나가면서 데이터를 비워두기때문에 `++Front`로 하나를 더해줌
+- `_capacity` : Vector buffer가 몇칸 실제로 갖고있는지,  원형 큐로 사이클을 `%`모듈러 계산으로 나머지로써 `front, back`이 가리키는걸 돌아가도록 함.
+- `back`은 마지막 데이터를 가리키는것이 아니라 비어있는 `T*`를 가리키고있음!( `T* Vector<T>::end`와 유사)
+- Queue에서의 Vector는 resize(capacity)로 `capacity ==size`임!
+- Queue에서의 `_size` 멤버 변수와 `_vec.Size()`는 다름!!
