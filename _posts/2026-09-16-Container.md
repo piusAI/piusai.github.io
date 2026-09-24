@@ -51,7 +51,7 @@ public:
 
 	Vector& operator=(const Vector& other)
 	{
-		if (&other == this) return *this;
+		if (&other == this) return *this; //주소값으로 비교
 
 		T* newBuffer = new T[other._capacity];
 		for (int i = 0; i < other._size; i++)
@@ -291,6 +291,7 @@ public:
 		
 		_vec = _newVec;
 		_capacity = newcapacity;
+		//여기서 만들어준 _newVec의 데이터를 지우면 안됨!! --- 아래 추가 설명
 		_front = 0;
 		_back = _size;
 			
@@ -349,3 +350,18 @@ int main()
 - `back`은 마지막 데이터를 가리키는것이 아니라 비어있는 `T*`를 가리키고있음!( `T* Vector<T>::end`와 유사)
 - Queue에서의 Vector는 resize(capacity)로 `capacity ==size`임!
 - Queue에서의 `_size` 멤버 변수와 `_vec.Size()`는 다름!!
+
+
+#### 아래 추가 설명
+- 왜 `_newvec`는 해제하면 안되는가?
+`Vector<T*> _newvec`는 스택에 있는 객체이고 그 Vector객체 안에 T* 주소값들이 들어가있는데
+`int`같은 데이터 힙에 `new T(data)`로 만들어져있고, `_newvec`과 `_vec`이 현재 같은 주소를 나누어서 가리키고 있는 상태
+
+```
+_newvec._buffer → [ p0 | p1 | p2 | null ]  ─┐
+                                            ├─ 같은 주소 → 힙의 20, 40, 60
+_vec._buffer    → [ p0 | p1 | p2 | null ]  ─┘   (operator= 이후)
+```
+
+-> `delete _newvec[i]`를 하면 `_newvec`만 가리키는 데이터만 지우는것이 아니라, `_vec`도 가리키고있는데이터를 함께 지우게됨
+-> `_vec` dangling pointer! Queue소멸자에서 또 delete시, Double Free!
