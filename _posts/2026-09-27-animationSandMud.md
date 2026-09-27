@@ -67,7 +67,7 @@ Height field/ Verticle Column(수직 기둥) 기반 deformable 지면 모델.
 Displacement 및 압축 알고리즘으로 Rigid Geometry 충돌시 타이어 자국, 애니메이션, 파라미터 조정만으로 모래, 진흙, 눈과 같은 다양한 지면 material의 Behavior를 재현!
 
 ### 3. 1. 지면 물질 모델(Model of  Ground Material)
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationPaper/SandMudSnow/Heightfield.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeightField</strong> </td>  </tr> </table>
+<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationPaper/SandMudSnow/HeightFieldFigure.png" alt="Heightfield" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeightField</strong> </td>  </tr> </table>
 
 > Each Grid point within the height field represent a **vertical column** of ground material with the **top of the column** centered at the grid point
 - Uniform grid의 grid point 마다 vertical Column(수직 기둥)이 하나씩 서있dma
@@ -77,7 +77,7 @@ Displacement 및 압축 알고리즘으로 Rigid Geometry 충돌시 타이어 �
 
 - 연속 볼륨을 이차원 격자로 나누어서 **height field** 정의, 볼륨 표면 discrete(이산화)한다.
 
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationPaper/SandMudSnow/GridResolution.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Grid resoution</strong> </td>  </tr> </table>
+<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationPaper/SandMudSnow/GridResolution.png" alt="GridResolution" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Grid resoution</strong> </td>  </tr> </table>
 위 그림과 같이 격자 해상도가 표현 가능한 최소 Feature를 결정하지만, **전체적인 지형 모양 자체에는 큰 영향 없음**
 - 초기 높이 조건은 절차적으로 생성 가능 (정수 격자 위 노이즈 + Catmull-Rom 스플라인 보간, 일종의 2D Perlin noise 변형) 또는 실제 지형 데이터·모델링 툴 출력·이전 시뮬레이션 결과를 활용 가능
 
