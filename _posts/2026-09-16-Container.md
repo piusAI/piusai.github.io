@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 기본 자료구조 (Vector, Queue 구현)
+title: 기본 자료구조 (Vector, Stack, Queue)
 date: 2026-09-16 19:10:00 +0900
 description: 스택 메모리
 thumbnail-img:
@@ -11,10 +11,25 @@ tags:
   - cpp
   - ComputerScience
 ---
-동적 배열을 만들기 위해서 필요한것들
+Vector, Stack, Queue(원형)의 기본 자료구조를 구현한다.
 
-push_back, begin, opertor[], 추가했다.
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="23%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/StackQueue/Stack.png"  alt="Stack" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Stack</strong> </td> <td width="32.5%" style="text-align: center; border: none; padding: 3px;"> <img src="/assets/postimg/StackQueue/Queue.png" alt="Queue.png" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Queue</strong></td> </tr> </table>
 
+
+### 정리
+|        | Vector                 | Stack            | Queue (원형)                              |
+| ------ | ---------------------- | ---------------- | --------------------------------------- |
+| 종류     | 동적 배열 (구현체)            | ADT (LIFO)       | ADT (FIFO)                              |
+| 꺼내는 순서 | 인덱스로 아무거나              | 마지막에 넣은 것        | 처음에 넣은 것                                |
+| 내부 저장소 | `T*` buffer            | `Vector<T*>`     | `Vector<T*>` 또는 `Vector<T>*`            |
+| 넣기     | `push_back` 분할상환 O(1)  | `Push` 분할상환 O(1) | `Push` 분할상환 O(1)                        |
+| 빼기     | `pop_back` O(1)        | `Pop` O(1)       | `Pop` O(1)                              |
+| 접근     | `[i]` O(1)             | top만 O(1)        | front만 O(1)                             |
+| 늘어날 때  | `reserve` (×1.5, O(n)) | Vector가 처리       | `Grow` (×1.5, O(n))                     |
+| 핵심 변수  | `_size`, `_capacity`   | `_size`          | `_front`, `_back`, `_size`, `_capacity` |
+
+
+### 1. Vector
 
 #### Vector 구현 cpp
 
@@ -73,6 +88,11 @@ public:
 	T* begin() { return _buffer; }
 	T* end() { return _buffer + _size; }
 
+	void pop_back()
+	{
+		assert(_size >0);
+		--_size;
+	}
 	void push_back(const T& data)
 	{
 		if (_size == _capacity)
@@ -145,9 +165,6 @@ int main()
 	{
 		cout << v<< " ";
 	}
-
-	
-
 	return 0;
 }
 
@@ -158,8 +175,87 @@ int main()
 복사 연산자, 복사 생성자는 claude와 함께 놓친부분 확인함
 iterator를 활용하기위해 begin, end도 넣음
 
-#### Queue 구현
-#####  01 `Vector<T>*`를 활용한 Queue
+
+### Stack (LIFO)
+
+```
+Push(10) → Push(20) → Push(30) → Pop()
+
+       │ 30 │ ← top (Pop 대상)
+       │ 20 │
+       │ 10 │
+       └────┘
+```
+
+
+#####  01 `Vector<T*>`를 활용한 Stack 구현
+
+``` cpp
+#include <iostream>
+using namespace std;
+#include "Vector.h"
+
+template <typename T>
+class Stack {
+public:
+	explicit Stack(int capacity):_vec(capacity), _capacity(capacity){}
+	~Stack()
+	{
+		for (int i = 0; i < _size; i++)
+			delete _vec[i];
+	}
+	Stack(const Stack&) = delete;                  // 막아두기
+	Stack& operator =(const Stack&) = delete;      // 막아두기
+
+	T* Back()
+	{
+		return _vec[_size - 1];
+	}
+
+	void Pop()
+	{
+		if (_size == 0) return;
+		delete _vec[_size - 1];
+		_vec.pop_back();
+		--_size ;
+	}
+
+	void Push(const T& other)
+	{
+		_vec.push_back(new T(other));
+		++_size ;
+	}
+
+	void Print()
+	{
+		for (int i = 0; i < _size; i++)
+		{
+			cout << *_vec[_size-i-1] << endl;
+		}
+	}
+
+private:
+	Vector<int*> _vec;
+	int _size = 0;
+	int _capacity = 0;
+};
+```
+
+
+
+### Queue(FIFO)
+
+**동작**:
+```
+Push(A) → Push(B) → Push(C) → Pop()
+
+나가는 쪽                        들어오는 쪽
+   front ─→ [ A ][ B ][ C ]
+					         ↑ back
+            (Pop 대상)          (다음 Push 자리는 back이 가리키는 빈칸)
+```
+
+#####  01 `Vector<T>*`를 활용한 Queue 구현
 
 ``` cpp
 template <typename T>
@@ -168,7 +264,7 @@ class Queue{
 public:
 	explicit Queue(int capacity) : _data(new Vector<T>(capacity)), _capacity(capacity)
 	{
-		_data->resize(capacity); //원형 큐 다 채워주기!
+		_data->resize(capacity); // 원형 큐 다 채워주기!
 
 	}
 	~Queue()
@@ -230,7 +326,6 @@ private:
 };
 
 ```
-
 
 원형 Queue로 front / back을 사이클 돌림
 
