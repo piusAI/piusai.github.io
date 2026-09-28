@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: "Heap과 Priorityqueue : 자료구조에서 어디에 위치할까?"
 date: 2026-09-28 23:10:00 +0900
 description: "-"
