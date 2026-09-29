@@ -60,6 +60,7 @@ Sumner, O'Brien, Hodgins, *_Computer Graphics Forum_* Vol. 18 No. 1, 1999[arXiv:
 - 기타 관련 연구: 물/구름/기체, 불, 번개, 낙엽 애니메이션. 특히 물은 파동함수 기반 procedural 모델(Peachey, Fournier & Reeves) → shallow water equation 기반 일반화(Kass & Miller, 모래가 젖는 표현 포함) → 다른 물체와 상호작용하는 물 시뮬레이션(O'Brien & Hodgins) → Navier-Stokes 기반(Foster & Metaxas)으로 발전. 파티클 기반 물보라 모델도 다수 존재
 
 - 식물이 환경과 상호작용하며 성장하는 grammar 기반 모델(Měch & Prusinkiewicz), 물체 표면이 시간에 따라 변화하는 시뮬레이션(Dorsey et al.)도 언급
+
 ---
 ## 03. Simulation of Sand, Mud, and Snow
 
@@ -131,6 +132,7 @@ $∆h = αm$
 -> 흙더미 모양으로 퍼트리는 단계가 Erosion
 
 **슬로프 계산**
+
 $$s = \tan^{-1}\frac{h_{ij} - h_{kl}}{d}$$
 - 인접한 두 기둥의 높이차를 거리로 나눈 경사도- 두 지점사이의 경사도
 
@@ -140,11 +142,12 @@ $$s = \tan^{-1}\frac{h_{ij} - h_{kl}}{d}$$
 
 
 이동식 계산:
+
 $$\Delta h_a = \frac{\sum(h_{ij} - h_{kl})}{n}$$
 - 경사가 가파른 n개 이웃 기둥들에 대해 높이차의 **평균**
 
-- 여기에 $σ$(fractional constant)를 곱해서 그 값만큼 이동 (한번에 다 옮기지 않음)
-- 모든 slope가 $θ_{stop}$이하가 될 때까지 **반복**
+- 여기에 σ(fractional constant)를 곱해서 그 값만큼 이동 (한번에 다 옮기지 않음)
+- 모든 slope가 $θ_{stop}$ 이하가 될 때까지 **반복**
 → 급격한 경사를 깎아서 완만하게 만드는 반복적 완화(relaxation) 알고리즘.  
 흙 더미가 자연스럽게 흘러내리는것처럼 흉내내는 절차적 트릭
 
@@ -156,8 +159,10 @@ $$\Delta h_a = \frac{\sum(h_{ij} - h_{kl})}{n}$$
 - "묻힘" = 삼각형 면적 x 재질별 상수(**adhesion Constant**)
 
 떨어지는 양 (지수감쇠)
+
 $$\Delta v = v\left(e^{-(t - t_c)/h} - e^{-(t - t_c + \Delta t)/h}\right)$$
-- $v$: 삼각형에 처음 묻은 재질 부피
+
+- $v$ : 삼각형에 처음 묻은 재질 부피
 - $t_c$ : 삼각형이 땅에서 떨어진 시각
 - $h$ : *half-life* 파라미터 - 재질이 얼마나 빨리 떨어지는지
 → "묻은 흙이 시간이 지날 수록 지수적으로 떨어져나간다"는 물리적으로 그럴듯한 근사
@@ -170,16 +175,20 @@ $Δv$를 입자 하나의 $φ$부피로 나누면 : 이번 타임 스텝에 생�
 
 **초기 속도** :
 - 삼각형 위 균일하게 랜덤한 점을 뽑는 표준기법 - 두개 난수 $ρ_a, ρ_b$를 이용해 barycentric weight($b_a$, $b_b$, $b_c$)를 만들고, 이걸로 삼각형 세 꼭짓점의 가중합 구함
+
 $$\dot{p}_0 = \nu + \omega \times p_0$$
+
 - 물체의 선속도($v$) + 각속도($\omega$)에 의한 회전성분 ($\omega * P_0$, 즉 물체가 회전하면서 그 지점이 갖는 tangent velocity)
 - 추가로 random Noise를 섞어서 더 자연스럽게 흩어지게 한다
 
 **입자 생성 여부 판정(가속도 기반 확률)**
+
 - 조건 : $(|ṗ_0|/s)^γ > ρ$
 - 물체가 급격히 가속할수록 입자가 튈 확률이 높아짐( 급정거 / 급충돌시 흙이 더 많이 튄다)
 - $s$ : 모든 후보가 무조건 떨어지는 최소 가속도
 - $γ$ : 속도에 따른 확률 곡선의 형태 조절
 - $ρ$ : 랜덤 값 
+
 **시간 분산** : 입자를 타임 스텝 시작 시점에만 딱딱 생성하면 "얇은 판(sheet)처럼 뚝뚝 끊겨 보이므로", 생성 시각을 타임스텝 구간 내에서 랜덤 분산시키고, 해당 시점의 위치/속도를 보간
 
 - 생성된 Particle은 중력 영향을 받아 낙하하며, 기둥의 표면에 닿으면 그 부피가 기둥에 더해짐.
@@ -188,6 +197,7 @@ $$\dot{p}_0 = \nu + \omega \times p_0$$
 Terrain Simulation은 넓은 영역 다뤄야함() 해변 달리기, 눈위를 달리는 스키, 모래골짜기 동물떼 등).
   
 전체 지형에 대한 단순한 구현은 메모리/계산요구로 실현 가능치 않을 것→ **활성 영역만 저장/시뮬레이션* + **병렬 처리**로 최적화.
+
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationPaper/SandMudSnow/activearea.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Active area - Figure 7</strong> </td>  </tr> </table>
 아래 두절은, 활성부분 저장, 시뮬레이션, Compute Parallel해서 합리적인 성능 달성할수있는 최적화 방법 설명
 
@@ -245,6 +255,7 @@ Animator가 다양한 지면 재질의 다양성을 쉽게 만들어 낼 수있�
 | Roughness     | $σ$        | 표면의 불규칙성           | Erosion관련       |
 | Liquidity     | $θ_{stop}$ | 재질이 얼마나 "물처럼" 흐르는지 | Erosion관련       |
 | Compression   | $α$        | 재질이 압축되는 비율 (밀도감)  | Displacement 관련 |
+
 - **Inside / Outside Slope** : 값이 작을수록 Erosion이 많이 일어나 완만한 경사.
 - **Roughness** :   Erosion시 기둥 간 이동하는 재질 조절. (작으면 매끈한 흙더미)
 - **Liquidity** :  타임 스텝당 erosion 반복 횟수 결정.( erosion적으면 : 표면이 물처럼 바깥으로 흘러나가는 것처럼 보임(liquid스타일) / erosion aksgdmaus : 빠르게 최종 형태로 수렴)
@@ -257,6 +268,7 @@ Animator가 다양한 지면 재질의 다양성을 쉽게 만들어 낼 수있�
 | σ      | 0.2   | 0.2  | 0.2  |
 | θ_stop | 0.8   | 1.1  | 1.57 |
 | α      | 0.3   | 0.41 | 0.0  |
+
 관찰 포인트:
 -  $1.57 \approx \pi/2$(90°) — mud·snow의 $θ_{in}, θ_{out}, θ_{stop}$이 거의 다 1.57: erosion을 거의 허용하지 않아 눌린 모양이 그대로 유지됨.  
 - 반면 sand는 값이 작아 경사가 쉽게 무너지고 흘러내림 (모래의 실제 물성과 일치)
