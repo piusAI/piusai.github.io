@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: "Heap과 Priorityqueue : 자료구조에서 어디에 위치할까?"
+title: 자료구조 트리의 전반적인 흐름
 date: 2026-09-28 23:10:00 +0900
 description: "-"
 thumbnail-img:
@@ -15,14 +15,18 @@ tags:
 BST, QuadTree와 같이 Terrain Tessellation 최적화 알고리즘에서 자주 쓰이는 Tree 계열을 이해하려면 먼저 **거시적인**지도가 필요하다.
 
 ### 1. 거시적으로 보는 자료구조
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/Tree.png" alt="Tree" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree Condition</strong> </td>  </tr> </table>
+<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/Tree.png" alt="Tree" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Data Structure</strong> </td>  </tr> </table>
 - **Tree(일반)**: 자식 개수에 제한이 없다.
 - **Binary Tree(이진 트리)**: 자식이 최대 2개다.
 - **완전 이진 트리**: 이진 트리 중에서 위→아래, 왼쪽→오른쪽으로 **빈틈없이** 채운 모양이다.
 - **힙(Heap)**: 완전 이진 트리에 "부모 ≥ 자식"(최대 힙) 또는 "부모 ≤ 자식"(최소 힙) 규칙을 얹은 것이다.
-- **BST**: 이진 트리에 "좌 < 부모 < 우" 규칙을 얹은 것이다. 힙과는 별개의 갈래다.
+- **이진 탐색 트리(BST)**: 이진 트리에 "좌 < 부모 < 우" 규칙을 얹은 것이다. 힙과는 별개의 갈래다.
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="35%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Tree/HeapTree/BT.png" alt="BT" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>BT</strong> </td> <td width="32.5%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Tree/HeapTree/BST.png" alt="BST" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>BST</strong> </td> </tr> </table>
 
 
+
+<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/HT.png" alt="Tree" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree</strong> </td>  </tr> </table>
 #### PriorityQueue는 어디에 있나?
 
 그림에는 PriorityQueue가 힙 안에 적혀 있지만, 엄밀히는 **층위가 다르다**.
@@ -67,36 +71,7 @@ Quad Tree는 `children` 이 **최대 4개**인 트리이다.
     7   4
 ```
 
-#### 배열에서의 Index 공식
-
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/HeapTreeArray.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree in Array</strong> </td>  </tr> </table>
-- i번 노드 자식 왼쪽 : $(2*i) +1$
-- i번 노드 자식 오른쪽 : $(2*i)+2$
-- i번째 부모 : $floor(i-1/2)$
-
-CBT Algorithm2에서와 같이 인덱싱으로 표현 가능!
-
-일반 이진트리는 중간이 빌 수있기때문에 **완전 이진트리**라서 이 Index 공식이 성립한다!  
-- Heap이 배열로 구현되는 이유!
-
-### 4. Heap의 두가지 조건
-
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/HeaptreeCondition01.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree Condition</strong> </td>  </tr> </table>
-**1법칙**
-- 자식 노드 < 부모노드 (maxheap 기준)
-- 마지막 깊이 빼고는 모두 차있다 (완전 BT)
-- 마지막 레벨에서의 노드는 왼쪽부터 채우기
-**2법칙**
-- 노드 갯수알면 트리 구조 확정 가능
-- $2^h-1$가 아니더라도 무조건 트리 구조 확정 가능!
-
-BST는 자식 왼쪽 Subtree< 부모 < 오른쪽 subtree
-
-- 부모/자식 관에만 대소관계가 있고, **형제**끼리는 **노상관**!  
-그래서 힙은 BST 처럼 ***정렬된 상태***가 아니다!  
-**루트 하나(최대/최소)만**이 보장된다.
-
-Priority Queue는 아래 글에서 조금 더 자세히 다루겠다.  
+-> Priority Queue는 아래 글에서 조금 더 자세히 다루겠다.  
 (글 작성 예정)
 
 ### 5. Heap vs Stack

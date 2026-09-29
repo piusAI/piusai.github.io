@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Animation Sand Mud Snow 논문 리뷰
+title: 『Animation Sand Mud Snow(1999)』
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-09-27 21:22:00 +0900
 description: AnimationSandMud
