@@ -80,7 +80,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 307.5,
+    "collapsed": true
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -221,28 +222,75 @@
         "height": 1220,
         "maximize": false,
         "zoom": 0
+      },
+      {
+        "id": "c6fafc6e6fe51b26",
+        "type": "window",
+        "children": [
+          {
+            "id": "9797d94317242bae",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "9a19d3dd4927e16e",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "2026-09-30-NOt-UE-Snow-Defomration-Architecture"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 1277,
+        "y": 0,
+        "width": 1024,
+        "height": 1392,
+        "maximize": false,
+        "zoom": 0
       }
     ]
   },
   "active": "41138cde91f788ce",
   "lastOpenFiles": [
-    "_posts/2026-09-02-R2VB.md",
-    "_posts/2026-09-30-Not-RenderTarget.md",
+    "assets/postimg/DeformationSnow/CustomTrace.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-09-30 011737.png",
     "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
-    "_posts/2026-09-27-animationSandMud.md",
-    "_posts/2026-09-27-Heap-PriorityQueue.md",
+    "_posts/2026-09-14-QuadTree.md",
+    "_posts/2026-09-17-NOT-KDTree.md",
+    "_posts/2026-09-17-SimpleShader.md",
+    "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
+    "_posts/2026-09-30-Not-RenderTarget.md",
+    "assets/postimg/DeformationSnow/ShouldWorkOff.png",
+    "assets/postimg/DeformationSnow/ShouldWorkOn.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-09-30 010629.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-09-30 010514.png",
+    "Pasted image 20260930010533.png",
+    "assets/postimg/DeformationSnow/OnlyMaterial.png",
+    "assets/postimg/DeformationSnow/OnlyMateiral.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-09-30 010114.png",
     "_posts/2026-09-27-NOT-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
+    "assets/postimg/DeformationSnow/OnlyRenderTarget.png",
+    "assets/postimg/DeformationSnow",
+    "assets/postimg/New folder",
+    "_posts/2026-09-02-R2VB.md",
+    "_posts/2026-09-27-animationSandMud.md",
+    "_posts/2026-09-27-Heap-PriorityQueue.md",
     "_posts/2026-09-16-Container.md",
     "_posts/2026-09-17-NOT-Tessellation-SSE.md",
-    "_posts/2026-09-17-SimpleShader.md",
     "_posts/2026-09-17-UE-AssetRegistry.md",
     "_posts/2026-09-21-NOT-UnrealTerrain.md",
     "_posts/2026-09-21-UE-Deformation.md",
     "_posts/2026-09-22-CDLOD.md",
     "_posts/2026-09-22-Container-withPointer.md",
-    "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
-    "assets/postimg/DeformationPaper/SandMudSnow/Gridresolution2.png",
     "_posts/2026-06-28-Extern.md",
     "_posts/2026-06-24-Unreal-ThreadSafe.md",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
@@ -250,27 +298,13 @@
     "_posts/2026-05-30-Thor'sProject001.md",
     "_posts/2026-05-29-RenderPipeline.md",
     "_posts/2026-05-29-FrameWorkArchitecture.md",
-    "_posts/2025-06-18-Ai-Img-do.md",
-    "_posts/2025-06-17-CNN.md",
-    "_posts/2024-10-12-Houdini-VertexPoint.md",
-    "assets/postimg/Tree/HeapTree/Add.png",
-    "assets/postimg/Tree/HeapTree/Screenshot 2026-09-29 221052.png",
-    "assets/postimg/Tree/HeapTree/MaxDel.png",
-    "assets/postimg/Tree/HeapTree/Screenshot 2026-09-29 220653.png",
-    "assets/postimg/Tree/HeapTree/Screenshot 2026-09-29 220458.png",
-    "assets/postimg/Tree/HeapTree/HT.png",
     "assets/postimg/Tree/HeapTree/미확인 446564.crdownload",
-    "assets/postimg/Tree/HeapTree/BST.png",
-    "assets/postimg/Tree/HeapTree/Screenshot 2026-09-29 212728.png",
-    "assets/postimg/Tree/HeapTree/BT.png",
     "assets/postimg/Tree/HeapTree/미확인 559791.crdownload",
     "assets/postimg/Tree/HeapTree",
     "assets/postimg/Tree/BinaryTree",
     "assets/postimg/Tree/무제 폴더",
     "assets/postimg/CPPalgorithm",
     "assets/postimg/무제 폴더",
-    "assets/postimg/DeformationPaper/SandMudSnow",
-    "assets/postimg/DeformationPaper",
-    "assets/postimg/TerrainOpti/CBT"
+    "assets/postimg/DeformationPaper/SandMudSnow"
   ]
 }
