@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: 『Locomotion on Soft Grounds With Dynamic Footprints (2022)』
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-09-27 21:22:00 +0900

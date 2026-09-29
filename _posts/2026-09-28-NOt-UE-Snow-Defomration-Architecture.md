@@ -11,6 +11,14 @@ tags:
   - UnrealClass
   - Unreal
 ---
+아직 현재 나에게도 난제이지만, 아키텍쳐를 완벽하게 이해한다는것은 인터넷 랜선을 다 뽑아놓고 개발할 수있냐고 물었을때 가능하다 하는것은 크게 세가지로 나뉘어진다 생각한다.  
+1. 쉬운 Base 문제이거나
+2. 4번 이상 반복한 작업이거나
+3. 1번과 2번이 아니라면 거짓말 이거나
+아키텍쳐의 이해란 전체 흐름을 디자인 패턴을 구축하고, 내부적인 구현은 검색/Ai으로 찾아보며 함께 흘러가는 것이라 생각한다.  
+
+그래서 
+
 # Snow Deformation 시스템 아키텍처 정리
 
 > `DeformableSnowSystem`
@@ -19,6 +27,20 @@ tags:
 > ✅ 에디터에서 직접 확인됨  
 > 🔶 이름·구조로 추정  
 > ❓ 아직 미확인
+
+
+
+### Main 이해
+1. RT4개 역할 - PingPong 누적 매커니즘(시간 지남에 따른 누적/ 감쇠)
+		RenderTarget의 역할
+		ping-pong 순환구조란?
+>**핑퐁(Ping-Pong) 순환 구조**: `RT_SnowHistory` + `RT_Capture` $\rightarrow$ `M_Merge` 연산 $\rightarrow$ `RT_Snow`에 출력 $\rightarrow$ 다음 프레임에서는 `RT_Snow`가 새로운 `RT_SnowHistory`가 됨.
+
+
+2. World좌표 → RT UV변환
+3. 누적과 감쇠
+4. Material RT Sampling해 WPO / Normal로 바꾸는 흐름
+5. MPC값이 무엇을 맞춰주는가 - 발자국 위치 밀림
 
 ---
 
