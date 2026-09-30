@@ -80,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 260.5,
-    "collapsed": true
+    "width": 260.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -186,8 +185,10 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "41138cde91f788ce",
+  "active": "da51569b31346deb",
   "lastOpenFiles": [
+    "_posts/2026-10-01-RenderTarget-Inshader 1.md",
+    "_posts/2026-09-30-RenderTarget-Inshader.md",
     "assets/postimg/DeformationSnow/Outparameter.png",
     "assets/postimg/DeformationSnow/{D2C47451-F706-4F84-B09A-3D6AE86278F9}.png",
     "assets/postimg/DeformationSnow/M_Snow.png",
@@ -198,13 +199,11 @@
     "assets/postimg/DeformationSnow/{5E68E8EA-1BC0-475C-B5A0-5AA66C37BC39}.png",
     "assets/postimg/DeformationSnow/M_Merge.png",
     "assets/postimg/DeformationSnow/{86D20FF4-B845-47E4-99C3-EF31CFBE1C9A}.png",
-    "assets/postimg/DeformationSnow/SetOffset.png",
     "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
     "_posts/2026-09-30-Not-UE-Delegate.md",
     "_posts/2026-09-21-UE-Deformation.md",
     "_posts/2026-09-28-UE-Snow-Defomration-Architecture.md",
     "assets/postimg/DeformationSnow",
-    "_posts/2026-09-30-RenderTarget-Inshader.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
     "_posts/2026-09-27-NOT-PriorityQueue.md",
     "_posts/2026-09-27-Heap-PriorityQueue.md",
