@@ -11,9 +11,9 @@ tags:
   - UnrealClass
   - Unreal
 ---
-> RenderTaget은 GPU가 직접 그림을 그려 넣을 수 있는 Texture Buffer(GPU 메모리)이다.것이다.
+RenderTaget은 GPU가 직접 그림을 그려 넣을 수 있는 Texture Buffer(GPU 메모리)이다.
 
-이 한 문장에 모든 의미가 들어가 있지만, "**그래서 뭔데?**"에 답하려면 용도별로 내려가야한다.  
+위 한 문장에 모든 의미가 들어가 있지만, "**그래서 뭔데?**"에 답하려면 용도별로 내려가야한다.  
 
 참고 : [BP로 RT Texture 생성하기](https://dev.epicgames.com/documentation/unreal-engine/creating-textures-using-blueprints-and-render-targets?application_version=4.27)
 
