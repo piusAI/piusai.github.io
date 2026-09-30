@@ -1,8 +1,8 @@
 ---
 layout: post
-published: false
+published: true
 title: Priorityqueue의 이해와 구현
-date: 2026-09-28 23:10:00 +0900
+date: 2026-09-30 21:13:00 +0900
 description: "-"
 thumbnail-img:
 categories:
@@ -67,3 +67,93 @@ PriorityQueue, 우선순위 큐는 HeapTree의 구현이다.
 
 
 ### 5. CPP 코드 구현
+
+``` cpp
+
+
+template <typename T>
+class PriorityQueue{
+public:
+	PriorityQueue() {}
+	~PriorityQueue(){
+		for (int i = 0; i < _vec.size(); i++)
+			delete _vec[i];
+	}
+	PriorityQueue(const PriorityQueue&) = delete;
+	PriorityQueue& operator=(const PriorityQueue&) = delete;
+	void Push(const T& data){
+
+		_vec.push_back(new T(data));
+		int current = (int)_vec.size() - 1; //방금 넣은 마지막 원소
+
+		while(current>0)
+		{
+		int parent = int(current -1) / 2;
+		if ( *_vec[parent] > *_vec[current]) break;
+
+		::swap(_vec[current], _vec[parent]);
+		current = parent;
+		}
+	}
+	const T& Top()const
+	{
+		assert(!_vec.empty());
+		return *_vec[0];
+	}
+	void Pop()
+	{
+		if (_vec.empty()) return;
+		::swap(_vec[0], _vec.back()); //루트 맨 뒤로
+		delete _vec.back(); //누수 방지
+		_vec.pop_back();
+
+		int size = (int)_vec.size();
+		int current = 0; //top
+
+		while(true)
+		{
+		int Leftchild = current * 2 + 1;
+		int Rightchild = current * 2 + 2;
+		int largest = current;
+	
+		if (Leftchild < size && *_vec[largest] < *_vec[Leftchild])
+			largest = Leftchild;
+		if (Rightchild < size && *_vec[largest] < *_vec[Rightchild])
+			largest = Rightchild;
+		if (largest == current) break; //부모가 가장크면 빠져나오라!
+	
+		::swap(_vec[current], _vec[largest]);
+		current = largest;
+		}
+	}
+	
+
+	void Print() const
+	{
+		for(int i = 0 ; i < _vec.size(); i ++)
+		cout << *(_vec[i]) << endl;
+	}
+public:
+	vector<T*> _vec;
+
+};
+int main()
+{
+
+	PriorityQueue<int> pq;
+	pq.Push(10);
+	pq.Push(40);
+	pq.Push(50);
+	pq.Push(60);
+	pq.Push(70);
+
+	
+	int TQ = pq.Top();
+	cout <<"TOP :" << TQ << endl;
+	pq.Pop();
+	
+	pq.Print();
+
+}
+
+```
