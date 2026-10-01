@@ -8,35 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "41138cde91f788ce",
+            "id": "d52ab6e2a13ab79f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-01-Not-SnowDeformation2.md",
+                "file": "_posts/2026-10-01-SnowDeformation2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-01-Not-SnowDeformation2"
-            }
-          },
-          {
-            "id": "6d96a6e144050781",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-09-30-SnowDeformation1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-09-30-SnowDeformation1"
+              "title": "2026-10-01-SnowDeformation2"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -95,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5,
-    "collapsed": true
+    "width": 307.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -201,23 +185,63 @@
       "bases:Create new base": false
     }
   },
-  "active": "6d96a6e144050781",
+  "floating": {
+    "id": "2b2c1d36cd745213",
+    "type": "floating",
+    "children": [
+      {
+        "id": "f0ec4a1c9d492a64",
+        "type": "window",
+        "children": [
+          {
+            "id": "3a8880d7731f2eaa",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "41138cde91f788ce",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "_posts/2026-09-30-SnowDeformation1.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "2026-09-30-SnowDeformation1"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": -944,
+        "y": 597,
+        "width": 900,
+        "height": 998,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "d52ab6e2a13ab79f",
   "lastOpenFiles": [
-    "_posts/2026-10-01-Not-SnowDeformation2.md",
+    "_posts/2026-10-02-Not-SnowDeformation3.md",
+    "_posts/2026-10-01-SnowDeformation2.md",
+    "assets/postimg/DeformationSnow/MF_DeformationProcess.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-10-02 001944.png",
+    "assets/postimg/DeformationSnow/M_SnowSeperation.png",
+    "_posts/2026-09-30-SnowDeformation1.md",
+    "assets/postimg/DeformationSnow/M_SnowTotal.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-10-02 000351.png",
+    "assets/postimg/DeformationSnow/M_SnowSideHeapResult.png",
+    "assets/postimg/DeformationSnow/M_SnowSideHeapTest.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-10-01 235710.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-10-01 235615.png",
+    "assets/postimg/DeformationSnow/M_SnowSideHeap.png",
     "_posts/2026-09-30-Not-UE-Delegate.md",
-    "assets/postimg/DeformationSnow/SphereFootprint.png",
-    "assets/postimg/DeformationSnow/SnowFoot.png",
-    "assets/postimg/DeformationSnow/MakeCustomTrace.png",
-    "assets/postimg/DeformationSnow/M_Footprint.png",
-    "assets/postimg/DeformationSnow/M_CustomTrailTest.png",
-    "assets/postimg/DeformationSnow/M_CustomTrail.png",
-    "assets/postimg/DeformationSnow/Footprint_Ex.png",
-    "assets/postimg/DeformationSnow/FootprintTest.png",
-    "assets/postimg/DeformationSnow/Footprint.png",
-    "assets/postimg/DeformationSnow/DrawCustomTrace.png",
     "_posts/2026-09-30-Not-functor.md",
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
-    "_posts/2026-09-30-SnowDeformation1.md",
     "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
     "_posts/2026-09-27-Heap-PriorityQueue.md",

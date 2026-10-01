@@ -116,7 +116,7 @@ RT의 크기와 정밀도는 제한되어 있으므로, **RT가 플레이어와 
 | `M_Snow`         | `RT_SnowHistory`                    | `MF_DeformationProcess`의 In Texture로 사용해 실제 메시 변형                 |
 | `M_SnowDebug`    | `RT_Snow`                           | Emissive로 출력하는 디버그용                                               |
 
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/M_Merge.png" alt="DeformationSnow" style="width: 100%; max-width: 100%; height: auto;"> <br><strong> M_Merge </strong> </td>  </tr> </table>
+
 
 #### 3.3 Material Instance Dynamic 연결
 
@@ -218,7 +218,7 @@ UKismetRenderingLibrary::ClearRenderTarget(this, RT_Snow);
 UKismetRenderingLibrary::DrawMaterialToRenderTarget(this, RT_Snow, M_MergeMID);
 }
 ```
-- `RT_Snow`에서는 Clear를 한번 해주고, `M_MergeMID`로 다시 그린다(DrawMaterialToRT).
+- `RT_Snow`에서는 Clear를 한번 해주고, `M_MergeMID`로 **최종 그림**!(`DrawMaterialToRenderTarget`).
 
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/M_MergeRT.png" alt="DeformationSnow" style="width: 100%; max-width: 100%; height: auto;"> <br><strong> M_Merge내부의 RT </strong> </td>  </tr> </table>
 - `M_MergeMID` <- `M_Merge` ![](data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==)⊃ `RT_History` + `RT_InterMediate`로 구성되어있음
