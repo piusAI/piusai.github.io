@@ -58,7 +58,26 @@ Footprint는 `DrawCurrentAllFootprint`는 RT_Capture받지 않고 위 M_Footprin
 이런 Sphere가 조금 더 안정적임.  
 발자국 밟은 지역에는 안정적으로 하고, displacement 올라와야하는 구간에는 Noise 넣을듯(?) - 확인
 
-###  M_Footprint
+###  M_Merge
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/M_MergeRT.png" alt="M_Merge" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>M_Merge</strong> </td>  </tr> </table>
+
+`M_MergeMID`∈ `SetSnowAttenuation()`, `MergeRT()`
+```
+// ASnowGenerator::SetSnowAttenuation()
+M_MergeMID->SetScalarParameterValue(FName("Attenuation"), Value);
+
+// ASnowGenerator::MergeRT()
+FVector2D ratio = DeltaOffset / SnowFieldSize;
+M_MergeMID->SetVectorParameterValue(FName("Offset"), FLinearColor(ratio.X, ratioY, 0.f, 1.f));
+
+```
+
+`M_Footprint` ∈ `DrawFootprint()` ∈ `DrawCurrentAllFootPrint()`
+
+
+
+
 
 ## 02 Mapping
 
