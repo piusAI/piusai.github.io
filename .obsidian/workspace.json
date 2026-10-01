@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-09-30-Not-functor.md",
+                "file": "_posts/2026-10-01-Not-SnowDeformation2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-09-30-Not-functor"
+              "title": "2026-10-01-Not-SnowDeformation2"
+            }
+          },
+          {
+            "id": "6d96a6e144050781",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-09-30-SnowDeformation1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-09-30-SnowDeformation1"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -41,10 +56,12 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -78,7 +95,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 260.5,
+    "width": 307.5,
     "collapsed": true
   },
   "right": {
@@ -175,20 +192,18 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
-  "active": "41138cde91f788ce",
+  "active": "6d96a6e144050781",
   "lastOpenFiles": [
-    "_posts/2026-09-30-PriorityQueue.md",
-    "_posts/2026-09-30-Not-functor.md",
-    "_posts/2026-09-30-RenderTarget-Inshader.md",
+    "_posts/2026-10-01-Not-SnowDeformation2.md",
     "_posts/2026-09-30-Not-UE-Delegate.md",
     "assets/postimg/DeformationSnow/SphereFootprint.png",
     "assets/postimg/DeformationSnow/SnowFoot.png",
@@ -200,37 +215,38 @@
     "assets/postimg/DeformationSnow/FootprintTest.png",
     "assets/postimg/DeformationSnow/Footprint.png",
     "assets/postimg/DeformationSnow/DrawCustomTrace.png",
-    "_posts/2026-10-01-Not-SnowDeformation2.md",
+    "_posts/2026-09-30-Not-functor.md",
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
-    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
-    "_posts/2026-09-21-UE-Deformation.md",
-    "_posts/2026-09-28-UE-Snow-Defomration-Architecture.md",
-    "assets/postimg/DeformationSnow",
+    "_posts/2026-09-30-SnowDeformation1.md",
+    "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
     "_posts/2026-09-27-Heap-PriorityQueue.md",
-    "().md",
-    "_posts/2026-09-21-NOT-UnrealTerrain.md",
-    "_posts/2026-09-18-NOT-Large-scale.md",
-    "_posts/2026-09-22-Container-withPointer.md",
-    "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
     "_posts/2026-09-27-animationSandMud.md",
-    "_posts/2026-09-27-HeapTree.md",
+    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
+    "_posts/2026-09-30-Not-RenderTarget.md",
+    "_posts/2026-09-27-NOT-PriorityQueue.md",
+    "_posts/2026-09-14-QuadTree.md",
+    "_posts/2026-09-17-NOT-KDTree.md",
+    "_posts/2026-09-17-SimpleShader.md",
+    "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
+    "assets/postimg/DeformationSnow",
+    "assets/postimg/New folder",
+    "_posts/2026-09-02-R2VB.md",
+    "_posts/2026-09-16-Container.md",
+    "_posts/2026-09-17-NOT-Tessellation-SSE.md",
+    "_posts/2026-09-17-UE-AssetRegistry.md",
+    "_posts/2026-09-21-NOT-UnrealTerrain.md",
+    "_posts/2026-09-21-UE-Deformation.md",
+    "_posts/2026-09-22-CDLOD.md",
+    "_posts/2026-09-22-Container-withPointer.md",
+    "_posts/2026-06-28-Extern.md",
+    "assets/postimg/Tree/HeapTree/미확인 446564.crdownload",
+    "assets/postimg/Tree/HeapTree/미확인 559791.crdownload",
     "assets/postimg/Tree/HeapTree",
     "assets/postimg/Tree/BinaryTree",
     "assets/postimg/Tree/무제 폴더",
     "assets/postimg/CPPalgorithm",
     "assets/postimg/무제 폴더",
-    "assets/postimg/DeformationPaper/SandMudSnow",
-    "assets/postimg/DeformationPaper",
-    "_posts/2026-09-22-CDLOD.md",
-    "assets/postimg/TerrainOpti/CBT",
-    "assets/postimg/TerrainOpti/무제 폴더",
-    "_posts/2026-09-17-UE-AssetRegistry.md",
-    "_posts/2026-09-16-Container.md",
-    "_posts/2026-09-17-NOT-Tessellation-SSE.md",
-    "_posts/2026-09-17-NOT-KDTree.md",
-    "_posts/2026-09-15-NOT-UnreaEngine-Library.md",
-    "_posts/2026-09-01-NOT-SnowDeformation.md",
-    "_posts/2026-09-21-ConcurrentbinaryTrees.md"
+    "assets/postimg/DeformationPaper/SandMudSnow"
   ]
 }

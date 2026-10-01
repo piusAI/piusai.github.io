@@ -41,7 +41,6 @@ Texture를 실제로 Player가 들어간것처럼 아래와 같은 발자국으�
 ###  M_Footprint
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/M_Footprint.png" alt="M_Footprint" style="width: 100%; max-width: 100%; height: auto;"> <br><strong> M_Footprint</strong> </td>  </tr> </table>
 M_Footprint는 Contrast주는 Curve Atlas말고는 별거 없음
-
 `M_Footprint` ∈ `DrawFootprint()` ∈ `DrawCurrentAllFootPrint()`
 ```
 //DrawFootprint

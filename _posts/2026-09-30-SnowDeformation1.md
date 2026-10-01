@@ -115,6 +115,7 @@ RT의 크기와 정밀도는 제한되어 있으므로, **RT가 플레이어와 
 | `M_SnowSideHeap` | `RT_Snow`                           | `RT_SnowHistory`로 Draw (눈이 눌린 주변으로 쌓이는 Heap 처리 + History 갱신)      |
 | `M_Snow`         | `RT_SnowHistory`                    | `MF_DeformationProcess`의 In Texture로 사용해 실제 메시 변형                 |
 | `M_SnowDebug`    | `RT_Snow`                           | Emissive로 출력하는 디버그용                                               |
+
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/M_Merge.png" alt="DeformationSnow" style="width: 100%; max-width: 100%; height: auto;"> <br><strong> M_Merge </strong> </td>  </tr> </table>
 
 #### 3.3 Material Instance Dynamic 연결
