@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Snow Deformation ②  - Shader 집중
+title: Snow Deformation ②  - Material에 집중
 subtitle: Constraint
 date: 2026-10-01 23:50:00 +0900
 description: Unreal DataAsset vs PrimaryDataAsset
