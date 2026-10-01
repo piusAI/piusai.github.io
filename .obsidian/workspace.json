@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-09-30-Not-UE-Delegate.md",
+                "file": "_posts/2026-10-01-Not-SnowDeformation2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-09-30-Not-UE-Delegate"
+              "title": "2026-10-01-Not-SnowDeformation2"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -186,25 +188,28 @@
   },
   "active": "41138cde91f788ce",
   "lastOpenFiles": [
-    "_posts/2026-09-30-PriorityQueue.md",
+    "assets/postimg/DeformationSnow/M_CustomTrailTest.png",
+    "assets/postimg/DeformationSnow/{165EB445-B6FC-40FF-B51E-92CB8EC3F77E}.png",
+    "assets/postimg/DeformationSnow/MakeCustomTrace.png",
+    "assets/postimg/DeformationSnow/{E1718344-027E-4795-9D45-E7349FFFB40E}.png",
     "_posts/2026-09-30-RenderTarget-Inshader.md",
-    "_posts/2026-10-01-RenderTarget-Inshader 1.md",
+    "_posts/2026-10-01-Not-SnowDeformation2.md",
+    "_posts/2026-09-30-PriorityQueue.md",
+    "assets/postimg/DeformationSnow/Footprint.png",
+    "assets/postimg/DeformationSnow/미확인 872822.crdownload",
+    "assets/postimg/DeformationSnow/M_CustomTrail.png",
+    "assets/postimg/DeformationSnow/{1ACDC7B2-213B-4107-BBC1-1D1E673C2F9F}.png",
+    "assets/postimg/DeformationSnow/DrawCustomTrace.png",
+    "assets/postimg/DeformationSnow/{6B4C8D69-B2C0-4C4A-9B65-1A8325E5EEA7}.png",
     "assets/postimg/DeformationSnow/Outparameter.png",
     "assets/postimg/DeformationSnow/{D2C47451-F706-4F84-B09A-3D6AE86278F9}.png",
-    "assets/postimg/DeformationSnow/M_Snow.png",
-    "assets/postimg/DeformationSnow/{06B55285-65DF-4FBE-B73E-1B3D0C6BF55B}.png",
-    "assets/postimg/DeformationSnow/M_MergeRT.png",
-    "assets/postimg/DeformationSnow/{E77A778B-A052-4A2A-AA50-5DBDD2A3FC1F}.png",
-    "assets/postimg/DeformationSnow/MF_OffsetUV.png",
-    "assets/postimg/DeformationSnow/{5E68E8EA-1BC0-475C-B5A0-5AA66C37BC39}.png",
-    "assets/postimg/DeformationSnow/M_Merge.png",
-    "assets/postimg/DeformationSnow/{86D20FF4-B845-47E4-99C3-EF31CFBE1C9A}.png",
     "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
     "_posts/2026-09-30-Not-UE-Delegate.md",
     "_posts/2026-09-21-UE-Deformation.md",
     "_posts/2026-09-28-UE-Snow-Defomration-Architecture.md",
     "assets/postimg/DeformationSnow",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
+    "_posts/2026-09-27-NOT-PriorityQueue.md",
     "_posts/2026-09-27-Heap-PriorityQueue.md",
     "().md",
     "_posts/2026-09-21-NOT-UnrealTerrain.md",
@@ -222,15 +227,12 @@
     "assets/postimg/DeformationPaper",
     "_posts/2026-09-22-CDLOD.md",
     "assets/postimg/TerrainOpti/CBT",
-    "assets/postimg/TerrainOpti/무제 폴더",
     "_posts/2026-09-17-UE-AssetRegistry.md",
     "_posts/2026-09-16-Container.md",
     "_posts/2026-09-17-NOT-Tessellation-SSE.md",
     "_posts/2026-09-17-NOT-KDTree.md",
     "_posts/2026-09-15-NOT-UnreaEngine-Library.md",
     "_posts/2026-09-01-NOT-SnowDeformation.md",
-    "_posts/2026-09-21-ConcurrentbinaryTrees.md",
-    "_posts/2026-09-21-CDLOD.md",
-    "_posts/2026-09-21-UnrealTerrain.md"
+    "_posts/2026-09-21-ConcurrentbinaryTrees.md"
   ]
 }

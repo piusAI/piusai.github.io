@@ -67,7 +67,7 @@ RT의 크기와 정밀도는 제한되어 있으므로, **RT가 플레이어와 
 | `BP_CustomTraceComponent` | `HJCS_CustomTraceComponent` (BP)     |
 | `BP_FootprintComponent`   | `HJCJ_FootTraceComponent` (BP)       |
 
-먼저 최소수준, `SnowGenerator`에서의 RT와 `BP_CustomTraceComponent`에서의 RT만 뜯어 이해!
+먼저 최소 수준, `SnowGenerator`에서의 RT와 `BP_CustomTraceComponent`에서의 RT만 뜯어 이해!
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/DeformationSnow.png" alt="DeformationSnow" style="width: 100%; max-width: 100%; height: auto;"> <br><strong> DeformationSnow</strong> </td>  </tr> </table>
 최종 Mateiral의 결과 화면이다.
 
@@ -334,6 +334,6 @@ UKismetRenderingLibrary::DrawMaterialToRenderTarget(this, RT_SnowHistory, M_Snow
 
 ---
 ## Reference
-- SnowDeformable : https://illu.tistory.com/1496#footnote_link_1496_4
-- Deformable Snow System : https://www.fab.com/listings/e5fbb0e8-d234-414d-9599-b8d65e6d0517?lang=en
+- [SnowDeformable](https://illu.tistory.com/1496#footnote_link_1496_4)
+- [Deformable Snow System](https://www.fab.com/listings/e5fbb0e8-d234-414d-9599-b8d65e6d0517?lang=en)
 
