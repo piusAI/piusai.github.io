@@ -11,10 +11,12 @@ tags:
   - UnrealClass
   - Unreal
 ---
-Delegate는 다른 함수를 호출할 수 있도록하는 패턴이다. Functor중의 하나이다.
+Delegate는 다른 함수를 호출할 수 있도록하는 패턴이다.  
+Functor와 비슷한 역할을 하고있다.  
 
 Unreal engine에서는 매크로와 얽히고 섥혀있어 조금 헷갈리긴한다
 
+복사해도 되나, 가급적 **참조** 전달로 하는것이 좋다.
 
 ### delegate
 3박자가 준비되어야한다.
