@@ -35,9 +35,9 @@ PriorityQueue, 우선순위 큐는 HeapTree의 구현이다.
 아래의 `A[0], A[1]`과 같이 Tree를 Vector로 표현하면 인덱스 Number가 존재한다.  
 이것을 자식-부모 인덱스 공식을 만들 수있다.
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/HeapTreeArray.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree in Vector[array]</strong> </td>  </tr> </table>
-- i번 노드 자식 왼쪽 : $(2*i) +1$
-- i번 노드 자식 오른쪽 : $(2*i)+2$
-- i번째 부모 : $floor(i-1/2)$
+- i번 노드 자식 왼쪽 : `(2*i) +1`
+- i번 노드 자식 오른쪽 : `(2*i)+2`
+- i번째 부모 : `floor(i-1/2)`
 
 [CBT Algorithm](https://piusai.github.io/engine/2026/09/29/Concurrent-binaryTrees) 두번째 알고리즘에서와 같이 인덱싱으로 표현 가능!
 
