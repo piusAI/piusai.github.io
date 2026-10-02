@@ -264,6 +264,7 @@ FVector2D RetVal = (FVector2D(WorldPos.X, WorldPos.Y) - Pos) / SnowFieldSize +FV
 | RT_AreaMask        | `UV - 0.5` -> abs -> x2 -> OneMinus -> SmoothStep 으로 RT 가장자리 페이드 |
 | 노말 재계산             | `MF_NormalFormHeightMapSinglePass` 의 Coordinates                 |
 | 셀프 섀도우             | Custom 노드 레이마칭 시작 UV                                             |
+
 그래서 이 함수의 결과가 틀어지면 **RT와 World의 정렬이 전부 깨진다.**  
 이것이 `MF_WorldPosToUV`에만 집중한 이유다.
 
