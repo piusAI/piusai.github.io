@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Snow Deformation ②  - Material에 집중
+title: Snow Deformation ②  - Material 집중
 subtitle: Constraint
 date: 2026-10-01 23:50:00 +0900
 description: Unreal DataAsset vs PrimaryDataAsset
@@ -120,8 +120,10 @@ UKismetRenderingLibrary::DrawMaterialToRenderTarget(this, RT_Snow, M_MergeMID);
 `RT_Snow`의 중점이 이동(offset)되는 이유?
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="23%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/DeformationSnow/MF_OffsetUV.png"  alt="MF_OffsetUV" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>MF_OffsetUV</strong> </td> <td width="13%" style="text-align: center; border: none; padding: 3px;"> <img src="/assets/postimg/DeformationSnow/MF_OffsetResult.png" alt="MF_OffsetUVResult.png" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Offset의 결과 - RT_Snow</strong> </td> </tr> </table>
 - MF_Offset의 Offset으로 UV의 위치를 맞춰준다.
+`RT_Snow`의 Red가 기존의 조금 긴 Trail이고, Green channel이 현재 Actor의 짧은 Accumulated
 
-(추후 Mapping, 위치 맞출떄 좀더 자세히 알아보자)
+(추후 Mapping, 위치 맞출떄 좀더 자세히 알아보자)  
+
 
 ##### M_Merge Test 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="23%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/DeformationSnow/M_MergeTest.png"  alt="M_MergeTest" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>M_MergeTest</strong> </td> <td width="60%" style="text-align: center; border: none; padding: 3px;"> <img src="/assets/postimg/DeformationSnow/M_MergeTestResult.png" alt="M_MergeTestResult.png" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>M_MergeTestResult</strong> </td> </tr> </table>
