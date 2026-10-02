@@ -21,10 +21,9 @@ Actor 위치를 Raw하게 RT에 그대로 받은 그리는 형태가 아니기�
 `WorldpostoUV` 와같은 여러 함수들이 존재하고, material자체에도 수학적인 위치 가 뒤엉켜서 어디지점이 눈을 `WorldPositionOffset.z`로 Vertex를 Displacement시켰는지 정확히 알기 힘들다.
 
 
-
-1. Variable에서의 Mapping : MPC, Material Parameter
-2. Material에서의 Mapping
-3. C++ Function의 Mapping
+1. Variable에서의 Mapping : MPC, Material Parameter, Struct
+2. C++ Function의 Mapping
+3. Material에서의 Mapping
 
 간단한 Material Parameter Collection를 알아보고, Player 위치를 도대체 어떻게 Grid Mesh의 정확한 위치를 **Mapping**하여 displacement까지 했는지를 로그를 찍어보도록 하겠다.
 
@@ -43,7 +42,7 @@ Material ParameterCollection, Material ParameterMapping
 Snow FIeld의 크기이다. Default값으로는 (3000x3000)으로 설정했다.
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/SnowFieldSize.jpg" alt="SnowFieldSize" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>SnowFieldSize : 1200x1200</strong> </td>  </tr> </table>
 위와 같이 1200x1200으로 SnowField를 설정하면 짤린다.  
-아래의 01-02의 `PixelAlign()`에서 알아본다.
+`PixelAlign()` (02-03확인)에서 맞춰줘야한다.
 
 **RT_Resolution** :
 `RT_Snow`, `RT_SnowHistory`, `RT_Intermediate` - 2k(2048) 고정!
@@ -76,7 +75,7 @@ SetScalarParameterValue(this, MPC_Snow, FName("SnowHeight"), SnowHeight);
 
 **PivotAndSize**:  
 RT가 Scrolling되며 픽셀 정렬을 해야한다 했었다.  
-PixelAlign을 꼭 해줘야 RT 중심이 항상 **Texel**경계 위에서만 이동한다.
+PixelAlign(02-03 확인)을 꼭 해줘야 RT 중심이 항상 **Texel**경계 위에서만 이동한다.
 ```cpp
 // ASnowGenerator::UpdatePos()
 const FVector TrackingLocation = IsValid(Pawn) ? Pawn->GetActorLocation() : FVector(-777.f,-777.f, -777.f );
@@ -85,6 +84,85 @@ UKismetMaterialLibrary::SetVectorParameterValue(this, MPC_Snow, FName("PivotAndS
 ```
 **Size**:  SnowFieldSize로 바로 들어감
 **pivot** : Pos.X, PosY로 Pixel 정렬된 값들로 중앙 위치를 잡는다.
+
+
+---
+
+### 02 C++ Function
+#### 02-01 `ASnowGenerator::` **WorldPosToUV**
+: WorldPos vector정보를 UV에 맞춰주는 Function
+``` cpp
+FVector2D ASnowGenerator::WorldPosToUV(const FVector& WorldPos)
+{
+	return ( FVector2D(WorldPos.X, WorldPos.Y) -Pos ) / SnowFieldSize + FVector2D(0.5, 0.5);
+}
+```
+**코드 분석** :  
+> `PixelAligned`된 Pos를 SnowFieldSize 비율로 나누고 원점을 0.5, 0.5 offset해줌
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/WorldPosToUV.png" alt="WorldPosToUV" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>WorldPosToUV - without (Pos기준 뺄셈)</strong> </td>  </tr> </table>
+pos기준으로 하지 않는다면 이렇게 위치 이격이 일어남  
+pos를 기준으로 꼭 빼줘야함!
+
+- `WorldPos - Pos` : Pos를 원점으로 한 `WorldPos` 좌표 : **RT 중심 기준 상대 좌표** 변환
+-  `/SnowFieldSize` snow 필드 크기로 나누어 (-0.5~0.5)범위로 Normalize
+-  +0.5 원점 중심으로 (0~1) 범위로 만든다.
+
+##### 활용
+
+```cpp
+// 사용하는 곳
+WorldPosToUV(Trace.Location); //FCustomTrace Struct 내부
+WorldPosToUV(footprint.Location); //FFootprint Struct 내부
+```
+
+#### 02-02 `ASnowGenerator::` **ComputeScreenPosAndSize**
+: Pos와 Size를 RT의 크기에 맞게 해주는 함수.
+
+``` cpp
+void ComputeScreenPosAndSize(FVector2D UV, float TexSizeScale, float ContactRadius, FVector2D& inPos, FVector2D& inSize)
+{
+	float Temp_Size = TexSizeScale * ContactRadius ; //World기준 footprint
+	inSize = ComputeSizeForRT(Temp_Size, Temp_Size); // -> RT 픽셀 크기
+	inPos = UV * Resolution - (inSize / 2.0f);      // ->RT 픽셀좌표의 좌상단
+}
+```
+- `inSize` : World 크기(Temp_SIze)를 `ComputeSizeForRT()` RT 픽셀크기(Pixel수)로 환산
+- `inPos`: RT Resolution 로 픽셀 좌표 중심을 구한뒤
+- `- (inSize / 2.f)` : 중심 기준 위치를 **좌상단 기준**으로 이동 
+  -> insize(RT 픽셀 크기)의 절반만큼 다시 Pos를 이동시킨다
+	`DrawMaterial`의 `ScreenPosition`이 좌상단이 기준!
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/ComputeScreenPosAndSize.png" alt="ComputeScreenPosAndSize" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>ComputeScreenPosAndSize</strong> </td>  </tr> </table>
+ `inPos = UV * Resolution`이렇게, 중심 기준 **좌상단**으로 이동하지 않으면 발이 조금 밀린다
+ 
+
+
+##### ::ComputeSizeForRT
+
+``` cpp
+FVector2D ComputeSizeForRT(float x, float y)
+{
+	return FVector2D(x, y) / SnowFieldSize * RTResolution;
+}
+```
+
+ComputeScreenPosAndSize의 TexsizeScale
+`ComputeSizeForRT`는
+- ` / SnowFieldSize` : 월드 크기 를 Field 대비 비율(0~1)로 만들고
+- ` * RTResolution` : 그 비율을 Pixel수로 환산! 
+
+##### 활용
+``` cpp
+const FVector2D UV = WorldPosToUV(footprint.Location);
+ComputeScreenPosAndSize(UV, 2.0f, footprint.ContactRadius, InPos, InSize);
+//Inpos, InSize -> DrawMaterial(Canvas)에 넘길 RT 픽셀 좌표계 값
+```
+구조체 내의 정보를 가져와서 `ScreenPosAndSize`맞춤
+
+`WorldPosToUv`(World->UV) ->`ComputeScreenPosAndSize`(UV/World ->RT 픽셀)로 이어지는 변환 체인
+
+
+#### 02-03 `ASnowGenerator::` **PixelAlign**
 
 ```cpp 
 FVector2D ASnowGenerator::PixelAlign(const FVector& PixelPos)
@@ -109,12 +187,8 @@ FVector2D ASnowGenerator::PixelAlign(const FVector& PixelPos)
 이 PixelAligned된 `AlignedPos`가 MPC_Snow의 `PivotAndSize`로 들어감.
 
 
-### Function
-`ASnowGenerator::` **WorldPosToUV**
-`ASnowGenerator::` **ComputeScreenPosAndSize**
-
-
-### 02. Material
+---
+### 03. Material
 
 #### 01-01. Offset  - MFOffset추가
 
@@ -184,4 +258,16 @@ RT_SnowHistory
 
 
 --- 
+### 최종정리
 
+Mapping은 생각보다 별거 없다. 핵심은 `Pos`이다.
+생각보다 Mapping이라는것은 별게 없다.
+1. **공식** : `UV = (WorldPos - Pos) / SnowFieldSIze + 0.5`  
+   `Pos`는 Cpp에서 `PixelAlign()`으로`MPC_Snow`의 `pivot`으로 넘기고,  
+   Material과 Cpp(`WorldPosToUV`)가 같은 공식을 공유한다.
+2. **Scroll** : 
+   Player가 움직여 `Pos`가 바뀌면, `DeltaOffset`(정수 Texel단위)만큼 RT내용을 밀어 기존 자국이 World에 고정되도록 한다.
+3. **Draw**:
+   Footprint / customtrace는 `WorldPosToUV`로 UV를 구해 DrawMaterial로 RT에 그린다.
+
+> Pos가 RT의 중심(UV 0.5, 0.5)을 정의하고, 그 Pos를 정렬해서 Mapping을 안정시키고, Pos가 바뀔때마다 RT 내용을 DeltaOffset만큼 따라 밀어준다.
