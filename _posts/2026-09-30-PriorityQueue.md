@@ -19,7 +19,7 @@ PriorityQueue, 우선순위 큐는 HeapTree의 구현이다.
 이를 Index로 옮길 수있다.
 
 ### 1. Heap의 두가지 Main 조건
-<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/HeaptreeCondition01.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree Condition</strong> </td>  </tr> </table>
+<table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Tree/HeapTree/HeapTreeCondition.png" alt="HeapTreeCondition" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>HeapTree Condition</strong> </td>  </tr> </table>
 **1법칙**
 - 자식 노드 < 부모노드 (Maxheap 기준)
 - 마지막 깊이 빼고는 모두 차있다 (완전 BT)
