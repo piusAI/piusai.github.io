@@ -68,9 +68,10 @@ PriorityQueue, 우선순위 큐는 HeapTree의 구현이다.
 
 ### 5. CPP 코드 구현
 
+
+
 ``` cpp
-
-
+//version01
 template <typename T>
 class PriorityQueue{
 public:
@@ -154,6 +155,117 @@ int main()
 	
 	pq.Print();
 
+}
+
+```
+
+
+
+
+
+``` cpp
+//version02
+#include <iostream>
+using namespace std;
+#include <vector>
+
+template <typename T>
+class Priority_Queue {
+public:
+	Priority_Queue() {}
+	~Priority_Queue() {
+		for (size_t i = 0; i < _data.size(); i++)
+			delete _data[i];
+	}
+
+	// 부모 index : (i-1)/2
+	// 자식 index Left : i*2+1,
+	//           Right  :i*2+2
+	Priority_Queue& operator=(const Priority_Queue&) = delete;
+	Priority_Queue(const Priority_Queue&) = delete;
+
+
+	//값 추가
+	void push(const T& value) {
+		_data.push_back(new T(value));
+
+		int current = (int)_data.size() - 1;
+		while (current > 0)
+		{
+			int parent = (current - 1) / 2;
+			if (*_data[current] > *_data[parent])
+			{
+				::swap(_data[current], _data[parent]);
+				current = parent;
+			}
+			else break;
+		}
+	}
+
+	T* begin() { return _data[0]; }
+	T* end() { return _data[_data.size()-1]; }
+
+	T* Top() { return _data.empty() ? nullptr : _data[0]; }
+
+	//최댓값 제거
+	void pop() {
+		if (_data.empty()) return;
+		delete _data[0];			// root 해제 먼저
+		_data[0] = _data.back();		//마지막 원소 root로!
+		_data.pop_back();
+		//역swap
+		int size = (int)_data.size();
+		int current = 0;
+		while (true)
+		{
+			int left = current * 2 + 1;
+			int right = current * 2 + 2;
+			if (left >= size) break;		//자식 없으면 그만!
+
+			int child = left;
+			if (right <size && *_data[right] > *_data[left]) //*right가 *left보다 더 크면
+				child = right;							//child를 right로 설정!
+			if (*_data[current] < *_data[child])
+			{
+				::swap(_data[current], _data[child]);
+				current = child;
+			}
+			else break;
+
+		}
+	}
+	//void pop_back(){
+	//	delete _data[_data.size() - 1] //pop전에 해제!
+	//	_data.pop_back(); 
+	//}
+	bool empty() const{	return _data.empty(); }
+
+
+public :
+	vector<T*> _data;
+};
+
+int main()
+{
+	Priority_Queue<int> pq;
+	pq.push(20);
+	pq.push(60);
+	pq.push(70);
+	pq.push(40);
+	pq.push(30);
+
+	Priority_Queue<int>& pq2 = pq;
+
+	//for (auto& p : pq2)
+	//{
+	//	cout << p << endl;
+	//} //요놈도 나중에 다시 해보기
+
+	while(!pq.empty())
+	{
+		cout <<*pq.Top() << endl;
+		pq.pop();
+	}
 }
 
 ```
