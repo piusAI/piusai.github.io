@@ -13,26 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-02-Not-SnowDeformation3.md",
+                "file": "_posts/2026-10-02-SnowDeformation3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-02-Not-SnowDeformation3"
-            }
-          },
-          {
-            "id": "60f818f6610744c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-10-01-SnowDeformation2.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-10-01-SnowDeformation2"
+              "title": "2026-10-02-SnowDeformation3"
             }
           }
         ]
@@ -60,7 +46,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -111,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2026-09-15-UnreaEngine-Library.md",
+                "file": "_posts/2026-10-02-SnowDeformation3.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -191,70 +177,30 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
-  },
-  "floating": {
-    "id": "2b2c1d36cd745213",
-    "type": "floating",
-    "children": [
-      {
-        "id": "f0ec4a1c9d492a64",
-        "type": "window",
-        "children": [
-          {
-            "id": "3a8880d7731f2eaa",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "41138cde91f788ce",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "_posts/2026-09-30-SnowDeformation1.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "2026-09-30-SnowDeformation1"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": -944,
-        "y": 461,
-        "width": 515,
-        "height": 571,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
   },
   "active": "d52ab6e2a13ab79f",
   "lastOpenFiles": [
+    "_posts/2026-10-01-SnowDeformation2.md",
+    "_posts/2026-10-02-SnowDeformation3.md",
+    "assets/postimg/DeformationSnow/MF_WorldPosTOUV.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-10-02 211551.png",
+    "_posts/2026-09-30-SnowDeformation1.md",
+    "assets/postimg/DeformationSnow/OffsetNo.png",
+    "assets/postimg/DeformationSnow/Screenshot 2026-10-02 210343.png",
     "assets/postimg/DeformationSnow/ComputeScreenPosAndSize.png",
     "assets/postimg/DeformationSnow/{F65C5C70-C90C-4E2C-8037-259A0B87ED9F}.png",
     "assets/postimg/DeformationSnow/WorldPosToUV.png",
     "assets/postimg/DeformationSnow/{1595909D-B23E-4CB6-8462-2983DA41E692}.png",
-    "_posts/2026-10-01-SnowDeformation2.md",
-    "_posts/2026-10-02-Not-SnowDeformation3.md",
     "assets/postimg/DeformationSnow/SnowFieldSize.jpg",
     "assets/postimg/DeformationSnow/SnowSize.jpg",
-    "Pasted image 20261002110028.png",
-    "assets/postimg/DeformationSnow/MPC.png",
-    "assets/postimg/DeformationSnow/{52D8938F-FC31-4D0B-87B1-AA5D1963E0CE}.png",
-    "_posts/2026-09-30-SnowDeformation1.md",
-    "assets/postimg/DeformationSnow/MF_DeformationProcess.png",
-    "assets/postimg/DeformationSnow/Screenshot 2026-10-02 001944.png",
     "_posts/2026-09-30-Not-UE-Delegate.md",
     "_posts/2026-09-30-Not-functor.md",
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
