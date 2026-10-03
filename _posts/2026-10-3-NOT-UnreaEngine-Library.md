@@ -3,7 +3,7 @@ layout: post
 published: false
 title: UE library For Tools
 subtitle: Constraint
-date: 2026-08-26 19:37:00 +0900
+date: 2026-10-3 19:37:00 +0900
 description: Unreal DataAsset vs PrimaryDataAsset
 categories:
   - Engine
@@ -13,7 +13,6 @@ tags:
 ---
 
 활용되는 Library들을 저장 해두려한다.
-
 ## Library, Asset 관련
 
 # Unreal Editor Utility Library 정리
@@ -35,3 +34,12 @@ tags:
 |  |  |  |  |  |
 |  |  |  |  |  |
 
+Module
+
+## Module 관련
+
+
+| 모듈명            | 함수                               | 시그니처                                                                                      | 설명                                   | 소스 링크 |
+| -------------- | -------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------ | ----- |
+| ContentBrowser | GetAllPathViewContextMenuExtners | `TArray<FContentBrowserMenuExtender_SelectedPaths>& GetAllPathViewContextMenuExtenders()` | PathViewContextMenuExtenders를 return |       |
+|                |                                  |                                                                                           |                                      |       |
