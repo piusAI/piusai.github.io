@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: GeometryClipmap 최적화?
+title: 『GeometryClipmap』
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-09-01 18:32:00 +0900
 description: Paper Keyword?

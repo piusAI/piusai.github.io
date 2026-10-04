@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: ROAM Algorithm이란?
+title: 『ROAM Algorithm』
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-09-16 18:32:00 +0900
 description: Paper Keyword?
@@ -12,6 +12,7 @@ tags:
 author: PIUS
 ---
 Classic Tessellation Optimize방식, ROAM 알고리즘을 알고싶다.
+
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;">
   <tr style="border: none;">

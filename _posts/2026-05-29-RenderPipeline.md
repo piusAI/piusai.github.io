@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: RenderPipeline?
+title: Graphics Render Pipeline!
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-05-29 15:32:00 +0900
 description: C++의 OOP를 제거하고 오직 그래픽스 렌더파이프라인에만 집중해본 연구 기록입니다.
@@ -13,7 +13,8 @@ tags:
   - RenderPipeline
 author: PIUS
 ---
-##  RenderPipeline?
+##  Graphics Render Pipeline
+그래픽스 렌더 파이프라인의 전반적인 흐름을 알아본다.
 
 ![Render Pipeline Image]({{ '/assets/img/Renderpipeline.jpg' | relative_url }})
 정확히는 Rasterizer RenderPipeline(DX11 Render Pipeline)이다.
@@ -52,9 +53,9 @@ Frame Buffer는 GPU 메모리(VRAM)에 존재하는 Render Target으로, 화면�
 <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_001.jpg' | relative_url }}" width="500">
 
 
-| Step 01 | Step 02 |
-|----------|----------|
-| <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_002.jpg' | relative_url }}" width="500"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_003.jpg' | relative_url }}" width="500"> | 
+| Step 01                                                           | Step 02                       |                                                                   |                               |     |
+| ----------------------------------------------------------------- | ----------------------------- | ----------------------------------------------------------------- | ----------------------------- | --- |
+| <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_002.jpg' | relative_url }}" width="500"> | <img src="{{ '/assets/postimg/RenderPipeline/DccWorkFlow_003.jpg' | relative_url }}" width="500"> |     |
 
 | Step 03 | Step 04 | 
 |----------|----------|
@@ -62,25 +63,26 @@ Frame Buffer는 GPU 메모리(VRAM)에 존재하는 Render Target으로, 화면�
 
 
 ---
-Art강의할때, 어떻게 하면 처음 3D를 접하는 사람들에게 쉽게 이해할수 있게 할까를 고민하고 고민한 결과 위 PDF가 가장 이해시키기 좋았다. Art작업에서의 Workflow이다. RenderPipeline과 대응하면서 이해할만큼의 매치가 되지는 않지만, RenderPiepeline에 들어가기전에 이 작업을 이해한 상태에서 들어갔기때문에 조금 더 쉽게 이해했던것 같다. 
+Art강의할때는 `3D Workflow`를  위 이미지로 이해시켰다
+이것은 Art의 파이프라인으로, graphics RenderPipeline이랑 다르다.  
+RenderPiepeline에 들어가기전에 이 작업을 이해한 상태에서 들어갔기때문에 조금 더 쉽게 이해했던것 같다. 
 
+ 간략화한 단계들을 먼저 이야기 해보겠다.
 
-그 기억을 되살려서, 간략화한 단계들을 먼저 이야기 해보겠다.
+> **IA->VS->HS(option)->T->DS(option)->GS(Optional)->SO->RS->PS->OM**
 
-**IA->VS->HS(option)->T->DS(option)->GS(Optional)->SO->RS->PS->OM** 라는 단계가 있다. 
+위 단계가 Graphics Pipeline의 전체 흐름(Dx11부터 T->DS->GS추가)이다.
+좀 더 간략화한다면
 
-좀 더 간략화하자.
+> **IA->VS->T->SO->RS->PS->OM** 
 
-**IA->VS->T->SO->RS->PS->OM** 
-이렇게 간략화 할 수있다.
 
 그래픽스를 조금 더 거시적으로 본다면
-> Graphics는 GPU가 메모리상의 Render Target에 이미지를 생성하고, 이를 Present()로 Display에 출력하는 과정이다.
+> Graphics는 GPU가 메모리상의 Render Target에 이미지를 생성하고,  
+> 이를 Present()로 Display에 출력하는 과정이다.
 
 `Scene Data → GPU가 Render Target(Back Buffer)에 그림 → 완성된 Back Buffer를 Present
 → Swap Chain이 화면에 표시 → 모니터가 스캔아웃`
-
-위는 도식화하였다
 
 ### 01 IA :Input Assembler(X)
 Input Assembler, Vtx Buffer, Index Buffer를 활용해서 위치를 들고있다.
@@ -90,48 +92,15 @@ Input Assembler, Vtx Buffer, Index Buffer를 활용해서 위치를 들고있다
 주요한 Matrix 변환 : (Local Transform -> World Transform -> ViewTransform -> ScreenProjection)
 
 
-### 03 HS : Hull Shader(O)
-
-### 04 T : Tessellator (X)
-
-### 05 DS : DomainShader (O)
-
-### 06 GS : Geometry Shader (O)
-
-### 07 SO : Stream Output(X)
-
-### 08 RS : Rasterizer(X)
-
-### 09 PS : PixelShader(O)
-
-### 10 OM : Output Merger(X)
-
-
---- 블로그 작성중
-
-{% highlight cpp %}
-
-#include <iostream>
-using namespace std;
-int main()
-{
-    cout << "Test Home" << endl;
-    return 0;
-}
-{% endhighlight %}  
-
 ---
 
 
 ### 📌 학습 및 구현 참조 레퍼런스
 
-
-* [Braynzar Soft DX11][braynzar] : C++의 OOP 구조를 걷어내고, 오직 렌더파이프라인 자체에만 집중해서 로직을 구현해 볼 수 있었습니다.
-
-* [Rastertek DX11][Rastertek] : 전체적인 그래픽스 엔진 프레임워크를 설계하고 빌드하면서 깊이 있게 공부해볼 수 있습니다.
+* [Braynzar Soft DX11][braynzar] : C++의 OOP 구조를 걷어내고, 오직 렌더파이프라인 자체에만 집중해서 로직을 구현해 볼 수 있음
+* [Rastertek DX11][Rastertek] : 전체적인 그래픽스 엔진 프레임워크를 설계하고 빌드하면서 깊이 있게 공부해볼 수 있음
 
   
 
-[braynzar]: https://www.braynzarsoft.net/viewtutorial/q16390-4-begin-drawing
-
+[braynzar]: https://www.braynzarsoft.net/viewtutorial/q16390-4-begin-drawing  
 [Rastertek]: https://www.rastertek.com/dx11win10tut04.html
