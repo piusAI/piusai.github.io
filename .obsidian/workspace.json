@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-09-30-funcpointer.md",
+                "file": "_posts/2026-10-04-GAE-Chapter 02.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-09-30-funcpointer"
+              "title": "2026-10-04-GAE-Chapter 02"
             }
           }
         ]
@@ -41,12 +41,10 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
-                "showSearch": false,
-                "searchQuery": ""
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -63,7 +61,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "검색"
             }
           },
           {
@@ -177,46 +175,46 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
   },
   "active": "60f818f6610744c5",
   "lastOpenFiles": [
-    "_posts/2026-10-3-NOT-UnreaEngine-Library.md",
-    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
-    "_posts/2026-09-30-PriorityQueue.md",
-    "_posts/2026-09-30-funcpointer.md",
-    "assets/postimg/cpp/lpfnWndProc.png",
-    "assets/postimg/cpp/미확인 599891.crdownload",
-    "assets/postimg/cpp/funcptr.png",
-    "assets/postimg/cpp/Screenshot 2026-10-04 105432.png",
-    "_posts/2026-10-03-GAE-Chapter 02.md",
-    "assets/postimg/cpp/미확인 768971.crdownload",
-    "assets/postimg/cpp",
-    "assets/postimg/New folder",
-    "assets/postimg/GAE/Build.png",
-    "assets/postimg/GAE/BUILD.png",
-    "assets/postimg/GAE/build_pipeline_address_resolution.png",
+    "_posts/2026-09-16-Tessellation-ROAM.md",
+    "_posts/2026-10-04-GAE-Chapter 02.md",
+    "assets/postimg/GAE/UEinsight.png",
+    "assets/postimg/GAE/미확인 605468.crdownload",
+    "assets/postimg/GAE/watch.png",
+    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.56.37.png",
+    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.48.03.png",
     "_posts/2026-10-01-SnowDeformation2.md",
-    "_posts/2026-10-02-Not-SnowDeformation3.md",
-    "assets/postimg/Tree/HeapTree/HeapTreeCondition.png",
-    "assets/postimg/GAE/UE.png",
-    "assets/postimg/GAE/P4V.png",
-    "assets/postimg/GAE",
-    "assets/postimg/DeformationSnow/WorldPosToUV.png",
     "_posts/2026-10-02-SnowDeformation3.md",
+    "assets/postimg/GAE/Dependencies_Lib.png",
+    "assets/postimg/GAE/Dependencies_Input.png",
+    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.28.44.png",
+    "assets/postimg/GAE/Dependencies.png",
+    "assets/postimg/GAE/Dependence.png",
+    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.25.49.png",
+    "assets/postimg/cpp",
+    "_posts/2026-09-30-funcpointer.md",
+    "_posts/2026-10-3-NOT-UnreaEngine-Library.md",
+    "_posts/2026-10-02-Not-SnowDeformation3.md",
+    "assets/postimg/GAE",
     "_posts/2026-09-30-SnowDeformation1.md",
     "_posts/2026-09-30-Not-UE-Delegate.md",
+    "_posts/2026-09-30-Not-functor.md",
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
+    "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
     "_posts/2026-09-27-Heap-PriorityQueue.md",
     "_posts/2026-09-27-animationSandMud.md",
+    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
     "_posts/2026-09-30-Not-RenderTarget.md",
     "_posts/2026-09-27-NOT-PriorityQueue.md",
     "_posts/2026-09-14-QuadTree.md",
@@ -224,14 +222,15 @@
     "_posts/2026-09-17-SimpleShader.md",
     "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
     "assets/postimg/DeformationSnow",
+    "assets/postimg/New folder",
     "_posts/2026-09-02-R2VB.md",
     "_posts/2026-09-16-Container.md",
     "_posts/2026-09-17-NOT-Tessellation-SSE.md",
     "_posts/2026-09-17-UE-AssetRegistry.md",
-    "_posts/2026-09-21-NOT-UnrealTerrain.md",
     "assets/postimg/Tree/HeapTree/미확인 446564.crdownload",
     "assets/postimg/Tree/HeapTree/미확인 559791.crdownload",
     "assets/postimg/Tree/HeapTree",
-    "assets/postimg/Tree/BinaryTree"
+    "assets/postimg/Tree/BinaryTree",
+    "assets/postimg/Tree/무제 폴더"
   ]
 }
