@@ -4,41 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "e2e44774c5a256c8",
+        "id": "d8437c2cb722d522",
         "type": "tabs",
         "children": [
           {
-            "id": "60f818f6610744c5",
+            "id": "096139f30625187e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-05-29-RenderPipeline.md",
+                "file": "_posts/2026-10-04-DXShader.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-05-29-RenderPipeline"
-            }
-          }
-        ]
-      },
-      {
-        "id": "c9bbd17b943bb5bd",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "112db69ca072527d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-10-04-Shader.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-10-04-Shader"
+              "title": "2026-10-04-DXShader"
             }
           }
         ]
@@ -204,10 +184,24 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "112db69ca072527d",
+  "active": "096139f30625187e",
   "lastOpenFiles": [
+    "assets/postimg/D3D/DxShaderPerFrame.png",
+    "assets/postimg/D3D/dx11_shader_per_frame_only.png",
+    "assets/postimg/D3D/Shadercpptohlsl.png",
+    "assets/postimg/D3D/dx11_shader_cpp_hlsl_pairing.png",
+    "_posts/2026-05-31-D3D-Initialize.md",
+    "_posts/2026-10-04-DXShader.md",
+    "assets/postimg/D3D/DxRender.png",
+    "assets/postimg/D3D/dx11_shader_per_frame_draw.png",
+    "_posts/2026-09-27-Heap-PriorityQueue.md",
+    "assets/postimg/D3D/DxInitshader.png",
+    "assets/postimg/D3D/dx11_shader_init_once.png",
+    "assets/postimg/D3D/D3DInitialize001.jpg",
+    "assets/postimg/D3D",
+    "assets/postimg/D3DInit/dx11_shader_init_once.png",
+    "assets/postimg/GAE/dx11_shader_init_once.png",
     "_posts/2026-05-29-RenderPipeline.md",
-    "_posts/2026-10-04-Shader.md",
     "_posts/2026-08-29-AABB-OBB.md",
     "_posts/2026-09-03-GeometryClipmap.md",
     "_posts/2026-09-16-Tessellation-ROAM.md",
@@ -216,19 +210,9 @@
     "_posts/2026-09-21-UE-Deformation.md",
     "_posts/2026-09-22-Container-withPointer.md",
     "_posts/2026-10-04-GAE-Chapter 02.md",
-    "assets/postimg/GAE/UEinsight.png",
     "assets/postimg/GAE/미확인 605468.crdownload",
-    "assets/postimg/GAE/watch.png",
-    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.56.37.png",
-    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.48.03.png",
     "_posts/2026-10-01-SnowDeformation2.md",
     "_posts/2026-10-02-SnowDeformation3.md",
-    "assets/postimg/GAE/Dependencies_Lib.png",
-    "assets/postimg/GAE/Dependencies_Input.png",
-    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.28.44.png",
-    "assets/postimg/GAE/Dependencies.png",
-    "assets/postimg/GAE/Dependence.png",
-    "assets/postimg/GAE/스크린샷 2026-10-04 오후 1.25.49.png",
     "assets/postimg/cpp",
     "_posts/2026-09-30-funcpointer.md",
     "_posts/2026-10-3-NOT-UnreaEngine-Library.md",
@@ -240,17 +224,13 @@
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
     "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
-    "_posts/2026-09-27-Heap-PriorityQueue.md",
     "_posts/2026-09-27-animationSandMud.md",
     "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
-    "_posts/2026-09-30-Not-RenderTarget.md",
-    "_posts/2026-09-27-NOT-PriorityQueue.md",
     "assets/postimg/DeformationSnow",
     "assets/postimg/New folder",
     "assets/postimg/Tree/HeapTree/미확인 446564.crdownload",
     "assets/postimg/Tree/HeapTree/미확인 559791.crdownload",
     "assets/postimg/Tree/HeapTree",
-    "assets/postimg/Tree/BinaryTree",
-    "assets/postimg/Tree/무제 폴더"
+    "assets/postimg/Tree/BinaryTree"
   ]
 }
