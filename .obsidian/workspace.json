@@ -4,21 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "d8437c2cb722d522",
+        "id": "e2e44774c5a256c8",
         "type": "tabs",
         "children": [
           {
-            "id": "096139f30625187e",
+            "id": "60f818f6610744c5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-05-GEA-Chapter-03-01.md",
+                "file": "_posts/2026-10-05-functor.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-05-GEA-Chapter-03-01"
+              "title": "2026-10-05-functor"
+            }
+          },
+          {
+            "id": "dd294c6072eb7ff1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-10-05-functor.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-10-05-functor"
             }
           }
         ]
@@ -41,10 +55,12 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -61,7 +77,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "검색"
+              "title": "Search"
             }
           },
           {
@@ -78,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5,
-    "collapsed": true
+    "width": 307.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -175,61 +190,61 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
-  "active": "096139f30625187e",
+  "active": "60f818f6610744c5",
   "lastOpenFiles": [
-    "_posts/2026-10-04-GEA-Chapter 02.md",
+    "_posts/2026-09-30-PriorityQueue.md",
+    "_posts/2026-10-05-functor.md",
+    "assets/postimg/cpp/Functor.png",
+    "assets/postimg/cpp/미확인 82491.crdownload",
     "_posts/2026-10-05-GEA-Chapter-03-01.md",
-    "_posts/2026-10-04-DXShader.md",
+    "_posts/2026-08-27-const.md",
+    "assets/postimg/GAE/watch.png",
     "assets/postimg/GAE/UML.png",
-    "assets/postimg/GAE/스크린샷 2026-10-05 오후 12.07.15.png",
-    "assets/postimg/GAE/스크린샷 2026-10-05 오후 12.04.51.png",
-    "assets/postimg/D3D/DxShaderPerFrame.png",
-    "assets/postimg/D3D/dx11_shader_per_frame_only.png",
+    "assets/postimg/GAE/UEinsight.png",
+    "assets/postimg/GAE/Dependencies_Lib.png",
+    "assets/postimg/GAE/Dependencies_Input.png",
     "assets/postimg/D3D/Shadercpptohlsl.png",
-    "assets/postimg/D3D/dx11_shader_cpp_hlsl_pairing.png",
-    "_posts/2026-05-31-D3D-Initialize.md",
+    "assets/postimg/D3D/DxShaderPerFrame.png",
     "assets/postimg/D3D/DxRender.png",
-    "assets/postimg/D3D/dx11_shader_per_frame_draw.png",
-    "_posts/2026-09-27-Heap-PriorityQueue.md",
     "assets/postimg/D3D/DxInitshader.png",
     "assets/postimg/D3D",
-    "_posts/2026-05-29-RenderPipeline.md",
-    "_posts/2026-08-29-AABB-OBB.md",
-    "_posts/2026-09-03-GeometryClipmap.md",
-    "_posts/2026-09-16-Tessellation-ROAM.md",
-    "_posts/2026-09-22-CDLOD.md",
-    "_posts/2026-09-18-NOT-Large-scale.md",
-    "_posts/2026-09-21-UE-Deformation.md",
-    "_posts/2026-09-22-Container-withPointer.md",
-    "assets/postimg/GAE/미확인 605468.crdownload",
-    "_posts/2026-10-01-SnowDeformation2.md",
-    "_posts/2026-10-02-SnowDeformation3.md",
-    "assets/postimg/cpp",
-    "_posts/2026-09-30-funcpointer.md",
+    "_posts/2026-10-04-GEA-Chapter 02.md",
+    "_posts/2026-10-04-DXShader.md",
     "_posts/2026-10-3-NOT-UnreaEngine-Library.md",
+    "_posts/2026-09-30-funcpointer.md",
+    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
+    "assets/postimg/cpp/미확인 599891.crdownload",
+    "_posts/2026-10-03-GAE-Chapter 02.md",
+    "assets/postimg/cpp/미확인 768971.crdownload",
+    "assets/postimg/cpp",
+    "assets/postimg/New folder",
+    "_posts/2026-10-01-SnowDeformation2.md",
     "_posts/2026-10-02-Not-SnowDeformation3.md",
     "assets/postimg/GAE",
+    "_posts/2026-10-02-SnowDeformation3.md",
     "_posts/2026-09-30-SnowDeformation1.md",
     "_posts/2026-09-30-Not-UE-Delegate.md",
-    "_posts/2026-09-30-Not-functor.md",
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
-    "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
+    "_posts/2026-09-27-Heap-PriorityQueue.md",
     "_posts/2026-09-27-animationSandMud.md",
+    "_posts/2026-09-30-Not-RenderTarget.md",
+    "_posts/2026-09-27-NOT-PriorityQueue.md",
+    "_posts/2026-09-14-QuadTree.md",
+    "_posts/2026-09-17-NOT-KDTree.md",
+    "_posts/2026-09-17-SimpleShader.md",
+    "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
     "assets/postimg/DeformationSnow",
-    "assets/postimg/New folder",
     "assets/postimg/Tree/HeapTree/미확인 446564.crdownload",
-    "assets/postimg/Tree/HeapTree/미확인 559791.crdownload",
-    "assets/postimg/Tree/HeapTree",
-    "assets/postimg/Tree/BinaryTree"
+    "assets/postimg/Tree/HeapTree/미확인 559791.crdownload"
   ]
 }
