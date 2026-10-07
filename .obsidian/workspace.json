@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 307.5,
+    "collapsed": true
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -201,6 +202,8 @@
   },
   "active": "60f818f6610744c5",
   "lastOpenFiles": [
+    "_posts/2026-10-06-GEA-Chapter-03-02.md",
+    "_posts/2026-10-07-Library.md",
     "assets/postimg/cpp/Library04.png",
     "assets/postimg/cpp/미확인 392918.crdownload",
     "assets/postimg/cpp/Library03.png",
@@ -210,17 +213,14 @@
     "assets/postimg/cpp/Library0.png",
     "assets/postimg/cpp/미확인 477036.crdownload",
     "_posts/2026-10-05-GEA-Chapter-03-01.md",
-    "_posts/2026-10-07-Library.md",
     "assets/postimg/cpp/Library01.png",
     "assets/postimg/cpp/미확인 394060.crdownload",
     "_posts/2026-10-05-functor.md",
-    "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "assets/postimg/GAE/2_128.png",
     "assets/postimg/GAE/스크린샷 2026-10-07 오후 3.33.29.png",
     "assets/postimg/GAE/floating.png",
     "assets/postimg/GAE/스크린샷 2026-10-06 오후 6.26.44.png",
     "assets/postimg/GAE/스크린샷 2026-10-06 오후 6.25.32.png",
-    "assets/postimg/GAE/fixedpoint.png",
     "_posts/2026-09-30-PriorityQueue.md",
     "assets/postimg/cpp/미확인 82491.crdownload",
     "_posts/2026-08-27-const.md",
