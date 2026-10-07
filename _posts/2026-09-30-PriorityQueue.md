@@ -161,7 +161,7 @@ int main()
 
 
 
-
+### Predicate functor 활용버전
 
 ``` cpp
 //version02
@@ -169,7 +169,7 @@ int main()
 using namespace std;
 #include <vector>
 
-template <typename T>
+template <typename T, typename Predicate=less<T>>
 class Priority_Queue {
 public:
 	Priority_Queue() {}
@@ -193,7 +193,7 @@ public:
 		while (current > 0)
 		{
 			int parent = (current - 1) / 2;
-			if (*_data[current] > *_data[parent])
+			if (_predicate (*_data[current], *_data[parent]))
 			{
 				::swap(_data[current], _data[parent]);
 				current = parent;
@@ -203,7 +203,7 @@ public:
 	}
 
 	T* begin() { return _data[0]; }
-	T* end() { return _data[_data.size()-1]; }
+	T* end() { return _data[_data.size() - 1]; }
 
 	T* Top() { return _data.empty() ? nullptr : _data[0]; }
 
@@ -223,9 +223,9 @@ public:
 			if (left >= size) break;		//자식 없으면 그만!
 
 			int child = left;
-			if (right <size && *_data[right] > *_data[left]) //*right가 *left보다 더 크면
+			if (right <size && _predicate(*_data[right], *_data[left])) //*right가 *left보다 더 크면
 				child = right;							//child를 right로 설정!
-			if (*_data[current] < *_data[child])
+			if (_predicate (*_data[child], *_data[current]))
 			{
 				::swap(_data[current], _data[child]);
 				current = child;
@@ -238,34 +238,40 @@ public:
 	//	delete _data[_data.size() - 1] //pop전에 해제!
 	//	_data.pop_back(); 
 	//}
-	bool empty() const{	return _data.empty(); }
+	bool empty() const { return _data.empty(); }
 
 
-public :
+public:
 	vector<T*> _data;
+	Predicate _predicate;
 };
 
 int main()
 {
-	Priority_Queue<int> pq;
+	Priority_Queue<int, greater<int>> pq;
 	pq.push(20);
 	pq.push(60);
 	pq.push(70);
 	pq.push(40);
 	pq.push(30);
 
-	Priority_Queue<int>& pq2 = pq;
+	Priority_Queue<int, greater<int>>& pq2 = pq;
 
 	//for (auto& p : pq2)
 	//{
 	//	cout << p << endl;
 	//} //요놈도 나중에 다시 해보기
 
-	while(!pq.empty())
+	while (!pq.empty())
 	{
-		cout <<*pq.Top() << endl;
+		cout << *pq.Top() << endl;
 		pq.pop();
 	}
 }
 
+
 ```
+
+- Functor, Predicate를 template로 설정해, 대소 비교 조건 변경가능
+- 한 방향으로 대신 비교를 밀어줘야한다,
+- `*_vec[current] > *_vec[child]`, `_vec[parent] > _vec[current]`이런식으로 왼쪽으로 비교 밀어준다음 Predicate로 감싸줘야함!
