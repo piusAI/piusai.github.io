@@ -35,7 +35,8 @@
               "title": "2026-10-07-Graph"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,7 +61,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -111,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2026-09-15-UnreaEngine-Library.md",
+                "file": "_posts/2026-10-07-Graph.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +122,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "백링크"
             }
           },
           {
@@ -191,19 +192,22 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
   },
-  "active": "60f818f6610744c5",
+  "active": "dd294c6072eb7ff1",
   "lastOpenFiles": [
-    "_posts/2026-10-07-Library.md",
+    "_posts/2026-09-30-PriorityQueue.md",
+    "무제.base",
     "_posts/2026-10-07-Graph.md",
+    "_posts/2026-10-06-GEA-Chapter-03-02.md",
+    "_posts/2026-10-07-Library.md",
     "assets/postimg/Algorithm/Graph/Graph01.png",
     "assets/postimg/Algorithm/Graph/Screenshot 2026-10-07 232851.png",
     "assets/postimg/Algorithm/Graph/Screenshot 2026-10-07 232713.png",
@@ -215,18 +219,15 @@
     "assets/postimg/Algorithm/New folder",
     "assets/postimg/Algorithm",
     "assets/postimg/New folder",
-    "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-10-05-GEA-Chapter-03-01.md",
     "assets/postimg/cpp/Library05.png",
     "assets/postimg/cpp/미확인 560630.crdownload",
-    "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "assets/postimg/cpp/Library04.png",
     "assets/postimg/cpp/미확인 392918.crdownload",
     "assets/postimg/cpp/Library03.png",
     "assets/postimg/cpp/미확인 325909.crdownload",
     "assets/postimg/cpp/Library02.png",
     "assets/postimg/cpp/미확인 849939.crdownload",
-    "assets/postimg/cpp/미확인 477036.crdownload",
     "_posts/2026-10-05-functor.md",
     "_posts/2026-08-27-const.md",
     "_posts/2026-10-04-GEA-Chapter 02.md",

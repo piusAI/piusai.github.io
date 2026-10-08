@@ -137,7 +137,6 @@ $v_{2}$ : while loop 안에서 Next타고 한바퀴 돌아 n(각형)개수로 �
 
 "While loop로 부모르 거슬러 올라가는 iteration 방식"
 
-
 pseudu CODE :
 > function BisectorVertices($b^{d}_{j}$ : bisector)
 > 	halfedgeID ← j / $2^d$                  // root bisector index
@@ -161,15 +160,15 @@ $$M_b = \begin{cases} M_0 & b=0 \text{ (첫째 자식)} \\ M_1 & b=1 \text{ (둘
 > ↦ ; 찾는다
 
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/TerrainOpti/CBT/CBT_Figure03_01.png" alt="VS003" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>이웃 삼각형</strong> </td>  </tr> </table>
- ❶ 다음 면조각
+❶ 다음 면조각
 $Next(h_7) = h_8 ↦ b^0_8$
 - $h_7$의 다음 h8에서 $b^0_8$ 삼각형
 
-❷같은 면 내, 내 이전 조각
+❷ 같은 면 내, 내 이전 조각
 $Prev(h_7) = h_11 ↦ b^0_{11}$
 - $h_7$의 이전 h1에서 $b^0_8$ 삼각형
 
-❸같은 면 내, 내 이전 조각
+❸ 같은 면 내, 내 이전 조각
 $Twin(h_7) = h_1 ↦ b^0_1$
 - $h_7$의 짝(반대 면 halfedge) h_1에서 $b^0_8$ 삼각형
 - 변 사이에 두고 건너 편에있는 면 조각
