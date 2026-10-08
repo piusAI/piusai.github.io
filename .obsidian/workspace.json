@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-07-Library.md",
+                "file": "_posts/2026-10-04-DXShader.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-07-Library"
+              "title": "2026-10-04-DXShader"
             }
           },
           {
@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-07-Graph.md",
+                "file": "_posts/2026-10-08-PhongReflection.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-07-Graph"
+              "title": "2026-10-08-PhongReflection"
             }
           }
         ]
@@ -55,9 +55,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
-                "showSearch": false,
-                "searchQuery": ""
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -94,7 +92,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5
+    "width": 307.5,
+    "collapsed": true
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -201,11 +200,27 @@
   },
   "active": "60f818f6610744c5",
   "lastOpenFiles": [
+    "_posts/2026-10-08-PhongReflection.md",
+    "assets/postimg/Shader/Shading_models.png",
+    "assets/postimg/Shader/vertexInterpolation.png",
+    "assets/postimg/Shader/스크린샷 2026-10-08 오후 2.29.08.png",
+    "assets/postimg/Shader/스크린샷 2026-10-08 오후 2.25.58.png",
+    "assets/postimg/Shader",
+    "assets/postimg/무제 폴더",
     "_posts/2026-10-07-Graph.md",
+    "_posts/2026-10-04-DXShader.md",
+    "_posts/2026-09-27-animationSandMud.md",
+    "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
+    "_posts/2026-09-30-funcpointer.md",
+    "_posts/2026-09-30-Not-UE-Delegate.md",
+    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
+    "_posts/2026-09-30-PriorityQueue.md",
+    "_posts/2026-09-30-SnowDeformation1.md",
+    "_posts/2026-10-01-SnowDeformation2.md",
+    "_posts/2026-10-02-SnowDeformation3.md",
+    "_posts/2026-10-05-GEA-Chapter-03-01.md",
     "_posts/2026-10-07-Library.md",
     "_posts/2026-10-06-GEA-Chapter-03-02.md",
-    "_posts/2026-10-05-GEA-Chapter-03-01.md",
-    "_posts/2026-09-30-PriorityQueue.md",
     "무제.base",
     "assets/postimg/Algorithm/Graph/Graph01.png",
     "assets/postimg/Algorithm/Graph/Screenshot 2026-10-07 232851.png",
@@ -218,33 +233,17 @@
     "assets/postimg/Algorithm/New folder",
     "assets/postimg/Algorithm",
     "assets/postimg/New folder",
-    "assets/postimg/cpp/Library05.png",
     "assets/postimg/cpp/미확인 560630.crdownload",
-    "assets/postimg/cpp/Library04.png",
     "assets/postimg/cpp/미확인 392918.crdownload",
-    "assets/postimg/cpp/Library03.png",
-    "assets/postimg/cpp/미확인 325909.crdownload",
-    "assets/postimg/cpp/Library02.png",
-    "assets/postimg/cpp/미확인 849939.crdownload",
     "_posts/2026-10-05-functor.md",
     "_posts/2026-08-27-const.md",
     "_posts/2026-10-04-GEA-Chapter 02.md",
-    "_posts/2026-10-04-DXShader.md",
     "_posts/2026-10-3-NOT-UnreaEngine-Library.md",
-    "_posts/2026-09-30-funcpointer.md",
-    "_posts/2026-09-30-NOt-UE-Snow-Defomration-Architecture.md",
     "_posts/2026-10-03-GAE-Chapter 02.md",
-    "_posts/2026-10-01-SnowDeformation2.md",
     "_posts/2026-10-02-Not-SnowDeformation3.md",
-    "_posts/2026-10-02-SnowDeformation3.md",
-    "_posts/2026-09-30-SnowDeformation1.md",
-    "_posts/2026-09-30-Not-UE-Delegate.md",
     "_posts/2026-10-01-RenderTarget-Inshader 1.md",
-    "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
     "_posts/2026-09-27-Heap-PriorityQueue.md",
-    "_posts/2026-09-27-animationSandMud.md",
     "_posts/2026-09-30-Not-RenderTarget.md",
-    "_posts/2026-09-27-NOT-PriorityQueue.md",
-    "_posts/2026-09-14-QuadTree.md"
+    "_posts/2026-09-27-NOT-PriorityQueue.md"
   ]
 }
