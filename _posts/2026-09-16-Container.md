@@ -11,17 +11,18 @@ tags:
   - cpp
   - ComputerScience
 ---
+STL에서 활용 법을 알아보고, 
 Vector, Stack, Queue(원형)의 기본 자료구조를 구현한다.
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="23%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/StackQueue/Stack.png"  alt="Stack" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Stack</strong> </td> <td width="32.5%" style="text-align: center; border: none; padding: 3px;"> <img src="/assets/postimg/StackQueue/Queue.png" alt="Queue.png" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Queue</strong></td> </tr> </table>
 
 
-### 정리
+### 01 Abstract
 
 |        | Vector                 | Stack            | Queue (원형)                              |
 | ------ | ---------------------- | ---------------- | --------------------------------------- |
 | 종류     | 동적 배열 (구현체)            | ADT (LIFO)       | ADT (FIFO)                              |
-| 꺼내는 순서 | 인덱스로 아무거나              | 마지막에 넣은 것        | 처음에 넣은 것                                |
+| 꺼내는 순서 | 인덱스로 아무거나 가능           | 마지막에 넣은 것        | 처음에 넣은 것                                |
 | 내부 저장소 | `T*` buffer            | `Vector<T*>`     | `Vector<T*>` 또는 `Vector<T>*`            |
 | 넣기     | `push_back` 분할상환 O(1)  | `Push` 분할상환 O(1) | `Push` 분할상환 O(1)                        |
 | 빼기     | `pop_back` O(1)        | `Pop` O(1)       | `Pop` O(1)                              |
@@ -29,10 +30,37 @@ Vector, Stack, Queue(원형)의 기본 자료구조를 구현한다.
 | 늘어날 때  | `reserve` (×1.5, O(n)) | Vector가 처리       | `Grow` (×1.5, O(n))                     |
 | 핵심 변수  | `_size`, `_capacity`   | `_size`          | `_front`, `_back`, `_size`, `_capacity` |
 
+### 02 Vector
 
-### 1. Vector
+#### 02-01 이중 벡터 표현하기
+``` cpp
+#include <vector>
+using namespace std;
 
-#### Vector 구현 cpp
+vector<vector<bool>> DoubleVectorBool(3, vector<bool>(3, false));
+vector<vector<int>> DoubleVectorInt(4 ,vector<int>(4, -1));
+
+```
+
+- 초기화된 메모리 구조는 다음과 같다
+```
+//DoubleVectorBool - false 0으로 표현
+{{ 0, 0, 0 },
+{ 0, 0, 0 },
+{ 0, 0, 0 }}
+
+//DoubleVectorInt
+{{-1, -1, -1, -1},
+{-1, -1, -1, -1},
+{-1, -1, -1, -1},
+{-1, -1, -1, -1}}
+```
+- 접근 : `doubleVectorInt[Row][Column]` - `doubleVectorInt[1][2] `= 5;
+
+### 직접 구현하는 Vector, Stack, Queue
+
+#### 01. 직접 구현하는 Vector .cpp
+
 
 ``` cpp
 #include <iostream>
@@ -177,7 +205,7 @@ int main()
 iterator를 활용하기위해 begin, end도 넣음
 
 
-### Stack (LIFO)
+#### 2. 직접 구현하는 Stack (LIFO)
 
 ```
 Push(10) → Push(20) → Push(30) → Pop()
@@ -243,8 +271,7 @@ private:
 ```
 
 
-
-### Queue(FIFO)
+#### 3. 직접 구현하는 Queue(FIFO)
 
 **동작**:
 ```
