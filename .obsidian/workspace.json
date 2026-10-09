@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-06-GEA-Chapter-03-02.md",
+                "file": "_posts/2026-06-28-RAII.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-06-GEA-Chapter-03-02"
+              "title": "2026-06-28-RAII"
             }
           },
           {
@@ -94,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5,
-    "collapsed": true
+    "width": 307.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -202,6 +201,7 @@
   },
   "active": "60f818f6610744c5",
   "lastOpenFiles": [
+    "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "assets/postimg/GAE/Static.png",
     "assets/postimg/GAE/Screenshot 2026-10-09 090032.png",
     "무제.base",
@@ -225,9 +225,7 @@
     "assets/postimg/New folder",
     "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-10-05-GEA-Chapter-03-01.md",
-    "assets/postimg/cpp/Library05.png",
     "assets/postimg/cpp/미확인 560630.crdownload",
-    "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "assets/postimg/cpp/미확인 392918.crdownload",
     "assets/postimg/cpp/미확인 325909.crdownload",
     "_posts/2026-10-05-functor.md",
