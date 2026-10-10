@@ -8,35 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "dd294c6072eb7ff1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-10-10-Static.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-10-10-Static"
-            }
-          },
-          {
             "id": "e751158b46a9fc86",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-06-GEA-Chapter-03-02.md",
+                "file": "_posts/2026-Not-10-08-PhongReflection.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-06-GEA-Chapter-03-02"
+              "title": "2026-Not-10-08-PhongReflection"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -93,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 307.5,
-    "collapsed": true
+    "width": 349.5024719238281
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -201,14 +185,14 @@
   },
   "active": "e751158b46a9fc86",
   "lastOpenFiles": [
+    "_posts/2026-10-10-Compile.md",
+    "_posts/2026-Not-10-08-PhongReflection.md",
     "_posts/2026-10-10-Static.md",
     "_posts/2026-10-06-GEA-Chapter-03-02.md",
-    "_posts/2026-10-10-Compile.md",
     "_posts/2026-10-05-GEA-Chapter-03-01.md",
     "_posts/2026-10-07-Library.md",
     "_posts/2026-10-07-Not-Graph.md",
     "_posts/2026-09-21-UE-Deformation.md",
-    "_posts/2026-Not-10-08-PhongReflection.md",
     "_posts/2026-10-05-functor.md",
     "_posts/2026-09-16-Tessellation-ROAM.md",
     "assets/postimg/GAE/Static.png",
