@@ -35,7 +35,8 @@
               "title": "2026-10-06-GEA-Chapter-03-02"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -198,11 +199,11 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "dd294c6072eb7ff1",
+  "active": "e751158b46a9fc86",
   "lastOpenFiles": [
+    "_posts/2026-10-10-Static.md",
     "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "_posts/2026-10-10-Compile.md",
-    "_posts/2026-10-10-Static.md",
     "_posts/2026-10-05-GEA-Chapter-03-01.md",
     "_posts/2026-10-07-Library.md",
     "_posts/2026-10-07-Not-Graph.md",
