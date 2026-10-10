@@ -11,6 +11,7 @@ tags:
   - UnrealClass
   - Unreal
 ---
+
 #### RenderTarget 기반 Snow Deformation 접근 방식?
 눈과 같은 Deformation은 Terrain 지오메트리 만든 이후에 **RT에 저장된 변형값을 geometry에 반영하는 단계**이다, Unreal engine에서는 3가지로 크게 진행할 수 있는데 그 3가지를 알아보겠다.
 

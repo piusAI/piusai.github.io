@@ -3,7 +3,7 @@ layout: post
 published: false
 title: UnrealTerrain
 thumbnail-img: /assets/img/Renderpipeline.jpg
-date:   2026-09-21 18:32:00 +0900
+date: 2026-09-21 18:32:00 +0900
 description: Paper Keyword?
 categories:
   - Graphics
@@ -11,6 +11,7 @@ tags:
   - Graphics
 author: PIUS
 ---
+
 ## WorldPartition
 CPU에서 **DrawCall**을 보내는 권장 최대 Terrain Component수 : 1024
 LOD보다, "Streaming"으로
