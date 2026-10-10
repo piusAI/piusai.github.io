@@ -43,7 +43,8 @@ vector<vector<int>> DoubleVectorInt(4 ,vector<int>(4, -1));
 ```
 
 - 초기화된 메모리 구조는 다음과 같다
-```
+
+{% raw %}
 //DoubleVectorBool - false 0으로 표현
 {{ 0, 0, 0 },
 { 0, 0, 0 },
@@ -54,7 +55,8 @@ vector<vector<int>> DoubleVectorInt(4 ,vector<int>(4, -1));
 {-1, -1, -1, -1},
 {-1, -1, -1, -1},
 {-1, -1, -1, -1}}
-```
+{% endraw %}
+
 - 접근 : `doubleVectorInt[Row][Column]` - `doubleVectorInt[1][2] `= 5;
 
 ### 직접 구현하는 Vector, Stack, Queue
