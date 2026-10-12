@@ -11,18 +11,10 @@ tags:
   - Graphics
 author: PIUS
 ---
-
-
-### V03
-
-- CVar로 토글 가능하도록 올리기
-
-
-
+AIZ Algorithm R&D진행중 ver3구현 아키텍쳐를 정리했다.
 ### 0. Ver3 CPU 레퍼런스 구현
 
 > 범위 : 엔진 통합 계층(Component -> SceneProxy)까지.
-
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;">
   <tr style="border: none;">
     <td width="100%" style="text-align: center; border: none; padding: 5px;">
@@ -120,6 +112,9 @@ float CVarIZRefineDistance;
 
 
 
+
+
+---
 
 ### 6. V3 전체 코드 
 
