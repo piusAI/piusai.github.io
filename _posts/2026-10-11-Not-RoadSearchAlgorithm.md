@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: 길찾기 알고리즘 (DFS, BFS, A*)
 date: 2026-10-11 08:33:00 +0900
 description: "-"
