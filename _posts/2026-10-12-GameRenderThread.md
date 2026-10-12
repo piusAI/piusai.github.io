@@ -29,6 +29,7 @@ UE는 **GameThread(GT)** 와 **RenderThread(RT)** 를 따로 두어서 병렬로
 두 스레드가 서로를 기다리지 않도록 **비동기(async)** 로 동작시켜 처리량을 높이는 것이 목적이다.
 
 ---
+
 ### 2. 왜 "복사"해서 전달하는가 (GT-> RT 전달 이유)
 
 - RT가 GT에서 관리하는 `UObject`/ `Component`데이터에 **직접 접근을 막도록**하기 위함
@@ -39,7 +40,7 @@ UE는 **GameThread(GT)** 와 **RenderThread(RT)** 를 따로 두어서 병렬로
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/UEGraphics/GTRT/GTtoRT.png" alt="GTtoRT" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>GTtoRT</strong> </td>  </tr> </table>
 
 
-### GT->RT 전달 패턴 5가지
+### 3. GT->RT 전달 패턴 5가지
 
 #### ① `UPrimitiveComponent` → `FPrimitiveSceneProxy`
 - Mesh, Material 정보, 렌더링 파라미터 등을 **렌더링 전용 객체(Proxy)** 에 복사해서 보관
@@ -84,7 +85,7 @@ GT → `ENQUEUE_RENDER_COMMAND(...)` → RT
 
 ---
 
-### 전달 흐름 정리
+### 4. 전달 흐름 정리
 **GT측 (보내는 쪽)**:  
 - `ENQUEUE_RENDER_COMMAND`로 RT로 보내며, Lambda로 캡쳐해서 전달
 - 렌더링용 **Data Packet**을 구성해서 보낸다.
@@ -107,7 +108,7 @@ ENQUEUE_RENDER_COMMAND( CommandName )(
 
 ---
 
-#### 한눈에 보기
+### 5. 한눈에 보기
 
 
 |     | 패턴                     | 전달 대상              | 핵심                   |
