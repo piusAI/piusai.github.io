@@ -34,7 +34,7 @@ author: PIUS
 | **8**  | Bounds/Culling, 프로파일링 (`RDG_GPU_STAT`, RenderDoc)                                                  | 패스별 ms 측정표 완성                                         | `CalcBounds`를 displacement min/max 기반으로 확장                                        |
 1. 2번까지 진행
 
-Plugin Module형식으로 붙힘
+### V03
 ```
 AIZTessellaitonShader/
 ├── AIZTessellaitonShader.uplugin
@@ -43,14 +43,29 @@ AIZTessellaitonShader/
 │       ├── TessellationShader.Build.cs
 │       ├── Public/
 │       │   └── AIZTessellationCompoent.h
+│       │   └── AIZComopnent.h
+│       │   └── FIZCBT.h
+│       │   └── FIZLEB.h
+│       │   └── IZCVars.h
+│       │   └── IZGridComponent.h
+│       │   └── IZGridSceneProxy.h
+│       │   └── IZRefineMetric.h
+│       │   └── IZTemporalTessellationComponent.h
+│       │   └── IZTypes.h
 │       └── Private/
-│           └── AIZTessellationCompoent.cpp
+│           └── AIZComponent.cpp
+│           └── AIZTessellationShader.cpp
+│           └── IZCVars.cpp
+│           └── IZGridComponent.cpp
+│           └── IZGridSceneProxy.cpp
 └── Shaders/
     └── .ush, .usf
 ```
 
 
 - CVar로 토글 가능하도록 올리기
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/AIZ/IZV3Algorithm.png" alt="v3 Algorithm Architecture" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Algorithm Architecture</strong> </td>  </tr> </table>
 
 ---
 ### 0. 작업 규칙
@@ -63,22 +78,6 @@ AIZTessellaitonShader/
 
 ### 1. 현재 위치 / 전체 지도
 
-- [x] Player GameMode + 이동 구현 (실험용)
-- [ ] 0 ~ 8단계 (아래)
-
-```
-Step0 Grid+Proxy 골격
-  └ Step1 AIZComponent (GT→RT 데이터)
-      └ Step2 CBT/LEB CPU + 거리 베이스라인
-          └ Step3 Crack 검증 / 디버그 시각화
-              └ Step4 RDG Compute 이식 (4a~4e)
-                  └ Step5 Snow RT 연동 (Displacement/Normal/MinMax)
-                      └ Step6 AIZ 계층 (논문 핵심)
-                          └ Step7 Compensation
-                              └ Step8 Bounds/Culling/Profiling
-```
-
-**모듈 구조 제안**
 
 | 구분       | 클래스                                        | 역할                         |
 | -------- | ------------------------------------------ | -------------------------- |
@@ -91,9 +90,6 @@ Step0 Grid+Proxy 골격
 > `UActorComponent`는 SceneProxy를 가질 수 없다.
 > 그래서 AIZComponent(데이터)와 GridComponent(렌더)를 분리한다.
 
----
-
-### Step v3. Grid Component + SceneProxy 골격
 
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;">
@@ -103,34 +99,74 @@ Step0 Grid+Proxy 골격
         <img src="https://img.youtube.com/vi/Hv6IKS_8Sp8/maxresdefault.jpg" alt="영상 미리보기" style="width: 100%; max-width: 100%; height: auto;">
         <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg') no-repeat center/contain;"></span>
       </a>
-      <strong>AIZ V3</strong>
+      <strong>SphereTest</strong>
     </td>
   </tr>
 </table>
 
-**목표**: 평평한 사각형 하나가 `UPrimitiveComponent`로 화면에 그려진다.
-**파일**: `IZGridComponent.h/.cpp`, `IZGridSceneProxy.h/.cpp`, `IZ.Build.cs`(모듈 의존성), CVar 정의 파일
 
-``` Aiz Algorithm FrameWork
-Player(Actor)
-└ UAIZComponent ← 플레이어 위치/속도/접촉 이벤트만 수집 (데이터 공급)
 
-Grid(Actor)
-└ UIZGridComponent ← 그리드 소유 + 렌더링 담당
-	└ FIZGridSceneProxy ← 렌더 스레드 쪽 객체
-		├ FIZCBT ← 그냥 C++ 클래스 (컴포넌트 아님)
-		├ FIZLEB ← 그냥 C++ 클래스
-		└RefineMetric ← 함수
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;">
+  <tr style="border: none;">
+    <td width="100%" style="text-align: center; border: none; padding: 5px;">
+      <a href="https://www.youtube.com/watch?v=bIsvpShIB-k&feature=youtu.be" target="_blank" style="position: relative; display: inline-block;">
+        <img src="https://img.youtube.com/vi/bIsvpShIB-k/maxresdefault.jpg" alt="영상 미리보기" style="width: 100%; max-width: 100%; height: auto;">
+        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: url('https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_play_button_icon_%282013%E2%80%932017%29.svg') no-repeat center/contain;"></span>
+      </a>
+      <strong>Version03 Done</strong>
+    </td>
+  </tr>
+</table>
 
+
+
+- Data `GT->RT`단 반향
+  - `GridCompoent`: PostUpdateWork단계에서 대상 고른다 우선순위 trackedActor→Player Pawn →World내 Pawn → 가장 가까운 AizComponent 순
+  - `ENQUEUE_RENDER_COMMAND`로 넘긴다. RT는 끝나면 삼각형 개수만 `AsyncTask`로 돌려준다.
+
+## Code Reviw
+
+### AIZTessellationShader.h/.cpp
+
+- 모듈형으로 붙히기위해
+
+### IZCVars.h / .cpp
+
+``` cpp
+int32 CVarIZEnable;
+int32 CVarIZDebugPrintProxyState;
+int32 CVarIZDebugLevelColor;
+int32 CVarIZDebugWireframe;
+int32 CVarIZMaxDepth;
+float CVarIZRefineDistance;
 ```
+- CVar로 toggle가능하도록 
+- `IZ.Enable`, `IZ.Debug.LevelColor`, `IZ.Debug.Wireframe` 로 시각화 가능
 
-**할 일**
-- [ ] `UIZGridComponent` 작성: `CreateSceneProxy()`, `CalcBounds()` (일단 고정 크기)
-- [ ] `FIZGridSceneProxy::GetDynamicMeshElements()`에서 `FDynamicMeshBuilder`로 삼각형 2개(사각형) 출력
-- [ ] 월드에 GridComponent를 가진 Actor 배치
-- [ ] CVar `IZ.Enable` 추가
-**공부 포인트**: GT 객체(Component)와 RT 객체(SceneProxy)가 왜 분리되는가. `FPrimitiveSceneProxy` 수명과 스레드 규칙.
-**완료 기준**: 에디터/PIE에서 사각형이 보이고, `IZ.Enable 0`으로 사라진다.
 
----
+### AIZComponent
+- **Telemetry** : IZ Component와 통신할 수있도록 component 부착할수있도록함.
+- Class derive : UActorComponent
+  `UActorComponent::OnRegister` :  Scene설정된후 `CreateRenderState_Concurrent`,`OnCreatePhysicsState`가 호출되기전에 호출됨
 
+| 함수                               | 역할                        |
+| -------------------------------- | ------------------------- |
+| `OnRegister()`                   | Engine에 컴포넌트 등록 시 필요한 초기화 |
+| `CreateRenderState_Concurrent()` | 렌더링 시스템이 사용할 상태 생성        |
+| `OnCreatePhysicsState()`         | 물리 시뮬레이션에 필요한 상태 생성       |
+
+
+`static TArray<TWeakObjectPtr<UAIZComponent>>`인, 전역 목록에 올려놓고,
+`UAIZComponent` 가 찾기 쉽도록 등록해놓음.
+
+
+`Proxy`로 나누어서 `GridComponent`를 GT에서 다루고, `GridSceneProxy`를 RT에서 다루도록,
+- 게임 로직과 렌더 스레드를 개별적으로 나누어서 렌더링에 필요한 데이터만 복사해서 RT전용객체에 담아두는것을 Proxy로 보냄.
+`ENQUEUE_RENDER_COMMAND` ->
+
+
+GT RT사이의 순서
+- `ENEQUEUE_RENDER_COMMAND`로 GT가 넣은 순서대로 RT에서 실행된다.
+### IZGridcomponent_v03.h/.cpp
+- Parent derive : UMeshComponent
+- `UPrimitiveComponent::PostEditChangeProperty` : Editor변경시 후처리 용도
