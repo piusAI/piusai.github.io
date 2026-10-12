@@ -3,7 +3,7 @@ layout: post
 published: true
 title: GameThread → RenderThread 데이터 전달
 subtitle: GameThread, RenderThread
-date: 2026-10-3 19:37:00 +0900
+date: 2026-10-12 22:24:00 +0900
 description: Unreal DataAsset vs PrimaryDataAsset
 categories:
   - Engine

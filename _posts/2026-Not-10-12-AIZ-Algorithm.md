@@ -120,9 +120,11 @@ AIZTessellaitonShader/
 
 
 
-- Data `GT->RT`단 반향
+- Data `GT->RT`단 반향 [GT&RT]()
   - `GridCompoent`: PostUpdateWork단계에서 대상 고른다 우선순위 trackedActor→Player Pawn →World내 Pawn → 가장 가까운 AizComponent 순
   - `ENQUEUE_RENDER_COMMAND`로 넘긴다. RT는 끝나면 삼각형 개수만 `AsyncTask`로 돌려준다.
+
+
 
 ## Code Reviw
 

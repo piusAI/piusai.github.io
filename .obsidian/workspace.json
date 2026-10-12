@@ -41,10 +41,12 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -78,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 314.5024719238281,
-    "collapsed": true
+    "width": 288.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -186,9 +187,10 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
-    "_posts/2026-Not-10-08-PhongReflection.md",
     "_posts/2026-Not-10-12-AIZ-Algorithm.md",
+    "_posts/2026-10-11-RoadFoundAlgorithm.md",
     "_posts/2026-10-12-GameRenderThread.md",
+    "_posts/2026-Not-10-08-PhongReflection.md",
     "assets/postimg/UEGraphics/GTRT/GTtoRT.png",
     "assets/postimg/UEGraphics/GTRT",
     "assets/postimg/UEGraphics/무제 폴더",
