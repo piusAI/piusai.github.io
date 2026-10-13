@@ -1,7 +1,7 @@
 ---
 layout: post
 published: false
-title: AIZ Algorithgm LoadMap
+title: "AIZ Algorithgm(ver.3) : CPU 적응형 Terrain 알고리즘"
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-10-12 21:22:00 +0900
 description: AnimationSandMud
@@ -12,6 +12,14 @@ tags:
 author: PIUS
 ---
 AIZ Algorithm R&D진행중 ver3구현 아키텍쳐를 정리했다.
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/AIZ/V3Arhitecture.png" alt="V3Arhitecture" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>V3 Architecture</strong> </td>  </tr> </table>
+
+- `FLEB`가 CPU에서 분할, 메시 생성 수정후, `Proxy::GetDynamicMeshElements()`가 결과를 GPU 렌더링용 메시를 구성하는 구조
+- CPU에서 CBT/LEB 분할 계산을하고 ->CPU에서 Vertex index 생성 -> GPU업로드 후 렌더링
+- 추후버전 :
+  1. GPU ComputeShader로 RT 샘플링후 CBT/LEB 분할 -> 메시생성 
+  2. GPU Buffer ->Indeirect Draw..?
 ### 0. Ver3 CPU 레퍼런스 구현
 
 > 범위 : 엔진 통합 계층(Component -> SceneProxy)까지.
@@ -30,14 +38,14 @@ AIZ Algorithm R&D진행중 ver3구현 아키텍쳐를 정리했다.
 - 구현은 **엔진 통합 계층**과 **알고리즘 계층**으로 나뉨.
   - UE 통합 : `UAIZComponent`, `UIZGridComponent(_v03)`, `FIZGridSceneProxy(v_03`
   - 알고리즘 : `FIZCBT`, `FIZLEB`, `FIZRefineMetirc`
-  
+
+
 #### 1-01. ISSUE
 - 현재 Version3는 **CPU 레퍼런스**다. RT에서 `Refine`을 CPU로 돌리고 Mesh를 매 프레임 업로드한다.
 - 추후 버전에서는 GPU버전으로 옮기기!
   - CBT BitField가 GPU buffer로, refine이 Compute로 바뀌도록
 
 ### 2. Data 흐름
-
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/AIZ/V3DataFlow.png" alt="V3DataFlow" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>V3DataFlow</strong> </td>  </tr> </table>
 - `FSceneProxy::GetDynamicMeshElements()` : Rendering 할 Mesh정보 수집해서 MeshDraw 명령[MeshSceneProxy](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/FStaticMeshSceneProxy/GetDynamicMeshElements)로 RT에서 호출되는 CPU 함수. GPU에서 실행되는 호출이 아님. 단순히 렌더링할 요소에 대한 설명을 수집하는 역할만!
@@ -77,8 +85,8 @@ float CVarIZRefineDistance;
 - 모두 `ECVF_RenderThreadSafe`로 RT에서 읽는다.
 - `IZ.Enable`, `IZ.Debug.LevelColor`, `IZ.Debug.Wireframe` 로 시각화 가능
 
-##### AIZComponent - GT전용 데이터 공급
-- Super Class : `UActorComponent`, Render/Physics없이 순수 Telemetry수집용
+#### AIZComponent - GT전용 데이터 공급
+- Super Class : `UActorComponent`, Render/Physics없이 순수 Telemetry 수집용
 - **UpdateInteractionTelemetry** : 위치, 속도, 지면 LineTrace로 `bIsContacting` 판정
 - `static TArray<TWeakObjectPtr<UAIZComponent>> ActiveAIZComponents` 에 등록해 Grid가 찾기 쉽도록 함. `OnRegister / BeginPlay`에서 추가하고 `OnUnregister/EndPlay`에서 제거.
 
@@ -95,13 +103,13 @@ float CVarIZRefineDistance;
 - `UPrimitiveComponent::PostEditChangeProperty` : Editor변경시 후처리 용도
 - `CalcBounds`: `Terrain size`, `heightfielddisplacement`로 계산
 
-##### UIZGridComponent::UpdateRenderThreadState()
+##### `UIZGridComponent::UpdateRenderThreadState()`
 - 역할 : `IZGridSceneProxy`인 RT에맞는 구조체로 보내기위함
 - `PrimitiveComponent::FPrimitiveSceneProxy* SceneProxy`을 `FIZGridSceneProxy`로 casting해서 활용
 - `ENEQUEUE_RENDER_COMMAND`로 RTThread로 복사 보냄
 
 
-##### UIZGridComponent::ResolveInteractionData()
+##### `UIZGridComponent::ResolveInteractionData()`
 - 역할 : Return이 `FIZInteractionData` 구조체인 InteractionData보내줌
 아래 우선순위에 맞게 `FIZInteractionData` 구조체 내보낸다
 1. TrackedActor
@@ -111,8 +119,98 @@ float CVarIZRefineDistance;
 
 
 
+#### IZTypes.h
+- `FIZInteractionData`, `FIZCompensationParams`, `FIZRefineParams`, `FIZMeshData`
+
+`FinteractionData`:  
+1. `ResolveInteractionData`
+2. `FIZLEB::Refine()`, `FIZLEB::BuildMeshData()`
+3. `FIZRefineMetic::ComputeTargetDepth()`
+
+`FIZCompensationParams`:  
+- Compensation 버전 넣을때 추가 (현재 사용x)
+
+`FIZRefineParams` :  
+1. GT->RT로 Copy 보낸 후, proxy에서 Refinement setting정보 받기위함
+2. `FIZLEB::Refine()`, `FIZLEB::BuildMeshData()`
+3. `FIZRefineMetic::ComputeTargetDepth()`
+
+`FIZMeshData`:  
+1. IZGridSceneProxy - Member Variable
+2. `FIZLEB::BuildMeshData()`
+
+| 구조체                          | 만드는 곳                                                               | 쓰는 곳                                                                              | GT→RT 복사                  |
+| ---------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------- |
+| `FIZInteractionData`         | `UAIZComponent::GetInteractionData`), `ResolveInteractionData`의 대체값 | `FIZLEB::Refine` → `FIZRefineMetric::ComputeTargetDepth`, 프록시 `RTInteractionData` | O (`DataCopy`)            |
+| `FIZRefineParams`            | `UIZGridComponent` 멤버 변수                                            | `Refine`, `BuildMeshData`, `ComputeTargetDepth`, 프록시                              | O (`EffectiveParamsCopy`) |
+| `FIZMeshData`                | - `IZGridSceneProx` 멤버변수<br>`FIZLEB::BuildMeshData` (RT)            | 프록시 `RTMeshData` → `GetDynamicMeshElements`                                       | X (RT 내부)                 |
+| `FIZCompensationParams`      | `UAIZComponent` UPROPERTY                                           | **현재 사용처 없음** (placeholder)                                                       | X                         |
+| `FIZTimedDetailSample` (v03) | 프록시 `TimedDetailSamples`                                            | v03 `Refine`의 시간 보상                                                               | X (RT 내부)                 |
 
 
+#### PrimitiveViewRelevance.h
+`IZTemporalTessellationCompensation::ComputeWeight()` : float
+
+감쇠 수식
+$$e^{k(h-t)}$$
+```cpp
+const float Weight = FMath::Exp(-FMath::Max(0.0f, DecayRate)* (Elapsed-Hold));
+```
+
+---
+### Terrain Tessellation 알고리즘
+
+#### IZRefineMetric.h
+
+`ComputeTargetDepth`
+
+- **Predictive AIZ**: 상호 작용 object 속도 벡터로 진행 방향 영역 사전 활성화
+$$\tilde{\mathbf p}(\delta) = \mathbf p + \delta \mathbf v$$
+``` cpp
+const FVector PredicatedSource = Interaction.Location + Interaction.Velocity * PredictiveDeltaSeconds;
+```
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/AIZ/ComputeTargetDepth.png" alt="ComputeTargetDepth" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>ComputeTargetDepth</strong> </td>  </tr> </table>
+
+
+- `MaxDist >= dist` 일때, coarse base level, 0 리턴
+- `Dist <= MinDist` 일때, return DepthLimit 
+
+
+```
+Dist =
+예측 위치(Location + Velocity*0.1s)에서 삼각형 2D 바운딩 박스까지의 거리 (박스 안이면 0)
+
+Dist >= MaxDist  → 0           (먼 곳: 기저 레벨)
+Dist <= MinDist  → DepthLimit  (가까운 곳: 최대 디테일)
+그 사이           → round( smoothstep(1 - (Dist-MinDist)/(MaxDist-MinDist)) * DepthLimit )
+```
+
+
+- `MaxSubdiv Level` : 11, `MinSubdivLevel` : 5 default값 일때, 15,9가 각각 나온다.
+
+
+``` cpp
+//FIZLEB.h
+const int32 EffectiveMaxDepth = FMath::Min(Params.MaxSubdivLevel * 2 - 1, MaxDepth());
+
+const int32 MinimumDepth = FMath::Min(2 * BudgetSafeMinLevel - 1, EffectiveMaxDepth);
+```
+
+`FIZLEB:Refine()`에서 사용
+
+
+#### FIZCBT - bitfield heap
+- binary heap
+- `SplitNode` / `MergeNode`비트 켜고 끄고 `ChackedLeafCount`갱신
+-> CBT의 1Based 노드 indexing으로 부모자식 관계 간결히 계산
+
+#### FIZLEB.h
+`Reset()`: 사각형을 삼각형 2개 NodeID 2,3으로 시작
+`Refine()` : stack으로 순회
+`SplitOne`/ `SplitConforming` : 빗변중점 분할, Tjunction방지 핵심
+`BuildMeshData`, `ValidateTJunction` : 결과 확인용
 
 ---
 
