@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-12-AIZ-Algorithm.md",
+                "file": "_posts/2026-10-13-AIZ-Algorithm.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-12-AIZ-Algorithm"
+              "title": "2026-10-13-AIZ-Algorithm"
             }
           }
         ]
@@ -41,9 +41,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
-                "showSearch": false,
-                "searchQuery": ""
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -188,9 +186,13 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
+    "_posts/2026-Not-10-08-PhongReflection.md",
+    "_posts/2023-12-21-Houdini-String-Opdigits.md",
+    "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
+    "_posts/2026-08-25-ComputeShader.md",
+    "_posts/2026-10-13-AIZ-Algorithm.md",
     "_posts/2026-09-30-PriorityQueue.md",
     "_posts/2026-10-07-Not-Graph.md",
-    "_posts/2026-10-12-AIZ-Algorithm.md",
     "assets/postimg/DeformationSnow/AIZ/ComputeTargetDepth.png",
     "assets/postimg/DeformationSnow/AIZ/{FC907F22-24D1-42F5-9CFA-FD02C76D66B4}.png",
     "assets/postimg/DeformationSnow/AIZ/ComputeTargetDepth (2).png",
@@ -204,7 +206,6 @@
     "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "_posts/2026-10-12-GameRenderThread.md",
     "_posts/2026-10-11-RoadFoundAlgorithm.md",
-    "_posts/2026-Not-10-08-PhongReflection.md",
     "assets/postimg/UEGraphics/GTRT",
     "assets/postimg/UEGraphics/무제 폴더",
     "assets/postimg/UEGraphics",
@@ -227,9 +228,6 @@
     "_posts/2026-09-28-Heap-PriorityQueue.md",
     "_posts/2026-09-29-Not-Locomotion-on-soft-Grounds.md",
     "_posts/2026-09-17-UE-AssetRegistry.md",
-    "_posts/2026-10-07-Library.md",
-    "_posts/2026-10-04-GEA-Chapter 02.md",
-    "_posts/2026-10-05-functor.md",
     "assets/postimg/Algorithm/neural",
     "assets/postimg/Algorithm/무제 폴더",
     "assets/postimg/Shader",
