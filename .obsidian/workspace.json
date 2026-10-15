@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-04-DXShader.md",
+                "file": "_posts/2026-Not-10-08-PhongReflectionModel.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-04-DXShader"
+              "title": "2026-Not-10-08-PhongReflectionModel"
             }
           }
         ]
@@ -41,9 +41,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false,
-                "showSearch": false,
-                "searchQuery": ""
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -188,29 +186,29 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
+    "assets/postimg/Shader/HardenSmooth.jpg",
+    "assets/postimg/Shader/HardenSmooth.png",
+    "assets/postimg/Shader/Specularlaw.png",
+    "assets/postimg/Shader/스크린샷 2026-10-15 오후 3.29.24.png",
+    "assets/postimg/Shader/SpecularLightVector.png",
+    "assets/postimg/Shader/스크린샷 2026-10-15 오후 2.54.57.png",
+    "assets/postimg/Shader/Lambertlaw.png",
+    "assets/postimg/D3D/Lambertlaw.png",
+    "assets/postimg/D3D/스크린샷 2026-10-15 오후 2.41.36.png",
+    "_posts/2026-10-07-Not-Graph.md",
+    "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
+    "_posts/2026-10-11-RoadFoundAlgorithm.md",
+    "_posts/2026-10-12-GameRenderThread.md",
+    "_posts/2026-10-13-AIZ-Algorithm-v3.md",
     "assets/postimg/D3D/ShaderUpdate.png",
-    "assets/postimg/D3D/{374A3B33-9001-4A00-B986-9ACCB5F7E02D}.png",
-    "assets/postimg/D3D/ShaderInitialize.png",
-    "assets/postimg/D3D/{F2471A84-29EE-4BF8-AA2D-1294CDCF0DCD}.png",
     "assets/postimg/D3D/ShaderPipeline.png",
-    "assets/postimg/D3D/{808D8657-56E7-4358-8797-5BC25E20F489}.png",
-    "assets/postimg/D3D/{E9C343E2-E232-49E0-856F-F207D201F629}.png",
-    "assets/postimg/D3D/{8971833B-7F84-480D-B419-A995528F09D3}.png",
-    "assets/postimg/D3D/{96F0F206-9501-40EC-92D5-C117DFABCDBC}.png",
-    "assets/postimg/D3D/{D84BE685-C28D-4F42-8985-906BD5FBE357}.png",
     "_posts/2026-10-06-GEA-Chapter-03-03.md",
-    "_posts/2026-10-06-GEA-Chapter-03-02.md",
-    "_posts/2026-10-05-GEA-Chapter-03-01.md",
-    "_posts/2026-Not-10-08-PhongReflection.md",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-08-25-ComputeShader.md",
-    "_posts/2026-10-13-AIZ-Algorithm.md",
     "_posts/2026-09-30-PriorityQueue.md",
-    "_posts/2026-10-07-Not-Graph.md",
-    "assets/postimg/DeformationSnow/AIZ/ComputeTargetDepth.png",
-    "_posts/2026-10-12-GameRenderThread.md",
-    "_posts/2026-10-11-RoadFoundAlgorithm.md",
+    "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "assets/postimg/UEGraphics/GTRT",
     "assets/postimg/UEGraphics/무제 폴더",
     "assets/postimg/UEGraphics",
@@ -219,8 +217,8 @@
     "_posts/2026-10-02-SnowDeformation3.md",
     "assets/postimg/DeformationSnow/AIZ",
     "assets/postimg/DeformationSnow/무제 폴더",
-    "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
     "_posts/2026-10-11-Compile.md",
+    "_posts/2026-10-05-GEA-Chapter-03-01.md",
     "_posts/2026-10-10-Static.md",
     "_posts/2026-09-16-Container.md",
     "_posts/2026-09-26-NOT-Concurrent-binaryTrees.md",
