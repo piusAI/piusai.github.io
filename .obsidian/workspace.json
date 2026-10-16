@@ -13,12 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-Not-10-08-PhongReflectionModel.md",
+                "file": "_posts/2026-10-16-RoadFoundAlgorithm.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-Not-10-08-PhongReflectionModel"
+              "title": "2026-10-16-RoadFoundAlgorithm"
+            }
+          },
+          {
+            "id": "5bca89591cc76f0e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-10-07-Not-Graph.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-10-07-Not-Graph"
             }
           }
         ]
@@ -41,10 +55,12 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -78,8 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 288.5,
-    "collapsed": true
+    "width": 246.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -175,17 +190,28 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
+    "_posts/2026-10-07-Not-Graph.md",
+    "_posts/2026-10-16-RoadFoundAlgorithm.md",
+    "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
+    "assets/postimg/Algorithm/Graph/Graph02.png",
+    "assets/postimg/Algorithm/Graph/Screenshot 2026-10-16 085403.png",
+    "assets/postimg/Algorithm/Graph/Graph01.png",
+    "_posts/2026-10-16-GEA-Chapter-03-03.md",
+    "_posts/2026-10-06-GEA-Chapter-03-02.md",
+    "_posts/2026-10-04-GEA-Chapter 02.md",
+    "_posts/2026-10-12-GameRenderThread.md",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "assets/postimg/Shader/HardenSmooth.jpg",
     "assets/postimg/Shader/HardenSmooth.png",
     "assets/postimg/Shader/Specularlaw.png",
@@ -193,22 +219,11 @@
     "assets/postimg/Shader/SpecularLightVector.png",
     "assets/postimg/Shader/스크린샷 2026-10-15 오후 2.54.57.png",
     "assets/postimg/Shader/Lambertlaw.png",
-    "assets/postimg/D3D/Lambertlaw.png",
-    "assets/postimg/D3D/스크린샷 2026-10-15 오후 2.41.36.png",
-    "_posts/2026-10-07-Not-Graph.md",
-    "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
-    "_posts/2026-10-11-RoadFoundAlgorithm.md",
-    "_posts/2026-10-12-GameRenderThread.md",
     "_posts/2026-10-13-AIZ-Algorithm-v3.md",
-    "assets/postimg/D3D/ShaderUpdate.png",
-    "assets/postimg/D3D/ShaderPipeline.png",
-    "_posts/2026-10-06-GEA-Chapter-03-03.md",
-    "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2026-06-23-Unreal-DataAsset-PrimaryDataAsset.md",
     "_posts/2026-08-25-ComputeShader.md",
     "_posts/2026-09-30-PriorityQueue.md",
-    "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "assets/postimg/UEGraphics/GTRT",
     "assets/postimg/UEGraphics/무제 폴더",
     "assets/postimg/UEGraphics",
@@ -227,7 +242,6 @@
     "_posts/2026-09-22-CDLOD.md",
     "_posts/2026-09-18-NOT-Large-scale.md",
     "_posts/2026-09-22-Container-withPointer.md",
-    "_posts/2026-09-28-Heap-PriorityQueue.md",
     "assets/postimg/Algorithm/neural",
     "assets/postimg/Algorithm/무제 폴더",
     "assets/postimg/Shader",
