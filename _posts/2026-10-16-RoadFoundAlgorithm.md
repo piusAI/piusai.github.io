@@ -131,3 +131,6 @@ vertex를 v번 반복(`for`)하고, E(`if(Adjacent[here][v])`)
 
 
 ---
+### 2. BFS
+- 너비 우선 탐색 Breadth-First Search
+- Unweight graph에서의 최단 경로 탐색!

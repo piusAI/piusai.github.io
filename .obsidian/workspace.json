@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 246.5
+    "width": 246.5,
+    "collapsed": true
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -201,17 +202,18 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
-    "_posts/2026-10-07-Not-Graph.md",
-    "_posts/2026-10-16-RoadFoundAlgorithm.md",
+    "_posts/2026-10-13-Not-AIZ-Algorithm-Final.md",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
+    "_posts/2026-10-12-GameRenderThread.md",
     "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
+    "_posts/2026-10-16-GEA-Chapter-03-03.md",
+    "_posts/2026-10-16-RoadFoundAlgorithm.md",
+    "_posts/2026-10-07-Not-Graph.md",
     "assets/postimg/Algorithm/Graph/Graph02.png",
     "assets/postimg/Algorithm/Graph/Screenshot 2026-10-16 085403.png",
     "assets/postimg/Algorithm/Graph/Graph01.png",
-    "_posts/2026-10-16-GEA-Chapter-03-03.md",
     "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "_posts/2026-10-04-GEA-Chapter 02.md",
-    "_posts/2026-10-12-GameRenderThread.md",
-    "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "assets/postimg/Shader/HardenSmooth.jpg",
     "assets/postimg/Shader/HardenSmooth.png",
     "assets/postimg/Shader/Specularlaw.png",
