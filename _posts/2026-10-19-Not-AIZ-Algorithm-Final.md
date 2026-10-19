@@ -173,18 +173,19 @@ author: PIUS
 - Class : `FIZLEB_v_08_1_1`
 
 ① Reset : 삼각형 2개( `Edges`, `SumTree`를 초기화)
-- `BaseQueue.Add(0)`, `BaseQueue.Add(1)`root 삼각형으로 시작,
-- LEB방식으로 빗변을 기준으로 반 쪼개는것 반복후 세분화
+- LEB방식으로 빗변을 기준으로 반 쪼개는 연산 반복해 세분화
 
-② 균일 BFS 선 분할 : `MinimumDepth`까지 (SplitConforming)
-- 거리와 상관없이 모든 삼각형 `MinimumDepth`까지 BFS 순서로 먼저 조갠다
-- `MaxTriangles`이 부족하면 `MinSubdivLevel`을 자도으로 낮춘다
+② 균일 BFS 선 분할 : `MinimumDepth`까지 `SplitConforming`
+- 거리와 상관없이 모든 삼각형 `MinimumDepth`까지 BFS 순서로 먼저 쪼갠다  
+  (`BaseQueue.Add(0)`, `BaseQueue.Add(1)` 두 root 삼각형에서 시작)
+- 효과 : 거대한 Coarse 삼각형을 가로지르는 가늘고 긴 needle분할 없애고, base Grid를 대칭으로 만듦
+- 예산(`MaxTriangles`)이 부족하면 `MinSubdivLevel`을 자동으로 낮춘다 (`BudgetSafeMinLevel`)
 
-③ Queue 초기화 - 각 리프마다 평가
+③ Queue 초기화 - 활성 리프마다 `EvaluateTriangleMetrics`
 - `ComputeDistanceToTriangle2D` : 플레이어와 삼각형 사이의 2D 거리를 구함
 - `ComputeContinuousTargetDepth`:거리 가까울수록 높은 target depth 반환
 - `ComputeWeight` : footprint 샘플마다 같은 방식으로 거리 구하고 시간 가중치 곱함
-- 최종 `DesiredDepth = clamp(MinDepth + round (max(가중 deficit)), MinDepth, MaxDepth)
+- 최종 `DesiredDepth = clamp(MinDepth + roundToInt(max(가중 deficit)), MinDepth, MaxDepth)
 - `DesiredDepth>Depth`인 리프만 `prirority = deficit* 1e5 -dist`로 heapPush
 
 ④ HeapPop -> 분할 -> 재평가
@@ -217,6 +218,19 @@ FIZLEB.h
 ```
 - Bit 연산과 Shift로 방향 없는 Edge를 64Bit 고유키로 변환하는 패턴.
 - `TMap<uint64, FEdgeUsers>`로 이 Edge를 사용하는 삼각형 2개를 O(1)에 찾는다
+
+
+#### 2.6 `GenerateMesh_RenderThread()` ★
+- class : IZGridSceneProxy_v09_02
+
+① Scratch 배열에 Grid 좌표 색상 수정
+
+② 용량 판단 `MatrixTriangle*3`
+
+③ FDGBuilder 업로드, 구조체 업로드, Dispatch, Buffer 추출
+
+④ UV, 색상 CPU 루프, StaticMeshBuffer/ColorBuffer/ Vertex 재 초기화
+
 
 ---
 
@@ -285,79 +299,7 @@ GraphBuilder.Execute();
 | `RWPositions`      | `RWBuffer<float> RWPositions;`               | UAV | GPU 로컬 정점 좌표 출력                          |
 | `RWIndices`        | `RWBuffer<uint> RWIndices;`                  | UAV | GPU 정점 인덱스 스트림 출력                        |
 
----
 
-
-
-
-### 4. Code Review
-
-
-#### 4.1 AIZTessellationShader.h/.cpp
-- 모듈 Startup/Shutdown.
-
-#### 4.6 시간 보상 -`IZTemporalTessellationCompensation::ComputeWeight()`
-
-상호작용이 지나간 뒤 디테일을 즉시 끄지 않고, hold 이후 지수 감쇠시킨다.
-
-감쇠 수식
-
-$$w=e^{k(h-t)}$$
-
-($k$ = DecayRate, $t$ = Elapsed, $h$ = Hold)
-
-```cpp
-const float Weight = FMath::Exp(-FMath::Max(0.0f, DecayRate)* (Elapsed-Hold));
-```
-
-
-
----
-### 5. Terrain Tessellation 알고리즘
-
-#### 5.1 IZRefineMetric.h -`ComputeTargetDepth`
-
-- **Predictive AIZ**: 상호 작용 object 속도 벡터로 진행 방향 영역 사전 활성화
-$$\tilde{\mathbf p}(\delta) = \mathbf p + \delta \mathbf v$$
-``` cpp
-const FVector PredicatedSource = Interaction.Location + Interaction.Velocity * PredictiveDeltaSeconds;
-```
-
-
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/DeformationSnow/AIZ/ComputeTargetDepth.png" alt="ComputeTargetDepth" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>ComputeTargetDepth</strong> </td>  </tr> </table>
-
-| 조건                | 결과                                                                       |
-| ----------------- | ------------------------------------------------------------------------ |
-| `Dist >= MaxDist` | `0` (먼 곳: 기저 레벨)                                                         |
-| `Dist <= MinDist` | `DepthLimit` (가까운 곳: 최대 디테일)                                             |
-| 그 사이              | `round( smoothstep(1 - (Dist-MinDist)/(MaxDist-MinDist)) * DepthLimit )` |
-
-**Depth 한계 계산** (`FIZLEB.h`, `FIZLEB::Refine()`에서 사용)
-
-``` cpp
-//FIZLEB.h
-const int32 EffectiveMaxDepth = FMath::Min(Params.MaxSubdivLevel * 2 - 1, MaxDepth());
-
-const int32 MinimumDepth = FMath::Min(2 * BudgetSafeMinLevel - 1, EffectiveMaxDepth);
-```
-
-- `MaxSubdivLevel = 11`, `MinSubdivLevel = 5` (default)일 때 각각 depth **15**, **9**가 나온다.
-
-
-#### 5.2 FIZCBT - bitfield heap
-- bBinary heap 구조 (Concurrent Binary Tree)
-- `SplitNode` / `MergeNode`비트 켜고 끄고 `ChackedLeafCount`갱신
-- 1-Based 노드 indexing으로 부모/자식 관계 간결히 계산
-
-#### 5.3 FIZLEB.h - longest edge bisection
-
-| 함수                             | 역할                              |
-| ------------------------------ | ------------------------------- |
-| `Reset()`                      | 사각형을 삼각형 2개(NodeID 2, 3)로 시작    |
-| `Refine()`                     | 스택으로 노드 순회하며 목표 depth까지 분할/병합   |
-| `SplitOne` / `SplitConforming` | 빗변 중점 분할. **T-junction 방지의 핵심** |
-| `BuildMeshData`                | 리프 노드로 `FIZMeshData` 생성         |
-| `ValidateTJunction`            | 결과 검증용                          |
 
 ---
 
@@ -407,4 +349,124 @@ AIZTessellationShader
 
 ---
 
-### 7. **수식** :
+### 7. **수식** 
+### 7.1 격자, LEB, 리프 수
+
+격자 한 변의 셀 수 $G = 2^{K}$, 지형 한 변 길이 $L$, 셀 크기 $s = L/G$. 정수 격자 좌표 $\mathbf g \in \{0,\dots,G\}^2$는 로컬 좌표로
+
+$$\mathbf x(\mathbf g) = \left(\mathbf g - \tfrac{G}{2}\right)s = \left(\tfrac{\mathbf g}{G}-\tfrac12\right)L, \qquad \mathbf{uv}=\tfrac{\mathbf g}{G}$$
+
+로 변환된다. (CPU 빌더와 Compute Shader가 같은 식을 사용)
+
+**LEB 분할.** 삼각형 $T=(v_0,v_1,v_2)$ (빗변 $v_0v_2$)를 중점 $m=\tfrac{v_0+v_2}{2}$로 나누면 자식은
+
+$$T_L=(v_1,\,m,\,v_0),\qquad T_R=(v_2,\,m,\,v_1)$$
+
+NodeID $k$의 자식은 $2k,\,2k+1$이고, LEB 깊이는 $d(k)=\lfloor\log_2 k\rfloor-1$ (기저 삼각형 NodeID 2, 3 → $d=0$).
+
+**깊이와 리프 수.** 균일하게 깊이 $d$까지 분할하면
+
+$$N(d)=2^{d+1},\qquad A(d)=\frac{L^2}{2^{d+1}},\qquad \ell(d)=L\,2^{-d/2}\ \ (\text{직각변 길이})$$
+
+최대 깊이 $d_{\max}=2K-1$에서 $N=2^{2K}=G^2$, 직각변 $\sqrt2\,s$. 비교 기준이 되는 **정적 균일 메시**는 같은 해상도의 $2G^2$ 삼각형(셀당 2개)이다. 정수 중점이 보장되는 한계가 $2K-1$이다.
+
+**합 트리(CBT Sum Tree).**
+
+$$c(k)=c(2k)+c(2k+1),\qquad c(\text{leaf})\in\{0,1\},\qquad N=c(1)$$
+
+$r$번째 활성 리프 탐색 ($r=0,\dots,N-1$, 루트에서 시작):
+
+$$\text{if } r<c(2k):\ k\leftarrow 2k;\quad \text{else } r\leftarrow r-c(2k),\ k\leftarrow 2k+1 \qquad (O(d))$$
+
+### 7.2 깊이 범위와 예산
+
+$$d_{\text{eff}}=\min(2K_{\max}-1,\ 2K-1),\qquad d_{\min}=\min(2\hat{l}-1,\ d_{\text{eff}})$$
+
+$\hat l$은 $l_{\min}$에서 시작해 예산 조건을 만족할 때까지 줄인 값이다.
+
+$$\hat l=\max\{\,l\le l_{\min}:\ 4^{l}\le N_{\max}\,\},\qquad N(d_{\min})=4^{\hat l}$$
+
+(구현은 좌변에 계수 2를 곱해 2배 보수적, 4.5 M2.) 기본값 $l_{\min}=4$ → $d_{\min}=7$, 기저 리프 $N=256$.
+
+예산 대비 압축률(정적 균일 메시 대비)
+
+$$\rho=\frac{N_{\text{adaptive}}}{2G^2}\ \le\ \frac{N_{\max}}{2G^2}$$
+
+기본값 $K=8$에서 $2G^2=131072$이고 $N_{\max}=8192$이면 $\rho\le 6.25\%$. ($d_{\max}$까지 균일 분할 시 $G^2=65536$ 리프이므로 LEB 기준으로는 12.5%.)
+
+### 7.3 스무딩과 예측
+
+프레임 $t$의 스무딩 위치 (UE `VInterpTo`, $k$ = SmoothingSpeed, $\Delta t\in[0,0.1]$):
+
+$$\mathbf p_s^{t}=\mathbf p_s^{t-1}+\operatorname{clamp}(k\,\Delta t,0,1)\,\big(\mathbf p^{t}-\mathbf p_s^{t-1}\big)$$
+
+예측 위치. 의도한 식은 $\tilde{\mathbf p}=\mathbf p_s+\lambda\mathbf v$ 이나, **현재 구현은 룩어헤드가 두 번 곱해져서**
+
+$$\tilde{\mathbf p}_{\text{impl}}=\mathbf p_s+\frac{\lambda^2}{0.1}\,\mathbf v=\mathbf p_s+0.064\,\mathbf v\qquad(\lambda=0.08)$$
+
+### 7.4 점-삼각형 거리
+
+질의점 $\mathbf q$, 삼각형 $T=(a,b,c)$. 내부(경계 포함)면 0이고, 외부면 세 변까지 거리의 최솟값.
+
+$$d(\mathbf q,T)=\begin{cases}0 & \mathbf q\in T\\ \min\limits_{(u,w)\in\{(a,b),(b,c),(c,a)\}}\ \|\mathbf q-\pi_{uw}(\mathbf q)\|& \text{otherwise}\end{cases}$$ $$\pi_{uw}(\mathbf q)=u+\tau\,(w-u),\qquad \tau=\operatorname{clamp}\!\left(\frac{(\mathbf q-u)\cdot(w-u)}{\|w-u\|^2},0,1\right)$$
+
+내부 판정은 세 변에 대한 2D 외적 부호가 모두 같음 (허용오차 $10^{-4}$).
+
+### 7.5 연속 목표 깊이
+
+$D_{lo}=\max(10,\text{MinDistance})$, $D_{hi}=\max(D_{lo}+10,\text{RefineDistance})$, 샤프니스 $\gamma$, 깊이 한계 $d_{\text{eff}}$.
+
+$$\alpha(d)=1-\frac{d-D_{lo}}{D_{hi}-D_{lo}},\qquad \bar\alpha=\alpha^{\gamma},\qquad S(\bar\alpha)=\bar\alpha^2(3-2\bar\alpha)$$ $$d^{*}(d)=\begin{cases}0 & d\ge D_{hi}\\ d_{\text{eff}} & d\le D_{lo}\\ \operatorname{clamp}\big(S(\bar\alpha)\,d_{\text{eff}},\,0,\,d_{\text{eff}}\big) & \text{otherwise}\end{cases}$$
+
+($\gamma=1$이면 순수 smoothstep.)
+
+### 7.6 시간 가중치 (4.6)
+
+$$w(t)=\begin{cases}1 & t\le h\\ e^{-k(t-h)} & t>h,\ e^{-k(t-h)}>w_{\min}\\ 0 & \text{otherwise}\end{cases},\qquad t_{exp}=h+\frac{\ln(1/w_{\min})}{k}$$
+
+### 7.7 목표 깊이 결합 (플레이어 + footprint)
+
+footprint 집합 $\mathcal S=\{(\mathbf c_i,\tau_i)\}$ (위치, 마지막 터치 시각). 현재 시각 $t$, 현재 상호작용 가중치
+
+$$w_0=\mathbb 1[\text{접촉 중}\ \wedge\ \text{재방문 허용}],\qquad w_i=w(t-\tau_i)$$
+
+삼각형 $T$의 깊이 부족량(deficit)과 목표 깊이:
+
+$$\Delta(T)=\max\Big\{\,w_0\,\big[d^{*}(d(\tilde{\mathbf p},T))-d_{\min}\big]_+,\ \max_{i}\ w_i\,\big[d^{*}(d(\mathbf c_i,T))-d_{\min}\big]_+\Big\}$$ $$d_{\text{des}}(T)=\operatorname{clamp}\big(d_{\min}+\operatorname{round}(\Delta(T)),\ d_{\min},\ d_{\text{eff}}\big)$$
+
+($[x]_+=\max(x,0)$.) 분할 조건: $d(T)<d_{\text{des}}(T)$.
+
+### 7.8 우선순위 큐
+
+$$P(T)=\big(d_{\text{des}}(T)-d(T)\big)\cdot 10^{5}-d(\tilde{\mathbf p},T)$$
+
+의도한 pop 순서는 $P$ 내림차순 (**deficit이 큰 것 먼저, 같으면 플레이어에 가까운 것 먼저**). $10^5$ 계수는 deficit이 거리보다 항상 우선하도록 하는 사전식(lexicographic) 정렬 역할이다. 구현상 pop 후 $d_{\text{des}}$를 재평가(lazy), 분할 후 자식을 같은 식으로 push. (4.5 H1: 힙 방향 확인 필요)
+
+### 7.9 재방문 억제와 footprint
+
+셀 크기 $\ell$ (RevisitCacheCellSize), 컴포넌트 로컬 좌표 $(x_l,y_l)$:
+
+$$\mathbf z(\mathbf p)=\big(\lfloor x_l/\ell\rfloor,\ \lfloor y_l/\ell\rfloor\big)$$
+
+방문 집합 $\mathcal V$ (FIFO, $|\mathcal V|\le M$), 직전 접촉 셀 $\mathbf z_{last}$:
+
+$$a=\begin{cases}1 & \mathbf z=\mathbf z_{last}\\ \mathbb 1[\mathbf z\notin\mathcal V] & \text{otherwise}\end{cases}\quad(\text{접촉 중일 때}),\qquad a=0\ \ (\text{비접촉})$$
+
+$a=1$이고 $\mathbf z\notin\mathcal V$이면 $\mathcal V\leftarrow\mathcal V\cup\{\mathbf z\}$. 이 $a$가 7.7의 "재방문 허용"이다.
+
+footprint 추가 간격 $\sigma=\max(25,\,0.5\,r_c)$ ($r_c$ = ContactRadius). 새 셀이고 마지막 샘플과의 2D 거리 $\ge\sigma$이면 추가(FIFO, 최대 $F=64$), 아니면 마지막 샘플을 갱신. **거리 컬링**:
+
+$$\text{remove}\ (\mathbf c_i,\tau_i)\ \text{if}\ \big\|\mathbf p_{s,xy}-\mathbf c_{i,xy}\big\|>R_{cull}$$
+
+### 7.10 갱신 게이팅
+
+$$\text{refine}\iff \neg\text{init}\ \vee\ \|\Delta\mathbf p_{xy}\|\ge\theta\ \vee\ \Delta\text{contact}\ \vee\ \Delta\text{settings}\ \vee\ \Delta|\mathcal S|\ \vee\ \big(|\mathcal S|>0\wedge t-t_{last}\ge 0.25\big)$$
+
+$\theta$ = SpatialUpdateThreshold. 서 있을 때 호출 빈도의 상한은 감쇠 틱 때문에 $\le 4\,\text{Hz}$.
+
+### 7.11 비용 모델 (논문용, 근사)
+
+- Refine : 평가 횟수를 $E$, 평균 샘플 수를 $\bar S$라 하면 $O\big(E\,(1+\bar S)+N\log N\big)$. $E\approx N_0+2N_{split}$ 규모. (M1 개선 시 샘플 변환 비용 제거)
+- 메시 생성 : CS 그룹 수 $\lceil 3N/64\rceil$, 정점 $3N$ 개.
+- 메모리(사전 할당) : 위치 $3N_{\max}\times12\,\text{B}$, 인덱스 $3N_{\max}\times4\,\text{B}$. $N_{\max}=8192$이면 위치 약 295KB, 인덱스 약 98KB.
+- 합 트리 : $4\cdot2^{\,2K\,(\text{or}\,2K+1)}$ B (4.7 S3).
