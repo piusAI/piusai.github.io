@@ -4,35 +4,39 @@ published: true
 title: "AIZ Algorithgm Ver9 : ComputeShader Terrain 알고리즘"
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-10-13 21:22:00 +0900
-description: AnimationSandMud
+description: AIZ Algorithm
 categories:
   - Graphics
 tags:
   - Graphics
 author: PIUS
 ---
->**상태** : 최종 알고리즘 완료
->**구현** **범위**: 엔진 통합 계층(Component → SceneProxy)까지
+> **상태** : 최종 알고리즘 완료 (v09_02)
+> **구현 범위** : 엔진 통합 계층(Component → SceneProxy → RDG Compute Shader → FMeshBatch)까지
 
 **아키텍쳐 흐름**:
-1. sceneProxy로 GT->RT로 복사하도록
-2. usf 쉐이더로 
+1. Game Thread(GT)에서 상호작용 (위치/속도/접촉) 수집, `FPrimitiveSceneProxy`로 `ENQUEUE_RENDER_COMMAND`를 통해 GT→RT로 복사
+2. RenderThread(RT)에서 필터링(smoothing 재방문 footprint)와 LEB 토폴로지 확정을 수행
+3. 확정된 Leaf 정점의 격자 좌표를 업로드, `.usf` ComputeShader가 정점 위치와 index를 GPU pooling buffer에 기록
+4. `GetDynamicMeshElements`에서 `FMeshBatch`제출 후 래스터화
 
 **최적화 방식** :
   1. 계속 Update 되지 않도록
-     - Visited 범위를 두어 움직이는 범위
-     - 가장 최근에 방문하는 위치를 범위로 지정해서 stamp형식으로 찍도록(계속 누적 x)
-  2. 최대한 HighResolution -> low으로 두도록
-     - RenderTarget 사이즈(1800cm)와 같이 RT size으로 reset될떄 tessellation Low로
-  3. Priority_queue로 High Resolusion으로 update되는 우선순위를 player주변으로 둠
+     - Visited 셀(100cm 양자화)을 두어 이미 고해상도로 만든 Cell 재방문해서 Tessellation 다시 하지않도록
+     - 가장 최근 방문 위치를 Stamp(footprint) 형태로 찍고 시간 감쇠(계속 누적하지 않음 최대 64 FIFO) 
+     - 이동한 임계값(50cm) / 접촉 변화 / 설정 변경 / footprint 개수 변화 / 0.25s 감쇠 틱 중 하나일때만 `Refine`
+  2. 최대한 HighResolution → Low로 되돌리기
+     - RenderTarget 크기(`FootprintCullDistance` :1800cm)를 벗어난 footprint는 시간감쇠를 기다리지 않고 즉시 제거 해당 영역은 기저 Tessellation으로 복귀
+  3. PriorityQueue로 High Resolution 갱신 우선순위를 Player 주변에 둠
+     - 우선순위 = `deficit * 1e5 -dist` (가까울수록, 부족한 깊이가 클수록 먼저 분할)
 
 **연구 목적** : 
-1. 1개의 바닥과 비교하기 떄문에 정적 메시와 완전 같은 
+1. 정적인 단일 바닥 메시와 시각적으로는 유사한 결과를 내면서 삼각형 수와 비용을 줄이기.
 
 
 
 **Ideation**:
-1. interaction에만 vtx 생성되도록
+1. Interaction한 영역에에만 vtx 생성되도록
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;">
   <tr style="border: none;">
     <td width="100%" style="text-align: center; border: none; padding: 5px;">
