@@ -40,11 +40,10 @@ struct Vertex{ int _data; };
 vector<Vertex*> verties;
 vector<bool> visited(4, false);
 
-vector<vector<int>> adjacentList(4); 
+vector<vector<int>> adjacentList(5); 
 void CreateAdjacentList() {
 	adjacentList[0] = { 1, 3 };
 	adjacentList[1] = { 0, 2, 3 };
-	adjacentList[3] = { 0 };
 	adjacentList[4] = { 2 };
 
 }
@@ -64,7 +63,7 @@ void DFSList(int here)
 
 int main()
 {
-	verties.resize(4);
+	verties.resize(5);
 	CreateAdjacentList();
 	DFSList(0);
 
@@ -83,8 +82,8 @@ using namespace std;
 struct Vertex{ int _data; };
 
 vector<Vertex*> verties;
-vector<bool> visited(4, false);
-vector<vector<int>> AdjacentMatrix(4, vector<int>(0));
+vector<bool> visited(5, false);
+vector<vector<int>> AdjacentMatrix(5, vector<int>(0));
 
 void CreateAdjacentMatrix(){
 
@@ -112,13 +111,16 @@ void DFSMatrix(int here)
 
 int main()
 {
-	verties.resize(4);
+	verties.resize(5);
 	CreateAdjacentMatrix();
 	DFSMatrix(0);
 }
 ```
 
 인접 리스트 방식과 다를것 없고, 방문하는 방법만 다르다
+
+
+> Visit순서 0-> 1->2-> 3
 
 
 ### 인접 리스트 vs 인접 행렬 in DFS
@@ -133,4 +135,141 @@ vertex를 v번 반복(`for`)하고, E(`if(Adjacent[here][v])`)
 ---
 ### 2. BFS
 - 너비 우선 탐색 Breadth-First Search
-- Unweight graph에서의 최단 경로 탐색!
+- Queue를 활용해서 방문 순서를 저장해놓고 탐색한다!  
+  ->Unweight graph에서의 최단 경로 탐색!
+
+#### 2-1. 인접 리스트을 활용한 BFS 
+
+```cpp
+#include <iostream>
+#include <stack>
+using namespace std;
+#include <vector>
+#include <queue>
+
+struct Vertex{ int _data; };
+
+vector<Vertex*> verties;
+vector<vector<int>> adjacentList(5);
+vector<bool> discovered(5, false);
+
+
+void CreateAdjacentList() {
+	adjacentList[0] = { 1, 3 };
+	adjacentList[1] = { 0, 2, 3 };
+	adjacentList[4] = { 2 };
+
+}
+
+void BFSList(int here)
+{
+	discovered = vector<bool>(6, false);
+	queue<int> q;
+	q.push(here);
+	discovered[here] = true;
+
+	while (!q.empty())
+	{
+		here = q.front();
+		q.pop();
+
+		cout << "visit! :" << here << endl;
+		int size = adjacentList[here].size();
+		for (int i = 0; i < size; i++)
+		{
+			int there = adjacentList[here][i];
+			if (!discovered[there])
+			{
+				q.push(there);
+				discovered[there] = true;
+			}
+		}
+	}
+}
+
+int main()
+{
+	verties.resize(5);
+	CreateAdjacentList();
+	BFSList(0);
+}
+```
+
+
+
+
+
+
+#### 2-2. 인접 행렬을 활용한 BFS 
+
+
+```cpp
+#include <iostream>
+#include <stack>
+using namespace std;
+#include <vector>
+#include <queue>
+
+struct Vertex{ int _data; };
+
+vector<Vertex*> verties;
+vector<vector<int>> AdjacentMatrix(5, vector<int>(0));
+vector<bool> discovered(5, false);
+
+void CreateAdjacentMatrix(){
+	AdjacentMatrix = {
+		{0, 1, 0, 1, 0},
+		{1, 0, 1, 1, 0},
+		{0, 0, 0, 0, 0},
+		{1, 0, 0, 0, 0},
+		{0, 0, 1, 0, 0}
+	};
+}
+
+void BFSMatrix(int here)
+{
+	vector<int> parent(5, -1);
+	vector<int> dist(5, -1);
+
+	queue<int> q;
+	q.push(here);
+	discovered[here] = true;
+
+	parent[here] = here;
+	dist[here] = 0;
+
+	while (!q.empty())
+	{
+		here = q.front();
+
+		q.pop();
+		cout << "visit : " << here << endl;
+
+		for (int there = 0; there < verties.size(); there++)
+		{
+			if (AdjacentMatrix[here][there] == 1)
+			{
+				if (discovered[there]) continue;
+				parent[there] = here; //여기서 부모 지정
+				dist[there] = dist[here] + 1; //dist 지정(here+1)
+				q.push(there);
+				discovered[there] = true;
+			}
+
+		}
+	}
+}
+
+int main()
+{
+	verties.resize(5);
+
+	CreateAdjacentMatrix();
+	BFSMatrix(0);
+```
+
+
+
+> Visit순서 0-> 1->3-> 2
+
+parent, height도 넣어주어서 정보 추가!
