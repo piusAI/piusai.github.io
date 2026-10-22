@@ -178,3 +178,8 @@ float3 ambient = gAmbientLight * mat.Ambient;
 선형이 아니어서 코드로하기보다 그래프로 처리한다?
 light fall off
 
+
+
+
+
+---
