@@ -347,8 +347,285 @@ AIZTessellationShader
 |GPU|같은 연산을 수천 개 정점에 반복하는 위치·인덱스 계산, 래스터화|
 
 
+
+
+
+---
+# AIZ 논문 수식 ↔ 코드 대응표 (최종 확인본)
+
+
+|약칭|파일|
+|---|---|
+|**Comp**|`AIZComponent.cpp` / `AIZComponent.h`|
+|**C09**|`IZGridComponent_v09_02.cpp`|
+|**C05h**|`IZGridComponent_v05.h`|
+|**P09**|`IZGridSceneProxy_v09_02.cpp`|
+|**L08**|`FIZLEB_v08_1_1.h` ← **v09_02가 실제로 사용하는 LEB**|
+|**TC**|`IZTemporalTessellationCompensation.h`|
+|**USF**|`AIZGenerateGridMesh_v09_02.usf`|
+
+> v09_02는 `FIZLEB_v08_1_1`을 씁니다(P09 헤더 `FIZLEB_v08_1_1 LEB`). `FIZLEB_v05.h`와 `IZRefineMetric.h`는 v05 경로 전용이라 이 표에서 뺐습니다.
+
 ---
 
+## 4.1 상호작용 입력 · 발자국 관리
+
+### 식 (contact)
+
+$$b_{\mathrm{contact}}(t)=\begin{cases}1,&\text{CastGroundHit or } t-t_{\mathrm{hit}}\le T_{\mathrm{coy}}\0,&\text{otherwise}\end{cases}$$
+
+|기호|코드|위치|
+|---|---|---|
+|CastGroundHit|`LineTraceSingleByChannel` → `bDirectContact`|Comp:129-141|
+|$t_{\mathrm{hit}}$|`LastContactTimestamp` (적중 시 갱신)|Comp:148|
+|$T_{\mathrm{coy}}$|`GroundContactCoyoteDuration` (기본 **0.25 s**)|AIZComponent.h:51|
+|$b_{\mathrm{contact}}$|`bIsContacting` (직접 적중 or 유예 내)|Comp:146-153|
+|위치/무게중심, 속도 차분 추정|`GetAIZSourceLocation`, `(Cur-Prev)/DeltaTime`|Comp:11-, 123-125|
+
+### 식 (smoothing)
+
+$$\mathbf q_{\mathrm{sm}}\leftarrow\mathbf q_{\mathrm{sm}}+\operatorname{clamp}(\Delta t,k_{\mathrm{sm}},0,1)(\mathbf q-\mathbf q_{\mathrm{sm}})$$
+
+|기호|코드|위치|
+|---|---|---|
+|식 전체|`FMath::VInterpTo(Smoothed, InData.Location, DeltaTime, SmoothingSpeed)`|P09:247|
+|$\Delta t$|`DeltaTime` (0~0.1 s clamp)|P09:235-237|
+|$k_{\mathrm{sm}}$|`SmoothingSpeed` (기본 **15**, 생성자에서 1~50 clamp)|C09:17, P09:108|
+|첫 프레임 초기화|`Smoothed = InData.Location`|P09:240-244|
+|$\mathbf q_{\mathrm{sm}}$|`FilteredData.Location`|P09:249|
+
+### 예측 위치 $\mathbf q_p$ ⚠️ 이전 표 정정
+
+|내용|코드|위치|
+|---|---|---|
+|1차 스케일: $\mathbf v\cdot(0.08/0.1)$|`FilteredData.Velocity = Velocity * (PredictiveLookAheadSeconds / 0.1f)`|P09:256|
+|2차 적용: $\mathbf q_{\mathrm{sm}}+\mathbf v'\cdot0.08$|`PredictedWorldSource = Location + Velocity * PredictiveLookAhead`|L08:289, 호출 P09:403|
+|결과|$\mathbf q_p=\mathbf q_{\mathrm{sm}}+\mathbf v\cdot(0.8\times0.08)=\mathbf q_{\mathrm{sm}}+0.064,\mathbf v$|—|
+
+**코드 이슈**: look-ahead가 두 번 곱해져 실효 값이 파라미터(0.08 s)가 아니라 **0.064 s**입니다. 논문에 "look-ahead 0.08 s"를 쓰면 코드와 어긋납니다. 의도라면 논문에 0.064 s로 쓰고, 아니면 P09:256의 스케일을 제거하세요. 발자국에는 예측을 쓰지 않습니다 (`Velocity = ZeroVector`, P09:272, 291, 300).
+
+### 식 (cell)과 $b_{\mathrm{allow}}$
+
+$$c(\mathbf p)=(\lfloor x/h\rfloor,\lfloor y/h\rfloor)$$
+
+|논문|코드|위치|
+|---|---|---|
+|$c(\cdot)$ (컴포넌트 로컬 좌표)|`MakeCellKey`|P09:147-154|
+|$h$|`RevisitCacheCellSize` (기본 **100**, 하한 25)|C09:29, P09:118|
+|$b_{\mathrm{allow}}$|`bAllowInteraction` ← `ResolveCurrentCell_RenderThread`|P09:156-197, 호출 260|
+|접촉 아니면 불허||P09:164-168|
+|같은 셀 연속이면 허용||P09:171-177|
+|처음 보는 셀이면 허용|`!VisitedCells.Contains(Cell)`|P09:180|
+|$w_{\mathrm{cur}}=\mathbb I[b_{\mathrm{contact}}\land b_{\mathrm{allow}}]$|`CurrentInteractionWeight = (bIsContacting && bAllowInteraction) ? 1 : 0`|P09:398|
+
+**논문 서술과 다른 점 (중요)**: 코드에는 셀 집합이 **둘**입니다.
+
+|집합|용도|제거 시점|
+|---|---|---|
+|`FootprintCells`|발자국 중복 등록 방지|발자국 만료·컬링·용량 초과 시 함께 제거 (P09:322, 336)|
+|`VisitedCells`|$b_{\mathrm{allow}}$ 판정 (현재 접촉 가중치)|**발자국이 만료돼도 남음.** 용량 `MaxCachedVisitedCells`(8192) 초과 시 오래된 것부터, 또는 설정 변경 시에만 제거 (P09:185-191, 357, 368)|
+
+논문은 "이미 유효한 발자국이 있는 셀에서는 재등록을 막는다", "새 셀 등록이 가능한 경우에만 $b_{\mathrm{allow}}=1$"이라고 쓰는데, 실제로는 **한 번 방문한 셀은 발자국이 사라진 뒤에도** 용량이 찰 때까지 $w_{\mathrm{cur}}=0$입니다. 그 셀에 다시 들어가면 현재 접촉 요구도, 새 발자국도 생기지 않습니다(P09:276의 `bAllowInteraction` 조건). 논문에 "방문 셀 캐시는 발자국 수명과 별개로 최대 $M$개까지 유지된다"를 한 문장 넣어 주세요. 표에 $M=8192$도 추가하면 좋습니다.
+
+### 발자국 추가·갱신, $\sigma$, $N_{\mathcal F}$, $R_{\mathrm{cull}}$
+
+|논문|코드|위치|
+|---|---|---|
+|새 셀이면 등록 후보|`!FootprintCells.Contains(FootprintCell)`|P09:278-281|
+|$\sigma=\max(25,0.5r_c)$|`DetailSampleSpacing = Max(25, ContactRadius*0.5)`|IZGridComponent_v05.cpp:123|
+|$r_c$|`ContactRadius` (기본 **100**) → $\sigma=50$|AIZComponent.h:39|
+|간격 이상 → 새 발자국|`DistSquared2D >= Square(Spacing)` → `AddDefaulted_GetRef`|P09:283-295|
+|아니면 최근 샘플 갱신|`TimedDetailSamples.Last()`|P09:296-302|
+|$\mathbf p_s$, $t_s$|`Sample.Interaction.Location`(평활 위치), `LastTouchTime`|P09:290-292|
+|$N_{\mathcal F}$|`MaxFootprintSamples` (기본 **64**, 1~256 clamp), 초과 시 `RemoveAt(0)`|C05h:57, P09:285-288|
+|거리 컬링 $R_{\mathrm{cull}}$|`FootprintCullDistance`, 평활 위치 기준 2D 거리|P09:313-326|
+
+---
+
+## 4.2 거리 기반 목표 깊이
+
+### $d(K,\mathbf q)$
+
+|내용|코드|위치|
+|---|---|---|
+|컴포넌트 로컬 좌표로 변환한 점|`InverseTransformPosition`|L08:289-291, 338-339|
+|삼각형까지 2D **정확한** 최단 거리 (내부면 0)|`ComputeDistanceToTriangle2D`|L08:112-151|
+|`bUseExactTriangleDistance=true`(기본)일 때 사용||L08:301-304|
+|false면 AABB clamp 거리||L08:305-314|
+
+논문의 "투영된 2차원 영역 기준 최단 거리"와 일치합니다.
+
+### 식 (alpha), (target)
+
+$$\alpha(d)=\operatorname{clamp}!\Big(\frac{d_{\max}-d}{d_{\max}-d_{\min}},0,1\Big),\qquad T(d)=D_{\lim},S(\alpha^\gamma)$$
+
+|기호|코드|위치|
+|---|---|---|
+|함수|`ComputeContinuousTargetDepth(Dist, Params, DepthLimit, Sharpness)`|L08:156-182|
+|$d_{\min}$|`MinDist = Max(10, Params.MinDistance)`|L08:162|
+|$d_{\max}$|`MaxDist = Max(MinDist+10, Params.RefineDistance)`|L08:163|
+|$d\ge d_{\max}\to0$, $d\le d_{\min}\to D_{\lim}$|early return|L08:165-172|
+|$\alpha$|`Alpha = 1 - (Dist-MinDist)/(MaxDist-MinDist)`|L08:174|
+|$\alpha^\gamma$|`Alpha = Pow(Alpha, RadialFalloffSharpness)`|L08:175-178|
+|$S(x)=3x^2-2x^3$|`Alpha*Alpha*(3 - 2*Alpha)`|L08:179|
+|$D_{\lim}$|`DepthLimit` ← `EffectiveMaxDepth`|L08:181, 248|
+|$\gamma$|`RadialFalloffSharpness` (기본 **1.0**)|C09:20, P09:107|
+
+**논문과 다른 점**: 논문은 $\gamma\ge0.5$로 제한한다고 쓰지만 코드는 **0.1~5**로 clamp합니다(P09:107). 논문 문장을 "0.1 이상"으로 고치거나 코드 하한을 0.5로 올려야 합니다. 식 형태($S(\alpha^\gamma)$)는 일치합니다.
+
+---
+
+## 4.3 시간 감쇠 · 요구량 통합
+
+### 식 (decay), (weight), (lifetime)
+
+$$\widetilde w_s=\exp[-\lambda\max(0,\Delta t_s-T_{\mathrm{hold}})],\quad w_s=\begin{cases}\widetilde w_s&>\bar w_{\min}\0&\text{else}\end{cases},\quad T_{\mathrm{life}}=T_{\mathrm{hold}}+\tfrac1\lambda\ln\tfrac1{\bar w_{\min}}$$
+
+|기호|코드|위치|
+|---|---|---|
+|식 전체|`ComputeWeight(Elapsed, Hold, DecayRate, MinWeight)`|TC:18-30|
+|$\Delta t_s$|`CurrentTime - Sample.LastTouchTime`|L08:329, P09:331|
+|유지 구간 → 1|`if (Elapsed <= Hold) return 1`|TC:23-26|
+|지수 감쇠|`Exp(-Max(0,DecayRate)*(Elapsed-Hold))`|TC:28|
+|$\bar w_{\min}$ clamp 0~0.25, 이하면 0||TC:29|
+|$T_{\mathrm{hold}}$, $\lambda$, $w_{\min}$|`TessellationDetailHoldDuration`=**2**, `TessellationDetailDecayRate`=**1**, `MinTessellationDetailWeight`=**0.01**|C05h|
+|가중치 0이면 발자국 삭제|`RemoveAtSwap`|P09:333-338|
+|$T_{\mathrm{life}}$|별도 계산 없음. 위 삭제 시점이 곧 $T_{\mathrm{life}}=2+\ln100\approx6.6$ s|—|
+
+### 식 (current_deficit), (foot_deficit), (integrated), (target_depth)
+
+|논문|코드|위치|
+|---|---|---|
+|$D_{\mathrm{base}}$|`MinimumDepth`|L08:256|
+|$e_{\mathrm{cur},K}$|`Max(0, ContTarget - MinimumDepth) * ClampedDetailWeight`, 거리는 **$\mathbf q_p$** 기준|L08:318-322, 289|
+|$e_{s,K}$|`Max(0, SampleTarget - MinimumDepth) * SampleWeight`, 거리는 **$\mathbf p_s$** 기준 (예측 없음)|L08:324-349|
+|$E_K=\max(\cdot)$|`MaxScaledDeficit = Max(MaxScaledDeficit, ...)`|L08:317, 321, 347|
+|$D_K^{\mathrm{want}}$|`Clamp(MinimumDepth + RoundToInt(MaxScaledDeficit), MinimumDepth, EffectiveMaxDepth)`|L08:351|
+|함수|`EvaluateTriangleMetrics` 람다|L08:294-352|
+|AIZ 집합 $\mathcal A$|저장하지 않음. `Deficit = Desired - Depth > 0` 판정에만 사용|L08:374-375|
+
+논문과 일치합니다. 현재 접촉은 $\mathbf q_p$, 발자국은 등록 위치를 쓴다는 서술도 맞습니다.
+
+---
+
+## 5.1 예산 기반 세분화
+
+### 식 (base_level), $D_{\mathrm{base}}$, $D_{\lim}$
+
+$$L_{\mathrm{safe}}=\max{L\mid 1\le L\le\min(L_{\min},L_{\max}),\ 2\cdot4^L\le B}$$
+
+|기호|코드|위치|
+|---|---|---|
+|$L_{\min}$, $L_{\max}$|`Params.MinSubdivLevel`, `Params.MaxSubdivLevel`|L08:250|
+|상한 $\min(L_{\min},L_{\max})$|`Clamp(MinSubdivLevel, 1, MaxSubdivLevel)`|L08:250|
+|$2\cdot4^L\le B$|`while (2ll*(1ll<<(2*Level)) > Max(2,MaxTriangles)) --Level`|L08:251-255|
+|최소 레벨 1에서 멈춤(예외)|`BudgetSafeMinLevel > 1`|L08:251|
+|$D_{\mathrm{base}}=2L_{\mathrm{safe}}-1$|`Min(2*BudgetSafeMinLevel-1, EffectiveMaxDepth)`|L08:256|
+|$D_{\lim}=2L_{\max}-1$|`Min(MaxSubdivLevel*2-1, MaxDepth())`|L08:248|
+|균일 베이스 메시|BFS로 `MinimumDepth`까지 선분할 (`LeafCount < MaxTriangles` 조건)|L08:262-286|
+
+### 식 (priority)와 Algorithm 1
+
+$$P_K=\kappa(D_K^{\mathrm{want}}-D_K)-d(K,\mathbf q_p),\ \kappa=10^5$$
+
+|논문|코드|위치|
+|---|---|---|
+|max-priority queue|`TArray<FIZRefineCandidate_v08_1_1>` + `HeapPush/HeapPop`|L08:25-35, 355, 379, 392|
+|$P_K$, $\kappa=10^5$|`Priority = Deficit * 100000.0f - Dist`|L08:378|
+|$d(K,\mathbf q_p)$ (발자국만 있는 영역도 플레이어 거리로)|`Dist`는 항상 `LocalPlayerPos2D` 기준|L08:303, 378|
+|큐 초기화: 모든 리프 중 $D^{\mathrm{want}}>D_K$||L08:358-381|
+|루프 조건 LeafCount $<B$|`if (LeafCount >= MaxTriangles) break`|L08:386-389|
+|not leaf / $D\ge D_{\lim}$ → continue||L08:395-404|
+|재평가 후 skip|`EvaluateTriangleMetrics` → `if (T.Depth < DesiredDepth)`|L08:406-410|
+|conforming split|`SplitConforming`|L08:188-225, 413|
+|새 리프만 큐에 추가 (깊이 부족 시)||L08:415-437|
+|예산 초과 가능 (이웃 연쇄 분할)|한 번에 `SplitOne` 2회 이상|L08:216-223|
+
+Algorithm 1과 코드 구조가 일치합니다. 이전 표에서 "큐 없음 / $\kappa$ 대응 없음"이라고 한 것은 v05 기준이어서 틀렸고, v08_1_1에는 둘 다 있습니다. 코드의 `bEnableHysteresis`는 v08_1_1에서 사용되지 않습니다(시그니처에만 있음).
+
+---
+
+## 5.2 메시 갱신 게이팅
+
+$$|\mathbf q_{\mathrm{sm},xy}-\mathbf q_{\mathrm{last},xy}|_2\ge\delta_{\mathrm{move}}$$
+
+|논문|코드|위치|
+|---|---|---|
+|$\mathbf q_{\mathrm{last}}$|`LastRefinedLocation`|P09:374, 392|
+|이동 조건|`MoveDistSq >= Square(SpatialUpdateThreshold)`|P09:374, 379|
+|$\delta_{\mathrm{move}}$|`SpatialUpdateThreshold` = **50** (컴포넌트가 설정, 헤더 기본 8은 덮어씀)|C09:22, P09:110|
+|최초 실행|`!bHasEverRefined`|P09:378|
+|접촉/설정/발자국 개수 변경|`bContactChanged`, `bMeshSettingsChanged`, `bFootprintCountChanged`|P09:375, 363, 345|
+|$T_{\mathrm{update}}$=0.25 s|`Timestamp - LastRefineTimestamp >= 0.25f` (**하드코딩**, 발자국 있을 때만)|P09:376|
+|하나도 해당 없으면 생략|`if (!bShouldRefine) return;`|P09:385-390|
+|베이스부터 재구성|`LEB.Refine` 내부 `Reset()`|P09:399, L08:245|
+|리프 집합이 바뀔 때만 버퍼 재생성|`ScratchLeafNodeIDs != CachedLeafNodeIDs \| bMeshSettingsChanged`|P09:416-434|
+|발자국 등록·제거는 매 프레임|게이팅(385) **앞**에서 수행|P09:263-343|
+
+---
+
+## 5.3 Unreal Engine 실행 경로 · RDG
+
+|논문|코드|위치|
+|---|---|---|
+|Game Thread: 접촉·위치·속도 수집|`UAIZComponent::UpdateInteractionTelemetry`|Comp:110-160|
+|Render Thread로 전달|`ENQUEUE_RENDER_COMMAND`|IZGridComponent_v05.cpp:128-|
+|Render Thread: 목표 깊이 + 토폴로지 (CPU)|`RefineAndBuildGPUInput_RenderThread` → `LEB.Refine`|P09:218, 399|
+|RDG 구성|`FRDGBuilder GraphBuilder(RHICmdList)`|P09:480|
+|풀드 버퍼 재사용 / 신규 생성|`RegisterExternalBuffer` / `CreateBuffer`|P09:486-503|
+|리프 정점 업로드|`QueueBufferUpload(InputVertices, ...)`|P09:506-508|
+|컴퓨트 패스|`FComputeShaderUtils::AddPass(... "AIZ_v09_02_LEBMeshGeneration" ...)`|P09:520|
+|버퍼 추출|`QueueBufferExtraction` → `Execute()`|P09:522-524|
+|셰이더 본문|격자 좌표 → `(UV-0.5)*TerrainSize`, z=1, 인덱스 winding 교정|USF:14-32|
+|스레드 그룹|`numthreads(64,1,1)`, 정점 1개당 스레드 1개|USF:11, 14-18|
+|풀 크기 사전 확보|`bPreallocateMaxCapacity` → `MaxTriangles*3`|P09:459-464|
+
+논문의 "CPU에서 토폴로지를 결정하고 RDG/GPU에서 렌더링 버퍼를 준비" 서술과 정확히 일치합니다. 셰이더는 정점 좌표 변환과 인덱스 재배열만 하며, 분할 판단은 하지 않습니다.
+
+---
+
+
+
+## 논문 표 ↔ 코드 기본값
+
+| 기호                                   | 논문 표       | v09_02 생성자 기본값            | `IZTypes.h` 기본값    | UE BP값 | 비고         |
+| ------------------------------------ | ---------- | ------------------------- | ------------------ | ------ | ---------- |
+| $d_{\min}$                           | 24         | 150 (C09:11)              | **24**             |        | 논문 = Types |
+| $d_{\max}$                           | 90         | 800 (C09:10)              | **90**             |        | 논문 = Types |
+| $B$                                  | 26,000     | 8,192 (C09:7)             | **26000**          |        | 논문 = Types |
+| $L_{\max}$                           | 10         | 8 (C09:8)                 | **10**             |        | 논문 = Types |
+| $L_{\min}$                           | 4          | **4** (C09:9)             | 2                  |        | 논문 = 생성자   |
+| $\gamma$                             | 1.0        | 1.0 (C09:20)              | —                  |        | 일치         |
+| $T_{\mathrm{hold}},\lambda,w_{\min}$ | 2, 1, 0.01 | —                         | C05h: 2, 1, 0.01   |        | 일치         |
+| $N_{\mathcal F}$                     | 64         | —                         | C05h: 64           |        | 일치         |
+| $h$                                  | 100        | 100 (C09:29)              | —                  |        | 일치         |
+| $\sigma$                             | 50         | $\max(25,0.5\cdot100)=50$ | —                  |        | 일치         |
+| $R_{\mathrm{cull}}$                  | 1800       | 800 (C09:25)              | —                  |        | **불일치**    |
+| $\delta_{\mathrm{move}}$             | 50         | 50 (C09:22)               | —                  |        | 일치         |
+| $T_{\mathrm{update}}$                | 0.25       | 0.25 (P09:376 하드코딩)       | —                  |        | 일치         |
+| $D_{\mathrm{base}},D_{\lim}$         | 7, 19      | $L_{\max}=8$이면 15         | $L_{\max}=10$이면 19 |        | 아래 참고      |
+| $T_{\mathrm{coy}}$                   | XX         | **0.25 s**                | —                  |        | 채울 값       |
+| $k_{\mathrm{sm}}$                    | XX         | **15 s⁻¹**                | —                  |        | 채울 값       |
+| $r_c$                                | XX         | **100 cm**                | —                  |        | 채울 값       |
+| $\kappa$                             | $10^5$     | 100000 (L08:378)          | —                  |        | 일치         |
+
+논문 표의 $d_{\min},d_{\max},B,L_{\max}$는 `IZTypes.h` 기본값과 같고, $L_{\min}=4$는 v09_02 생성자 값입니다. 그런데 v09_02 생성자는 앞의 네 값을 150/800/8192/8로 덮어씁니다. 실험을 에디터에서 24/90/26000/10으로 다시 설정해 돌렸다면 표가 맞고, 생성자 기본값 그대로 돌렸다면 표를 고쳐야 합니다. $R_{\mathrm{cull}}$ 1800은 어느 쪽에도 없는 값이니 확인이 필요합니다.
+
+---
+
+## 논문 본문 수정 제안 (코드 대조 결과)
+
+1. **$b_{\mathrm{allow}}$ 서술**: 방문 셀 캐시가 발자국 수명과 별개로 최대 $M=8192$개까지 유지된다는 문장을 추가.
+2. **$\gamma$ 하한**: "0.5 이상" → 코드는 0.1~5. 둘 중 하나로 통일.
+3. **예측 look-ahead**: 코드 실효값 0.064 s. 논문에 수치를 쓴다면 이 값으로 쓰거나 코드를 고칠 것.
+4. **$T_{\mathrm{update}}$**: 코드에 하드코딩이므로 "고정값 0.25 s"로 쓰거나 파라미터로 노출.
+5. **$b_{\mathrm{allow}}$ 참조**: "식 (decay) 이후의" → "4.3절의" (이전에 지적한 항목).
+6. **표**: XX 세 칸 채우기, $\kappa$와 $M$ 행 추가, $R_{\mathrm{cull}}$ 값 재확인.
+
+
+
+
+---
 ### 7. **수식** 
 ### 7.1 격자, LEB, 리프 수
 
