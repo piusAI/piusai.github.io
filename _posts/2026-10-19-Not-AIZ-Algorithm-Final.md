@@ -347,6 +347,135 @@ AIZTessellationShader
 |GPU|같은 연산을 수천 개 정점에 반복하는 위치·인덱스 계산, 래스터화|
 
 
+
+---
+
+
+# AIZ 논문 수식 정리
+
+Interaction-Centric Adaptive Tessellation for Deformable Terrain Method + 알고리즘 절의 모든 수식을 계산 순서대로 정리했다.
+
+## 전체 흐름 
+
+1. **입력 정리** (1~3): 접촉 판정, 위치 평활화, 발자국 중복 방지
+2. **거리 → 목표 깊이** (4~5): 접촉점에서 얼마나 떨어졌나 → 얼마나 잘게 쪼갤까
+3. **시간 감쇠** (6~8): 발자국이 오래될수록 요구를 줄임
+4. **요구량 통합** (9~13): 요구 중 최댓값만 채택 → 정수 목표 깊이 → AIZ
+5. **알고리즘** (14~16, Alg. 1): 예산 안에서 우선순위대로 실제 분할, 움직임이 작으면 생략
+
+핵심 용어: 깊이(depth) = LEB 이진 분할 횟수. 깊이가 클수록 삼각형이 작다. 이 설정에서 D_base = 7(베이스 메시), D_lim = 19(최대).
+
+---
+
+## ① 입력 정리
+
+**(1) 접촉 판정** $$ b_{\mathrm{contact}}=\begin{cases}1,&\text{CastGroundHit or }t-t_{\mathrm{hit}}\le T_{\mathrm{coy}}\0,&\text{otherwise}\end{cases} $$
+
+> 땅에 닿았거나 닿은 지 T_coy 이내면 "밟는 중"(1).
+
+**(2) 위치 평활화** $$ \mathbf{q}_{\mathrm{sm}}\leftarrow\mathbf{q}_{\mathrm{sm}}+\mathrm{clamp}(\Delta t,k_{\mathrm{sm}},0,1)(\mathbf{q}-\mathbf{q}_{\mathrm{sm}}) $$
+
+> q를 한 프레임에 일부만 따라가서 떨림을 줄인 위치. clamp는 q를 넘어서 튀는 것을 막는다.
+
+**(3) 셀 양자화** $$ c(\mathbf{p})=(\lfloor x/h\rfloor,\lfloor y/h\rfloor) $$
+
+> 위치를 칸 번호(정수 쌍)로 바꿔 같은 칸의 중복 발자국 등록을 막는다.
+
+---
+
+## ② 거리 → 목표 깊이
+
+**(4) 정규화 거리** $$ \alpha(d)=\mathrm{clamp}\left(\frac{d_{\max}-d}{d_{\max}-d_{\min}},0,1\right) $$
+
+> 거리를 점수로 바꾼다. 24cm 안쪽은 1, 90cm 바깥은 0, 사이는 직선.
+
+**(5) 목표 깊이 (거리 d를 넣으면 깊이가 나옴)** $$ T(d)=D_{\lim},S\left(\alpha(d)^{\gamma}\right),\qquad S(x)=3x^2-2x^3 $$
+
+> 점수를 γ제곱과 smoothstep으로 다듬고 ×19 → 거리 d인 삼각형의 목표 깊이(연속값).
+
+---
+
+## ③ 발자국의 시간 감쇠
+
+**(6) 감쇠 전 가중치** $$ \tilde w_s=\exp!\left[-\lambda\max(0,\Delta t_s-T_{\mathrm{hold}})\right] $$
+
+> 2초간 1을 유지하다가 이후 지수적으로 약해진다.
+
+**(7) 임계값 절단** $$ w_s=\begin{cases}\tilde w_s,&\tilde w_s>\bar w_{\min}\0,&\text{otherwise}\end{cases},\qquad \bar w_{\min}=\mathrm{clamp}(w_{\min},0,0.25) $$
+
+> 0.01 이하로 약해지면 0으로 잘라 없는 발자국으로 취급한다.
+
+**(8) 발자국 수명** $$ T_{\mathrm{life}}=T_{\mathrm{hold}}+\frac{1}{\lambda}\ln\frac{1}{\bar w_{\min}} $$
+
+> 가중치가 0.01에 닿는 시간 = 자료 삭제 시점 (2 + 4.6 ≈ 6.6초).
+
+---
+
+## ④ 요구량 통합 → AIZ
+
+**(9) 현재 접촉의 결핍량** $$ e_{\mathrm{cur},t}=w_{\mathrm{cur}}\max{0,,T(d(t,\mathbf{q}_p))-D_{\mathrm{base}}} $$
+
+> 지금 밟는 곳이 요구하는 "베이스(7) 위로 추가 몇 단계". 기준점은 예측 위치 q_p.
+
+**(10) 발자국의 결핍량** $$ e_{s,t}=w_s\max{0,,T(d(t,\mathbf{p}_s))-D_{\mathrm{base}}} $$
+
+> 발자국도 같은 요구, 단 시간이 지난 만큼 w를 곱해 줄인다. 기준점은 자기 위치 p_s.
+
+**(11) 최댓값 통합** $$ E_t=\max!\left(e_{\mathrm{cur},t},\ \max_{s\in\mathcal F}e_{s,t}\right),\qquad \max\emptyset=0 $$
+
+> 요구가 여러 개여도 더하지 않고 제일 큰 하나만 따른다 (깊이 폭주 방지).
+
+**(12) 정수 목표 깊이** $$ D_t^{\mathrm{want}}=\mathrm{clamp}!\left(D_{\mathrm{base}}+\mathrm{round}(E_t),,D_{\mathrm{base}},,D_{\lim}\right) $$
+
+> 반올림해 베이스에 더한 삼각형별 정수 목표 깊이(7~19). E < 0.5면 베이스 그대로.
+
+**(13) AIZ 정의** $$ \mathcal A_{t_{\mathrm{now}}}={,t\in\mathcal M\mid D_t^{\mathrm{want}}>D_{\mathrm{base}},} $$
+
+> "더 쪼개야 하는 삼각형"들의 집합. 별도 자료구조가 아니라 (12)에서 나오는 계산상의 영역.
+
+---
+
+## ⑤ 알고리즘
+
+**깊이 정의 (본문)** $$ D_{\lim}=2L_{\max}-1,\qquad D_{\mathrm{base}}=2L_{\mathrm{safe}}-1 $$
+
+> 분할 레벨을 깊이로 환산한다. 이 설정에서 19와 7.
+
+**(14) 안전 베이스 레벨** $$ L_{\mathrm{safe}}=\max{L\in\mathbb Z\mid 1\le L\le\min(L_{\min},L_{\max}),\ 2\cdot4^{L}\le B} $$
+
+> 예산 B 안에 들어가는 가장 촘촘한 균일 베이스 메시 레벨.
+
+**(15) 분할 우선순위** $$ P_t=\kappa,(D_t^{\mathrm{want}}-D_t)-d(t,\mathbf{q}_p),\qquad \kappa=10^5 $$
+
+> 부족한 단계가 큰 삼각형부터 쪼갠다. 같으면 현재 접촉점에 가까운 쪽 먼저(κ가 커서 거리는 동점 처리용).
+
+**(16) 갱신 게이팅** $$ \left|\mathbf{q}_{\mathrm{sm},xy}-\mathbf{q}_{\mathrm{last},xy}\right|_2\ge\delta_{\mathrm{move}} $$
+
+> 마지막 계산 위치에서 50cm 이상 움직였을 때만 메시를 다시 계산한다.
+
+**Algorithm 1 한 줄**
+
+> 베이스 메시에서 시작해, 목표 깊이에 못 미친 삼각형을 우선순위 큐로 하나씩 conforming LEB로 쪼개고, 예산 B에 닿거나 더 쪼갤 게 없으면 멈춘다.
+
+---
+
+## 숫자 예시 (d ≤ 24cm 삼각형, 발자국 하나)
+
+- 방금 찍힘(Δt=0~2초): w=1, e=12 → D_want = 19
+- 3초 경과: w=0.37, e=4.4 → D_want = 11
+- 4초 경과: w=0.14, e=1.6 → D_want = 9
+- 5초 경과: w=0.05, e=0.6 → D_want = 8
+- 약 5.2초 이후: e<0.5 → D_want = 7 (깊이는 이미 베이스로 복귀)
+- 6.6초: 발자국 자료 삭제
+
+## 헷갈리기 쉬운 점
+
+- T(d)의 d는 "삼각형이 접촉점에서 떨어진 거리"이고 삼각형마다 다르다. 설정값(d_min, d_max, γ)이 곡선 모양을 정하고, 접촉점 주변의 둥근 고밀도 영역은 그 결과로 생긴다.
+- T(d)는 연속값이고, 정수 깊이로 바뀌는 것은 (9)~(12)에서 D_base를 빼고 w를 곱한 뒤 round할 때다.
+- AIZ의 실제 영역은 d_max(90cm)가 아니라 E ≥ 0.5가 되는 안쪽까지다.
+- 예산 B는 반복 종료 조건일 뿐, conforming 이웃 분할 때문에 최종 리프 수를 엄격히 제한하지 않는다.
+
+
 ---
 
 ### 7. **수식** 
@@ -470,3 +599,6 @@ $\theta$ = SpatialUpdateThreshold. 서 있을 때 호출 빈도의 상한은 감
 - 메시 생성 : CS 그룹 수 $\lceil 3N/64\rceil$, 정점 $3N$ 개.
 - 메모리(사전 할당) : 위치 $3N_{\max}\times12\,\text{B}$, 인덱스 $3N_{\max}\times4\,\text{B}$. $N_{\max}=8192$이면 위치 약 295KB, 인덱스 약 98KB.
 - 합 트리 : $4\cdot2^{\,2K\,(\text{or}\,2K+1)}$ B (4.7 S3).
+
+
+
