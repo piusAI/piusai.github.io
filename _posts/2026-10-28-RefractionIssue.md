@@ -9,6 +9,7 @@ categories:
   - Graphics
 tags:
   - Graphics
+use_math: true
 author: PIUS
 ---
 hlsl, ComputeShader 를 활용해서 Refraction의 Issue 대응 / 계산 속도 개선 등을 Reserach해보겠다.
