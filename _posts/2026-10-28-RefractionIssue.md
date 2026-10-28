@@ -1,8 +1,8 @@
 ---
 layout: post
 published: true
-title: Refraction
-thumbnail-img:
+title: Refraction 수정안
+thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-10-28 17:22:00 +0900
 description: AnimationSandMud
 categories:
