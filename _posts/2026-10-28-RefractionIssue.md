@@ -60,6 +60,7 @@ Motion Blue 이전에 TAA가 박힘.
 |2010년대|스크린 스페이스 레이 마칭(SSR 등)|깊이 버퍼를 레이 마칭. 게임 엔진에 정착|
 |2018~|하드웨어 레이 트레이싱 (RTX)|실시간에서 정확한 굴절이 가능해졌지만 비용이 큼|
 
+---
 
 
 [Approximate Image-Space Approach for Interactive Refraction](https://cwyman.org/papers/sig05_approxISRefr.pdf)
@@ -75,7 +76,9 @@ $$\[ \boxed{\sin\theta_t=\eta\sin\theta_i} \]$$
 $$ \sin\theta_t=\eta\sin\theta_i $$
 
 굴절 률의 비 :
-\[ \eta=\frac{n_i}{n_t} \]
+$$
+ \eta=\frac{n_i}{n_t}
+$$
 
 ##### 1-2. 화면 좌표만 구하고 끝내는것이 아닌,
 
@@ -87,8 +90,12 @@ $$ \sin\theta_t=\eta\sin\theta_i $$
 
 두번째 굴절 위치는 다음과 같다
 
-$$\widetilde P_2=P_1+\widetilde d\,\mathbf T_1 $$
+$$
+\widetilde P_2=P_1+\widetilde d\,\mathbf T_1
+$$
 - $\widetilde d$ : 실제 광선 - 뒷면 교차 거리를 구하기보다, 쉽게 계산 가능한 두 거리 $d_v$, $d_N$을 보간해서 얻기
 
-$$ \widetilde d= \frac{\theta_t}{\theta_i}d_V+ \left(1-\frac{\theta_t}{\theta_i}\right)d_N $$
+$$
+\widetilde d= \frac{\theta_t}{\theta_i}d_V+ \left(1-\frac{\theta_t}{\theta_i}\right)d_N
+$$
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/approxiFigure.png" alt="approxiFigure" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>approxiFigure</strong> </td>  </tr> </table>
