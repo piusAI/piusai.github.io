@@ -188,6 +188,7 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
+    "_includes/mathjax_support.html",
     "_posts/2026-10-28-Refraction.md",
     "_posts/2026-10-28-RefractionIssue.md",
     "_posts/2026-10-13-AIZ-Algorithm-v3.md",
@@ -225,7 +226,6 @@
     "_posts/2023-12-11-PointAttribute.md",
     "_posts/2023-12-13-Houdini-Level.md",
     "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
-    "_posts/2023-12-19-Houdini-String-Vex.md",
     "assets/postimg/ProfileTool",
     "assets/postimg/UEGraphics/ProfileTool",
     "무제.base",

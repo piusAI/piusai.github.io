@@ -70,8 +70,10 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
 markdown: kramdown
-kramdown:
-  math_engine: mathjax
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 
 feed:
   path: atom.xml
