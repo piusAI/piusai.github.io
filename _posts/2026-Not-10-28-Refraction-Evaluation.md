@@ -1,7 +1,7 @@
 ---
 layout: post
-published: true
-title: Refraction 수정안
+published: false
+title: Refraction Evaluation
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-10-28 17:22:00 +0900
 description: AnimationSandMud
@@ -51,15 +51,15 @@ Motion Blue 이전에 TAA가 박힘.
 
 #### Refraction Rendering 흐름
 
-|시기|흐름|핵심|
-|---|---|---|
-|1980|Whitted 레이 트레이싱|굴절/반사 레이를 재귀로 쏨. 정확하지만 느림|
-|1996|포톤 매핑 (Jensen)|커스틱스까지 가능한 오프라인 GI|
-|2000년대 초|환경맵 기반 굴절|레이 추적 없이 환경맵 조회. 빠르지만 자기 가림, 주변 물체 반영 불가|
-|2005|Wyman 이미지 공간 굴절|깊이 두 장으로 탈출점을 근사. 이 논문(Kim & Hong)의 계보|
-|2005~2007|Distance impostor, Caustics mapping, Eikonal|GPU 근사 방법들이 쏟아진 시기|
-|2010년대|스크린 스페이스 레이 마칭(SSR 등)|깊이 버퍼를 레이 마칭. 게임 엔진에 정착|
-|2018~|하드웨어 레이 트레이싱 (RTX)|실시간에서 정확한 굴절이 가능해졌지만 비용이 큼|
+| 시기        | 흐름                                           | 핵심                                       |
+| --------- | -------------------------------------------- | ---------------------------------------- |
+| 1980      | Whitted 레이 트레이싱                              | 굴절/반사 레이를 재귀로 쏨. 정확하지만 느림                |
+| 1996      | 포톤 매핑 (Jensen)                               | 커스틱스까지 가능한 오프라인 GI                       |
+| 2000년대 초  | 환경맵 기반 굴절                                    | 레이 추적 없이 환경맵 조회. 빠르지만 자기 가림, 주변 물체 반영 불가 |
+| 2005      | Wyman 이미지 공간 굴절                              | 깊이 두 장으로 탈출점을 근사. 이 논문(Kim & Hong)의 계보   |
+| 2005~2007 | Distance impostor, Caustics mapping, Eikonal | GPU 근사 방법들이 쏟아진 시기                       |
+| 2010년대    | 스크린 스페이스 레이 마칭(SSR 등)                        | 깊이 버퍼를 레이 마칭. 게임 엔진에 정착                  |
+| 2018~     | 하드웨어 레이 트레이싱 (RTX)                           | 실시간에서 정확한 굴절이 가능해졌지만 비용이 큼               |
 
 ---
 
@@ -67,12 +67,15 @@ Motion Blue 이전에 TAA가 박힘.
 [Approximate Image-Space Approach for Interactive Refraction](https://cwyman.org/papers/sig05_approxISRefr.pdf)
 
 스넬의 법칙:  
+
 $$ n_i\sin\theta_i=n_t\sin\theta_t $$
 
 : 표면에 입사하는 광선 방향$i$, Normal Vector $n$, 입사 매질과 투과 매질의 굴절률 이용해 굴절 방향 $t$계산
 
 $$\sin\theta_t=\frac{n_i}{n_t}\sin\theta_i$$
+
 굴절 률의 비 :  
+
 $$\eta=\frac{n_i}{n_t}$$
 
 굴절률의 비를 활용한 식:
@@ -87,10 +90,15 @@ $$\sin\theta_t=\eta\sin\theta_i$$
 4. 해당 좌표로 back buffer · Depth/Stencil buffer 조회하여 두번째 normal vector얻는다
 5. 두번째 굴절방향. $T_2$를 계산
 
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/approxiFigure.png" alt="approxiFigure" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>approxiFigure</strong> </td>  </tr> </table>
+
+
+
 두번째 굴절 위치는 다음과 같다:  
 
 $$\widetilde P_2=P_1+\widetilde d\,\mathbf T_1$$
+
 - $\widetilde d$ : 실제 광선 - 뒷면 교차 거리를 구하기보다, 쉽게 계산 가능한 두 거리 $d_v$, $d_N$을 보간해서 얻기
 
 $$\widetilde d= \frac{\theta_t}{\theta_i}d_V+ \left(1-\frac{\theta_t}{\theta_i}\right)d_N$$
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/approxiFigure.png" alt="approxiFigure" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>approxiFigure</strong> </td>  </tr> </table>
+

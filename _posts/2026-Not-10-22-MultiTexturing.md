@@ -9,6 +9,7 @@ categories:
   - Graphics
 tags:
   - Graphics
+use_math: true
 author: PIUS
 ---
 Multi Texturing
@@ -65,7 +66,7 @@ inline uint8_t GetA(uint32_t c) { return (c >> 24) & 0xFF; }
 | N   | Normal    | @N      | 표면 바깥쪽을 향하는 법선 방향 |
 
 
-$N_{TS}=2RGB-1$
+$$N_{TS}=2RGB-1$$
 
 
 

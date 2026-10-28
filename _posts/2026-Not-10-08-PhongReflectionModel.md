@@ -9,6 +9,7 @@ categories:
   - Graphics
 tags:
   - Graphics
+use_math: true
 author: PIUS
 ---
 Phong, Reflection
@@ -27,6 +28,7 @@ $$I_a = k_a \cdot i_a$$
 ### 1.2 Diffuse
 
 $$I_d = k_d \cdot i_d \cdot \max(\hat{L} \cdot \hat{N}, 0)$$
+
 - $k_d$: 재질의 diffuse 반사 계수
 - $i_d$: diffuse 광원의 세기
 - $\hat{L}$: 표면점에서 광원으로 향하는 단위 벡터
@@ -38,8 +40,11 @@ $$I_d = k_d \cdot i_d \cdot \max(\hat{L} \cdot \hat{N}, 0)$$
 
 
 ### 1.3 Specular
+
 $$I_s = k_s \cdot i_s \cdot \max(0,\ \hat{R} \cdot \hat{V})^{\alpha}$$
+
 **반사 벡터(Refelction vector)**:
+
 $$\hat{R} = 2(\hat{L} \cdot \hat{N})\hat{N} - \hat{L}$$
 
 - $k_s$: 재질의 specular 반사 계수

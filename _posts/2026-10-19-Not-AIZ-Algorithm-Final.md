@@ -9,6 +9,7 @@ categories:
   - Graphics
 tags:
   - Graphics
+use_math: true
 author: PIUS
 ---
 > **상태** : 최종 알고리즘 완료 (v09_02)
