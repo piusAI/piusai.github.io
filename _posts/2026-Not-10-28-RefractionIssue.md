@@ -1,9 +1,9 @@
 ---
 layout: post
 published: true
-title: Refraction Test
-thumbnail-img: /assets/img/Renderpipeline.jpg
-date:   2026-10-08 21:22:00 +0900
+title: Refraction
+thumbnail-img:
+date:   2026-10-28 21:22:00 +0900
 description: AnimationSandMud
 categories:
   - Graphics
