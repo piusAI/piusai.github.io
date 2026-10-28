@@ -66,14 +66,17 @@ Motion Blue 이전에 TAA가 박힘.
 
 [Approximate Image-Space Approach for Interactive Refraction](https://cwyman.org/papers/sig05_approxISRefr.pdf)
 
-스넬의 법칙
+스넬의 법칙:  
 $$ n_i\sin\theta_i=n_t\sin\theta_t $$
-표면에 입사하는 광선 방향`I`, Normal Vector `N`, 입사 매질과 투과 매질의 굴절률 이용해 굴절 방향 `T`계산
+
+: 표면에 입사하는 광선 방향$i$, Normal Vector $n$, 입사 매질과 투과 매질의 굴절률 이용해 굴절 방향 $t$계산
 
 $$\sin\theta_t=\frac{n_i}{n_t}\sin\theta_i$$
 굴절 률의 비 :  
 $$\eta=\frac{n_i}{n_t}$$
+
 굴절률의 비를 활용한 식:
+
 $$\sin\theta_t=\eta\sin\theta_i$$
 
 ##### 1-2. 화면 좌표만 구하고 끝내는것이 아닌,
