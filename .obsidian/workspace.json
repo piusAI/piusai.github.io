@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2992c6e1280ed23a",
+        "id": "45cfca5bcc4649a2",
         "type": "tabs",
         "children": [
           {
-            "id": "6f13b2e6347555b7",
+            "id": "f4a0ec7aac61a0b5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -46,7 +46,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -80,7 +80,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 278.5
+    "width": 288.5,
+    "collapsed": true
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -176,36 +177,25 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
   },
-  "active": "6f13b2e6347555b7",
+  "active": "f4a0ec7aac61a0b5",
   "lastOpenFiles": [
+    "_posts/2026-10-28-RefractionIssue.md",
+    "assets/postimg/Refraction/WaterRefraction.png",
+    "assets/postimg/Refraction/RefracitonGFX.png",
+    "assets/postimg/Refraction/IceRefraction.png",
+    "assets/postimg/Refraction/EffectRefraction.png",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-10-28-Refraction-History.md",
-    "_posts/2026-Not-10-08-PhongReflectionModel.md",
-    "_posts/2026-Not-10-22-MultiTexturing.md",
-    "_posts/2026-10-16-GEA-Chapter-03-03.md",
-    "_posts/2026-10-16-RoadFoundAlgorithm.md",
     "_posts/2026-10-21-Not-UE-Insight.md",
-    "_posts/2026-10-28-Iterator.md",
-    "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
-    "_posts/2026-10-19-Not-LEB.md",
-    "assets/postimg/Refraction/IceRefraction.png",
-    "assets/postimg/Refraction/WaterRefraction.png",
-    "assets/postimg/Refraction/Screenshot 2026-10-28 220508.png",
-    "assets/postimg/Refraction/Screenshot 2026-10-28 220333.png",
-    "assets/postimg/Refraction/RefracitonGFX.png",
-    "assets/postimg/Refraction/Refraction.png",
-    "assets/postimg/Refraction/Screenshot 2026-10-28 215348.png",
-    "assets/postimg/Refraction/EffectRefraction.png",
-    "assets/postimg/Refraction/미확인 327569.crdownload",
     "_includes/mathjax_support.html",
     "_posts/2026-10-28-Refraction.md",
     "_posts/2026-10-13-AIZ-Algorithm-v3.md",
@@ -216,22 +206,33 @@
     "_posts/2026-10-07-Library.md",
     "_posts/2026-10-06-GEA-Chapter-03-02.md",
     "_posts/2026-10-12-GameRenderThread.md",
+    "_posts/2026-10-16-GEA-Chapter-03-03.md",
+    "_posts/2026-10-16-RoadFoundAlgorithm.md",
+    "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
+    "_posts/2026-10-28-Iterator.md",
+    "_posts/2026-10-21-UE-Insight.md",
+    "_posts/2026-10-19-Not-LEB.md",
+    "_posts/2026-Not-10-22-MultiTexturing.md",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "assets/postimg/Refraction/approxiFigure.png",
     "assets/postimg/Refraction/스크린샷 2026-10-28 오후 6.03.23.png",
     "().md",
+    "assets/postimg/Refraction/TAAChain.png",
+    "Pasted image 20261028151951.png",
+    "Pasted image 20261028151923.png",
+    "Pasted image 20261028151911.png",
     "assets/postimg/Refraction",
     "assets/postimg/새 폴더",
     "file:/Users/hwanghyojun/Downloads/tessellation_symbol_reference.md",
     "_posts/2026-10-04-DXShader.md",
     "무제.md",
-    "_posts/2023-12-11-PointAttribute.md",
-    "_posts/2023-12-13-Houdini-Level.md",
     "assets/postimg/ProfileTool",
     "assets/postimg/UEGraphics/ProfileTool",
     "무제.base",
     "무제.canvas",
     "AIZ",
     "assets/postimg/UEGraphics/GTRT",
-    "assets/postimg/UEGraphics/무제 폴더"
+    "assets/postimg/UEGraphics/무제 폴더",
+    "assets/postimg/UEGraphics"
   ]
 }
