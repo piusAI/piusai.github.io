@@ -3,7 +3,7 @@ layout: post
 published: true
 title: Refraction
 thumbnail-img:
-date:   2026-10-28 21:22:00 +0900
+date:   2026-10-28 17:22:00 +0900
 description: AnimationSandMud
 categories:
   - Graphics
@@ -73,6 +73,9 @@ $$ \sin\theta_t=\frac{n_i}{n_t}\sin\theta_i $$
 $$\[ \boxed{\sin\theta_t=\eta\sin\theta_i} \]$$
 \[ \boxed{\sin\theta_t=\eta\sin\theta_i} \]
 $$ \sin\theta_t=\eta\sin\theta_i $$
+
+굴절 률의 비 :
+\[ \eta=\frac{n_i}{n_t} \]
 
 ##### 1-2. 화면 좌표만 구하고 끝내는것이 아닌,
 
