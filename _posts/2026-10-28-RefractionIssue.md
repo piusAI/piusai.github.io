@@ -71,14 +71,10 @@ $$ n_i\sin\theta_i=n_t\sin\theta_t $$
 표면에 입사하는 광선 방향`I`, Normal Vector `N`, 입사 매질과 투과 매질의 굴절률 이용해 굴절 방향 `T`계산
 
 $$\sin\theta_t=\frac{n_i}{n_t}\sin\theta_i$$
-
-$$\[ \boxed{\sin\theta_t=\eta\sin\theta_i} \]$$
-
-$\sin\theta_t=\eta\sin\theta_i$
-$$\sin\theta_t=\eta\sin\theta_i$$
-
-굴절 률의 비 :
+굴절 률의 비 :  
 $$\eta=\frac{n_i}{n_t}$$
+굴절률의 비를 활용한 식:
+$$\sin\theta_t=\eta\sin\theta_i$$
 
 ##### 1-2. 화면 좌표만 구하고 끝내는것이 아닌,
 
@@ -88,17 +84,10 @@ $$\eta=\frac{n_i}{n_t}$$
 4. 해당 좌표로 back buffer · Depth/Stencil buffer 조회하여 두번째 normal vector얻는다
 5. 두번째 굴절방향. $T_2$를 계산
 
-두번째 굴절 위치는 다음과 같다
+두번째 굴절 위치는 다음과 같다:  
 
-$$
-\widetilde P_2=P_1+\widetilde d\,\mathbf T_1
-$$
+$$\widetilde P_2=P_1+\widetilde d\,\mathbf T_1$$
 - $\widetilde d$ : 실제 광선 - 뒷면 교차 거리를 구하기보다, 쉽게 계산 가능한 두 거리 $d_v$, $d_N$을 보간해서 얻기
 
-$$
-\widetilde d= \frac{\theta_t}{\theta_i}d_V+ \left(1-\frac{\theta_t}{\theta_i}\right)d_N
-$$
+$$\widetilde d= \frac{\theta_t}{\theta_i}d_V+ \left(1-\frac{\theta_t}{\theta_i}\right)d_N$$
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/approxiFigure.png" alt="approxiFigure" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>approxiFigure</strong> </td>  </tr> </table>
-
-
-테스트 인라인 $$a_i + b$$ 입니다. $$ x = \frac{1}{2} $$
