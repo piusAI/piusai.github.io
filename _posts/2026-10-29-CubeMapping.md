@@ -239,4 +239,4 @@ d3d11Device->CreateRasterizerState(&cmdesc, &RSCullNone);
 ```
 
 
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Shader/SkyboxTest.png" alt="SkyboxTest" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>SkyboxTest</strong> </td>  </tr> </table>
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Shader/SkyboxTest1.png" alt="SkyboxTest" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>SkyboxTest</strong> </td>  </tr> </table>
