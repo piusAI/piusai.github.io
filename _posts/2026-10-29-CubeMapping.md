@@ -64,9 +64,11 @@ void CreateSphere(int LatLines, int LongLines)
 
 ####  Sphere vertex position 수식
 
+$$\mathbf{P}(\phi,\theta) = (\sin\phi\cos\theta,\ \cos\phi,\ \sin\phi\sin\theta)$$
+
 위도 각 `φ`(pitch), 경도 각 `θ`(yaw)로 단위 구 위의 점을 구한다.
 
-$$\mathbf{P}(\phi,\theta) = (\sin\phi\cos\theta,\ \cos\phi,\ \sin\phi\sin\theta)$$ $$  
+$$  
 \phi_i = \frac{i\,\pi}{LatLines-1}\ (0 \le \phi \le \pi), \qquad  
 \theta_j = \frac{j\,2\pi}{LongLines}\ (0 \le \theta < 2\pi)  
 $$
