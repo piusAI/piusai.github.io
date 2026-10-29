@@ -29,10 +29,13 @@ author: PIUS
    : 텍스쳐 $S$.
 2. 굴절 메쉬 Rendering, $S$에서 값 조회, 해당값에 Perturbation(교란) 적용
 
+### 02. 기본 굴절 구현:   
+
+
 굴절(기본) :  
 
 ``` cpp
-//dx11
+//dx11 .hlsl
 cbuffer RefractionCB : register(b0)
 {
 	float4 vScale;
@@ -61,7 +64,6 @@ float4 main(PS_INPUT input) : SV_Target
 	// refraction map fetch
 	return tex1.Sample(samp, newUV);
 }
-
 ```
 
 1. 굴절되는 물체(물,유리) 를 제외한 Scene을 offscreen - RenderTarget에 먼저 렌더링
@@ -80,7 +82,7 @@ float4 main(PS_INPUT input) : SV_Target
 굴절 (Alpha blending):  
 
 ``` cpp
-//dx11
+//dx11 - .hlsl
 cbuffer RefractionCB : register(b0)
 {
 	float4 vScale;
@@ -109,6 +111,35 @@ float4 main(PS_INPUT input) : SV_Target
 	float4 vRefrA = tex1.Sample(samp, vProj.xy + bumpTex.xy * vScale.xy); //distortion UV
 	float4 vRefrB = tex1.Sample(samp, vProj.xy); //original uV
 	return vRefrB * vRefrA.w + vRefrA( 1 - vRefrA.w);
+}
+```
+
+
+
+### 02. 물 굴절 구현:   
+
+
+
+기존 방식 : Re-Rendering, 수면 위 Geometry Cliping 추가 단계 거쳐 Refraction Map 생성,
+
+Refraction Mask를위해, 수면을 S Alpha Channel에 렌더링
+
+1. Water Plane 굴절 Mask용 BackBuffer alpha에 Write
+2. Water plane통해 반사된 Scene, 반사 Map에 Write
+3. 수면 아래 Geometry 잘라내 물 반사 맵 생성
+4. $S$와 해당 굴절 Mask alpha채널에 사용할 수있으므로 굴절 맵에 대한 추가 Rendering pass 필요하지 않다.
+
+
+Bump layer
+1. 4개의 Bump layer사용
+2. Bump Layer의 Texture 좌표는 VTX shader에서 layer마다 증가하는 겂으로 Scaling저주파 / 고주파 Detail 적절히 혼합
+
+``` cpp
+
+half Fresnel(half NdotL, half fresnelBias, half fresnelPow)
+{
+	half facing = (1.0 - NdotL);
+	return max(fresnelBias, +(*1.0 - fresnelBias) * pow(facing, fresnelPow), 0.0);
 }
 
 ```
