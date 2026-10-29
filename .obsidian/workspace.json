@@ -41,6 +41,20 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "_posts/2026-10-29-CubeMapping.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-10-29-CubeMapping"
+            }
+          },
+          {
+            "id": "3fe2e44c068c1f79",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "_posts/2026-Not-10-22-MultiTexturing.md",
                 "mode": "source",
                 "source": false
@@ -49,7 +63,8 @@
               "title": "2026-Not-10-22-MultiTexturing"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -214,26 +229,28 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "6f13b2e6347555b7",
+  "active": "b64fd57b61be34ab",
   "lastOpenFiles": [
-    "_posts/2026-10-28-Refraction-History.md",
+    "_posts/2026-Not-10-22-MultiTexturing.md",
+    "_posts/2026-10-29-CubeMapping.md",
     "_posts/2026-10-29-Refraction-Simulation.md",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
+    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
+    "assets/postimg/Shader/SkyboxShader.png",
+    "assets/postimg/Shader/미확인 318719.crdownload",
+    "assets/postimg/Shader/SkyBoxTest.png",
+    "assets/postimg/Shader/CubeMappingShader.png",
+    "assets/postimg/Shader/스크린샷 2026-10-29 오후 1.17.06.png",
+    "_posts/2026-10-28-Refraction-History.md",
     "assets/postimg/Refraction/RefractionMask.png",
     "assets/postimg/Refraction/RefractionBuffer.png",
-    "_posts/2026-Not-10-08-PhongReflectionModel.md",
-    "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-28-RefractionIssue.md",
     "assets/postimg/Refraction/approxiFigure.png",
     "assets/postimg/Refraction/WaterRefraction.png",
     "assets/postimg/Refraction/RefracitonGFX.png",
     "assets/postimg/Refraction/IceRefraction.png",
-    "assets/postimg/Refraction/EffectRefraction.png",
-    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-10-21-Not-UE-Insight.md",
     "_includes/mathjax_support.html",
-    "assets/postimg/Refraction/TAAChain.png",
-    "Pasted image 20261028151951.png",
-    "Pasted image 20261028151923.png",
     "_posts/2026-10-28-Iterator.md",
     "assets/postimg/Refraction",
     "assets/postimg/새 폴더",
@@ -256,12 +273,10 @@
     "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
     "_posts/2026-10-10-Static.md",
     "_posts/2026-10-11-Compile.md",
-    "_posts/2026-10-16-GEA-Chapter-03-03.md",
     "무제.base",
     "무제.canvas",
     "AIZ",
     "assets/postimg/UEGraphics/GTRT",
-    "assets/postimg/UEGraphics/무제 폴더",
-    "assets/postimg/UEGraphics"
+    "assets/postimg/UEGraphics/무제 폴더"
   ]
 }

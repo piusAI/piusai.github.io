@@ -135,11 +135,12 @@ Bump layer
 2. Bump Layer의 Texture 좌표는 VTX shader에서 layer마다 증가하는 겂으로 Scaling저주파 / 고주파 Detail 적절히 혼합
 
 ``` cpp
-
+//dx11 .hlsl
 half Fresnel(half NdotL, half fresnelBias, half fresnelPow)
 {
 	half facing = (1.0 - NdotL);
-	return max(fresnelBias, +(*1.0 - fresnelBias) * pow(facing, fresnelPow), 0.0);
+	return max(fresnelBias + (1.0 - fresnelBias) * pow(facing, fresnelPow), 0.0);
 }
 
 ```
+
