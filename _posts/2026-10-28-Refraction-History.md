@@ -29,12 +29,14 @@ Game Engine에서 Effect를 제작하면서 Refraction을 그토록 많이 활�
 | --------- | -------------------------------------------- | ---------------------------------------- |
 | 1980      | Whitted 레이 트레이싱                              | 굴절/반사 레이를 재귀로 쏨. 정확하지만 느림                |
 | 1996      | 포톤 매핑 (Jensen)                               | Caustic 까지 가능한 오프라인 GI                   |
-| 2000년대 초  | 환경맵 기반 굴절                                    | 레이 추적 없이 환경맵 조회. 빠르지만 자기 가림, 주변 물체 반영 불가 |
-| 2005      | Wyman 이미지 공간 굴절                              | 깊이 두 장으로 탈출점을 근사. 이 논문(Kim & Hong)의 계보   |
+| 2000년초    | 환경맵 기반 굴절                                    | 레이 추적 없이 환경맵 조회. 빠르지만 자기 가림, 주변 물체 반영 불가 |
+| 2005      | Wyman 이미지 공간 굴절                              | 깊이 두 장으로 탈출점을 근사. Kim & Hong             |
 | 2005~2007 | Distance impostor, Caustics mapping, Eikonal | GPU 근사 방법들이 쏟아진 시기                       |
 | 2010년대    | 스크린 스페이스 레이 마칭(SSR 등)                        | 깊이 버퍼를 레이 마칭. 게임 엔진에 정착                  |
 | 2018~     | 하드웨어 레이 트레이싱 (RTX)                           | 실시간에서 정확한 굴절이 가능해졌지만 비용이 큼               |
 
+
+---
 ### 01. Refraction Concept
 
 #### 01-A. 스넬의 법칙 (Snell's Law)
@@ -68,6 +70,7 @@ $$\mathbf{T}=\operatorname{refract}(\mathbf{I},\mathbf{N},\eta)$$
 - $\eta$ : 매질 굴절률 비율
 
 `hlsl::refract()`는 일반적으로 입사 방향 표면 쪽으로 향하는 벡터로 정의, normal vector는 입사 매질에서 투과 매질 쪽을 향하도록 사용
+`refract()`는 전반사(TIR)일때, 0 vector를 반환
 
 
 #### 01-C. 화면 공간 샘플링
@@ -91,7 +94,7 @@ $$D(\mathbf u)= \left|z(\mathbf u)-z(\mathbf u+\Delta\mathbf u)\right|$$
 
 ### 02 Paper Review
 
-#### 01.A Whitted Raytracing 
+#### 02-A. Whitted Raytracing 
 
 [Whitted Raytracing](https://www.cs.drexel.edu/~deb39/Classes/Papers/p343-whitted.pdf)
 
@@ -124,7 +127,7 @@ $$I=I_{\mathrm{local}}+k_r I_R+k_t I_T$$
 - $I_{\mathrm{local}}$: 표면에서 직접 계산한 조명
 - $I_R$: 반사 방향으로 추적한 광선이 가져오는 빛의 기여도
 - $I_T$: 굴절 방향으로 추적한 광선이 가져오는 빛의 기여도
-- $k_s$, $k_t$ : 반사/투과 조절 계수
+- $k_r$, $k_t$ : 반사/투과 조절 계수
 
 반사 광선과 굴절 광선은 새로운 교차점을 찾아 동일한 과정으로 재귀 수행.  
 광선이 다른 물체에 도달하면 해당 지점의 조명 결과를 계산하고,   
@@ -144,8 +147,7 @@ BVH(Bounding Volume Hierarchy)와는 다름.
 
 핵심 : Whitted RT는 반사와 굴절 방향으로 광선을 재귀적으로 추적해, 실제 장면의 다른 표면에서 얻은 빛을 계산, 물리적인 광선 경로 직접 추적할 수있지만, ray와 교차 검사 비용이 증가하기에 실시간 렌더링에서는 계산 비용이 중요한 제약이 됨!
 
----
-#### 02. Approximate Interactive Refraction - WymanRefraction 
+#### 02-B. Approximate Interactive Refraction - WymanRefraction 
 
 [Approximate Image-Space Approach for Interactive Refraction](https://cwyman.org/papers/sig05_approxISRefr.pdf)
 
@@ -169,3 +171,42 @@ $$\widetilde P_2=P_1+\widetilde d\,\mathbf T_1$$
 - $\widetilde d$ : 실제 광선 - 뒷면 교차 거리를 구하기보다, 쉽게 계산 가능한 두 거리 $d_v$, $d_N$을 보간해서 얻기
 
 $$\widetilde d= \frac{\theta_t}{\theta_i}d_V+ \left(1-\frac{\theta_t}{\theta_i}\right)d_N$$
+
+
+#### 02-C. Generic Refraction Simulation
+
+Concepts:  
+- 빛이 튀는 모든 환경을 실행중에 계산하는 방식
+- 환경 맵을 미리 구워 Runtime에 사용하는 방식
+$\rightarrow$ 텍스쳐 메모리 사용량이 많아 성능 저하가 발생한다.
+
+- Scene내 굴절되는 객체 이미지를 Color로 가져오는것이 아닌, Texture Coordinate를 변경하는 방식으로 표현!
+
+현재 Back buffer를 굴절 맵으로 사용, Texture coordinate에 변위 더해 굴절 효과 Simulation하는 기본 기법
+
+
+기본 굴절 기법 단계
+1. 모든 굴절 Mesh 건너 뛰고 Scene geometry를 Texture로 렌더링
+   후속 pass에서 Rendering될 굴절 객체 뒤에 보이는 객체를 결정하는데 사용 가능
+   : 텍스쳐$S$.
+2. 굴절 메쉬 Rendering, $S$에서 값 조회, 해당값에 Perturbation(교란) 적용
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/RefractionMask.png" alt="RefractionMask" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>RefractionMask</strong> </td>  </tr> </table>
+앞 Geometry의 Perturbation을 받지 않도록 위와 가운데 이미지와 같이 FrameBuffer alphachannel로 잘라서 그 영역의 경우만 Refraction적용되도록 함
+
+---
+### 03. 현재 게임 엔진의 굴절 방식
+
+#### 03-A. Unreal engine
+기본 Screen Space 방식으로 Material Refraction 입력이 Normal, IOR로 화면 UV를 Offset해서, SceneCololr를 Sampling하는 구조, 정확한 굴절이 필요하다면, Path Tracer / HW RT 경로를 따로 쓴다.
+TAA/MSAA과 같은 방식으로 추가 보정
+
+#### 03-B. Unity engine HDRP
+Refraction Model을 Planar, sphere, Thin으로 고른 후, Thickness 값으로 탈줄점 근사.  
+Wyman의 "두께로 두번쨰 굴절 위치 추정"하는 발상이 단순화 하여 정착한 형태, 배경은 color 피라미드(블러 mip)에서 샘플링.
+
+
+#### 03-C. 공통 한계
+
+화면 밖 가려진 영역의 배경 쓸 수 없고, 투명체 끼리 겹치면 정확치 않고, 굴절 배경에 TAA를 걸면, Motion vector가 어긋난다, Screen Space Offset + 두께근사, RT Fallback
+2Pass normal 조회는 잘 쓰이지않고, 아이디어만 흡수된 상태

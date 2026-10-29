@@ -4,21 +4,49 @@
     "type": "split",
     "children": [
       {
-        "id": "45cfca5bcc4649a2",
+        "id": "2992c6e1280ed23a",
         "type": "tabs",
         "children": [
           {
-            "id": "f4a0ec7aac61a0b5",
+            "id": "6f13b2e6347555b7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-28-Refraction-History.md",
+                "file": "_posts/2026-10-29-Refraction-Simulation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-28-Refraction-History"
+              "title": "2026-10-29-Refraction-Simulation"
+            }
+          },
+          {
+            "id": "ddafa11eac970d9f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-Not-10-08-PhongReflectionModel.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-Not-10-08-PhongReflectionModel"
+            }
+          },
+          {
+            "id": "b64fd57b61be34ab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-Not-10-22-MultiTexturing.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-Not-10-22-MultiTexturing"
             }
           }
         ]
@@ -186,48 +214,49 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "f4a0ec7aac61a0b5",
+  "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
-    "_posts/2026-10-28-RefractionIssue.md",
+    "_posts/2026-10-28-Refraction-History.md",
+    "_posts/2026-10-29-Refraction-Simulation.md",
+    "assets/postimg/Refraction/RefractionMask.png",
+    "assets/postimg/Refraction/RefractionBuffer.png",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
+    "_posts/2026-Not-10-22-MultiTexturing.md",
+    "_posts/2026-Not-10-28-RefractionIssue.md",
+    "assets/postimg/Refraction/approxiFigure.png",
     "assets/postimg/Refraction/WaterRefraction.png",
     "assets/postimg/Refraction/RefracitonGFX.png",
     "assets/postimg/Refraction/IceRefraction.png",
     "assets/postimg/Refraction/EffectRefraction.png",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
-    "_posts/2026-10-28-Refraction-History.md",
     "_posts/2026-10-21-Not-UE-Insight.md",
     "_includes/mathjax_support.html",
-    "_posts/2026-10-28-Refraction.md",
-    "_posts/2026-10-13-AIZ-Algorithm-v3.md",
-    "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
-    "_posts/2026-10-11-Compile.md",
-    "_posts/2026-10-10-Static.md",
-    "_posts/2026-10-07-Not-Graph.md",
-    "_posts/2026-10-07-Library.md",
-    "_posts/2026-10-06-GEA-Chapter-03-02.md",
-    "_posts/2026-10-12-GameRenderThread.md",
-    "_posts/2026-10-16-GEA-Chapter-03-03.md",
-    "_posts/2026-10-16-RoadFoundAlgorithm.md",
-    "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
-    "_posts/2026-10-28-Iterator.md",
-    "_posts/2026-10-21-UE-Insight.md",
-    "_posts/2026-10-19-Not-LEB.md",
-    "_posts/2026-Not-10-22-MultiTexturing.md",
-    "_posts/2026-Not-10-08-PhongReflectionModel.md",
-    "assets/postimg/Refraction/approxiFigure.png",
-    "assets/postimg/Refraction/스크린샷 2026-10-28 오후 6.03.23.png",
-    "().md",
     "assets/postimg/Refraction/TAAChain.png",
     "Pasted image 20261028151951.png",
     "Pasted image 20261028151923.png",
-    "Pasted image 20261028151911.png",
+    "_posts/2026-10-28-Iterator.md",
     "assets/postimg/Refraction",
     "assets/postimg/새 폴더",
+    "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
     "file:/Users/hwanghyojun/Downloads/tessellation_symbol_reference.md",
     "_posts/2026-10-04-DXShader.md",
     "무제.md",
+    "_posts/2023-12-11-PointAttribute.md",
+    "_posts/2023-12-13-Houdini-Level.md",
+    "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
+    "_posts/2023-12-19-Houdini-String-Vex.md",
+    "_posts/2023-12-18-Houdini-Component.md",
+    "_posts/2023-12-23-Houdini-GetNodeName.md",
+    "_posts/2026-10-21-UE-Insight.md",
+    "_posts/2026-10-12-GameRenderThread.md",
+    "().md",
     "assets/postimg/ProfileTool",
     "assets/postimg/UEGraphics/ProfileTool",
+    "_posts/2026-10-13-AIZ-Algorithm-v3.md",
+    "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
+    "_posts/2026-10-10-Static.md",
+    "_posts/2026-10-11-Compile.md",
+    "_posts/2026-10-16-GEA-Chapter-03-03.md",
     "무제.base",
     "무제.canvas",
     "AIZ",
