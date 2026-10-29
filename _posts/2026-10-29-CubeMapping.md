@@ -64,11 +64,15 @@ void CreateSphere(int LatLines, int LongLines)
 
 ####  Sphere vertex position 수식
 
-$$\mathbf{P}(\phi,\theta) = (\sin\phi\cos\theta,\ \cos\phi,\ \sin\phi\sin\theta)$$
 
 위도 각 `φ`(pitch), 경도 각 `θ`(yaw)로 단위 구 위의 점을 구한다.
 
+$$\mathbf{P}(\phi,\theta) = (\sin\phi\cos\theta,\ \cos\phi,\ \sin\phi\sin\theta)$$
+
+
+
 $$\phi_i = \frac{i\,\pi}{LatLines-1}\ (0 \le \phi \le \pi), \qquad\theta_j = \frac{j\,2\pi}{LongLines}\ (0 \le \theta < 2\pi)$$
+
 
 - Tutorial code는 `(0,0,1)` 벡터를 pitch → yaw 회전행렬로 돌려 같은 결과를 만든다.
 - Skybox에서는 이 **vertex 위치(P)가 곧 `texCoord`(샘플링 방향)** 이다.
@@ -236,7 +240,6 @@ D3D11_RASTERIZER_DESC cmdesc; ZeroMemory(&cmdesc, sizeof(D3D11_RASTERIZER_DESC))
 cmdesc.CullMode = D3D11_CULL_NONE;
 d3d11Device->CreateRasterizerState(&cmdesc, &RSCullNone);
 ```
-
 
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Shader/SkyboxTest1.png" alt="SkyboxTest" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>SkyboxTest</strong> </td>  </tr> </table>

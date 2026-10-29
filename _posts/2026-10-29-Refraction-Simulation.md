@@ -136,9 +136,9 @@ Bump layer
 
 ``` cpp
 //dx11 .hlsl
-half Fresnel(half NdotL, half fresnelBias, half fresnelPow)
+float Fresnel(float NdotL, float fresnelBias, float fresnelPow)
 {
-	half facing = (1.0 - NdotL);
+	float facing = (1.0 - NdotL);
 	return max(fresnelBias + (1.0 - fresnelBias) * pow(facing, fresnelPow), 0.0);
 }
 
