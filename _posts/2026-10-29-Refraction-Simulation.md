@@ -36,7 +36,7 @@ Scene내 굴절되는 객체 이미지를 Color로 가져오는것이 아닌, Te
 
 굴절(기본) :  
 
-```cpp hlsl
+``` cpp hlsl
 //dx11
 cbuffer RefractionCB : register(b0)
 {
@@ -84,7 +84,7 @@ float4 main(PS_INPUT input) : SV_Target
 
 굴절 (Alpha blending):  
 
-```cpp hlsl
+``` cpp hlsl
 //dx11
 cbuffer RefractionCB : register(b0)
 {
