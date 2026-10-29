@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: "GPU Gems 2 : Generic Refraction Simulation"
+title: Generic Refraction Simulation(GPU Gems 2)
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-10-29 17:22:00 +0900
 description: Refraction
