@@ -68,10 +68,7 @@ $$\mathbf{P}(\phi,\theta) = (\sin\phi\cos\theta,\ \cos\phi,\ \sin\phi\sin\theta)
 
 위도 각 `φ`(pitch), 경도 각 `θ`(yaw)로 단위 구 위의 점을 구한다.
 
-$$  
-\phi_i = \frac{i\,\pi}{LatLines-1}\ (0 \le \phi \le \pi), \qquad  
-\theta_j = \frac{j\,2\pi}{LongLines}\ (0 \le \theta < 2\pi)  
-$$
+$$\phi_i = \frac{i\,\pi}{LatLines-1}\ (0 \le \phi \le \pi), \qquad\theta_j = \frac{j\,2\pi}{LongLines}\ (0 \le \theta < 2\pi)$$
 
 - Tutorial code는 `(0,0,1)` 벡터를 pitch → yaw 회전행렬로 돌려 같은 결과를 만든다.
 - Skybox에서는 이 **vertex 위치(P)가 곧 `texCoord`(샘플링 방향)** 이다.
