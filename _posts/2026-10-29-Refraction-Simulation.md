@@ -16,26 +16,22 @@ author: PIUS
 
 ### Generic Refraction Simulation
 
-빛이 튀는 모든 환경을 실행중에 계산하는 방식, 환경 맵을 미리 구워 Runtime에 사용하는 방식이 있지만, $\rightarrow$ 텍스쳐 메모리 사용량이 많아 성능 저하가 발생한다.
-그렇기 때문에 
+빛이 튀는 모든 환경을 실행중에 계산하는 방식, 환경 맵을 미리 구워 Runtime에 사용하는 방식이 있지만 $\rightarrow$ 텍스쳐 메모리 사용량이 많아 성능 저하가 발생한다.
+그렇기 때문에 Scene내 굴절되는 객체 이미지를 Color로 가져오는것이 아닌, Texture Coordinate를 변경하는 방식으로 표현한다.
 
-Scene내 굴절되는 객체 이미지를 Color로 가져오는것이 아닌, Texture Coordinate를 변경하는 방식으로 표현!
 ### 01. Concepts:  
 
-
-
 현재 Back buffer를 굴절 맵으로 사용, Texture coordinate에 변위 더해 굴절 효과 Simulation하는 기본 기법
-
 
 기본 굴절 기법 단계
 1. 모든 굴절 Mesh 건너 뛰고 Scene geometry를 Texture로 렌더링
    후속 pass에서 Rendering될 굴절 객체 뒤에 보이는 객체를 결정하는데 사용 가능
-   : 텍스쳐$S$.
+   : 텍스쳐 $S$.
 2. 굴절 메쉬 Rendering, $S$에서 값 조회, 해당값에 Perturbation(교란) 적용
 
 굴절(기본) :  
 
-``` cpp hlsl
+``` cpp
 //dx11
 cbuffer RefractionCB : register(b0)
 {
@@ -83,7 +79,7 @@ float4 main(PS_INPUT input) : SV_Target
 
 굴절 (Alpha blending):  
 
-``` cpp hlsl
+``` cpp
 //dx11
 cbuffer RefractionCB : register(b0)
 {
