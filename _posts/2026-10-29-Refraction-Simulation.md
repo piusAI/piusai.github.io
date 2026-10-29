@@ -16,8 +16,7 @@ author: PIUS
 
 ### Generic Refraction Simulation
 
-빛이 튀는 모든 환경을 실행중에 계산하는 방식, 환경 맵을 미리 구워 Runtime에 사용하는 방식이 있지만, 
-$\rightarrow$ 텍스쳐 메모리 사용량이 많아 성능 저하가 발생한다.
+빛이 튀는 모든 환경을 실행중에 계산하는 방식, 환경 맵을 미리 구워 Runtime에 사용하는 방식이 있지만, $\rightarrow$ 텍스쳐 메모리 사용량이 많아 성능 저하가 발생한다.
 그렇기 때문에 
 
 Scene내 굴절되는 객체 이미지를 Color로 가져오는것이 아닌, Texture Coordinate를 변경하는 방식으로 표현!
