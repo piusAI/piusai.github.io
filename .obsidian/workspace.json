@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-29-CubeMapping.md",
+                "file": "_posts/2026-10-30-Iterator-Basic.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-29-CubeMapping"
+              "title": "2026-10-30-Iterator-Basic"
             }
           }
         ],
@@ -217,9 +217,13 @@
   },
   "active": "7761bb136e2e9dc8",
   "lastOpenFiles": [
-    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
+    "_posts/2026-Not-10-30-Efficient-GPU-Screen-spaceRT.md",
+    "assets/postimg/Refraction/DDA_Basic.svg",
+    "assets/postimg/Refraction/미확인 662470.crdownload",
     "_posts/2026-10-29-Refraction-Simulation.md",
+    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-10-29-CubeMapping.md",
+    "assets/postimg/Shader/SkyBoxTesty.png",
     "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "_posts/2026-Not-10-22-MultiTexturing.md",
     "assets/postimg/Shader/SkyBoxTest1.png",
@@ -233,11 +237,9 @@
     "assets/postimg/Refraction/RefractionBuffer.png",
     "_posts/2026-Not-10-28-RefractionIssue.md",
     "assets/postimg/Refraction/approxiFigure.png",
-    "assets/postimg/Refraction/WaterRefraction.png",
-    "assets/postimg/Refraction/RefracitonGFX.png",
     "_posts/2026-10-21-Not-UE-Insight.md",
     "_includes/mathjax_support.html",
-    "_posts/2026-10-28-Iterator.md",
+    "_posts/2026-10-30-Iterator-Basic.md",
     "assets/postimg/Refraction",
     "assets/postimg/새 폴더",
     "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
@@ -257,11 +259,9 @@
     "assets/postimg/UEGraphics/ProfileTool",
     "_posts/2026-10-13-AIZ-Algorithm-v3.md",
     "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
-    "_posts/2026-10-10-Static.md",
     "무제.base",
     "무제.canvas",
     "AIZ",
-    "assets/postimg/UEGraphics/GTRT",
-    "assets/postimg/UEGraphics/무제 폴더"
+    "assets/postimg/UEGraphics/GTRT"
   ]
 }

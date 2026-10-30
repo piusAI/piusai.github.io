@@ -229,9 +229,7 @@ float4 main(PS_Input input) : SV_Target
 	float3 cReflect = fresnel * vReflection.xyz;
 	return float4(cReflect + waterColor, 1.0);
 	
-	
 }
-
 
 ```
 
