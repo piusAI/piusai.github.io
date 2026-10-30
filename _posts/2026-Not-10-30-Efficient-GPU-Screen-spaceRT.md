@@ -140,14 +140,16 @@ $$x_{\text{inc}}=\frac{\Delta x}{\text{steps}},\qquad y_{\text{inc}}=\frac{\Delt
 ### Linear Ray Marching
 광선의 시작점에서 일정한 간격으로 이동하면서 각 위치에서 표면이나 물체와 만나는지 검사하는 방법.
 
-광선의 시작점$P_0$에서 방향 $\mathbf d$를 따라 일정한 거리 $\Delta t$만큼 이동
+광선의 시작점$P_0$에서 방향 $\mathbf D$를 따라 일정한 거리 $\Delta t$만큼 이동
 
-$$\mathbf p(t)=\mathbf o+t\mathbf d$$
+$$P(t)=P_0+tD$$
 
 $$t_{i+1}=t_i+\Delta t$$
 
-- $\mathbf o$ : 광선의 시작점
-- $\mathbf p(t)$ : 현재 검사 위치
+- $P_o$ : 광선의 시작점
+- $\mathbf D$: 광선의 진행 방향
+- $\mathbf p(t)$ : 현재 광선의 위치
+- 진행 거리
 
 
 |구분|DDA Line Rasterization|Linear Ray Marching|
