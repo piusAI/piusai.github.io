@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
+                "file": "_posts/2026-Not-11-01-Newton-Screen-Space-Refraction.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-10-31-Efficient-GPU-Screen-spaceRT"
+              "title": "2026-Not-11-01-Newton-Screen-Space-Refraction"
             }
           }
         ]
@@ -188,13 +188,18 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
+    "assets/postimg/Refraction/NewtonFigure1.png",
+    "assets/postimg/Refraction/Screenshot 2026-11-01 010922.png",
+    "assets/postimg/Refraction/SurfaceDepthRayDepthrender.png",
+    "assets/postimg/Refraction/SurfaceDepthRayDepth.png",
+    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
+    "_posts/2026-Not-11-01-Newton-Screen-Space-Refraction.md",
     "assets/postimg/Refraction/NDC002.png",
     "assets/postimg/Refraction/NDC001.png",
     "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-Not-10-30-RayMarching.md",
-    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
     "assets/postimg/Refraction/RayMarching3D.png",
     "assets/postimg/Refraction/{ABCBEB93-BDF6-4CF2-8472-0005D2B66FA7}.png",
     "_posts/2026-10-29-CubeMapping.md",
@@ -204,11 +209,7 @@
     "assets/postimg/Refraction/미확인 662470.crdownload",
     "assets/postimg/Shader/SkyBoxTesty.png",
     "assets/postimg/Shader/SkyBoxTest1.png",
-    "assets/postimg/Shader/SkyboxShader.png",
     "assets/postimg/Shader/미확인 318719.crdownload",
-    "assets/postimg/Shader/SkyBoxTest.png",
-    "assets/postimg/Shader/CubeMappingShader.png",
-    "assets/postimg/Shader/스크린샷 2026-10-29 오후 1.17.06.png",
     "_posts/2026-10-28-Refraction-History.md",
     "_posts/2026-Not-10-28-RefractionIssue.md",
     "_posts/2026-10-21-Not-UE-Insight.md",
@@ -230,7 +231,6 @@
     "().md",
     "assets/postimg/ProfileTool",
     "assets/postimg/UEGraphics/ProfileTool",
-    "_posts/2026-10-13-AIZ-Algorithm-v3.md",
     "무제.base",
     "무제.canvas",
     "AIZ",
