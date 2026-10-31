@@ -157,6 +157,7 @@ $$\boxed{ Q(x,y)=\frac{Q'(x,y)}{k(x,y)} }$$
 #### 4.1 미분 값들이 Constant인 이유?
 
 $$\frac{\partial(Qk)}{\partial x}, \quad \frac{\partial k}{\partial x}, \quad \frac{\partial(Qk)}{\partial y}, \quad \frac{\partial k}{\partial y}$$
+
 위 값들이 Constant라는 것이 중요한데, 앞서 정의한 $Q_k$와 $k$는 화면 공간에서 Linear Interpolation 되는 값이다. 화면 공간의 직선 방향을 따라 변화율이 일정하다.
 
 이를 이용하면 반복문안에서 매번 복잡한 Projection 연산 필요없이 미리 계산한 변화량을 이용해 다음 픽셀의 값을 갱신할 수 있다.
