@@ -3,7 +3,7 @@ layout: post
 published: true
 title: 『Efficient GPU Screen-Space RayTracing』
 thumbnail-img: /assets/img/Renderpipeline.jpg
-date:   2026-10-29 17:22:00 +0900
+date:   2026-10-31 17:22:00 +0900
 description: Refraction
 categories:
   - Graphics
