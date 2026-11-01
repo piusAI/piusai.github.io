@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 『Screen-Space Refraction/Caustics Newton's Method』
+title: 『Screen-Space Refraction Newton Method』
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-11-01 14:22:00 +0900
 description: Refraction
