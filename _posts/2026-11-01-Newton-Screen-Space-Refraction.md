@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 『Efficient GPU Screen-Space RayTracing』
+title: 『Screen-Space Refraction/Caustics Newton's Method』
 thumbnail-img: /assets/img/Renderpipeline.jpg
 date:   2026-11-01 14:22:00 +0900
 description: Refraction
@@ -67,6 +67,7 @@ Newton 방법의 기본 식 :
 $$
 t_{n+1} = t_n-\frac{f(t_n)}{f'(t_n)}
 $$
+
 현재 추정한 위치 $t_n$에서 오차 $f(t_n)$와 기울기 $f'(t_n)$를 보고 다음 위치를 정하는 것.
 
 > 목표 : Hierarchical RayMarching을 Newton법으로 대채해, Ray 다음 단계 결정하는 실시간 Screen space 알고리즘을 만든다.
@@ -173,11 +174,11 @@ $$
 - 확장 가능성 : 이후 Refelction ray로 확장할 수도있다.
 
 ---
-#### 4. Proof to Newton's Method
+### 4. Proof to Newton's Method
 
 > 굴절 광선과 접평면의 교자첨으로 다음 위치를 구하는 연산이 Newton갱신식과 같음을 보인다.
 
-###### 1. 표면을 $F(x)=0$ 으로 표현
+#### 4.1 표면을 $F(x)=0$ 으로 표현
 
 $$
 \mathbf x=(x,y,z)\in\mathbb R^3
@@ -192,7 +193,7 @@ $$ F(\mathbf x)=0 $$
 - 0인 점들의 집합으로 표면을 정의하는 방식 : Implicit surface ; **음함수 표면**이라고 함.
 
 
-###### 2. 3D 함수를 광선위의 1차원 함수로 제한한다.
+#### 4.2 3D 함수를 광선위의 1차원 함수로 제한한다.
 
 굴절 광선 : 
 
@@ -209,7 +210,7 @@ $$
 \boxed{g(s)=F(\mathbf W+s\hat{\mathbf r})}
 $$
 
-###### 3. Gradient, Normal의 연결
+#### 4.3 Gradient, Normal의 연결
 음함수 표면에서 Gradient는 표면에 수직
 
 $$
@@ -225,7 +226,8 @@ $$
 - Normal은 보통 Unit Vector, Gradient에는 함수값이 변하는 크기도 들어있다 → 둘이 항상 같은 벡터는 아님
 - $F = 1$인 표면은 카메라쪽으로 이동한 같은 모양의 표면이지만, Perspective Projection에서 이를 World공간의 단순한 평행이동이라 생각하면 안된다.
 
-###### 4. Newton식 유도
+
+#### 4.4 Newton식 유도
 
 이제 $g(s)$에 Newton의 미분 점화식을 적용:
 
@@ -249,6 +251,7 @@ $$
 $$
 0= F(\mathbf x_i) + (s_{i+1}-s_i) \nabla F(\mathbf x_i)\cdot\hat{\mathbf r}
 $$
+
 이를 $S_{i+1}$에 대해 정리하면 위의 Newton식이 딘다.
 
 > 결론 : 국소적인 평면 근사와 광선 교차를 푸는 것이 곧 Newton 갱신식이다.
