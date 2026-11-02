@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
+                "file": "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-11-01-Newton-Screen-Space-Refraction"
+              "title": "2026-Not-11-02-Depth-Discontinuity-Refraction"
             }
           }
         ]
@@ -188,27 +188,28 @@
   },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
+    "assets/postimg/Refraction/EngineFSceneViewExtension.png",
+    "assets/postimg/Refraction/{515B75E3-2E5B-401C-ACD0-58758B432896}.png",
+    "assets/postimg/Refraction/EngineFSceneViewExtension (2).png",
+    "assets/postimg/Refraction/{FA170069-CBF0-4FE8-A6C1-3377B7551A23}.png",
+    "assets/postimg/Refraction/{A08E7FA0-E990-4554-84B0-40C21E63DAB5}.png",
+    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
+    "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
+    "assets/postimg/Refraction/{848F06F2-402F-4CBC-87D1-46960F98D992}.png",
+    "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
     "assets/postimg/Refraction/NewtonFigure1.png",
     "assets/postimg/Refraction/Screenshot 2026-11-01 010922.png",
     "assets/postimg/Refraction/SurfaceDepthRayDepthrender.png",
     "assets/postimg/Refraction/SurfaceDepthRayDepth.png",
-    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
-    "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
     "assets/postimg/Refraction/NDC002.png",
-    "assets/postimg/Refraction/NDC001.png",
     "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-Not-10-30-RayMarching.md",
-    "assets/postimg/Refraction/RayMarching3D.png",
-    "assets/postimg/Refraction/{ABCBEB93-BDF6-4CF2-8472-0005D2B66FA7}.png",
     "_posts/2026-10-29-CubeMapping.md",
     "_posts/2026-10-30-Iterator-Basic.md",
     "_posts/2026-10-29-Refraction-Simulation.md",
-    "assets/postimg/Refraction/DDA_Basic.svg",
     "assets/postimg/Refraction/미확인 662470.crdownload",
-    "assets/postimg/Shader/SkyBoxTesty.png",
-    "assets/postimg/Shader/SkyBoxTest1.png",
     "assets/postimg/Shader/미확인 318719.crdownload",
     "_posts/2026-10-28-Refraction-History.md",
     "_posts/2026-Not-10-28-RefractionIssue.md",
@@ -228,7 +229,6 @@
     "_posts/2023-12-23-Houdini-GetNodeName.md",
     "_posts/2026-10-21-UE-Insight.md",
     "_posts/2026-10-12-GameRenderThread.md",
-    "().md",
     "assets/postimg/ProfileTool",
     "assets/postimg/UEGraphics/ProfileTool",
     "무제.base",
