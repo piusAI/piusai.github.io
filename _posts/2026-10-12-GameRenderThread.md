@@ -75,7 +75,7 @@ ENQUEUE_RENDER_COMMAND(UpdateValue)(
 - 실제 업로드는 엔진의 리소스 관리 및 RHI 경로를 통해 수행됨
 - 예시 : ComputeShader Inputbuffer, 변형 데이터, GPU instance data
 
-#### ⑤RDG - RenderPass와 GPU 작업 구성
+#### ⑤ RDG - RenderPass와 GPU 작업 구성
 - RT 코드 → `FDGBuilder` → Pass 등록 → GPU `execute()`
 - **RDG자체는 GT→RT전달 방식은 아니다**. 
   RT에 도착한 데이터로 GPU 작업을 구성, 리소스 의존성을 관리하는 프레임워크!!
