@@ -334,9 +334,38 @@ Depth Buffer는 화면의 각 픽셀 또는 샘플 위치에 해당하는 깊이
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/DepthBuffer.png" alt="DepthBuffer" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>DepthBuffer</strong> </td>  </tr> </table>
 카메라와 가까운 A만 그려져야한다.
 
-Depth Buffer는 World Z가 저장되는 것이 아닌, 투영된 깊이 값이 저장된다.
-Depth Buffer를 Sampling한다고해서 WorldPosition이 바로 나오는것이 아니겠다.
+Depth Buffer는 World Z가 저장되는 것이 아니라, Projection과 Rasterization과정을 거쳐 계산된 Device Depth를 저장한다.
+따라서 Depth Buffer를 Sampling한다고해서 3D World Position를 직접 얻을 수 없다.
+Screen UV와 Device Depth를 사용해 NDC좌표를 구성한 다음, Inverse Projection Matrix를 적용하고, Perspective Divide를 수행하면 View Space Position을 복원할 수 있다.
+
 
 아래와 같은 일련의 복원 과정을 거쳐야겠다.
 
-Screen UV + Device Depth → NDC/Clip 좌표 구성 → Inverse Projection Matrix → View Space Position → Inverse View Matrix → World Space Position
+Screen UV + Device Depth → NDC/Clip 좌표 구성 → Inverse Projection Matrix → Perspective Divide → View Space Position → Inverse View Matrix → World Space Position
+
+
+DepthBuffer로 View Space 위치 복원
+
+```cpp
+
+//1. ScreenUV → NDC XY
+float2 NDC = ScreenUV* 2.0-1.0;
+NDC.y= -NDC.y; // 좌상단 :Screen UV(0,0) NDC (-1, +1) 
+
+//2. DepthBuffer에서 Device Depth읽기
+float Depth = SceneDepthTexture.SampleLevel(DepthSampler, ScreenUV, 0).r;
+
+//3. NDC XY + DeviceDepth → Clip 좌표 구성
+float4 ClipPos = float4(NDC.xy, Depth, 1.0f/* 동차좌표 */);
+
+//4. InverseProjection으로 View Space 복원
+float4 ViewPos = mul(ClipPos, ClipToView);
+ViewPos.xyz /= ViewPos.w;
+```
+
+
+`ClipToView` : 일반적인 경우 Projection Matrix의 역행렬
+
+$$ P_{\text{view}} = \operatorname{PerspectiveDivide} \left( P_{\text{ndc}}\cdot M_{\text{projection}}^{-1} \right)  $$
+
+행렬을 역으로 곱하면 동차 ViewSpace좌표 나오고, `w`로 나누니, 실제 viewSpace의 3D를 얻은 것이다.
