@@ -412,3 +412,30 @@ Fullscreen Pass
                 ↓
           최종 화면
 ```
+
+
+
+`MainPS`로 PixelShader에만 들어가도록 했다.
+
+**진입 함수** :  
+```cpp
+//RefractMethodShaders.cpp
+IMPLEMENT_GLOBALSHADER(FBaseline2SSRPS, "/Plugin/RefractMethod/Private/Baseline2_SSR.usf", "MainPS", SF_Pixel);
+```
+
+에서 PixelShader의 진입함수로 등록
+
+`MRT` - Multiple Render Targets
+
+**Semantic** : 
+
+``` cpp
+PassParams->RenderTagets[0] = FRenderTargetBinding(OutRefractionTexture, ERenderTargetLoadAction::ENoAction); // SV_Target0
+
+PassParams->RenderTagets[1] = FRenderTargetBinding(OutDegugTexture, ERenderTargetLoadAction::ENoAction); //SV_Target1
+```
+
+PS가 결과를 기록할 RenderTargeet을 지정하는 코드이다.
+
+
+#### 5.1 현재 픽셀 UV 구하기

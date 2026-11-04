@@ -198,3 +198,15 @@ Rasterizer와 비교했을때, 최종 투영된 영역만 PS실행된다면,
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/RDG/ComputeShader.png" alt="ComputeShader" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>ComputeShader</strong> </td>  </tr> </table>
 
 나중에 이미지 좀 수정하기
+
+
+---
+### 5. Semantic
+
+
+ **SV_Position** : 
+out float4 OutPosition : Vertex Shader 출력
+- `ClipSpace Coord`를 뜻한다.
+
+in float4 InPosition : PixelShader 입력
+-  `ScreenSpace Pixel`좌표로 바뀌어 들어온다.
