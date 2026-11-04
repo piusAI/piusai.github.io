@@ -20,6 +20,34 @@
               "icon": "lucide-file",
               "title": "2026-Not-11-02-RDG-Unrealengine"
             }
+          },
+          {
+            "id": "090d0fc9792ba3b3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-Not-11-02-Depth-Discontinuity-Refraction"
+            }
+          },
+          {
+            "id": "9d54b375199ad8f3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-Not-11-02-RDG-Unrealengine.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-Not-11-02-RDG-Unrealengine"
+            }
           }
         ]
       }
@@ -97,7 +125,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2026-10-07-Library.md",
+                "file": "_posts/2026-Not-11-02-RDG-Unrealengine.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -107,7 +135,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "백링크"
+              "title": "Backlinks"
             }
           },
           {
@@ -186,93 +214,53 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "floating": {
-    "id": "5977930bc8b8f362",
-    "type": "floating",
-    "children": [
-      {
-        "id": "e0d449c4273a3e35",
-        "type": "window",
-        "children": [
-          {
-            "id": "e0a2d912c7f5b20e",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "97e4b8940d9419dc",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "2026-Not-11-02-Depth-Discontinuity-Refraction"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 18,
-        "y": 0,
-        "width": 899,
-        "height": 1032,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
   "active": "6f13b2e6347555b7",
   "lastOpenFiles": [
     "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
     "_posts/2026-Not-11-02-RDG-Unrealengine.md",
+    "assets/postimg/Graphics/DepthBuffer.png",
+    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 8.03.33.png",
+    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 8.02.52.png",
+    "assets/postimg/Graphics/Rasterization.png",
+    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.33.00.png",
+    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.26.27.png",
+    "assets/postimg/Graphics/VertexShader.png",
+    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.06.27.png",
+    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.02.51.png",
     "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
-    "assets/postimg/Graphics/RDG/FullScreenRaster.png",
-    "assets/postimg/Graphics/RDG/{EC6BD2B5-A432-41D9-9B35-727E2EA30E3D}.png",
-    "assets/postimg/Graphics/RDG/FullscreenRaster.png",
-    "assets/postimg/Graphics/RDG/{5BF2C284-88F7-474A-83BD-6961C22E2BCE}.png",
-    "assets/postimg/Graphics/RDG/ComputeShader.png",
-    "assets/postimg/Graphics/RDG/{A44D3FE3-5004-40DE-B865-06FE0760FDE5}.png",
     "assets/postimg/Graphics/RDG/RasterShader.png",
-    "assets/postimg/Graphics/RDG/{BD1F80DA-4459-4000-8C6E-119DDE17BD5F}.png",
     "assets/postimg/Graphics/RDG",
-    "assets/postimg/Graphics/새 폴더",
     "assets/postimg/Graphics",
-    "assets/postimg/새 폴더",
-    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
-    "assets/postimg/Shader/CubeMap_09.png",
-    "assets/postimg/Shader/CubeMap_08.png",
+    "_posts/2026-10-10-Static.md",
+    "_posts/2026-10-07-Library.md",
+    "_posts/2026-10-06-GEA-Chapter-03-02.md",
+    "_posts/2026-10-05-GEA-Chapter-03-01.md",
+    "_posts/2026-10-07-Not-Graph.md",
     "_posts/2026-11-04-Cubemap.md",
-    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
-    "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
+    "assets/postimg/Shader/미확인 265009.crdownload",
     "_posts/2026-Not-10-08-PhongReflectionModel.md",
+    "assets/postimg/Shader/미확인 503688.crdownload",
+    "assets/postimg/Shader/미확인 685017.crdownload",
+    "assets/postimg/Shader/미확인 456835.crdownload",
+    "assets/postimg/Shader/미확인 707808.crdownload",
+    "assets/postimg/Shader/미확인 703502.crdownload",
+    "assets/postimg/Shader/미확인 446621.crdownload",
+    "_posts/2023-12-19-Houdini-String-Vex.md",
+    "_posts/2024-12-12-Houdini-condof-condir.md",
+    "_posts/2026-10-29-CubeMapping.md",
+    "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
+    "assets/postimg/Shader/미확인 549469.crdownload",
+    "_posts/2026-10-19-Not-LEB.md",
+    "_posts/2026-10-28-Refraction-History.md",
+    "_posts/2026-10-29-Refraction-Simulation.md",
+    "_posts/2026-10-16-GEA-Chapter-03-03.md",
+    "_posts/2026-10-12-GameRenderThread.md",
+    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
+    "_posts/2026-Not-11-01-STL.md",
+    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
     "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-30-RayMarching.md",
-    "_posts/2026-10-29-CubeMapping.md",
     "_posts/2026-10-30-Iterator-Basic.md",
-    "_posts/2026-10-29-Refraction-Simulation.md",
-    "assets/postimg/Refraction/미확인 662470.crdownload",
-    "assets/postimg/Shader/미확인 318719.crdownload",
-    "_posts/2026-10-28-Refraction-History.md",
-    "_posts/2026-Not-10-28-RefractionIssue.md",
-    "_posts/2026-10-21-Not-UE-Insight.md",
-    "_includes/mathjax_support.html",
-    "assets/postimg/Refraction",
-    "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
-    "file:/Users/hwanghyojun/Downloads/tessellation_symbol_reference.md",
-    "_posts/2026-10-04-DXShader.md",
-    "무제.md",
-    "_posts/2023-12-11-PointAttribute.md",
-    "_posts/2023-12-13-Houdini-Level.md",
-    "_posts/2023-12-15-Houdini-Turbulence-Noise.md",
-    "_posts/2023-12-19-Houdini-String-Vex.md",
-    "_posts/2023-12-18-Houdini-Component.md",
-    "_posts/2023-12-23-Houdini-GetNodeName.md",
-    "assets/postimg/ProfileTool",
-    "assets/postimg/UEGraphics/ProfileTool",
     "무제.canvas"
   ]
 }
