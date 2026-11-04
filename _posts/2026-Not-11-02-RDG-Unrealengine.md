@@ -44,7 +44,7 @@ FRDGTextureRef SceneDepthTexture;
 
 - Normal G-buffer
 
-하지만 Buffer로 표현되는 구조체가`FRDGBuffer`로 존재한다.
+하지만 Buffer로 표현되는 구조체가 `FRDGBuffer`로 존재한다.
 
 | Type          | 역할 / 설명                          |
 | ------------- | -------------------------------- |
@@ -88,3 +88,113 @@ float3 position = ParticlePositions[100];
 | ④ 패스 등록   | 사용할 셰이더와 GPU 작업을 그래프에 추가한다        | `FPixelShaderUtils::AddFullscreenPass`                        |
 | ⑤ 결과 연결   | 후속 패스에서 읽거나 외부 출력 대상으로 복사한다       | 다음 패스의 입력, `AddCopyTexturePass` 등                             |
 | ⑥ 엔진 실행   | 엔진이 해당 그래프를 실행할 때 등록한 작업이 처리된다    | `GraphBuilder.Execute()`                                      |
+
+#### A. 기존 RDG Texture를 직접 전달 
+Scene Color 별도로 복사하지않는다.
+
+```cpp
+FRDGTextureRef SceneColor =	Inputs.SceneTexture->SceneColorTexture;
+
+FMySceneShader::FParameters* Parameters = GraphBuilder.AllocParameters<FMySceneShader::FParameters>();
+
+Parameter->InputTexture =SceneColor;
+parameter->OutputTexture = GraphBuilder.CreateTexture(Desc, TEXT("myoutput"));
+```
+
+#### B. RenderTarget을 RDG에 등록
+외부 RHI 리소스를 RDG가 관리할 수있도록 연결해줘야한다.
+
+```cpp
+FRHITexture* ExternalTexture = RenderTargetResource->GetRenderTargetTexture();
+
+FRDGTextureRef InputTexture = GraphBuilder.RegisterExternalTexture(
+	CreateRenderTarget(ExternalTexture, TEXT("ExternalTexture"))
+	);
+```
+
+
+
+
+
+| DirectX                 | Unreal RDG                              |
+| ----------------------- | --------------------------------------- |
+| CreateBuffer            | CreateBuffer / CreateTexture            |
+| 기존 GPU Resource         | 기존 RDG Resource 또는 External Resource 등록 |
+| Input Layout            | Vertex Factory / Vertex Declaration 등   |
+| VS / PS class           | Global Shader class                     |
+| Shader Resource Binding | Shader Parameter structure              |
+| DrawIndexed             | Raster Pass 내부 Draw 호출                  |
+| Draw                    | Raster Pass 내부 Draw 호출                  |
+| GPU 명령 실행               | RDG가 구성한 GPU 명령 실행                      |
+
+
+---
+### 3. Shader Parameter 선언 흐름
+
+
+
+
+---
+### 4. RDG 구현 방식 세가지
+
+#### A. Raster Shader 방식
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/RDG/RasterShader.png" alt="RasterShader" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>RasterShader</strong> </td>  </tr> </table>
+이렇게 Custom Mesh Rendering할때 RDG에서는 
+
+```cpp
+GraphBuilder.AddPass(
+	RDG_EVENT_NAME("MyRasterPass"),
+	Parameters,
+	ERDGPassFlags::Raster,
+	[Parameters](FRHICommandList& RHICmdList)
+	{
+		// Graphics Pipeline 설정
+		// Vertex Buffer / Index Buffer 바인딩
+		// Vertex Shader / Pixel Shader 사용
+		// Draw Indexed 실행
+	}
+};
+	
+```
+#### B. Fullscreen Raster 방식
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/RDG/FullScreenRaster.png" alt="FullScreenRaster" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>FullScreenRaster</strong> </td>  </tr> </table>
+
+메시 직접 그리는것이 아니라, 화면 전체를 덮는 삼각형을 그리는 방식
+: 화면 전체를 대상으로하는 후처리 작업
+
+1. 화면 전체를 덮는 FullScreen Triangle 단 한개만 생성
+2. VS에서 삼각형의 정점 위치 설정
+3. RS에서 화면 전체에 해당하는 픽셀 생성
+4. PS에서 각 픽셀의 SceneColor, Depth등의 Texture를 읽음
+5. 계산한 결과를 Output Render Target에 출력
+   
+
+
+- VS 역할 : 정점 3개의 화면 (Clip Space)위치를 직접 지정 : Fullscreen Triangle을 생성
+```cpp
+AddDrawScreenPass(GraphBuilder, RDG_EVENT_NAME("MyFullscreenPass"),
+View, OutputViewport, InputTexture, OutputTexture, PixelShader
+);
+```
+
+
+Ex) Blur, Bloom, Refraction 처리할때 많이 활용한다.
+
+|구분|A. 일반 Raster|B. Fullscreen Raster|
+|---|---|---|
+|그리는 대상|3D 메시|화면 전체 삼각형|
+|Vertex|메시 정점|보통 3개|
+|VS|메시 정점 변환|화면 좌표 생성|
+|RS|메시의 픽셀 생성|화면 전체 픽셀 생성|
+|PS|메시 표면 셰이딩|화면 Texture 후처리|
+|대표 용도|캐릭터, 배경, 오브젝트|Blur, Bloom, Refraction|
+
+
+Rasterizer와 비교했을때, 최종 투영된 영역만 PS실행된다면, 
+
+#### C. Compute Shader
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/RDG/ComputeShader.png" alt="ComputeShader" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>ComputeShader</strong> </td>  </tr> </table>
+
+나중에 이미지 좀 수정하기

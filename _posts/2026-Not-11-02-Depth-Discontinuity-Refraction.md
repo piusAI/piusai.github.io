@@ -75,6 +75,7 @@ Subsystem의 Setter(`SetMethod`, `SetIOR` 등)는 멤버를 바꾸면서 해당 
 | `RefractMethodTypes`          | 각 Refract Model에따른 구조체                                       |
 | `RefractMethodRenderer`       | Main Class RT, CVar읽기, SceneTexture Binding, RDG Pass와 합성 등록 |
 | `*.usf` / `FBaseline2SSRPS` 등 | **TODO**: `.usf` 파일 경로와 Shader 클래스 선언 위치 추가                  |
+|                               |                                                              |
 
 ---
 ### 3. RefractMethodSubsystem
@@ -140,7 +141,6 @@ Composite Pixel Shader로
 - Scene Texture Resolution
 
 ---
-
 ##### 4.2.2 Global Shader Map 조회
 
 ```cpp
@@ -256,9 +256,7 @@ TShaderMapRef<FBaseline2SSRPS> PixelShader(GlobalShaderMap);
 
 ```cpp
 FBaseline2SSRPS::FParameters* PassParameters =
-    GraphBuilder.AllocParameters<
-        FBaseline2SSRPS::FParameters
-    >();
+    GraphBuilder.AllocParameters<FBaseline2SSRPS::FParameters>();
 ```
 
 PS가 사용할 Parameter Block을 RDG에서 할당한다. Pass Lamda는 Graph Execute 시점에 실행되므로, 스택 변수가 아니라, RDG 수명을 관리하는 메모리여야한다.
@@ -397,3 +395,20 @@ Viewport
 ---
 ### 5. Baseline2 : SSR.usf
 
+
+```
+[Baseline2_SSR.usf]
+Fullscreen Pass
+    ├─ Sphere 외부 → OriginalColor, Alpha 0
+    └─ Sphere 내부 → Ray Marching, Alpha 1
+                ↓
+         RefractionTexture
+                ↓
+[RefractComposite.usf]
+Fullscreen Pass
+    ├─ SceneColor 샘플링
+    ├─ RefractionTexture 샘플링
+    └─ Alpha 기반 합성
+                ↓
+          최종 화면
+```
