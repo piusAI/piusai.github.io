@@ -34,22 +34,9 @@
               "icon": "lucide-file",
               "title": "2026-Not-11-02-Depth-Discontinuity-Refraction"
             }
-          },
-          {
-            "id": "9d54b375199ad8f3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_posts/2026-Not-11-02-RDG-Unrealengine.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2026-Not-11-02-RDG-Unrealengine"
-            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -74,7 +61,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -205,30 +192,37 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
-  "active": "6f13b2e6347555b7",
+  "active": "090d0fc9792ba3b3",
   "lastOpenFiles": [
-    "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
+    "assets/postimg/Refraction/DiscontinuityNewtonRefraction_Concept.png",
+    "assets/postimg/Refraction/Screenshot 2026-11-05 012713.png",
     "_posts/2026-Not-11-02-RDG-Unrealengine.md",
-    "assets/postimg/Graphics/DepthBuffer.png",
-    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 8.03.33.png",
-    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 8.02.52.png",
-    "assets/postimg/Graphics/Rasterization.png",
-    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.33.00.png",
-    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.26.27.png",
-    "assets/postimg/Graphics/VertexShader.png",
-    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.06.27.png",
-    "assets/postimg/Graphics/스크린샷 2026-11-04 오후 7.02.51.png",
+    "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
+    "assets/postimg/Refraction/NewtonRefractionHLSL_Concept.png",
+    "assets/postimg/Refraction/Screenshot 2026-11-05 005839.png",
+    "assets/postimg/Refraction/SSRRefractionHLSL_Concept.png",
+    "assets/postimg/Refraction/Screenshot 2026-11-05 003021.png",
+    "assets/postimg/Refraction/SSRRefraction.png",
+    "assets/postimg/Refraction/Screenshot 2026-11-05 000458.png",
+    "assets/postimg/Graphics/Screenshot 2026-11-05 000458.png",
+    "_posts/2026-Not-10-22-MultiTexturing.md",
+    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
+    "_posts/2026-10-30-Iterator-Basic.md",
+    "_posts/2026-10-19-Not-LEB.md",
+    "assets/postimg/Graphics/CustomStencil.svg",
+    "assets/postimg/Graphics/StencilColor.svg",
+    "assets/postimg/Graphics/미확인 201195.crdownload",
+    "assets/postimg/Graphics/미확인 189738.crdownload",
     "_posts/2026-10-11-Not-RoadSearchAlgorithm.md",
-    "assets/postimg/Graphics/RDG/RasterShader.png",
     "assets/postimg/Graphics/RDG",
     "assets/postimg/Graphics",
     "_posts/2026-10-10-Static.md",
@@ -244,23 +238,17 @@
     "assets/postimg/Shader/미확인 456835.crdownload",
     "assets/postimg/Shader/미확인 707808.crdownload",
     "assets/postimg/Shader/미확인 703502.crdownload",
-    "assets/postimg/Shader/미확인 446621.crdownload",
     "_posts/2023-12-19-Houdini-String-Vex.md",
     "_posts/2024-12-12-Houdini-condof-condir.md",
     "_posts/2026-10-29-CubeMapping.md",
     "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
-    "assets/postimg/Shader/미확인 549469.crdownload",
-    "_posts/2026-10-19-Not-LEB.md",
     "_posts/2026-10-28-Refraction-History.md",
     "_posts/2026-10-29-Refraction-Simulation.md",
     "_posts/2026-10-16-GEA-Chapter-03-03.md",
     "_posts/2026-10-12-GameRenderThread.md",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-Not-11-01-STL.md",
-    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
-    "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-30-RayMarching.md",
-    "_posts/2026-10-30-Iterator-Basic.md",
     "무제.canvas"
   ]
 }

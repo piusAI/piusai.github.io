@@ -393,8 +393,7 @@ Viewport
 
 
 ---
-### 5. Baseline2 : SSR.usf
-
+### 5. 공통 Refraction부분
 
 ```
 [Baseline2_SSR.usf]
@@ -414,17 +413,14 @@ Fullscreen Pass
 ```
 
 
-
-`MainPS`로 PixelShader에만 들어가도록 했다.
-
 **진입 함수** :  
+
 ```cpp
 //RefractMethodShaders.cpp
 IMPLEMENT_GLOBALSHADER(FBaseline2SSRPS, "/Plugin/RefractMethod/Private/Baseline2_SSR.usf", "MainPS", SF_Pixel);
 ```
 
-에서 PixelShader의 진입함수로 등록
-
+에서 PixelShader의 진입함수로 등록,  
 `MRT` - Multiple Render Targets
 
 **Semantic** : 
@@ -435,7 +431,381 @@ PassParams->RenderTagets[0] = FRenderTargetBinding(OutRefractionTexture, ERender
 PassParams->RenderTagets[1] = FRenderTargetBinding(OutDegugTexture, ERenderTargetLoadAction::ENoAction); //SV_Target1
 ```
 
-PS가 결과를 기록할 RenderTargeet을 지정하는 코드이다.
+PS가 결과를 기록할 RenderTarget을 지정하는 코드.
 
 
-#### 5.1 현재 픽셀 UV 구하기
+#### 5.2 현재 픽셀 UV 구하기
+
+```cpp
+
+bool MatchesStencil = RefractionStencilValue >0 ? stencil ==(uint)RefracitonStencilValue를 : (Stencil>= 1 && Stencil <=3);
+```
+
+`RefractionStencilValue`가 양수면 해당값과 일치하는 픽셀만 선택, 그렇지 않으면 1~3범위 선택  
+- UE의 일반적인 Reverse-Z 환경에서는 가까운 물체일수록 Device Z가 크다.
+
+
+#### 5.3 View Position Reconstruction - 굴절 시작점 구하기
+
+```cpp
+float SurfaceDeviceZ = CustomDeviceZ;
+
+float SurfaceLinearDepth = ConvertDeviceZToLinearDepth(SurfaceDeviceZ, ClipToView);
+float3 SurfacePos = ReconstructViewPosition(ScreenUV, SurfaceLinearDepth, ClipToView)
+```
+
+- `SurfacePos`  :  현재 PixelShader가 처리하는 화면 픽셀에서 보이는 Sphere 표면의 위치이다.
+이렇게 최종 얻은 `SurfacePos`가 굴절 광선의 시작점이 된다.
+
+---
+#### 5.4 SurfaceNormal 계산
+
+현재 픽셀의 Depth만 이용하는것이 아닌, 주변 픽셀의 Depth도 가져온다.
+
+```cpp
+float3 dx =
+	(abs(PosR.z - PosC.z) < abs(PosL.z -PosC.z))
+	? (PosR - PosC)
+	: (PosC - PosL);
+	
+float3 dY =
+	(abs(PosD.z - PosC.z) < abs(PosU.z - PosC.z))
+	? (PosD - PosC)
+	: (PosC - PosU)
+```
+
+Depth 차이가 작은 이웃을 선택해서 두 접선의 벡터를 추정한다.
+
+```cpp
+float3 N = cross(dX, dY);
+```
+
+Cross product로 Surface Normal을 만든다.
+- Huristic : Depth 경계에서 반대쪽 픽셀 선택하는 오류 줄이려는것이지만, 경계 오류를 완전히 해결하지 못한다.
+
+---
+#### 5.5 Incident Ray, Refract Ray 생성
+- `SurfacePos` : 광선이 굴절되는 표면위치
+- `SurfaceNormal` : 표면의 법선 방향
+
+**ComputeIncidentRay** :  
+
+$$
+\mathbf I=\frac{\mathbf P-\mathbf O}{\|\mathbf P-\mathbf O\|}
+$$
+
+- View space에서는  $O = (0,0,0)$ 카메라 위치 원점
+- $I = normalize(P)$
+
+``` cpp
+float3 ComputeIncidentRay(float3 ViewPosition)
+{
+	return normalize(ViewPosition);
+}
+```
+
+
+**ComputeRefractedRay** :  
+
+snell의 법칙으로 `refract()`함수로 계산
+
+```cpp
+float3 ComputeRefractedRay(float3 IncidentRay, float3 SurfaceNormal, float IOR)
+{
+...
+float3 I = normalize(IncidentRay);
+float3 N = normalize(SurfaceNormal);
+float Eta = 1.0f / max(IOR, 1.0001f);
+float3 RefractedDir = refract(I, N, Eta);
+}
+```
+
+`RefractedDir` : 굴절된 Ray가 앞으로 이동할 3D 방향 Vector
+
+---
+### 6 Fixed-Step Ray Marching Traversal : SSR 알고리즘
+
+```cpp
+float3 RayPos = SurfacePos + RefractedDir * (StepSize * 0.5f);
+```
+
+`StepSize * 0.5`만큼 이동한 위치를 초기값으로 설정
+
+이후 반복문으로 계속 이동
+
+```cpp
+for(uint Step =0; Step<MaxSteps; ++Step)
+{
+	StepCount = Step+1;
+	RayPos += RefractedDir * StepSize;
+}
+```
+
+Fixed-Step 탐색식 :  
+
+$$
+\mathbf P_k=\mathbf P_0+k\Delta t\mathbf T
+$$
+
+- $\mathbf T$ : `RefractedDir`, $\Delta t$ : `StepSize`
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/SSRRefractionHLSL_Concept.png" alt="SSRRefractionHLSL_Concept" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>SSRRefractionHLSL_Concept</strong> </td>  </tr> </table>
+Sapmle이 실제 표면과 정확히 일치하지 않더라도 깊이 차이 허용범위 안에 있다면 Hit으로 판정될 수있다.
+
+#### 6.1 RayPos를 다시 ScreenUV로 투영
+
+```cpp
+float2 SampleUV = ProjectToScreenUV(RayPos, ViewToClip);
+```
+
+역변환 한거를 다시 `SceneDepthTexture`인 2D Texture에 그리려한다.
+
+`RayPos → ViewToClip → NDC → SampleUV`
+
+
+```cpp
+float SampleDeviceZ = SceneDepthTexture.SampleLevel(SceneDepthSampler,
+					RefractionBufferUV(SapmleUV), 0).r;
+float SampleLinearDepth = ConvertDeviceZToLinearDepth(SampleDeviceZ, ClipToView);
+
+float RayLinearDepth = RayPos.z;
+float DepthDiff = RayLinearDepth - SampleLinearDepth;
+```
+
+- `RayLinearDepth` : 현재 광선 Sample 위치 깊이
+- `SampleLinearDepth` : 동일한 화면 좌표의 SceneDepth
+- `DepthDiff` : 두 깊이의 차이
+- `DeviceZ` : 투영 · 원근 나눗셈 후 Depth Buffer에 저장되는 깊이 값
+
+두 Depth Diff가 충분히 비슷해지면 Ray가 화면에 기록된 Surface와 만났다고 간주한다.
+
+``` cpp
+if(Depth Diff >= -DepthTolearnce && DepthDiff<= Thickness)
+{
+	HitUV = SapmleUV;
+	bHit = true;
+	break;
+}
+```
+
+$$
+-\epsilon \le z_{\mathrm{ray}}-z_{\mathrm{scene}}\le \tau
+$$
+
+- $\epsilon$ :  `DepthTolerance` 
+- $\tau$ : `Thickness` -  교차 판정에 허용하는 depth 범위
+
+#### 6.2 최종 HitUV로 최종 굴절 색상 가져오기
+
+``` cpp
+float4 RefractedColor = bHit
+		? SceneColorTexture.SampleLevel(SceneColorSampler, RefractionBufferUV(HitUV), 0)
+		: OriginalSceneColor;
+```
+
+지금까지 했던 행동의 최종은 결국 Sphere위의 Scenecolor를 더할려고 하는것이었다.  
+광선 교차점을 찾았으면 `HitUV`위치의 SceneColor를가져와서 거기에 
+찾지 못했으면 현재 픽셀의 원본 `SceneColor`를 사용하는 FallBack이다.
+
+```cpp
+OutRefractionColor = float4(RefractedColor.rgb, 1.0f);
+OutDebugColor = float4(DebugVisual, 1.0f);
+```
+
+
+1. FullScreen PS
+2. Stencil Mask검사
+3. Get CustomDepth
+4. Inverse Projection
+5. SurfacePos 복원
+6. Depth기반 SurfaceNormal 계산
+7. Snell's 법칙 굴절
+8. Refracted Dir 계산
+9. Fixed-Step Ray Marching
+10. ViewToClip으로 화면 재 projection
+11. Ray Depth Vs SceneDepth 비교
+12. HitUv 결정
+13. SceneColor Sampling
+14. RenderTarget 출력
+
+
+
+``` mermaid
+flowchart TD
+    A["MainPS: 현재 화면 픽셀"] --> B["ScreenUV 계산"]
+    B --> C["CustomStencil + CustomDepth 검사"]
+    C --> D{"굴절 대상인가?"}
+    D -- 아니오 --> E["원본 SceneColor 반환"]
+    D -- 예 --> F["DeviceZ → LinearDepth"]
+    F --> G["Inverse Projection → SurfacePos"]
+    G --> H["주변 Depth로 SurfaceNormal 추정"]
+    H --> I["IncidentRay + Snell's Law"]
+    I --> J["RefractedDir"]
+    J --> K["Fixed-Step Ray Marching"]
+    K --> L{"Depth 교차 판정"}
+    L -- Hit --> M["HitUV에서 SceneColor 샘플링"]
+    L -- Miss --> N["원본 SceneColor 사용"]
+    M --> O["SV_Target0 / SV_Target1"]
+    N --> O
+```
+
+`MainPS`로 PixelShader에만 들어가도록 했다.
+
+
+
+---
+### 7. NewTon 방식
+
+5번까지는 동일하다.
+
+[NewTon 방식](https://piusai.github.io/graphics/2026/11/01/Newton-Screen-Space-Refraction.html) 으로 구현했다.
+- **NewTon** : 굴절 광선 위에 초기 추정점을 하나 잡고 그 위치에서 얻은 SceneDepth와 Surface Normal로 Tangent Plane을 만든 다음, 광선과 접평면의 교차점을 반복적으로 갱신한다.
+
+
+| 단계               | Baseline2 Fixed-Step       | Baseline3 Newton       |
+| ---------------- | -------------------------- | ---------------------- |
+| SurfacePos 복원    | 동일                         | 동일                     |
+| SurfaceNormal 계산 | 동일                         | 동일                     |
+| RefractedDir 계산  | 동일                         | 동일                     |
+| 초기 위치            | `StepSize × 0.5` 오프셋       | `InitialGuessDistance` |
+| 교차점 탐색           | 일정 거리 이동                   | 접평면과 광선의 교차점 계산        |
+| 반복 갱신            | `RayPos += Dir × StepSize` | 접평면 계산 후 `t` 갱신        |
+| 종료 조건            | DepthDiff 허용 범위            | UVDelta 또는 DepthError  |
+
+#### 7.1 Initial Guess - 초기 추정점
+
+``` cpp
+float3 InitialPoint = SurfacePoint + RefractedDir * InitialGuessDistance;
+float2 CandidateUV = ProjectToScreenUV(InitialPoint ,ViewToClip);
+if(!IsInsideViewport(CandidateUV))
+{
+	CandidateUV = ScreenUV;
+}
+```
+
+$$
+\mathbf q_0=\mathbf p_0+t_0\mathbf T
+$$
+
+- $\mathbf p_0$ : `SurfacePos`
+- $\mathbf T$ : `RefractedDir`
+- $t_0$ : `InitialGuessDistance`
+- $\mathbf q_0$ : 초기 추정 위치
+
+1. CandidateUV에서 SceneDepth sampling - 현재 추정 화면 위치의 배경 깊이 확인
+2. ScenePos 복원 - CandidateUV + Depth -> 3D 표면 위치
+3. SceneNormal 추정 : 주변 SeneDepth를 이용해 접평면의 normal 계산
+4. Ray-Tangent Plane Intersection : Ray와 현재 접평면이 만나는 위치 계산
+5. NextUV로 재투영 : 새 교차 추정점을 화면 좌표로 변환
+6. Convergence 검사 : 수렴했다면 종료, 아니면 CandidateUV갱신후 반복
+
+```cpp
+float CandidateLinearDepth = ConvertDeviceZToLinearDepth(CandidateDeviceZ, ClipToView);
+
+float3 ScenePos = ReconstructiveViwePosition(CandidateUV, CandidateLinearDepth, ClipToView);
+
+float3 SceneNormal = EstimateViewNormalFromDepth(CandidateUV, CandidateLinearDepth, InvRes, false);
+```
+
+- `SurfaceNormal` : 굴절시키는 Sphere 표면의 Normal
+- `SceneNormal` : 굴절된 광선이 만날 배경 surface Normal
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/NewtonRefractionHLSL_Concept.png" alt="NewtonRefractionHLSL_Concept" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>NewtonRefractionHLSL_Concept</strong> </td>  </tr> </table>
+배경 표면에서 추정한 Local TangentPlane(접평면)과 굴절 광선의 교차점으로 다음 춪어 위치를 갱신한다. 실제교차점과는 다를 수 있다.
+
+
+
+ ① 배경 접평면의 방정식
+
+$$
+(\mathbf X-\mathbf P_s)\cdot \mathbf N_s=0
+$$
+- $\mathbf P_s$ : `ScenePos`, $\mathbf N_s$ : `SceneNormal`
+
+``` cpp
+float Denom = dot(RefractedDit, SceneNormal);
+float t = dot(ScenePos - SurfacePos, SceneNormal) \ Denom;
+```
+
+
+② 굴절 광선의 방정식
+
+$$
+\mathbf R(t)=\mathbf P_0+t\mathbf T
+$$
+- $\mathbf P_0$ : `SurfacePos`, $\mathbf T$ :`RefractedDir`
+
+```cpp
+float3 NextIntersectionPos = SurfacePos + RefractedDit * t;
+```
+
+
+③ 광선이 접평면을 통과하는 시점 계산
+
+$$
+(\mathbf P_0+t\mathbf T-\mathbf P_s)\cdot\mathbf N_s=0
+$$
+
+
+매 반복마다 현재 추정 위치에서 배경 surface를 국소적 평면이라 근사하고, 그 평면오가 광선이 만나는 지점을 새로운 추정값으로 사용.
+
+#### 7.2 Next 계산, Convergence
+
+```cpp
+
+float2 NextUV = ProjectToScreenUV(NextIntersectionPos, ViewToClip);
+
+```
+
+|수렴 조건|의미|
+|---|---|
+|`UVDelta`|이전 후보와 다음 후보의 화면 좌표가 얼마나 달라졌는가|
+|`DepthError`|광선 위치와 배경 표면의 깊이가 얼마나 일치하는가|
+둘중 하나만 만족하더라도 수렴했다고 처리
+
+---
+### 8. Ours : DepthDiscontinuity
+
+Depth Discontinuity를 감지해 Newton의 갱신 폭을 보정하는 부분만 추가
+
+
+``` cpp
+if(EnableCorrection !=0)
+{
+float NeighborDepth = 
+	ConvertDeviceZToLinearDepth( SceneDepthTexture.SampleLevel(
+				SceneDepthSampler,
+				RefractionBufferUV(NextUV + InvRes), 0
+				).r,
+				ClipToView);
+				
+	float LocalGradient = abs(NeighborDepth - NextSceneDepth);
+	
+	if(LocalGradient > DiscontinuityThreshold)
+	{
+	nextUV = lerp(CandidateUV, nextUV, 0.5f);
+	}
+}
+```
+
+
+① Depth Discontinuity 감지
+
+$$
+G = |D(NextUV+\Delta UV)-D(NextUV)|
+$$
+
+② Newton 갱신 폭 보정
+$$
+\mathbf u_{k+1} = \mathbf u_k+0.5(\mathbf u_{\text{Newton}}-\mathbf u_k)
+$$
+Depth Discontinuity Detection + Damped Newton Update
+
+접평면으로 다음 교차 위치를 추정하되, 주변 Depth 차이가 큰 경우 이동 폭을 절반으로 줄여 갱신한다.
+
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/DiscontinuityNewtonRefraction_Concept.png" alt="DiscontinuityNewtonRefraction_Concept" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>DiscontinuityNewtonRefraction_Concept</strong> </td>  </tr> </table>
+

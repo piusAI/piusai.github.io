@@ -334,7 +334,7 @@ Depth Buffer는 화면의 각 픽셀 또는 샘플 위치에 해당하는 깊이
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/DepthBuffer.png" alt="DepthBuffer" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>DepthBuffer</strong> </td>  </tr> </table>
 카메라와 가까운 A만 그려져야한다.
 
-Depth Buffer는 World Z가 저장되는 것이 아니라, Projection과 Rasterization과정을 거쳐 계산된 Device Depth를 저장한다.
+Depth Buffer는 World Z가 저장되는 것이 아니라, Projection과 Rasterization과정을 거쳐 계산된 Device Depth를 저장한다.  
 따라서 Depth Buffer를 Sampling한다고해서 3D World Position를 직접 얻을 수 없다.
 Screen UV와 Device Depth를 사용해 NDC좌표를 구성한 다음, Inverse Projection Matrix를 적용하고, Perspective Divide를 수행하면 View Space Position을 복원할 수 있다.
 
@@ -369,3 +369,12 @@ ViewPos.xyz /= ViewPos.w;
 $$ P_{\text{view}} = \operatorname{PerspectiveDivide} \left( P_{\text{ndc}}\cdot M_{\text{projection}}^{-1} \right)  $$
 
 행렬을 역으로 곱하면 동차 ViewSpace좌표 나오고, `w`로 나누니, 실제 viewSpace의 3D를 얻은 것이다.
+
+
+### 9. Stencil
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/StencilColor.svg" alt="SphereVector" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Scene Color : 화면에 보이는 색상</strong> </td> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/CustomStencil.svg" alt="CustomStencil" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>CustomStencil : Sphere 1, 주변 0</strong> </td> </tr> </table>
+
+
+
