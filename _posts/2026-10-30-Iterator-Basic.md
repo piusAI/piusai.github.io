@@ -195,3 +195,79 @@ void f(const Iterator<int>& a, const Iterator<int>& b)
 
 - const 객체에서 non-const 멤버 호출은 불가능하다!
 - 읽기만 하는 함수는 습관적으로 `const`를 붙이기!
+
+---
+### Class내부 배열 iterator접근
+
+class 안에있는 배열에 접근하려면
+
+```cpp
+#include <vector>
+#include <iostream>
+using namespace std;
+
+class Iterator {
+public:
+	Iterator() :_data(nullptr) {}
+	Iterator(int* data) : _data(data) {}
+	bool operator==(const Iterator& other) { return _data == other._data; } //지금 필요x
+	bool operator!=(const Iterator& other) { return _data != other._data; }
+
+	Iterator& operator++() {
+		_data++;
+		return *this;
+	}
+	int& operator*() {
+		return *_data;
+	}
+	
+	//지금 필요x
+	Iterator operator++(int) {
+		return Iterator(_data++);
+	}
+	
+	//지금 필요x
+	Iterator operator+(int count) {
+		return Iterator(_data + count);
+	}
+
+public:
+	int* _data;
+};
+
+class Inventory {
+public:
+	using iterator = Iterator;
+	Inventory() {}
+
+	iterator begin() { return iterator(_items); }
+	iterator end() { return iterator(&_items[10]); }
+
+
+	int _items[10] = { 1,2,3,4,5,6,7,8,9,10 };
+};
+
+int main()
+{
+	Inventory inventory;
+	for (auto item : inventory)
+	{
+		cout << item << " ";
+	}
+	cout<<endl;
+	
+	
+	
+	Inventory::iterator it = inventory.begin();
+	for (it; it != inventory.end(); ++it)
+	{
+		cout << *it << " ";
+	}
+}
+```
+
+이러한 방식으로
+- `begin()`으로 iterator 배열의 첫주소를 반환해주고
+- `end()`로 iterator 배열의 마지막주소다음을 반환해주면 된다
+
+- 마찬가지로 iterator에는 `!=`, 전위 `++`, `*`와 `begin()`/`end()`가 있어야한다.
