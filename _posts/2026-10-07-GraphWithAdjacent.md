@@ -1,8 +1,8 @@
 ---
 layout: post
-published: false
-title: Graph의 이해와 구현
-date: 2026-10-09 21:13:00 +0900
+published: true
+title: 그래프의 이해와 인접 행렬, 인접 리스트
+date: 2026-10-07 21:13:00 +0900
 description: "-"
 thumbnail-img:
 categories:
@@ -11,22 +11,43 @@ tags:
   - cpp
   - ComputerScience
 ---
-Graph를 표현하는데에는 크게 두가지가 있다
+### 그래프와 인접 행렬, 인접 리스트
 
-인접 행렬과 행렬, 그 전에 Graph
+Graph를 표현하는 방법은 크게 두 가지가 있다.
+
+- **인접 행렬 (Adjacent Matrix)**
+- **인접 리스트 (Adjacent List)**
+
+먼저 그 전에, Graph가 무엇인지부터 알아보자.
+
+---
+
+### 1. Graph 기초
+
+그래프의 기본 구성 요소는 **Vtx(정점)** 와 **Edge(간선)** 이다.
 
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Algorithm/Graph/GraphBasic.png" alt="GraphBasic" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>GraphBasic</strong> </td>  </tr> </table>
-그래프 기초는 Vtx와 Edge이다
 
-### 1. 가중치 그래프 Weight Graph
+| 구성 요소     | 의미      |
+| --------- | ------- |
+| Vtx (정점)  | 데이터를 표현 |
+| Edge (간선) | Vtx를 연결 |
+
+
+### 2. 가중치 그래프 Weight Graph
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Algorithm/Graph/WeightGraph.png" alt="WeightGraph" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>WeightGraph</strong> </td>  </tr> </table>
+- 간선에 가중치(비용)가 붙어있는 그래프다
 - 방향이 없다면 양방향 그래프이다.
 
 
+---
+### 3. 예제 그래프 구현
+
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Algorithm/Graph/Graph01.png" alt="Graph01" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Graph01</strong> </td>  </tr> </table>
 
-위 그래프를 cpp로 구현해보자
+위 그래프는 `0-1`, `0-3`, `1-2`, `1-3` 이 연결된 양방향 그래프이다. 이를 C++로 구현해보자.
 
+#### 3-1. 포인터로 직접 연결
 ```cpp
 #include <iostream>
 using namespace std;
@@ -58,6 +79,7 @@ int main()
 }
 ```
 
+#### 3-2. 벡터로 간선 목록 관리
 
 ```cpp
 2차원 배열로 활용
@@ -83,7 +105,9 @@ adjacent2[0].vt[1];
 - 사용법에 차이가 있을 뿐 메모리 구조는 같다. 
 
 ---
-### 인접 리스트 
+### 4. 인접 리스트 (Adjacent List)
+연결된 정점만 리스트로 저장하는 방식이다.
+
 ``` cpp
 void AdjacentList()
 {
@@ -101,9 +125,16 @@ void AdjacentList()
 }
 ```
 
+- 데이터를 풀어서 저장하기 때문에 **필요 없는 정보가 없다.**
+- 비유: **연결 리스트**
+- 예시: **지하철 노선도**
+- 시간 복잡도(공간): **O(V+E)**
 
+---
 
-### 인접 행렬
+### 5. 인접 행렬(Adjacent Matrix)
+
+행렬을 이용해 정점간 연결 여부를 표현하는 방식이다.
 
 ``` cpp
 
@@ -131,6 +162,15 @@ void AdjacentMatrix()
 ```
 [Vector](https://piusai.github.io/c++/2026/09/16/Container.html) 이중 벡터로 초기화 해서 넣어줌.
 
+
+- 행렬을 이용한 그래프 표현이다.
+- 메모리 소모가 심하지만, **빠른 접근**이 가능하다.
+- 비유: **Vector (동적 배열)**
+- 예시: **페이스북 친구**
+- 시간 복잡도(공간): **O(V²)**
+
+---
+### 6. 인접 행렬 vs 인접 리스트
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Algorithm/Graph/Adjacent.png" alt="WeightGraph" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Adjacent</strong> </td>  </tr> </table>
 
 

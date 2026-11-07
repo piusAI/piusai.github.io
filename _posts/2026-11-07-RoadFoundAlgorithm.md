@@ -1,8 +1,8 @@
 ---
 layout: post
-published: false
+published: true
 title: 길찾기 세가지 알고리즘 구현(DFS, BFS, A*)
-date: 2026-10-09 21:13:00 +0900
+date: 2026-11-07 21:13:00 +0900
 description: "-"
 thumbnail-img:
 categories:
@@ -15,6 +15,7 @@ DFS, BFS, A* 알고리즘에 대해 알아보자.
 
 인접한 정보를 갖고 있어야하기 때문에 인접행렬에 대한 이해를 꼭 동반해야한다.
 (포스팅 링크걸기)
+[그래프의 이해와 인접 행렬, 인접 리스트](https://piusai.github.io/c++/2026/10/07/GraphWithAdjacent.html)
 
 
 ### 1. DFS
@@ -273,3 +274,81 @@ int main()
 > Visit순서 0-> 1->3-> 2
 
 parent, height도 넣어주어서 정보 추가!
+
+
+
+### 3. A* 알고리즘
+
+``` cpp
+
+struct Vertex {
+	int data;
+};
+
+struct VertexCost {
+	VertexCost(int vertexnum, int cost) :_vertex(vertexnum), _cost(cost) {}
+	bool operator >(const VertexCost& other) const { return _cost > other._cost;  }
+
+	int _vertex;
+	int _cost;
+
+};
+
+vector<Vertex*> verties;
+vector<vector<int>> AdjacentMatrix(6, vector<int>(6, -1));
+
+
+void CreateAdjacentMatrix()
+{
+	AdjacentMatrix[0][1] = AdjacentMatrix[1][0] = 15;
+	AdjacentMatrix[0][3] = AdjacentMatrix[3][0] = 35;
+	AdjacentMatrix[1][2] = AdjacentMatrix[2][1] = 5;
+	AdjacentMatrix[1][3] = AdjacentMatrix[3][1] = 10;
+	AdjacentMatrix[3][4] = AdjacentMatrix[4][3] = 5;
+	AdjacentMatrix[4][5] = AdjacentMatrix[5][4] = 5;
+
+}
+
+void Djickstra(int here)
+{
+	int vecsize = verties.size();
+	priority_queue<VertexCost, vector<VertexCost>, greater<VertexCost>> vc;
+	vector<int> parent(vecsize, -1);
+	vector<int> best(vecsize, INT32_MAX);
+	parent[here] = here;
+	best[here] = 0;
+
+	vc.push(VertexCost(here, 0));
+
+	while (!vc.empty())
+	{
+		VertexCost vertexnow= vc.top();
+		vc.pop();
+		int now = vertexnow._vertex;
+		int cost = vertexnow._cost;
+		
+		if (best[now] < cost) continue;
+		cout << "visit : " << now << endl;
+		for (int there = 0; there < vecsize; there++)
+		{
+
+			if (AdjacentMatrix[now][there] == -1) continue;
+			int nextcost = AdjacentMatrix[now][there] + cost;
+			if (nextcost >= best[there]) continue;
+			vc.push(VertexCost(there, nextcost));
+			best[there] = nextcost;
+			parent[there] = now;
+		}
+	}
+	for (int i = 0; i < vecsize; i++)
+	{
+		cout << "best" <<i<<" : " << best[i] << endl;
+	}
+}
+int main()
+{
+	verties.resize(6);
+	CreateAdjacentMatrix();
+	Djickstra(0);
+}
+```
