@@ -43,6 +43,8 @@ Graph를 표현하는 방법은 크게 두 가지가 있다.
 ---
 ### 3. 예제 그래프 구현
 
+
+
 <table width="90%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Algorithm/Graph/Graph01.png" alt="Graph01" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Graph01</strong> </td>  </tr> </table>
 
 위 그래프는 `0-1`, `0-3`, `1-2`, `1-3` 이 연결된 양방향 그래프이다. 이를 C++로 구현해보자.
