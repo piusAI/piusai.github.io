@@ -12,10 +12,14 @@ tags:
   - ComputerScience
   - Search
 ---
-이진 탐색(Binary Search)은 vector로 구현한다.
+(작성중)
+현재 binary search만을 할려면 이것만 올리기
 
-O(logN)으로 시간복잡도로 찾을 수있다.
+---
 
+이진 탐색(Binary Search)은 Vector로 구현한다.
+
+O(logN)으로 시간복잡도로 찾을 수있다.  
 가장 기초의 Binary Tree는 정렬되어있는 vector에서 활용해본다.
 
 ### 01. 정렬된 Vector에서의 Binary Search

@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: 트리의 전반적인 흐름(자료구조)
-date: 2026-09-28 23:10:00 +0900
+date: 2026-11-09 23:10:00 +0900
 description: "-"
 thumbnail-img:
 categories:
@@ -11,7 +11,7 @@ tags:
   - cpp
   - ComputerScience
 ---
-자료구조가 약한 터라 정리가 필요한 시점이다.  
+자료구조가 약한 터라 정리가 필요한 시점이다.(작성중)  
 BST, QuadTree와 같이 Terrain Tessellation 최적화 알고리즘에서 자주 쓰이는 Tree 계열을 이해하려면 먼저 **거시적인**지도가 필요하다.
 
 ### 0. 거시적으로 보는 자료구조
