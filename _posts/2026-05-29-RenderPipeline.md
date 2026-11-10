@@ -29,12 +29,12 @@ author: PIUS
 ### KeyWord
 아래는 DirectX11의 여정을 시작하기전에 짚고 가야하는 키워드들이다
 
-**Shader** : 프로그래밍 가능한 단계, GPU에서 실행되는 프로그램
-**Pipeline** : Shader들의 결합체
-**HEL** : Hardware <u>Emulation</u> Layer ; Software Emulation
-**HAL** : Hardware <u>Abstraction</u> Layer ; 프로그래밍 가능한 영역
-**COM** : Component Object Models ;
-예시, `ID3D11Device* Device', 'ID3D11DeviceContext* DeviceContext`,`IDXGISwapChain* SwapChain` 
+- **Shader** : 프로그래밍 가능한 단계, GPU에서 실행되는 프로그램
+- **Pipeline** : Shader들의 결합체
+- **HEL** : Hardware <u>Emulation</u> Layer ; Software Emulation
+- **HAL** : Hardware <u>Abstraction</u> Layer ; 프로그래밍 가능한 영역
+- **COM** : Component Object Models ;
+  예시, `ID3D11Device* Device', 'ID3D11DeviceContext* DeviceContext`,`IDXGISwapChain* SwapChain` 
 실제 구현부는 DX 런타임 내부에 있고 Interface Pointer만 받는 구조
 
 **FrameBuffer** :  GPU가 최종적으로 생성한 Pixel Data를 저장하는 Memory 영역이다.
