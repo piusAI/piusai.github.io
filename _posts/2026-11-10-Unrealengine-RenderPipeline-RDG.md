@@ -90,6 +90,30 @@ GraphBuilder.Execute(); // ② 로 넘어가는 지점
 |Async Compute Pass|Async Compute Queue에서 Dispatch|독립적인 병렬 계산 작업|
 |Copy Pass|텍스처·버퍼 복사 및 전송|Texture Copy, Readback|
 
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/RDG/RDG4Method.jpg" alt="RDG4Method" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>RDG Pass의 네가지 방법</strong> </td>  </tr> </table>
+
+#### 02. Code - ERDGPassFlags
+``` cpp
+enum class ERDGPassFlags : uint16
+{
+...
+	/** Pass uses rasterization on the graphics pipe. */
+	Raster = 1 << 0,
+
+	/** Pass uses compute on the graphics pipe. */
+	Compute = 1 << 1,
+
+	/** Pass uses compute on the async compute pipe. */
+	AsyncCompute = 1 << 2,
+
+	/** Pass uses copy commands on the graphics pipe. */
+	Copy = 1 << 3,
+...
+};
+```
+이렇게 [ERDGPassFlags](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/RenderCore/Public/RenderGraphDefinitions.h)에서 확인할 수있다.
+
 #### 02.1-A. Raster Shader 방식
 Raster Pass방식중 Mesh를 Rendering할떄 쓰는 방식이다.
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/RDG/RasterShader.png" alt="RasterShader" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>RasterShader</strong> </td>  </tr> </table>
