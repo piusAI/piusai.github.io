@@ -27,8 +27,6 @@ hlsl, ComputeShader 를 활용해서 Refraction의 Issue 대응 / 계산 속도 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/RefractionMaterial.png" alt="![[Pasted image 20261028151951.png]]" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Refraction Material setting</strong> </td>  </tr> </table>
 - RefractionDepthBias수정으로 가능
 
-
-
 #### Refraction Keyword
 Refraction은 화면 공간(Screen-Space) 왜곡, 투명체 RayMarching/RayTracing 과정에서 극심한 고주파 노이즈와 깜빡임(Shimmering)을 유발한다. 아래의 작동 원리 파악하기!
 
