@@ -10,6 +10,7 @@ categories:
 tags:
   - UnrealClass
   - Unreal
+use_math: true
 ---
 VertexShader와 Rasterizer에있어서 축변환을 조금더 자세히 알아보겠다.
 

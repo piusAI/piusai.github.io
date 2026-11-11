@@ -15,7 +15,7 @@
               "state": {
                 "file": "_posts/2026-Not-11-11-Depth-Discontinuity-Refraction-Math.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "2026-Not-11-11-Depth-Discontinuity-Refraction-Math"
@@ -43,7 +43,7 @@
               "state": {
                 "file": "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
               "title": "2026-Not-11-09-VertexShader-Rasterizer"
@@ -109,8 +109,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 257.5,
-    "collapsed": true
+    "width": 257.5
   },
   "right": {
     "id": "9d7b3f0f0bafaa6f",
@@ -256,11 +255,11 @@
   },
   "active": "8059e93cf641fdd1",
   "lastOpenFiles": [
+    "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
+    "_posts/2026-11-11-Shader-Coordinate.md",
     "_posts/2026-Not-11-11-Depth-Discontinuity-Refraction-Math.md",
     "assets/postimg/Graphics/DepthReconstruction.png",
     "assets/postimg/Graphics/depth_reconstruction_numeric_example.png",
-    "_posts/2026-11-11-Shader-Coordinate.md",
-    "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
     "_posts/2026-Not-11-09-RDG-DataStructure.md",
     "_posts/2026-Not-11-08-BinarySearch.md",
     "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",

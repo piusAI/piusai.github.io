@@ -10,6 +10,7 @@ categories:
 tags:
   - UnrealClass
   - Unreal
+use_math: true
 ---
 Shader에서 많이 활용되는 기법중 하나는 **기준(Space)**을 변환하는것이다.
 
