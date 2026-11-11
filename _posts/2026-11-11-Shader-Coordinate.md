@@ -16,7 +16,7 @@ Shader에서 많이 활용되는 기법중 하나는 **기준(Space)**을 변환
 
 사실 Vertex Shader도 `Local → World → View → Clip`으로 **기준축**을 바꿔가는 과정이다. 이러한 Vertex Shader 파이프라인을 뒤집거나, Screen 기준으로 바꾸거나 하는 방법들에 대해 정리해보려 한다.
 
-> 참고글 [VertexShader와 Rasterizer에서의 기준 축 변환]() - 추후 추가예정
+참고글 : [VertexShader와 Rasterizer에서의 기준 축 변환]() - 추후 추가예정
 
 **키워드**:  
 - NDC : Normalize Device Coordinate
@@ -29,6 +29,7 @@ Shader에서 많이 활용되는 기법중 하나는 **기준(Space)**을 변환
 
 > [正] Local → World → View → Clip → ( /w) NDC → Viewport → Screen(Pixel)
 > 			(VertexShader Stage) ↑  ||  ↑ (Rasterizer stage)
+> 
 > [逆] ScreenUV + Device Depth → NDC/Clip → (×P⁻¹) → (/w) View → (×V⁻¹) World
 
 `Clip = View x P` , 양변에 `P⁻¹`곱하면  
