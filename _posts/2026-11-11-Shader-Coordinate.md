@@ -56,7 +56,9 @@ Projection Transform을 거치면 VTX는 clip space의 동차좌표$(x_c, y_c, z
 $$
 \mathrm{NDC}=\left(\frac{x_c}{w_c},\frac{y_c}{w_c},\frac{z_c}{w_c}\right)
 $$
+
 DirectX에서 일반적인 NDC 범위는 다음과 같다.
+
 - $X, Y: [-1,1]$
 - $Z: [0,1]$
 
@@ -169,13 +171,13 @@ Depth Buffer는 화면의 각 픽셀(또는 Sample)위치에 해당하는 Depth 
 
 **ScreenUV + Device Depth**로 NDC 좌표를 구성하고,  **Inverse Projection Matrix**를 적용한 뒤, **Perspective Divide**를 수행하면 View Space위치를 복원할 수 있다.
 
-> ① Screen UV + Device Depth
->     → ② NDC / Clip 좌표 구성
->     → ③ Inverse Projection Matrix
->     → ④ Perspective Divide
->     → ⑤ View Space Position
->     → ⑥ Inverse View Matrix
->     → ⑦ World Space Position
+> ① Screen UV + Device Depth  
+>     → ② NDC / Clip 좌표 구성  
+>     → ③ Inverse Projection Matrix  
+>     → ④ Perspective Divide  
+>     → ⑤ View Space Position  
+>     → ⑥ Inverse View Matrix  
+>     → ⑦ World Space Position  
 
 #### Depth Buffer로 ViewSpace 위치 복원
 
@@ -197,7 +199,9 @@ ViewPos.xyz /= ViewPos.w;
 
 `ClipToView` : 일반적인 경우 Projection Matrix의 역행렬 
 
-$$ P_{\text{view}} = \operatorname{PerspectiveDivide} \left( P_{\text{ndc}}\cdot M_{\text{projection}}^{-1} \right)  $$
+$$
+P_{\text{view}} = \operatorname{PerspectiveDivide} \left( P_{\text{ndc}}\cdot M_{\text{projection}}^{-1} \right)
+$$
 
 행렬을 역으로 곱하면 **동차 ViewSpace좌표** 나오고, `w`로 나누니, 실제 **ViewSpace의 3D Position**를 얻은 것이다. 아래와 같이 `ClipToView`를 찾아준다.
 
