@@ -171,13 +171,13 @@ Depth Buffer는 화면의 각 픽셀(또는 Sample)위치에 해당하는 Depth 
 
 **ScreenUV + Device Depth**로 NDC 좌표를 구성하고,  **Inverse Projection Matrix**를 적용한 뒤, **Perspective Divide**를 수행하면 View Space위치를 복원할 수 있다.
 
-> ① Screen UV + Device Depth  
->     → ② NDC / Clip 좌표 구성  
->     → ③ Inverse Projection Matrix  
->     → ④ Perspective Divide  
->     → ⑤ View Space Position  
->     → ⑥ Inverse View Matrix  
->     → ⑦ World Space Position  
+① Screen UV + Device Depth  
+② NDC / Clip 좌표 구성  
+③ Inverse Projection Matrix  
+④ Perspective Divide  
+⑤ View Space Position  
+⑥ Inverse View Matrix  
+⑦ World Space Position  
 
 #### Depth Buffer로 ViewSpace 위치 복원
 
