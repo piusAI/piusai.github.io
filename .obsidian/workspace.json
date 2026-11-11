@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2992c6e1280ed23a",
+        "id": "32c600943687a1ff",
         "type": "tabs",
         "children": [
           {
-            "id": "6f13b2e6347555b7",
+            "id": "2602fa9462ed7caa",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -22,20 +22,35 @@
             }
           },
           {
-            "id": "090d0fc9792ba3b3",
+            "id": "8059e93cf641fdd1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-Not-11-09-RDG-Style.md",
+                "file": "_posts/2026-11-11-Shader-Coordinate.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-Not-11-09-RDG-Style"
+              "title": "2026-11-11-Shader-Coordinate"
+            }
+          },
+          {
+            "id": "474590d7b6e17109",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-Not-11-09-VertexShader-Rasterizer"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,7 +75,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -94,7 +109,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 288.5,
+    "width": 257.5,
     "collapsed": true
   },
   "right": {
@@ -191,29 +206,29 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
   "floating": {
-    "id": "99fd97becf3f11f7",
+    "id": "f01d8ab4552318ba",
     "type": "floating",
     "children": [
       {
-        "id": "8ea045859d666a1d",
+        "id": "1be6a24e721b8ce4",
         "type": "window",
         "children": [
           {
-            "id": "18048a11efa35c07",
+            "id": "2486ba7a6a072d6b",
             "type": "tabs",
             "children": [
               {
-                "id": "e16c6c4baa545ecf",
+                "id": "b3d901c68a189076",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
@@ -230,63 +245,63 @@
           }
         ],
         "direction": "vertical",
-        "x": 244,
-        "y": 33,
-        "width": 1024,
-        "height": 800,
+        "x": -836,
+        "y": 587,
+        "width": 830,
+        "height": 1154,
         "maximize": false,
-        "zoom": -0.5
+        "zoom": 0
       }
     ]
   },
-  "active": "6f13b2e6347555b7",
+  "active": "8059e93cf641fdd1",
   "lastOpenFiles": [
-    "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
+    "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
+    "_posts/2026-11-11-Shader-Coordinate.md",
     "_posts/2026-Not-11-11-Depth-Discontinuity-Refraction-Math.md",
-    "_posts/2026-Not-11-09-RDG-Style.md",
-    "assets/postimg/Refraction/RDGRefractionOursDataFlow.jpg",
     "_posts/2026-Not-11-09-RDG-DataStructure.md",
     "_posts/2026-Not-11-08-BinarySearch.md",
-    "_posts/2026-Not-10-08-PhongReflectionModel.md",
+    "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
+    "assets/postimg/Refraction/RDGRefractionOursDataFlow.jpg",
+    "_posts/2026-Not-10-22-MultiTexturing.md",
+    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
+    "_posts/2026-Not-11-01-STL.md",
     "_posts/2026-11-11-RDG-Unrealengine.md",
     "_posts/2026-11-10-Unrealengine-RenderPipeline-RDG.md",
-    "_posts/2026-Not-10-28-Refraction-Evaluation.md",
-    "_posts/2026-Not-11-09-RDG-Unrealengine.md",
-    "assets/postimg/Graphics/RDG/UERendering.jpg",
-    "assets/postimg/Graphics/RDG/RDGFunct.jpg",
+    "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "assets/postimg/Graphics/RDG/RDG4Method.jpg",
-    "assets/postimg/Graphics/RDG/RDGExample.png",
-    "assets/postimg/Graphics/RDG/스크린샷 2026-11-09 오후 4.48.40.png",
-    "_posts/2026-Not-10-22-MultiTexturing.md",
-    "_posts/2026-10-31-Efficient-GPU-Screen-spaceRT.md",
+    "assets/postimg/Graphics/RDG/ (1).figma-export-3376b389-0f48-4332-9c45-ca21433dc7a8",
+    "assets/postimg/Graphics/RDG/RDGFunct.jpg",
+    "assets/postimg/Graphics/RDG/ (1).figma-export-c809cfbb-e3dc-442f-990b-b8bd24689b22",
+    "assets/postimg/Graphics/RDG/UERendering.jpg",
+    "assets/postimg/Graphics/RDG/ (1).figma-export-bf60a148-146c-4119-9741-235f29c913ef",
+    "_posts/2026-05-29-RenderPipeline.md",
     "_posts/2026-11-09-DataStructure-Tree.md",
-    "_posts/2026-10-28-Refraction-History.md",
-    "_posts/2026-10-21-Not-UE-Insight.md",
-    "_posts/2026-Not-11-01-STL.md",
-    "_posts/2026-11-07-RoadFoundAlgorithm.md",
+    "assets/postimg/Graphics/RDG/RDGExample.png",
+    "_posts/2026-09-17-UE-AssetRegistry.md",
     "_posts/2026-09-30-PriorityQueue.md",
-    "_posts/2026-09-28-DataStructure-Tree.md",
+    "_posts/2026-11-07-RoadFoundAlgorithm.md",
     "assets/postimg/Tree/BinarySearch002.jpg",
     "assets/postimg/Tree/BinarySearch001.jpg",
-    "_posts/2026-11-08-BinarySearch.md",
-    "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
-    "_posts/2026-11-04-Cubemap.md",
+    "assets/postimg/Tree/Screenshot 2026-11-08 210540.png",
+    "assets/postimg/Tree/Screenshot 2026-11-08 210601.png",
+    "assets/postimg/Tree/BinaryTree01.png",
+    "assets/postimg/Tree/New folder",
+    "_posts/2026-09-14-QuadTree.md",
+    "_posts/2026-Not-11-02-RDG-Unrealengine.md",
     "_posts/2026-10-07-GraphWithAdjacent.md",
     "_posts/2026-10-19-Not-AIZ-Algorithm-Final.md",
     "_posts/2026-10-29-Refraction-Simulation.md",
     "_posts/2026-10-30-Iterator-Basic.md",
-    "assets/postimg/Refraction/SSRRefractionHLSL_Concept.png",
-    "assets/postimg/Refraction/NewtonRefractionHLSL_Concept.png",
+    "_posts/2026-10-30-RayMarching.md",
+    "_posts/2026-11-01-Newton-Screen-Space-Refraction.md",
+    "_posts/2026-11-04-Cubemap.md",
     "assets/postimg/Graphics/RDG",
     "assets/postimg/Graphics",
     "assets/postimg/Shader/미확인 265009.crdownload",
     "assets/postimg/Shader/미확인 503688.crdownload",
     "assets/postimg/Shader/미확인 685017.crdownload",
     "assets/postimg/Shader/미확인 456835.crdownload",
-    "assets/postimg/Shader/미확인 707808.crdownload",
-    "assets/postimg/Shader/미확인 703502.crdownload",
-    "assets/postimg/Shader/미확인 446621.crdownload",
-    "assets/postimg/Shader/미확인 549469.crdownload",
     "무제.canvas"
   ]
 }

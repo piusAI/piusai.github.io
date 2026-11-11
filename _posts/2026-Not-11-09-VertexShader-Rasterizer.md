@@ -1,7 +1,7 @@
 ---
 layout: post
 published: false
-title: RDG 002
+title: VertexShader와 Rasterizer에서의 축 변환
 subtitle: GameThread, RenderThread
 date: 2026-10-12 22:24:00 +0900
 description: Unreal DataAsset vs PrimaryDataAsset
@@ -11,14 +11,12 @@ tags:
   - UnrealClass
   - Unreal
 ---
-UE 자체의 소스코드를 뜯어 고쳐 RenderPipeline에 넣기도 하지만,  
-[Unreal engine에서의 Render Pipeline](https://piusai.github.io/engine/2026/11/10/Unrealengine-RenderPipeline.html)은 [RDG](https://dev.epicgames.com/documentation/unreal-engine/render-dependency-graph-in-unreal-engine?utm_source=chatgpt.com&lang=ko)에 올려 그래프로 순회하는 방식을 이용하는데,   
-그 RDG에 대해서 조금더 자세히 알아보려 한다.  
+VertexShader와 Rasterizer에있어서 축변환을 조금더 자세히 알아보겠다.
 
 
 
 ---
-### 5. Semantic
+### 1. Semantic
 
 
  **SV_Position** : 
@@ -83,7 +81,8 @@ PixelInputType VertexShader(VertexInputType input)
 ```
 
 이제, VertexShader 이후 과정에 대해서 알아보자.
-###7.  Rasterizer
+
+### 7.  Rasterizer
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/Rasterization.png" alt="Rasterization" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Rasterization</strong> </td>  </tr> </table>
 

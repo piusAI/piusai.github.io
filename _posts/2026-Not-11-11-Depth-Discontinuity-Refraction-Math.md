@@ -71,13 +71,21 @@ author: PIUS
 
 ### 식 (1) — ViewRect UV → 텍스처 UV
 
-$$ u_{buf} = (o + s \odot u) \oslash B \tag{1} $$
+$$ u_{buf} = (o + s_{vp} \odot u) \oslash B \tag{1} $$
 
 - $u$에 $s$를 성분별로 곱해 **ViewRect 안의 픽셀 위치**를 구하고, $o$를 더해 **텍스처 전체 기준 픽셀 위치**로 옮긴 뒤, $B$로 나눠 **정규화**한다.
 - $\odot$ = 성분별 곱, $\oslash$ = 성분별 나눗셈.
 - 필요한 이유: 뷰포트(ViewRect)와 장면 텍스처의 할당 크기가 다를 수 있기 때문이다.
 - 사용 위치: 광선 투영·후보 갱신은 ViewRect 좌표로 하고, **텍스처 조회 직전**에만 이 식을 적용한다. 이웃 픽셀 조회(식 4~5)에도 적용한다.
 
+| 기호        | 의미                        | 단위/비고      | Code                        |
+| --------- | ------------------------- | ---------- | --------------------------- |
+| $u$       | ViewRect 기준 정규화 UV        | 무차원, [0,1] | `ViewUV`                    |
+| $u_{buf}$ | 텍스처 전체 기준 정규화 UV          | 텍스처 조회용    |                             |
+| $o$       | ViewRect의 픽셀 원점           | 픽셀         | `ViewRectMinAndSize.xy`     |
+| $s_{vp}$  | ViewRect의 가로·세로 픽셀 수      | 픽셀         | `ViewRectMinAndSize.zw`     |
+| $B$       | 텍스처의 할당 크기                | 픽셀         |                             |
+| $1/B$     | 샘플링할 Texture의 가로 세로크기의 역수 |            | `ViewportSizeAndInvSize.zw` |
 
 ```cpp
 //hlsl .ush
@@ -90,7 +98,7 @@ return (ViewRectMinAndSize.xy + ViewUV * ViewRectMinAndSize.zw) * ViewportSizeAn
 // RefractMethodRenderer.cpp
 const FVector4f ViewportSizeAndInvSize(
 	(float)Resolution.X, (float)Resolution.Y,
-	1.f / (float) Resolution.X, 1.f / (float(Resolution.Y)
+	1.f / (float) Resolution.X, 1.f / (float) Resolution.Y
 	);
 ```
 
