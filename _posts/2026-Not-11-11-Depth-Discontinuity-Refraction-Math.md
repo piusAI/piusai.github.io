@@ -104,7 +104,7 @@ const FVector4f ViewportSizeAndInvSize(
 
 ### 식 (2) — 굴절 광선과 화면 투영
 
-$$ R(t) = s + t,d, \qquad u(t) = \pi\big(R(t)\big) \tag{2} $$
+$$ R(t) = S + td, \qquad u(t) = \pi\big(R(t)\big) \tag{2} $$
 
 - 광선은 시작점 $S$에서 방향 $d$로 뻗는 직선이다.
 - $u(t)$는 광선 위의 점을 화면 UV로 투영한 값이다.
@@ -120,6 +120,14 @@ $$ R(t) = s + t,d, \qquad u(t) = \pi\big(R(t)\big) \tag{2} $$
 |굴절 방향 $d$|공기→매질 굴절률 비 (IOR 1.05 → 비율 $1/1.05$)를 HLSL `refract`에 전달, 반환 벡터를 정규화. 퇴화 시 **반사 방향** 사용|
 |초기 후보|$S$에서 **100 cm** 진행한 점을 투영. 화면 밖이면 대상 픽셀의 화면 좌표 사용|
 |선형 깊이|장치 깊이를 역투영해 cm 단위 선형 깊이로 변환 (투영 깊이의 비선형성 제거)|
+
+```cpp
+//hlsl
+
+float3 RayPoint = SurfacePos + InitialGuessDistance * RayDir;
+float2 CandidateUV = ProjectionToScreenUV(InitialPoint, ViewToClip);
+```
+
 
 ---
 
@@ -150,6 +158,20 @@ $$ t_i = \frac{(Q_i - S)\cdot n_i}{d \cdot n_i}, \qquad u^* = \pi\big(S + t_i,d\
 |$\lvert d\cdot n_i \rvert < 10^{-5}$|광선과 평면이 거의 평행 → 교차 불안정|
 |$t_i \le 0$|교차점이 광선 뒤쪽|
 |$t_i > 1000$ cm|유효 계산 범위 초과|
+
+``` cpp
+// 식 (3)에 대응하는 계산. 변수명과 함수 인자는 설명용.
+float Denom = dot(RayDir, BackgroundNormal);
+if (abs(Denom) < 1e-5)
+    break;
+
+float HitDistance = dot(BackgroundPos - SurfacePos, BackgroundNormal) / Denom;
+if (HitDistance <= 0.0 || HitDistance > MaxRayDistance)
+    break;
+
+float3 HitPos = SurfacePos + HitDistance * RayDir;
+float2 NextUV = ProjectToScreenUV(HitPos, ViewToClip);
+```
 
 ---
 

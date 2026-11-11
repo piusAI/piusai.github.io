@@ -15,7 +15,7 @@
               "state": {
                 "file": "_posts/2026-Not-11-11-Depth-Discontinuity-Refraction-Math.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "2026-Not-11-11-Depth-Discontinuity-Refraction-Math"
@@ -41,16 +41,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
+                "file": "_posts/2026-11-11-Shader-Coordinate.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "2026-Not-11-09-VertexShader-Rasterizer"
+              "title": "2026-11-11-Shader-Coordinate"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -245,19 +244,20 @@
           }
         ],
         "direction": "vertical",
-        "x": -836,
-        "y": 587,
+        "x": 1084,
+        "y": 0,
         "width": 830,
-        "height": 1154,
+        "height": 1032,
         "maximize": false,
         "zoom": 0
       }
     ]
   },
-  "active": "8059e93cf641fdd1",
+  "active": "b3d901c68a189076",
   "lastOpenFiles": [
-    "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
     "_posts/2026-11-11-Shader-Coordinate.md",
+    "_posts/2026-11-11-RDG-Unrealengine.md",
+    "_posts/2026-Not-11-09-VertexShader-Rasterizer.md",
     "_posts/2026-Not-11-11-Depth-Discontinuity-Refraction-Math.md",
     "assets/postimg/Graphics/DepthReconstruction.png",
     "assets/postimg/Graphics/depth_reconstruction_numeric_example.png",
@@ -268,7 +268,6 @@
     "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-Not-11-01-STL.md",
-    "_posts/2026-11-11-RDG-Unrealengine.md",
     "_posts/2026-11-10-Unrealengine-RenderPipeline-RDG.md",
     "_posts/2026-Not-10-08-PhongReflectionModel.md",
     "assets/postimg/Graphics/RDG/RDG4Method.jpg",
