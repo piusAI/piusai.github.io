@@ -27,7 +27,7 @@ Shader에서 많이 활용되는 기법중 하나는 **기준(Space)**을 변환
 ---
 ### 0. 한 눈에 알아보는 흐름
 
-> [正] Local → World → View → Clip → ( /w) NDC → Viewport → Screen(Pixel)
+> [正] Local → World → View → Clip → ( /w) NDC → Viewport → Screen(Pixel)  
 > 			(VertexShader Stage) ↑  ||  ↑ (Rasterizer stage)
 > 
 > [逆] ScreenUV + Device Depth → NDC/Clip → (×P⁻¹) → (/w) View → (×V⁻¹) World
