@@ -30,6 +30,10 @@ Shader에서 많이 활용되는 기법중 하나는 **기준(Space)**을 변환
 > 			(VertexShader Stage) ↑  ||  ↑ (Rasterizer stage)
 > [逆] ScreenUV + Device Depth → NDC/Clip → (×P⁻¹) → (/w) View → (×V⁻¹) World
 
+`Clip = View x P` , 양변에 `P⁻¹`곱하면  
+`P : ViewToClip`
+`View = Clip x P⁻¹` -> `mul(ClipPos , ClipToView)`
+
 | 기법               | 하는 일                         | 핵심 연산                                      |
 | ---------------- | ---------------------------- | ------------------------------------------ |
 | 동차좌표 정규화         | Clip → NDC                   | `xyz / w`                                  |
@@ -81,7 +85,7 @@ Rasterizer는 hlsl에서 프로그래밍 불가능하다해서 그냥 넘겼는�
 ```cpp
 // unreal engine .usf
 void MainPS(
-	float4 Inposition : SV_POSITION,
+	float4 InPosition : SV_POSITION,
 	out float4 OutColor : SV_Target0)
 {
 	float2 pixelXY = InPosition.xy; // 픽셀좌표 (960.5, 540.5)
@@ -115,7 +119,7 @@ float2 ScreenUV = InPosition.xy / float2(1920, 1080);
 ```cpp
 //한 Texel 만큼 이동(Blur, Edge 검출, 굴절 Offset 등)
 float2 TexelSize = InvRes;
-float4 Right = Tex.SampleLevel(Samp, ScreenUV, float2(TexelSize.x, 0), 0);
+float4 Right = Tex.SampleLevel(Samp, ScreenUV + float2(TexelSize.x, 0), 0);
 
 //Pixel -> UV (Texel 중심 기준)
 float2 UV = (PixelCoord + 0.5) * InvRes;
@@ -147,7 +151,7 @@ float2 UV = NDC * float2(0.5, -0.5) + 0.5;
 ```
 
 ---
-### 5. Depth Bufer로 위치 복원하기
+### 5. Depth Buffer로 위치 복원하기
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/DepthBuffer.png" alt="DepthBuffer" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>DepthBuffer</strong> </td>  </tr> </table>
 (카메라와 가까운 A만 그려져야한다)
@@ -155,57 +159,67 @@ float2 UV = NDC * float2(0.5, -0.5) + 0.5;
 Depth Buffer는 화면의 각 픽셀(또는 Sample)위치에 해당하는 Depth 값을 저장한다.  
 카메라와 가까운 물체(A)만 그려져야 하므로, 가장 가까운 깊이만 남기는 용도이다.
 
-> 주의 : Depth Buffer에는 World Z가 저장되는 것이 아니다.  
-> Projection과 Rasterizaiton을 거쳐 계산된 **Device Depth**가 저장된다.  
+> **주의** : Depth Buffer에는 World Z가 저장되는 것이 아니다.  
+> Projection과 Rasterization을 거쳐 계산된 **Device Depth**가 저장된다.  
 > 따라서 Depth Buffer를 Sampling한다고 3D World Position을 바로 얻을 수 없다.
 
 (UE는 **Reveresd-Z**를 쓴다. Device Depth가 `Near = 1, Far = 0 `이다. 직접 복원할때 이점에 주의하기!!!)
 
 **ScreenUV + Device Depth**로 NDC 좌표를 구성하고,  **Inverse Projection Matrix**를 적용한 뒤, **Perspective Divide**를 수행하면 View Space위치를 복원할 수 있다.
 
-> Screen UV + Device Depth
->     → NDC / Clip 좌표 구성
->     → Inverse Projection Matrix
->     → Perspective Divide
->     → View Space Position
->     → Inverse View Matrix
->     → World Space Position
+> ① Screen UV + Device Depth
+>     → ② NDC / Clip 좌표 구성
+>     → ③ Inverse Projection Matrix
+>     → ④ Perspective Divide
+>     → ⑤ View Space Position
+>     → ⑥ Inverse View Matrix
+>     → ⑦ World Space Position
 
 #### Depth Buffer로 ViewSpace 위치 복원
 
 ```cpp
-// 1. ScreenUV → UDC XY
+// 1. ScreenUV → UDC XY ··· ①
 float2 NDC = ScreenUV * 2.0 - 1.0;
-NDC.y = -NDC.y //좌상단 : ScreenUV (0,0) → NDC(-1, +1)
+NDC.y = -NDC.y; //좌상단 : ScreenUV (0,0) → NDC(-1, +1)
 
-//2. Depth Buffer에서 Device Depth 읽기
-float Depth = SceneDepthTexture.SapmleLevel(DepthSampler, ScreenUV, 0).r;
+//2. Depth Buffer에서 Device Depth 읽기 ··· ①
+float Depth = SceneDepthTexture.SampleLevel(DepthSampler, ScreenUV, 0).r;
 
-//3. NDC XY + Device Depth → Clip 좌표 구성
+//3. NDC XY + Device Depth → Clip 좌표 구성 ··· ② 
 float4 ClipPos = float4(NDC.xy, Depth, 1.0f /* 동차좌표 */);
 
-//4. Inverse Projection으로 ViewSpace 복원
+//4. Inverse Projection(③)으로 ViewSpace(⑤) 복원
 float4 ViewPos = mul(ClipPos, ClipToView);
 ViewPos.xyz /= ViewPos.w;
-
 ```
 
-`ClipToView` : 일반적인 경우 Projection Matrix의 역행렬
+`ClipToView` : 일반적인 경우 Projection Matrix의 역행렬 
 
 $$ P_{\text{view}} = \operatorname{PerspectiveDivide} \left( P_{\text{ndc}}\cdot M_{\text{projection}}^{-1} \right)  $$
 
-행렬을 역으로 곱하면 **동차 ViewSpace좌표** 나오고, `w`로 나누니, 실제 **ViewSpace의 3D Position**를 얻은 것이다.
+행렬을 역으로 곱하면 **동차 ViewSpace좌표** 나오고, `w`로 나누니, 실제 **ViewSpace의 3D Position**를 얻은 것이다. 아래와 같이 `ClipToView`를 찾아준다.
 
-World까지 가려면 한단계를 더 간다.
+``` cpp
+const FMatrix44f ClipToView = FMatrix44f(View.ViewMatrices.GetInvProjectionMatrix());
+```
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/DepthReconstruction.png" alt="DepthReconstruction" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Depth Reconstruction</strong> </td>  </tr> </table>
+
+`near = 1`, `far = 11`, View 위치 `(2, 1, 5)`. 설명을 위해 일반 Z(Near=0, Far=1)를 사용했다. UE는 Reversed-Z라 저장되는 값은 다르지만, **복원 원리(w=1로 넣고 → P⁻¹ → w′로 나눔)는 동일**하다.
+
+- 위와 같이 ViewSpace에서 예시로 Claude가 정방향과 역방향을 그려주었다.
+
+
+World까지 가려면 한 단계를 더 간다.
 
 ```cpp
-//5. View → World
+//5. View → World ⑦
 float3 WorldPos = mul(float4(ViewPos.xyz, 1), ViewToWorld).xyz;
 ```
 
->정방향에서 `w`로 나눠 NDC로 갔으니 역방향에서도 역행렬을 곱한뒤 바늗시 `w`로 다시 나눠야 한다. Perspective Projection은 선형 변환이 아니라서, 역행렬 결과의 `w`가 1이 아니 때문이다.
+>정방향에서 `w`로 나눠 NDC로 갔으니, 역방향에서는 `w=1`로 정규화된 Clip 좌표를 넣게된다. 이때 결과의 `w`에 `1/w_c`가 남아 있으므로, `w`로 다시 나눠야 실제 View Space 위치가 된다.
 
-`Viewport to World`함수를 언리얼엔진에서 제공하는것이 이러한 과정들을 쭉 내포하고있는 것이다.
+- 동차 좌표는 네 성분에 같은 수를 곱해도 같은 점이다. 그래서 `(NDC, 1)`은 실제 Cilp 좌표를 $1/w_c$배 한것과 같은 점이고, $w_c$를 몰라도 w=1로 넣을 수 있다.
 
 ---
 ### 6. 활용 예시 : 화면 굴절
@@ -220,7 +234,7 @@ float3 WorldPos = mul(float4(ViewPos.xyz, 1), ViewToWorld).xyz;
 
 
 
-## 7. 정리
+### 7. 정리
 
 - **Clip → NDC** : `w`로 나눈다. (동차좌표 정규화)
 - **NDC → Screen** : Viewport 크기를 곱한다. Y는 뒤집는다.
