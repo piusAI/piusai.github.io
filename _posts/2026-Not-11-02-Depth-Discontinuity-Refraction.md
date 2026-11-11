@@ -12,7 +12,7 @@ tags:
 use_math: true
 author: PIUS
 ---
-Unreal Engine의 Refraction 방식과 비교하며, 최신 굴절 기술을 탐색하고, 새로운 Refraction을 조합하기 위해서 논문을 작성 했다.
+Unreal Engine의 Refraction 방식과 비교, 최신 굴절 기술 탐색, 새로운 Refraction을 조합하기 위해서 논문을 작성 했다.
 
 ---
 ### Architecture
@@ -23,22 +23,28 @@ Unreal Engine의 Refraction 방식과 비교하며, 최신 굴절 기술을 탐�
 
 ### 1. 전체적인 UE RenderPipeline 아키텍쳐
 
-Unreal engine의 RenderPipeline을 직접 수정하는것이 아니라, Engine이 열어둔 확장 지점에 끼어드는 방식으로 진행하였다. `FSceneViewExtensionBase`를 상속한 클래스에서 아래 함수들을 override하면, Engine이 정해진 시점에 이 함수들을 호출해준다.
+[Unreal engine의 RenderPipeline을 직접 수정하는것이 아니](https://piusai.github.io/engine/2026/11/10/Unrealengine-RenderPipeline-RDG.html)라, Engine이 열어둔 `FRDGBuilder`에 끼어드는 방식으로 진행하였다.  
+특히 FullScreen Raster 방식으로, Post Process Pass에 등록하는 방식으로 진행하였다.  
+`FSceneViewExtensionBase`를 상속한 클래스에서 아래 함수들을 override하면, Engine이 정해진 시점에 이 함수들을 호출해준다.
 
-| 함수                                  | 호출 스레드 | 역할                                                        |
-| ----------------------------------- | ------ | --------------------------------------------------------- |
-| `BeginRenderViewFamily()`           | GT     | CVar를 읽어 `Cached*` 멤버에 저장                                 |
-| `PrePostProcessPass_RenderThread()` | RT     | 엔진 Scene Rendering이 끝난 뒤, PostProcess 시작 직전에 우리의 Pass를 추가 |
-| `SetupViewFamily()`, `SetupView()`  | GT     | 같은 확장 지점이지만 현재 구현 사용 X                                    |
+| 함수                                  | 호출 스레드 | 역할                                                   |
+| ----------------------------------- | ------ | ---------------------------------------------------- |
+| `BeginRenderViewFamily()`           | GT     | CVar를 읽어 `Cached*` 멤버에 저장                            |
+| `PrePostProcessPass_RenderThread()` | RT     | 엔진 Scene Rendering이 끝난 뒤, PostProcess 시작 직전에 Pass 추가 |
+| `SetupViewFamily()`, `SetupView()`  | GT     | 같은 확장 지점이지만 현재 구현 사용 X                               |
 
 Module(Plugin) 형식으로 작업했기 떄문에, `StartupModule()`에서 가상 Shader경로를 `Shader`폴더로 Mapping해주어야 한다!
 
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/EngineFSceneViewExtension.png" alt="EngineFSceneViewExtension" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>FSceneViewExtension</strong> </td>  </tr> </table>
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Refraction/RDGRefractionOursDataFlow.jpg" alt="RDGRefractionOursDataFlow" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Ours RDG DataFlow</strong> </td>  </tr> </table>
 
 #### 1.1 GT ↔ RT 데이터 전달
-GT와 RT 사이에는 별도의 복사 커맨드 없이 `Cached*` 멤버를 공유한다 (GT가 쓰고, RT가 읽는다). `Enable` 같은 일부 CVar는 RT에서 `GetValueOnRenderThread()`로 직접 읽는다.
+GT와 RT 사이에는 별도의 복사 커맨드 없이 `Cached*` 멤버를 공유한다 (GT가 쓰고, RT가 읽는다).  
+`Enable` 같은 일부 CVar는 RT에서 `GetValueOnRenderThread()`로 직접 읽는다.
 
->⚠️ **Thread-safety 주의** 이 구조는 동작은 하지만 thread-safe하지 않다. RT는 GT보다 1~2프레임 늦게 실행되므로, RT가 N프레임 값을 읽는 도중 GT가 N+1프레임 값을 덮어쓸 수 있다(race). 파라미터가 한 프레임 섞이는 정도라 시각적 영향은 작지만, 엄밀하게는 `ENQUEUE_RENDER_COMMAND`로 값을 복사해 RT에 넘기는 방식이 필요하다.
+>⚠️ **Thread-safety 주의**
+>이 구조는 동작은 하지만 thread-safe하지 않다.  
+>RT는 GT보다 1~2프레임 늦게 실행되므로, RT가 N프레임 값을 읽는 도중 GT가 N+1프레임 값을 덮어쓸 수 있다(race).  
+>파라미터가 한 프레임 섞이는 정도라 시각적 영향은 작지만, 엄밀하게는 `ENQUEUE_RENDER_COMMAND`로 값을 복사해 RT에 넘기는 방식이 필요하다.
 
 #### 1.2 Engine RDG Graph에 Pass 추가
 Engine이 넘겨준 RDG Graph에 우리의 Pass를 추가해서 SceneColor를 갱신하는 방식으로 진행하였다.
@@ -46,21 +52,34 @@ Engine이 넘겨준 RDG Graph에 우리의 Pass를 추가해서 SceneColor를 �
 - 내가 `FRDGBuilder`를 만든게 아니라 Engine이 이미 생성해서 넘겨준 `GraphBuilder`에 Pass를 추가하는 경우, 직접 `Execute()`를 호출하면 안된다. 그 Graph의 소유자인 Engine이 나중에 알아서 `Execute`한다.
 - `AddFullscreenPass`나 `AddCopyTexturePass`를 호출하면 Pass가 그 Graph에 기록만 되고, Engine이 Frame Rendering 마무리하면서 `GraphBuilder.Execute()` 한번 호출할때 같이 올라간 우리 Pass도 함께 Compile되고 실행된다.
 - RDG는 결과를 아무도 읽지 않는 Pass를 자동으로 Cull(제거)한다. 그래서 Method Pixel Shader의 출력은 Composit Pass( Capture 복사)가 읽어야 살아남는다.
-- Plass Lambda는 나중에 실행되므로, Shader Parameter는 Stack이 아니라 `GraphBuilder.AllocParameters<>()`로 **RDG 메모리에 할당**해야한다. (4.2.9 참고)
+- Plass Lambda는 나중에 실행되므로, Shader Parameter는 Stack이 아니라   `GraphBuilder.AllocParameters<>()`로 **RDG 메모리에 할당**해야한다. (4.2.9 참고)
 
-#### 1.3 `NewExtension()`이란?
+#### 1.3 `NewExtension()`
+
+Subsystem의 생명 주기에 맞춰 ViewExtension을 생성함.
 
 ```cpp
 SceneViewExtension = FSceneViewExtensions::NewExtension<FRefractSceneViewExtension>(GetWorld(), this);
 ```
 
-- **생성과 등록**을 한방에 한다.  
+- 1️⃣ **생성과 등록**을 한방에 한다.  
   Engine의 `SceneViewExtension`목록에 올려주어야하는데, Class 생성자 `FAutoRegister`가 이 등록을 위한 인자이다. 그래서 일반`New` / `MakeShared`로 만들면 Engine이 모른다.
-- Engine은 **약한 참조**만 갖는다.  
+- 2️⃣ 엔진의 `FSceneViewExtensions`관리 시스템에 등록
+- 3️⃣ `TSharedRef`**약한 참조** 반환, Subsystem이 참조를 보관해 객체 수명 관리  
   목록은 WeakPointer로 들고있기에, 계속 객체를 살려두는 것은 Subsystem의 `SceneViewExtension` 멤버(`TSharedPtr`)이다. `Deinitilaize()`에서 `Reset()`을 하면 객체가 사라지고, Hook 호출도 끝난다.
-- **World 단위**로 동작한다.  
-  `FWorldSceneViewExtension`이므로, `GetWorld()`로 넘긴 World 뷰에서만 훅이 호출된다.
+		
+``` mermaid
+flowchart LR
+    A["UWorldSubsystem::Initialize()"]
+    B["FSceneViewExtensions::NewExtension&lt;FRefractSceneViewExtension&gt;(GetWorld())"]
+    C["ViewExtension 생성 및 등록"]
+    D["엔진 렌더링 시 활성 Extension 수집"]
+    E["PrePostProcessPass_RenderThread()"]
+    F["FRDGBuilder에 사용자 Pass 추가"]
 
+    A --> B --> C --> D --> E --> F
+
+```
 #### 1.4 Subsystem Setter와 CVar
 
 Subsystem의 Setter(`SetMethod`, `SetIOR` 등)는 멤버를 바꾸면서 해당 CVar도 함께 갱신하고, 렌더링 시점에는 이 CVar 값이 `BeginRenderViewFamily()`에서 읽힌다. (Source of truth 정리는 4.1 참고)
@@ -75,7 +94,6 @@ Subsystem의 Setter(`SetMethod`, `SetIOR` 등)는 멤버를 바꾸면서 해당 
 | `RefractMethodTypes`          | 각 Refract Model에따른 구조체                                       |
 | `RefractMethodRenderer`       | Main Class RT, CVar읽기, SceneTexture Binding, RDG Pass와 합성 등록 |
 | `*.usf` / `FBaseline2SSRPS` 등 | **TODO**: `.usf` 파일 경로와 Shader 클래스 선언 위치 추가                  |
-|                               |                                                              |
 
 ---
 ### 3. RefractMethodSubsystem
@@ -84,7 +102,6 @@ Subsystem의 Setter(`SetMethod`, `SetIOR` 등)는 멤버를 바꾸면서 해당 
 - Memeber Variable : `TargetRefractionRT`, `TargetDebugRT` (약한 참조)
 
 ---
-
 ### 4. RefractMethodRenderer - `FRefractSceneViewExtension`
 - Parent : `FWorldSceneViewExtension`
 - `URefractMethodSubsystem::Initialize()`에서 등록한 `FRefractSceneViewExtension`을 활용한다
