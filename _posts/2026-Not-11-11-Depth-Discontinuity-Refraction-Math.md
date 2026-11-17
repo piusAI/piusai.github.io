@@ -186,7 +186,7 @@ $$ \delta = \left(\frac{1}{W},\ \frac{1}{H}\right) \tag{4} $$
 
 ### 식 (5) — 깊이 차
 
-$$ g_i = \big|, D(u^* + \delta) - D(u^*) ,\big| \tag{5} $$
+$$ g_i = \big| D(u^* + \delta) - D(u^*) \big| \tag{5} $$
 
 - 보정 전 후보 $u^*$와 그 대각선 이웃의 **선형 깊이 차** (cm).
 - 이웃 조회 좌표에도 식 (1)을 적용한다.
@@ -194,7 +194,7 @@ $$ g_i = \big|, D(u^* + \delta) - D(u^*) ,\big| \tag{5} $$
 
 ### 식 (6) — 감쇠 계수
 
-$$ \lambda_i = 1 - \frac{1}{2},\mathbf{1}\big[,\text{ON} \ \wedge\ g_i > \tau,\big] \tag{6} $$
+$$ \lambda_i = 1 - \frac{1}{2}\mathbf{1}\big[\text{ON} \ \wedge\ g_i > \tau\big] \tag{6} $$
 
 - $\mathbf{1}[A]$ : 조건 $A$가 참이면 1, 거짓이면 0인 지시함수.
 - 보정 스위치 **ON** 이고 $g_i > \tau = 20,\text{cm}$ 이면 $\lambda_i = 0.5$, 그 외에는 $\lambda_i = 1$.
@@ -210,7 +210,7 @@ $$ \lambda_i = 1 - \frac{1}{2},\mathbf{1}\big[,\text{ON} \ \wedge\ g_i > \tau,\b
 $$ \bar{u}_{i+1} = u_i + \lambda_i,(u^* - u_i) \tag{7} $$
 
 - 현재 후보 $u_i$에서 $u^*$로 향하는 **UV 변위에 $\lambda_i$를 곱해** 더한다.
-- $\lambda_i = 1$ → $\bar u_{i+1} = u^_$ (원래 후보), $\lambda_i = 0.5$ → $u_i$와 $u^_$의 **중점**.
+- $\lambda_i = 1$ → $\bar u_{i+1} = u^_*$ (원래 후보), $\lambda_i = 0.5$ → $u_i$와 $u^_$의 **중점**.
 - 코드(Fig. 3)에서는 `lerp(CandidateUV, NextUV, 0.5f)`에 대응한다.
 - 감쇠는 **투영된 화면 좌표(UV)** 에서만 수행한다. $S$, $d$, $t_i$는 그대로 유지하고 UV 이동량만 조절한다.
 
