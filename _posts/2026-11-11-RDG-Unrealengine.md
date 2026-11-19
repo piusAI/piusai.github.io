@@ -11,7 +11,8 @@ tags:
   - UnrealClass
   - Unreal
 ---
-렌더 그래프, [RDG(Render Dependency Graph)](https://dev.epicgames.com/documentation/unreal-engine/render-dependency-graph-in-unreal-engine?lang=ko)는 UE에서 렌더 명령을 바로 실행하지않고, 그래프 자료구조로 **기록→ 컴파일 →실행**하는 즉시 모드 API이다.  
+렌더 그래프, [RDG(Render Dependency Graph)](https://dev.epicgames.com/documentation/unreal-engine/render-dependency-graph-in-unreal-engine?lang=ko)는 UE에서 렌더 명령을 바로 실행하지않고, 
+그래프 자료구조로 **기록→ 컴파일 →실행**하는 즉시 모드 API이다.  
 
 RDG가 UE 렌더링 파이프라인에서 어떤 역할을 하는지 아래 글에 정리해 두었다.
 
@@ -21,7 +22,8 @@ RDG가 UE 렌더링 파이프라인에서 어떤 역할을 하는지 아래 글�
 ### RDG 톺아보기
 
 RDG는 Render Pass를 순서대로 나열한 List가 아니다.  
-Pass가 어떤 Resource를 읽고 쓰는지에 따라 의존 관계를 연결한 **DAG(Directed Acyclic Graph)**, 방향성 비순환 그래프이다. 엔진은 이 Graph를 분석해서 메모리 사용을 최적화하고, CPU와 GPU작업을 병렬화 한다.  
+Pass가 어떤 Resource를 읽고 쓰는지에 따라 의존 관계를 연결한 **DAG(Directed Acyclic Graph)**, 방향성 비순환 그래프이다.  
+엔진은 이 Graph를 분석해서 메모리 사용을 최적화하고, CPU와 GPU작업을 병렬화 한다.  
 
 RDG의 대표적인 기능은 다음과 같다.
 
@@ -43,7 +45,8 @@ UE의 렌더 파이프라인을 바꾸고 싶을 때는 엔진 코드를 직접 
 DX에서 직접구현을 하면 RT(Render Thread)에서만 손봐야할것들을 GT(Game Thread)에서도수정가능하게 열어둔다면, 이슈가 생기기 마련이다.  
 이와같이 UE의 Renderpipeline에서도 개발자가 수정하게 둔다면, 데이터를 GPU가 읽는 형태로 변환하는 과정이나, Shader Code로 바인딩 하는 과정 등을 안전하게 관리하기 어렵다.
 
-또한 UE는 DX, Vulkan같은 여러 API 위에서 렌더링 작업을 관리해야하는 크로스 플랫폼 엔진이다. 이런 상황에서 리소스 접근을 제한 없이 열어두면 관리 비용이 크게 늘어난다. 그래서 Resource의 읽기·쓰기 의존성을 엔진이 추적할 수 있는 RDG를 통해 Pass를 등록하는 방식을 쓰는 경우가 많다.
+또한 UE는 DX, Vulkan같은 여러 API 위에서 렌더링 작업을 관리해야하는 크로스 플랫폼 엔진이다. 이런 상황에서 리소스 접근을 제한 없이 열어두면 관리 비용이 크게 늘어난다.  
+그래서 Resource의 읽기·쓰기 의존성을 엔진이 추적할 수 있는 RDG를 통해 Pass를 등록하는 방식을 쓰는 경우가 많다.
 
 > 참고: `FPixelShaderUtils::AddFullscreenPass()`는 기본값으로 `ERDGPassFlags::None`이 들어간다.
 
