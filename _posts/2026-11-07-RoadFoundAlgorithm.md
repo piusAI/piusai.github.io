@@ -17,7 +17,17 @@ DFS, BFS, Dijkstra 알고리즘에 대해 알아보자.
 
 [그래프의 이해와 인접 행렬, 인접 리스트](https://piusai.github.io/c++/2026/10/07/GraphWithAdjacent.html)
 
+#### Keyword
+- **DFS(Depth First Search)** :  
+  깊이 우선 탐색 방식으로, 먼저 찾는것을 깊이우선으로 쭉 들어가는 방식이다.
+- **BFS(Beardth First Search)** :
+  너비 우선 탐색
+- **Djikstra** :
+  우선순위 큐를 활용한 길찾기
+- **`A*`(Astar 알고리즘))** :
+  Heuristic 함수를 사용하여 탐색 방향을 영리하게 결정한다.
 
+---
 ### 1. DFS
 - 깊이 우선 탐색 Depth-First Search
 - 처음 찾는 것의 깊숙하게 들어가기
