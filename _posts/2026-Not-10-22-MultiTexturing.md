@@ -170,28 +170,6 @@ $$
 
 ---
 
-## Interaction
-
-### Picking
-
-Ray Casting
-
-
-- Perspective
-- Orthogonal
-
-3차원 Ray로 날린다 하면 해주는걸 
-
-Mouse (2D Screen) UV -> Ray (3D World)
-
-[Shader에서 기준을 바꾸는 방법](https://piusai.github.io/graphics/2026/11/11/Shader-Coordinate.html)
-1. 2D Screen Space ->UV
-2. NDC, View Space(Device Depth)
-3. World space 
-4. Ray 로 변경된 이후, 삼각형 collision
-<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Shader/MousePicking.png" alt="MousePicking" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>MousePicking</strong> </td>  </tr> </table>
-
-
 
 ## Interaction
 
@@ -202,6 +180,12 @@ Mouse (2D Screen) UV -> Ray (3D World)
 > Mouse (2D Screen) UV → Ray (3D World)
 
 **핵심 아이디어**: 보통 메시를 로컬 → 월드 → 뷰 → 클립 → 화면으로 변환하는데, 피킹은 이 **파이프라인을 역방향**으로 거슬러 올라갑니다. 그래서 `inverse(view) * inverse(projection)` 같은 역행렬이 등장합니다.
+
+[Shader에서 기준을 바꾸는 방법](https://piusai.github.io/graphics/2026/11/11/Shader-Coordinate.html)
+1. 2D Screen Space ->UV
+2. NDC, View Space(Device Depth)
+3. World space 
+4. Ray 로 변경된 이후, 삼각형 collision
 
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Shader/MousePicking.png" alt="MousePicking" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>MousePicking</strong> </td> </tr> </table>
 
