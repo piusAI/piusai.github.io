@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: Houdini Engine - Unreal Engine Node Sync
-subtitle: Constraint
+subtitle: Node Sync
 date: 2026-11-24 15:45:00 +0900
 description:
 categories:
