@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-11-24-Houdini-To-UE-NodeSync.md",
+                "file": "_posts/2026-Not-11-25-MatCut-Keyword.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-11-24-Houdini-To-UE-NodeSync"
+              "title": "2026-Not-11-25-MatCut-Keyword"
             }
           },
           {
@@ -60,7 +60,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -191,102 +191,63 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
     }
-  },
-  "floating": {
-    "id": "efcc08e0badac8c4",
-    "type": "floating",
-    "children": [
-      {
-        "id": "170b1bb84ab3cfe1",
-        "type": "window",
-        "children": [
-          {
-            "id": "6da38b44b88cb87c",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "3558bbd77f911b75",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "_posts/2026-11-24-Houdini-To-UE-NodeSync.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "2026-11-24-Houdini-To-UE-NodeSync"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 262,
-        "y": 96,
-        "width": 836,
-        "height": 1004,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
   },
   "active": "5f3839839ef767ca",
   "lastOpenFiles": [
+    "assets/postimg/Graphics/MatCut/IoU.svg",
+    "assets/postimg/Graphics/MatCut/미확인 926499.crdownload",
+    "assets/postimg/Graphics/MatCut/CutCost.png",
+    "assets/postimg/Graphics/MatCut/스크린샷 2026-11-25 오후 6.33.49.png",
+    "assets/postimg/Graphics/MatCut/ExpansionKeep.png",
+    "assets/postimg/Graphics/MatCut/ExpansionCut.png",
+    "assets/postimg/Graphics/MatCut/스크린샷 2026-11-25 오후 6.31.34.png",
+    "assets/postimg/Graphics/MatCut/스크린샷 2026-11-25 오후 6.31.08.png",
+    "assets/postimg/Graphics/MatCut/GraphCut.svg",
+    "assets/postimg/Graphics/MatCut/미확인 577355.crdownload",
+    "assets/postimg/Graphics/MatCut/FaceIDBF.svg",
+    "assets/postimg/Graphics/MatCut/RGBBF.svg",
+    "assets/postimg/Graphics/MatCut/UVBF.svg",
+    "assets/postimg/Graphics/MatCut/미확인 471185.crdownload",
+    "assets/postimg/Graphics/MatCut/미확인 33232.crdownload",
+    "assets/postimg/Graphics/MatCut/미확인 666409.crdownload",
+    "assets/postimg/Graphics/MatCut/미확인 508336.crdownload",
+    "assets/postimg/Graphics/MatCut/미확인 543550.crdownload",
+    "assets/postimg/Graphics/MatCut/미확인 220308.crdownload",
+    "assets/postimg/Graphics/MatCut",
+    "assets/postimg/Graphics/무제 폴더",
+    "_posts/2026-11-22-AnimationInDirectX.md",
+    "_posts/2026-Not-11-25-MatCut-Keyword.md",
+    "_posts/2026-11-21-Physics01.md",
+    "_posts/2026-11-24-Houdini-To-UE-NodeSync.md",
     "file:E:/Github/UE-ChaosNiagaraVFX/Method/houdini_pig_node_sync.md",
     "_posts/2026-Not-10-19-AIZ-Algorithm-Final.md",
-    "_posts/2026-11-24-Houdini-To-UE-NodeSync.md",
     "_posts/2026-Not-10-21-UE-Insight.md",
     "_posts/2026-Not-10-22-MultiTexturing.md",
     "_posts/2026-Not-10-28-Refraction-Evaluation.md",
     "_posts/2026-Not-11-01-STL.md",
     "_posts/2026-Not-11-22-코테준비-string.md",
     "_posts/2025-01-12-Houdini-DestructionConcept.md",
-    "assets/postimg/Houdini/HoudiniEngine/HoudiniEnginesession05.png",
-    "assets/postimg/Houdini/HoudiniEngine/미확인 259018.crdownload",
-    "assets/postimg/Houdini/HoudiniEngine/HoudiniEnginesession04.png",
-    "assets/postimg/Houdini/HoudiniEngine/미확인 590889.crdownload",
-    "assets/postimg/Houdini/HoudiniEngine/HoudiniEnginesession03.png",
-    "assets/postimg/Houdini/HoudiniEngine/미확인 719026.crdownload",
-    "assets/postimg/Houdini/HoudiniEngine/미확인 472586.crdownload",
-    "assets/postimg/Houdini/HoudiniEngine/HoudiniEnginesession02.png",
-    "assets/postimg/Houdini/HoudiniEngine/미확인 922758.crdownload",
-    "assets/postimg/Houdini/HoudiniEngine/HoudiniEnginesession01.png",
-    "assets/postimg/Houdini/HoudiniEngine/미확인 786584.crdownload",
-    "assets/postimg/Houdini/HoudiniEngine",
-    "assets/postimg/Houdini/New folder",
-    "_posts/2026-11-22-AnimationInDirectX.md",
     "file:E:/Github/DirectX11_ToothpasteEscape/Framework/inplementation.md",
     "file:E:/Github/UE-ChaosNiagaraVFX/Method/hybrid_destruction.md",
     "_posts/2024-02-19-Houdini-Frame.md",
-    "assets/postimg/Graphics/Animation/parentchildJoint.png",
-    "assets/postimg/Graphics/Animation/Screenshot 2026-11-22 152846.png",
-    "assets/postimg/Graphics/Animation/Screenshot 2026-11-22 152744.png",
-    "assets/postimg/Graphics/Animation/MayaSkinComponent.png",
-    "assets/postimg/Graphics/Animation/MayaBinding.png",
     "_posts/2026-Not-11-22-interaction.md",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2023-12-13-Houdini-Level.md",
     "_posts/2026-11-10-Unrealengine-RenderPipeline-RDG.md",
     "_posts/2026-Not-10-19-LEB.md",
-    "assets/postimg/Graphics/Animation/BlendShape.gif._00_",
-    "assets/postimg/Graphics/Animation",
     "_posts/2026-Not-11-08-BinarySearch.md",
     "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
-    "_posts/2026-11-21-Physics01.md",
     "_posts/2026-11-19-PhongReflectionLightModel.md",
     "_posts/2026-08-29-AABB-OBB.md",
     "_posts/2026-08-25-ComputeShader.md",
-    "_posts/2026-Not-11-11-Depth-Discontinuity-Refraction-Math.md",
-    "_posts/2026-11-04-Cubemap.md",
     "무제.canvas"
   ]
 }
