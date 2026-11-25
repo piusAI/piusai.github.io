@@ -18,6 +18,23 @@ author: PIUS
 
 Proxy Mesh는 형상 분석을 위해서만 사용, 최종 분할은 원본 메시에서 진행
 
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="50%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/MatCut/EvidenceTransfer.svg" alt="EvidenceTransfer" style="width: 100%; max-width: 100%; height: auto;"> <br></td> </tr> </table>
+원본 Face의 중심점과 각 Medial Patch를 구성하는 구 표면 사이의 거리를 계산하는 개념도
+
+
+어떤 형상에 속하는 것이 적합한지 판단한다.
+
+$$
+D(f,s)=\frac{d_{\min}(x_f,s)}{d_B}
+$$
+
+- $x_f$ : 원본 Face 중심점
+- $s$ : Medial Patch
+- $d_B$ : Bounding Box 대각선 길이
+- $D(f,s)$ : 정규화된 형상 비용
+
+Bounding box를 대각선을 ㅗ나누는 이유 : 모델 크기에 따른 거리 차이 정규화를 위해
+
 ### 2. MAT/Q-MAT/SEG-MAT
 
 - MAT: 물체 내부 중심 구조 표현
@@ -65,6 +82,27 @@ MATCUT : Apple DMS Dataset으로 사전학습된 SegFormer-B5를 사용.
 - Face ID Buffer : 픽셀이 어느 면에 속하는지
 - UV Buffer : 픽셀에 대응하는 UV 좌표
 
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;">
+  <tr style="border: none;">
+    <td width="33.33%" style="text-align: center; border: none; padding: 5px;">
+      <img src="/assets/postimg/Graphics/MatCut/MultiViewWeight01.svg" alt="MultiViewWeight01" style="width: 100%; max-width: 100%; height: auto;">
+      <br><b>정면 에서 크게 관측 (높은 weight)</b>
+    </td>
+    <td width="33.33%" style="text-align: center; border: none; padding: 5px;">
+      <img src="/assets/postimg/Graphics/MatCut/MultiViewWeight02.svg" alt="MultiViewWeight02" style="width: 100%; max-width: 100%; height: auto;">
+      <br><b>비스듬하게 작게 관측(낮은 weight0</b>
+    </td>
+  </tr>
+</table>
+여러 시점의 재질 확률을 가중 평균한다.
+
+$$
+\bar q_f=\frac{\sum_v w_{f,v}q_{f,v}} {\sum_v w_{f,v}}
+$$
+
+더 잘 관측된 시점의 재질 예측을 더 많이 반영하는 방식
 
 ### 6. Energy Function / Graph Cut
 
