@@ -27,15 +27,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "file:E:/Github/UE-ChaosNiagaraVFX/Method/houdini_pig_node_sync.md",
+                "file": "_posts/2026-Not-11-25-Chaos-FS-MasterField.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "houdini_pig_node_sync"
+              "title": "2026-Not-11-25-Chaos-FS-MasterField"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,7 +61,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "파일 탐색기"
+              "title": "Files"
             }
           },
           {
@@ -191,17 +192,23 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:빠른 전환기 열기": false,
-      "graph:그래프 뷰 열기": false,
-      "canvas:새 캔버스 만들기": false,
-      "daily-notes:오늘의 일일 노트 열기": false,
-      "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
-  "active": "5f3839839ef767ca",
+  "active": "79e1fc43b6d475ed",
   "lastOpenFiles": [
+    "_posts/2026-11-11-RDG-Unrealengine.md",
+    "_posts/2026-Not-11-25-Chaos-FS-MasterField.md",
+    "_posts/2026-11-11-Shader-Coordinate.md",
+    "_posts/2026-11-10-Unrealengine-RenderPipeline-RDG.md",
+    "file:E:/Github/UE-ChaosNiagaraVFX/Method/houdini_pig_node_sync.md",
+    "_posts/2026-Not-11-25-MatCut-Keyword.md",
     "assets/postimg/Graphics/MatCut/IoU.svg",
     "assets/postimg/Graphics/MatCut/미확인 926499.crdownload",
     "assets/postimg/Graphics/MatCut/CutCost.png",
@@ -214,7 +221,6 @@
     "assets/postimg/Graphics/MatCut/미확인 577355.crdownload",
     "assets/postimg/Graphics/MatCut/FaceIDBF.svg",
     "assets/postimg/Graphics/MatCut/RGBBF.svg",
-    "assets/postimg/Graphics/MatCut/UVBF.svg",
     "assets/postimg/Graphics/MatCut/미확인 471185.crdownload",
     "assets/postimg/Graphics/MatCut/미확인 33232.crdownload",
     "assets/postimg/Graphics/MatCut/미확인 666409.crdownload",
@@ -224,10 +230,8 @@
     "assets/postimg/Graphics/MatCut",
     "assets/postimg/Graphics/무제 폴더",
     "_posts/2026-11-22-AnimationInDirectX.md",
-    "_posts/2026-Not-11-25-MatCut-Keyword.md",
     "_posts/2026-11-21-Physics01.md",
     "_posts/2026-11-24-Houdini-To-UE-NodeSync.md",
-    "file:E:/Github/UE-ChaosNiagaraVFX/Method/houdini_pig_node_sync.md",
     "_posts/2026-Not-10-19-AIZ-Algorithm-Final.md",
     "_posts/2026-Not-10-21-UE-Insight.md",
     "_posts/2026-Not-10-22-MultiTexturing.md",
@@ -241,13 +245,10 @@
     "_posts/2026-Not-11-22-interaction.md",
     "_posts/2023-12-21-Houdini-String-Opdigits.md",
     "_posts/2023-12-13-Houdini-Level.md",
-    "_posts/2026-11-10-Unrealengine-RenderPipeline-RDG.md",
     "_posts/2026-Not-10-19-LEB.md",
     "_posts/2026-Not-11-08-BinarySearch.md",
     "_posts/2026-Not-11-02-Depth-Discontinuity-Refraction.md",
     "_posts/2026-11-19-PhongReflectionLightModel.md",
-    "_posts/2026-08-29-AABB-OBB.md",
-    "_posts/2026-08-25-ComputeShader.md",
     "무제.canvas"
   ]
 }
