@@ -17,11 +17,13 @@ author: PIUS
 
 ### Picking
 
-마우스로 3D 오브젝트를 클릭해서 선택하는 기법입니다. 카메라에서 마우스 위치를 통과해 씬 안으로 3D **Ray**를 쏘고, 이 Ray가 오브젝트와 교차하는지 검사하는 방식을 **Ray Casting**이라고 합니다. 그래픽 API와 무관한 순수 수학 문제(교차 판정, intersection testing)라서 어떤 3D 환경에서든 같은 원리가 적용됩니다.
+마우스로 3D 오브젝트를 클릭해서 선택하는 기법.  
+카메라에서 마우스 위치를 통과해 씬 안으로 3D **Ray**를 쏘고, 이 Ray가 오브젝트와 교차하는지 검사하는 방식을 **Ray Casting**이라 한다. 
+그래픽 API와 무관한 순수 수학 문제(교차 판정, intersection testing)라서 어떤 3D 환경에서든 같은 원리 적용
 
 > Mouse (2D Screen) UV → Ray (3D World)
 
-**핵심 아이디어**: 보통 메시를 로컬 → 월드 → 뷰 → 클립 → 화면으로 변환하는데, 피킹은 이 **파이프라인을 역방향**으로 거슬러 올라갑니다. 그래서 `inverse(view) * inverse(projection)` 같은 역행렬이 등장합니다.
+**핵심 아이디어**: 보통 메시를 Local → World → View → Clip → Screen으로 변환하는데, picking은 이 **파이프라인을 역방향**으로 거슬러 올라갑니다. 그래서 `inverse(view) * inverse(projection)` 같은 역행렬이 등장합니다.
 
 [Shader에서 기준을 바꾸는 방법](https://piusai.github.io/graphics/2026/11/11/Shader-Coordinate.html)
 1. 2D Screen Space ->UV
@@ -32,6 +34,16 @@ author: PIUS
 <table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Shader/MousePicking.png" alt="MousePicking" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>MousePicking</strong> </td> </tr> </table>
 
 [역변환 파이프라인](https://antongerdelan.net/opengl/raycasting.html) _메시에서 출발하는 대신, 2D 마우스 위치에서 출발해 역행렬로 월드 공간의 Ray를 얻는다. (출처: Anton Gerdelan)_
+
+
+```
+Local → World → View → Proj→ Clip ─(÷w) → NDC ─Viewport→ Screen(pixel)
+└─────── Vertex Shader ────────┘   └──── Rasterizer 쪽 고정 기능 ────┘
+```
+
+ScreenUV -> NDC로 변환한게 Rasterizer쪽에서 일어나는 거였음.  
+
+- WOrld, View, projection까지만 행렬곱
 
 ---
 
@@ -45,7 +57,7 @@ author: PIUS
 
 아래 단계는 Perspective 기준입니다. ([Shader에서 기준을 바꾸는 방법](https://piusai.github.io/graphics/2026/11/11/Shader-Coordinate.html) 글과 같은 흐름입니다.)
 
-EyeSpace == CameraSpace == ViewSpace
+`EyeSpace == CameraSpace == ViewSpace`
 
 
 ### 좌표 변환 단계
