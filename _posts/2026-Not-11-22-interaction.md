@@ -123,6 +123,102 @@ vec3 ray_wor = normalize((inverse(view) * ray_eye).xyz);
 - **OBB**: 오브젝트와 함께 회전하는 박스.
 - **삼각형 (Barycentric)**: 메시의 정확히 어느 지점을 클릭했는지 알 수 있습니다. 총알 자국을 정확한 위치에 붙이는 용도 등에 쓰입니다. 삼각형을 전부 검사하기 전에 **bounding sphere로 먼저 걸러내는 것**이 정석입니다.
 
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/AABB/OOBBSAT.png" alt="OOBBSAT" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>OOBBSAT</strong> </td> </tr> </table>
+
+Convax Polygon에만 oobb들어가도록
+
+---
+
+### Culling examplg
+
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="20%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/Culling01.svg" alt="Frustum Culling" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Backface Culling</strong> </td> <td width="20%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/Culling02.svg" alt="View Culling" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>View Culling</strong> </td> <td width="20%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/Culling03.svg" alt="Occlusion Culling" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Occlusion Frustum Culling</strong> </td> <td width="20%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/Culling04.svg" alt="OOBBSAT" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Detail Culling</strong> </td> <td width="20%" style="text-align: center; border: none; padding: 5px;"> <img src="/assets/postimg/Graphics/Culling05.svg" alt="Portal Culling" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Portal Culling</strong> </td> </tr> </table>
+
+#### 1. BackFace Culling ( 후면 제거 )
+- Normal방향
+- Winding order
+
+`D3D11_CULL_BACK`
+
+#### 2. View Frustum Culling
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/ViewFrustum.png" alt="ViewFrustum" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>ViewFrustum</strong> </td> </tr> </table>
+- 모든 오브젝트가 bbox가 다 있다는 가정 
+- BBox가 View Frustum(카메라 시야각)을 벗어나는지 검사
+- 완전히 벗어난 경우 Culling, 경계에 걸치는 경우 렌더링 대상으로 유지한다.
+- 계층적 Scene Graph를 활용하여, 상위 BBX부터 검사, 경계에 걸치는 경우 하위 BBX를 추가 검사한다.
+
+
+``` mermaid
+flowchart TD
+    R["Root"] --> A["A : Inside"]
+    R --> B["B : Intersect"]
+    R --> C["C : Outside"]
+    A --> A1["A1 : Render"]
+    A --> A2["A2 : Render"]
+    B --> B1["B1 : Render"]
+    B --> B2["B2 : Cull"]
+    C -.-> C1["C1 : 검사 생략"]
+    C -.-> C2["C2 : 검사 생략"]
+    class A,A1,A2,B1 success
+    class B warning
+    class C,C1,C2,B2 danger
+```
+
+- **Inside** : 하위 노드 검사 생략 및 렌더링 대상 유지.
+- **Intersect** : 하위 노드로 내려가 추가 검사.
+- **Outside** : 하위 노드 전체 Culling.
+
+이러한 방식을 **Hierarchical Frustum Culling**이라고 한다.
+
+※ Scene Graph는 장면의 계층 관계를 표현하는 자료구조이며, 공간 분할 및 계층적 충돌 영역 관리에는 Octree, BVH 등의 자료구조도 활용된다.
+
+
+#### **Spatial Partitioning (공간 분할)**
+
+- 전체 공간을 일정한 기준에 따라 재귀적으로 분할하는 기법.
+- 각 영역에 오브젝트가 하나만 남거나, 설정한 분할 종료 조건을 만족할 때까지 분할한다.
+- 분할된 공간을 Tree 구조로 관리하여 충돌 검사 및 Culling 연산을 효율적으로 수행한다.
+    
+
+**공간 분할 자료구조**
+
+| 자료구조     | 분할 방식              |
+| -------- | ------------------ |
+| BSP Tree | 공간을 평면 기준으로 2개씩 분할 |
+| QuadTree | 2D 공간을 4개씩 분할      |
+| Octree   | 3D 공간을 8개씩 분할      |
+
+**단점**
+
+- 오브젝트가 특정 영역에 밀집되어 있다면 반복적인 공간 분할이 발생한다.
+- 불필요한 빈 노드가 생성되거나 Tree의 깊이가 증가하여 메모리 및 탐색 비용이 증가할 수 있다.
+- 이를 방지하기 위해 최대 분할 깊이(Max Depth)와 노드당 최대 오브젝트 개수를 설정한다.
+    
+
+이전에 C++로 [QuadTree](https://piusai.github.io/c++/2026/09/14/QuadTree.html?utm_source=chatgpt.com)에 대해 정리한 바 있다.
+
+※ 이진 트리(Binary Tree)는 자식 노드가 최대 2개인 구조이며, QuadTree와 Octree는 각각 4개, 8개의 자식 노드를 갖는다.
+
+
+#### 3. Occlusion Culling
+
+<table width="100%" style="table-layout: fixed; border-collapse: collapse; border: none;"> <tr style="border: none;"> <td width="100%" style="text-align: center; border: none; padding: 15px;"> <img src="/assets/postimg/Graphics/OcclusionFrustum.png" alt="OcclusionFrustum" style="width: 100%; max-width: 100%; height: auto;"> <br><strong>Occlusion Frustum</strong> </td> </tr> </table>
+
+
+- View Frustum 내부에 존재하지만, 다른 오브젝트에 의해 가려진 경우, 렌더링 대상에서 Culling
+- 뒤쪽 오브젝트의 BBox가 앞쪽 Occluder에 의해 화면상 완전히 가려진 경우 Culling.
+- 일부 가려지지 않고 삐져나온 경우 렌더링 대상으로 유지.
+- 화면상 겹침 여부 뿐 아니라, Depth를 비교해서 실제로 가려지는지 판단
+
+[UE에서의 Culling](https://dev.epicgames.com/documentation/unreal-engine/visibility-and-occlusion-culling-in-unreal-engine?utm_source=chatgpt.com)
+
+#### 4. Detail
+Lod와같음
+
+#### 5. Portal
+뚫린것만 보이도록 하는
+
 ---
 
 ### 언제 Ray Casting을 쓰나?
